@@ -38,9 +38,7 @@ class QuickComponent extends HTMLElement {
     }
 
     connectedCallback() {
-        const shadow = this.attachShadow({
-            mode: "open"
-        });
+        const shadow = this.attachShadow({ mode: "open" });
 
         // Add styles
         const style = document.createElement("style");
