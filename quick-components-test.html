@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <title>web components</title>
+    <script src="https://cdn.unpkg.net/frontend/quick.min.js"></script>
+    <script src="quick-components.js"></script>
+    <style>
+     :root {
+     }
+    </style>
+  </head>
+
+  <body>
+    <h1>web components</h1>
+
+    <quick-field type="text" label="用户名" name="username" value="2023-01-05" required></quick-field>
+    <quick-field type="password" label="密码" name="password" value="psd" disabled></quick-field>
+    <quick-field type="calendar" label="日期" name="date" value="2023-01-05" ></quick-field>
+
+    <quick-switch name="isSupplier" checked></quick-switch>
+
+    <button onclick="getv()">get</button>
+    <button onclick="change()">change</button>
+  </body>
+</html>
+
+<script>
+
+
+
+function change() {
+  document.querySelector('quick-field').value = 'nacy2';
+  document.querySelector('quick-field').disabled = true;
+  document.querySelector('quick-switch').value = 0;
+}
+function getv() {
+  const data = getJsonObject('body');
+  console.log(data)
+}
+
+function getJsonObject(scope) {
+        scope = Quick.query(scope);
+        const fields = scope.query('[name]:not([name=""])', true);
+        const data = {};
+
+        for (let i = 0; i < fields.length; i++) {
+            const field = fields[i];
+            if ((field.type == 'checkbox' || field.type == 'radio') && !field.checked) continue;
+
+            // 去除输入值空格
+            let value = '';
+
+            if (field.tagName === 'QUICK-SWITCH') {
+              value = field.value;
+            } else
+            if (field.tagName === 'INPUT' || field.tagName === 'TEXTAREA' || field.tagName.startsWith('QUICK-')) {
+                value = field.value = field.value.trim();
+            } else
+            if (field.tagName === 'SELECT') {
+                value = field.options[field.selectedIndex].value;
+            } else
+            if (field.isContentEditable) {
+                value = field.innerHTML = field.innerHTML.trim();
+            } else {
+                value = field.textContent = field.textContent.trim();
+            }
+
+            // 数据校验
+            let required = field.getAttribute('required');
+            required = (required === null || required === 'false') ? false : true;
+            if (!validate(value, required, field.dataset.rule)) {
+                field.focus();
+                Quick.error(field.dataset.message || Quick.lang.INPUT_FORMAT_INCORRECT);
+                return;
+            }
+
+            // 设置返回对象的键值
+            const name = field.getAttribute('name');
+            if (data[name]) {
+                data[name] += ',' + value;
+            } else {
+                data[name] = value;
+            }
+        }
+        return data;
+    }
+
+    function validate(value, required, rule) {
+        if (required && !value) return false; // 必填但空值，校验失败
+        if (!rule) return true; // 无规则，视为成功
+        if (!value) return true; // 空值无需校验，视为成功
+
+        const matches = rule.match(/^(?<type>[a-z0-9]+)(\((?<min>\-?\d+)(,\s*(?<max>\-?\d+))?\))?$/);
+        if (!matches) return true; // 有规则但格式不匹配，视为成功（相当于无规则）
+
+        const groups = matches.groups;
+        const fn = this.validator[groups.type];
+        if (!fn) return true; // 有规则但找不到预设的校验方法，视为成功（相当于无规则）
+
+        return fn(value, groups.min, groups.max); // 由预设的校验方法判断
+    }
+</script>
