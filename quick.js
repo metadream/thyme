@@ -571,10 +571,10 @@ Quick.Component = class extends HTMLElement {
     }
 
     connectedCallback() {
-        const shadow = this.attachShadow({ mode: "open" });
+        const shadow = this.attachShadow({ mode: 'open' });
 
         // Add styles
-        const style = document.createElement("style");
+        const style = document.createElement('style');
         style.textContent = this.baseStyle + this.style;
         shadow.append(style);
 
@@ -597,7 +597,7 @@ Quick.Component = class extends HTMLElement {
 // 扩展组件：文本域
 // --------------------------------------------------------
 
-customElements.define("quick-field", class extends Quick.Component {
+customElements.define('quick-field', class extends Quick.Component {
     style = `
         .quick-field {
           display: flex;
@@ -676,7 +676,7 @@ customElements.define("quick-field", class extends Quick.Component {
     }
 
     onConnected(shadow) {
-        this.keyElement = shadow.querySelector("input");
+        this.keyElement = shadow.querySelector('input');
 
         if (this.getAttribute('type') == 'calendar') {
 
@@ -699,7 +699,7 @@ customElements.define("quick-field", class extends Quick.Component {
 // 扩展组件：单选开关
 // --------------------------------------------------------
 
-customElements.define("quick-switch", class extends Quick.Component {
+customElements.define('quick-switch', class extends Quick.Component {
     style = `
         .quick-switch {
           position: relative;
