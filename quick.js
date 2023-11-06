@@ -308,13 +308,7 @@ const LANG = {
         YES: 'YES',
         NO: 'NO',
         CANCEL: 'CANCEL',
-        MON: 'MON',
-        TUE: 'TUE',
-        WED: 'WED',
-        THU: 'THU',
-        FRI: 'FRI',
-        SAT: 'SAT',
-        SUN: 'SUN',
+
         UPLOAD_ATTACHMENT: 'UPLOAD',
         MAX_ALLOWED_COUNT: 'The maximum number of upload files allowed is: ',
         MAX_ALLOWED_SIZE: 'Single file size is not allowed to exceed ',
@@ -332,13 +326,7 @@ const LANG = {
         YES: '确定',
         NO: '取消',
         CANCEL: '取消',
-        MON: '一',
-        TUE: '二',
-        WED: '三',
-        THU: '四',
-        FRI: '五',
-        SAT: '六',
-        SUN: '日',
+
         UPLOAD_ATTACHMENT: '上传附件',
         MAX_ALLOWED_COUNT: '单次最多允许上传文件数：',
         MAX_ALLOWED_SIZE: '单文件大小不允许超过',
@@ -604,12 +592,14 @@ customElements.define('quick-field', class extends Quick.Component {
             this.keyElement.readOnly = true;
             this.keyElement.addClass('icon-trigger').addClass('icon-calendar');
 
-            this.keyElement.on('click', function() {
+            this.keyElement.on('click', () => {
                 const $calendar = document.createElement('quick-calendar');
                 shadow.append($calendar);
-                $calendar.attach(this);
+
+                $calendar.setAttribute('lang', this.getAttribute('lang') || '');
+                $calendar.attach(this.keyElement);
                 $calendar.on('selected', (e) => {
-                    this.value = e.detail;
+                    this.keyElement.value = e.detail;
                     $calendar.remove();
                 })
             });
@@ -787,11 +777,16 @@ customElements.define('quick-calendar', class extends Quick.Component {
       </div>
     `;
 
+    lang = {
+        zh: { MON: '一', TUE: '二', WED: '三', THU: '四', FRI: '五', SAT: '六', SUN: '日' },
+        en: { MON: 'MON', TUE: 'TUE', WED: 'WED', THU: 'THU', FRI: 'FRI', SAT: 'SAT', SUN: 'SUN' }
+    };
+
     onConnected(shadow) {
-        this.shadow = shadow;
         this.$calendar = shadow.querySelector('.quick-calendar');
         this.$overlay = shadow.querySelector('.quick-overlay');
         this.$overlay.on('click', e => this.remove());
+        this.i18n = this.lang[this.getAttribute('lang') || 'zh'];
         this.bindEventListeners();
     }
 
@@ -857,7 +852,7 @@ customElements.define('quick-calendar', class extends Quick.Component {
             </div>
             <div class="quick-calendar-body">
               <table>
-                <thead><tr><th>${Quick.lang.MON}</th><th>${Quick.lang.TUE}</th><th>${Quick.lang.WED}</th><th>${Quick.lang.THU}</th><th>${Quick.lang.FRI}</th><th>${Quick.lang.SAT}</th><th>${Quick.lang.SUN}</th></tr></thead>
+                <thead><tr><th>${this.i18n.MON}</th><th>${this.i18n.TUE}</th><th>${this.i18n.WED}</th><th>${this.i18n.THU}</th><th>${this.i18n.FRI}</th><th>${this.i18n.SAT}</th><th>${this.i18n.SUN}</th></tr></thead>
                 <tbody>
         `;
 
