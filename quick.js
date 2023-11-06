@@ -260,93 +260,6 @@ document.head.insertAdjacentHTML('beforeend', `<style>
 .quick-slide-right {
   animation: slideRight ease .3s forwards;
 }
-.quick-datepicker-target {
-  cursor: pointer;
-  line-height: inherit;
-  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16'%3E%3Cpath fill='lightgray' d='M10.9 3.2H5.1v1.6H3.9V3.2H1.2v3.2h13.6V3.2h-2.7v1.6h-1.2V3.2zM12.1 2H15a1 1 0 0 1 1 1v12a1 1 0 0 1-1 1H1a1 1 0 0 1-1-1V3a1 1 0 0 1 1-1h2.9V.4h1.2V2h5.8V.4h1.2V2zm2.7 5.6H1.2v7.2h13.6V7.6z'%3E%3C/path%3E%3C/svg%3E");
-  background-repeat: no-repeat;
-  background-position: top 49% right 15px;
-  background-size: 16px;
-}
-.quick-datepicker-wrapper {
-  position: absolute;
-  z-index: 5001;
-  color: #666;
-  font-size: 13px;
-  background: #fff;
-  box-shadow: 0 0 16px rgb(0 0 0 / 8%);
-  user-select: none;
-}
-.quick-datepicker-header {
-  display: flex;
-  align-items: center;
-  height: 40px;
-  padding: 5px;
-  border-bottom: #eee 1px solid;
-}
-.quick-datepicker-text {
-  flex: 1;
-  text-align: center;
-  color: #6698ff;
-  font-size: 15px;
-  cursor: pointer;
-}
-.quick-datepicker-btn {
-  width: 26px;
-  height: 26px;
-  padding: 5px;
-  cursor: pointer;
-  border-radius: 3px;
-  transition: .3s all;
-}
-.quick-datepicker-btn path {
-  fill: #999;
-}
-.quick-datepicker-btn:hover {
-  background: #eee;
-}
-.quick-datepicker-body {
-  padding: 10px;
-}
-.quick-datepicker-body table {
-  width: 100%;
-  border-collapse: collapse;
-}
-.quick-datepicker-body tr {
-  border: 0;
-  height: auto;
-}
-.quick-datepicker-body th, .quick-datepicker-body td {
-  width: 32px;
-  height: 32px;
-  text-align: center;
-}
-.quick-datepicker-body td {
-  padding: 3px;
-}
-.quick-datepicker-body td>div {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  height: 100%;
-  border-radius: 3px;
-  cursor: pointer;
-  transition: .3s all;
-}
-.quick-datepicker-body td>div:hover {
-  background: #eee;
-}
-.quick-datepicker-body td>div.today {
-  color: #fff;
-  background: #6698ff;
-}
-.quick-datepicker-body td>div.curr {
-  color: #fff;
-  background: #999;
-}
-.quick-datepicker-body td>div.minor {
-  color: #ccc;
-}
 @keyframes scaleIn {
   from { transform: scale3d(0.8, 0.8, 1); }
   to { transform: scale3d(1, 1, 1); }
@@ -545,6 +458,15 @@ Quick.Component = class extends HTMLElement {
           font-size: var(--fontSize, 15px);
           font-family: var(--fontFamily, system-ui, -apple-system, BlinkMacSystemFont, Helvetica, Arial, Tahoma, "PingFang SC", "Hiragino Sans GB", "Heiti SC", "Microsoft YaHei", sans-serif);
         }
+        .quick-overlay {
+          position: fixed;
+          z-index: 5000;
+          left: 0;
+          right: 0;
+          top: 0;
+          bottom: 0;
+          background: rgba(0, 0, 0, 0.5);
+        }
     `;
     constructor() {
         super();
@@ -650,15 +572,15 @@ customElements.define('quick-field', class extends Quick.Component {
           color: #999;
           pointer-events: none;
         }
-
-        .quick-datepicker-target {
-  cursor: pointer;
-  line-height: inherit;
-  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16'%3E%3Cpath fill='lightgray' d='M10.9 3.2H5.1v1.6H3.9V3.2H1.2v3.2h13.6V3.2h-2.7v1.6h-1.2V3.2zM12.1 2H15a1 1 0 0 1 1 1v12a1 1 0 0 1-1 1H1a1 1 0 0 1-1-1V3a1 1 0 0 1 1-1h2.9V.4h1.2V2h5.8V.4h1.2V2zm2.7 5.6H1.2v7.2h13.6V7.6z'%3E%3C/path%3E%3C/svg%3E");
-  background-repeat: no-repeat;
-  background-position: top 49% right 15px;
-  background-size: 16px;
-}
+        .icon-trigger {
+          background-repeat: no-repeat;
+          background-size: 16px;
+          background-position: top 49% right 0;
+          cursor: pointer;
+        }
+        .icon-calendar {
+          background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16'%3E%3Cpath fill='lightgray' d='M10.9 3.2H5.1v1.6H3.9V3.2H1.2v3.2h13.6V3.2h-2.7v1.6h-1.2V3.2zM12.1 2H15a1 1 0 0 1 1 1v12a1 1 0 0 1-1 1H1a1 1 0 0 1-1-1V3a1 1 0 0 1 1-1h2.9V.4h1.2V2h5.8V.4h1.2V2zm2.7 5.6H1.2v7.2h13.6V7.6z'%3E%3C/path%3E%3C/svg%3E");
+        }
     `;
     template = `
         <div class="quick-field">
@@ -679,10 +601,19 @@ customElements.define('quick-field', class extends Quick.Component {
         this.keyElement = shadow.querySelector('input');
 
         if (this.getAttribute('type') == 'calendar') {
+            this.keyElement.readOnly = true;
+            this.keyElement.addClass('icon-trigger').addClass('icon-calendar');
 
-            new Quick.DatePicker(this.keyElement);
+            this.keyElement.on('click', function() {
+                const $calendar = document.createElement('quick-calendar');
+                shadow.append($calendar);
+                $calendar.attach(this);
+                $calendar.on('selected', (e) => {
+                    this.value = e.detail;
+                    $calendar.remove();
+                })
+            });
         }
-
         if (this.hasAttribute('disabled')) {
             this.keyElement.disabled = true;
         }
@@ -760,6 +691,238 @@ customElements.define('quick-switch', class extends Quick.Component {
         if (this.hasAttribute('checked')) {
             this.keyElement.checked = true;
         }
+    }
+});
+
+// --------------------------------------------------------
+// 扩展组件：日期选择器
+// --------------------------------------------------------
+
+customElements.define('quick-calendar', class extends Quick.Component {
+    style = `
+        .quick-calendar {
+          position: absolute;
+          z-index: 5001;
+          color: #666;
+          font-size: 13px;
+          background: #fff;
+          box-shadow: 0 0 16px rgb(0 0 0 / 8%);
+          user-select: none;
+        }
+        .quick-calendar-header {
+          display: flex;
+          align-items: center;
+          height: 40px;
+          padding: 5px;
+          border-bottom: #eee 1px solid;
+        }
+        .quick-calendar-text {
+          flex: 1;
+          text-align: center;
+          color: var(--mainColor, #16c);
+          font-size: 15px;
+          cursor: pointer;
+        }
+        .quick-calendar-btn {
+          width: 26px;
+          height: 26px;
+          padding: 5px;
+          cursor: pointer;
+          border-radius: 3px;
+          transition: .3s all;
+        }
+        .quick-calendar-btn path {
+          fill: #999;
+        }
+        .quick-calendar-btn:hover {
+          background: #eee;
+        }
+        .quick-calendar-body {
+          padding: 10px;
+        }
+        .quick-calendar-body table {
+          width: 100%;
+          border-collapse: collapse;
+        }
+        .quick-calendar-body tr {
+          border: 0;
+          height: auto;
+        }
+        .quick-calendar-body th, .quick-calendar-body td {
+          width: 32px;
+          height: 32px;
+          text-align: center;
+        }
+        .quick-calendar-body td {
+          padding: 3px;
+        }
+        .quick-calendar-body td>div {
+          display: flex;
+          justify-content: center;
+          align-items: center;
+          height: 100%;
+          border-radius: 3px;
+          cursor: pointer;
+          transition: .3s all;
+        }
+        .quick-calendar-body td>div:hover {
+          background: #eee;
+        }
+        .quick-calendar-body td>div.today {
+          color: #fff;
+          background: var(--mainColor, #16c);
+        }
+        .quick-calendar-body td>div.curr {
+          color: #fff;
+          background: #999;
+        }
+        .quick-calendar-body td>div.minor {
+          color: #ccc;
+        }
+    `;
+    template = `
+      <div>
+        <div class="quick-overlay" style="background:none"></div>
+        <div class="quick-calendar"></div>
+      </div>
+    `;
+
+    onConnected(shadow) {
+        this.shadow = shadow;
+        this.$calendar = shadow.querySelector('.quick-calendar');
+        this.$overlay = shadow.querySelector('.quick-overlay');
+        this.$overlay.on('click', e => this.remove());
+        this.bindEventListeners();
+    }
+
+    attach(target) {
+        const pos = Quick.query(target).getBoundingClientRect();
+        this.$calendar.style.top = pos.y + pos.height + 1 + 'px';
+        this.$calendar.style.left = pos.x + 'px';
+
+        this.initDate = new Date(target.value);
+        this.initDate = isNaN(this.initDate.getTime()) ? new Date() : this.initDate;
+        this.render(this.initDate);
+    }
+
+    bindEventListeners() {
+        // 点击日期选择器
+        this.$calendar.on('click', e => {
+            const $target = e.target;
+
+            // 点击日历格中的日期
+            if ($target.parentNode.tagName === 'TD') {
+                const date = new Date(this.calData.year, this.calData.month - 1, $target.dataset.index);
+                this.dispatchEvent(new CustomEvent('selected', { detail: this.format(date) }));
+            }
+
+            // 点击标题回到初始日期
+            const $currText = this.$calendar.query('.quick-calendar-text');
+            if ($currText.contains($target)) {
+                return this.render(this.initDate);
+            }
+
+            // 点击上下月/上下年按钮
+            const $prevYear = this.$calendar.query('.prev-year');
+            const $prevMonth = this.$calendar.query('.prev-month');
+            const $nextMonth = this.$calendar.query('.next-month');
+            const $nextYear = this.$calendar.query('.next-year');
+            const currDate = new Date($currText.innerHTML);
+
+            if ($prevYear.contains($target)) {
+                currDate.setFullYear(currDate.getFullYear() - 1);
+            } else if ($prevMonth.contains($target)) {
+                currDate.setMonth(currDate.getMonth() - 1);
+            } else if ($nextMonth.contains($target)) {
+                currDate.setMonth(currDate.getMonth() + 1);
+            } else if ($nextYear.contains($target)) {
+                currDate.setFullYear(currDate.getFullYear() + 1);
+            } else {
+                return;
+            }
+            this.render(currDate);
+        });
+    }
+
+    // 渲染日历
+    render(date) {
+        const data = this.calData = this.getCalendarData(date);
+        let html = `
+            <div class="quick-calendar-header">
+              <svg class="quick-calendar-btn prev-year" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 16 16"><path d="M7.984 7l4.75 4.762-.832.817-3.924-3.924-3.99 3.99-.825-.836L7.973 7l.005.006L7.984 7zm0-4l4.75 4.762-.832.817-3.924-3.924-3.99 3.99-.825-.836L7.973 3l.005.006L7.984 3z" transform="rotate(-90 7.949 7.822)"></path></svg>
+              <svg class="quick-calendar-btn prev-month" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 16 16"><path d="M7.978 11.997l-.005.006L2.3 6.33l.83-.831 4.848 4.848L12.826 5.5l.83.83-5.673 5.673-.005-.006z" transform="rotate(90 7.978 8.751)"></path></svg>
+              <span class="quick-calendar-text">${data.year}-${this.padding(data.month)}</span>
+              <svg class="quick-calendar-btn next-month" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 16 16"><path d="M7.978 11.498l-.005.005L2.3 5.831 3.13 5l4.848 4.848L12.826 5l.83.831-5.673 5.672-.005-.005z" transform="rotate(-90 7.978 8.252)"></path></svg>
+              <svg class="quick-calendar-btn next-year" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 16 16"><path d="M7.984 7l4.75 4.762-.832.817-3.924-3.924-3.99 3.99-.825-.836L7.973 7l.005.006L7.984 7zm0-4l4.75 4.762-.832.817-3.924-3.924-3.99 3.99-.825-.836L7.973 3l.005.006L7.984 3z" transform="rotate(90 7.949 8.122)"></path></svg>
+            </div>
+            <div class="quick-calendar-body">
+              <table>
+                <thead><tr><th>${Quick.lang.MON}</th><th>${Quick.lang.TUE}</th><th>${Quick.lang.WED}</th><th>${Quick.lang.THU}</th><th>${Quick.lang.FRI}</th><th>${Quick.lang.SAT}</th><th>${Quick.lang.SUN}</th></tr></thead>
+                <tbody>
+        `;
+
+        const today = new Date();
+
+        for (let i = 0; i < data.days.length; i++) {
+            if (i % 7 === 0) html += '<tr>';
+
+            const cellDay = data.days[i];
+            let clazz = '';
+            if (data.month != cellDay.month) clazz = 'minor';
+            if (data.year == this.initDate.getFullYear() && cellDay.month == this.initDate.getMonth() + 1 && cellDay.day == this.initDate.getDate()) clazz = 'curr';
+            if (data.year == today.getFullYear() && cellDay.month == today.getMonth() + 1 && cellDay.day == today.getDate()) clazz = 'today';
+            html += '<td><div data-index="' + cellDay.index + '" class="' + clazz + '">' + cellDay.day + '</div></td>';
+
+            if (i % 7 === 6) html += '</tr>';
+        }
+        html += '</tbody></table></div>';
+        this.$calendar.innerHTML = html;
+    }
+
+    // 获取指定日期的日历格数据
+    getCalendarData(date = new Date()) {
+        const year = date.getFullYear();
+        const month = date.getMonth() + 1;
+
+        // 当前月的第一天
+        const firstDay = new Date(year, month - 1, 1);
+        // 当前月的最后一天
+        const lastDay = new Date(year, month, 0).getDate();
+        // 当前月第一天是星期几（用于判断第一天所在列）
+        let firstWeekDay = firstDay.getDay();
+        if (firstWeekDay === 0) firstWeekDay = 7;
+        const weekdayIndex = firstWeekDay - 1;
+        // 上个月的最后一天（用于填充当前月第一天之前的日期）
+        const lastDayOfLastMonth = (new Date(year, month - 1, 0)).getDate();
+
+        const days = [];
+        for (let i = 0; i < 7 * 6; i++) {
+            const index = i + 1 - weekdayIndex;
+            let day = index;
+            let realMonth = month;
+
+            if (index <= 0) { //上一月
+                realMonth = month - 1;
+                day = lastDayOfLastMonth + index;
+            } else if (index > lastDay) { //下一月
+                realMonth = month + 1;
+                day = day - lastDay;
+            }
+            if (realMonth === 0) realMonth = 12;
+            if (realMonth > 12) realMonth = 1;
+            days.push({ month: realMonth, day, index });
+        }
+        return { year, month, days };
+    }
+
+    // 日期格式化
+    format(date) {
+        return date.getFullYear() + '-' + this.padding(date.getMonth() + 1) + '-' + this.padding(date.getDate());
+    }
+
+    // 前缀补零
+    padding(n) {
+        return n <= 9 ? '0' + n : n;
     }
 });
 
@@ -1141,182 +1304,6 @@ Quick.slidingPage = function(content) {
         }
     }
     return $instance;
-}
-
-// --------------------------------------------------------
-// UI组件：日期选择器
-// --------------------------------------------------------
-
-/**
- * 日期选择器
- * @example new Quick.DatePicker('input');
- * @param {Element|String} target
- * @returns
- */
-Quick.DatePicker = class {
-
-    constructor(target) {
-        this.$target = Quick.query(target);
-        this.$target.readOnly = true;
-        this.$target.className = 'quick-datepicker-target';
-
-        // 点击目标元素
-        this.$target.on('click', () => {
-            if (this.isOpen) {
-                this.close();
-            } else {
-                this.render(this.getInitDate());
-                const pos = this.$target.getBoundingClientRect();
-                this.$wrapper.style.top = pos.y + pos.height + 2 + 'px';
-                this.$wrapper.style.left = pos.x + 'px';
-            }
-        });
-    }
-
-    /** 组件UI渲染 */
-    render(date) {
-        if (!this.isOpen) {
-            this.$overlay = Quick.query('<div class="quick-overlay" style="background:none"></div>')
-            this.$overlay.on('click', e => this.close());
-            Quick.append(this.$overlay);
-
-            this.$wrapper = Quick.query('<div class="quick-datepicker-wrapper"></div>')
-            this.bindEvents();
-            Quick.append(this.$wrapper);
-            this.isOpen = true;
-        }
-        this.createHtml(date);
-    }
-
-    /** 创建HTML */
-    createHtml(date) {
-        const data = this.calData = this.getCalendarData(date);
-        let html = `<div class="quick-datepicker-header">
-      <svg class="quick-datepicker-btn prev-year" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 16 16"><path d="M7.984 7l4.75 4.762-.832.817-3.924-3.924-3.99 3.99-.825-.836L7.973 7l.005.006L7.984 7zm0-4l4.75 4.762-.832.817-3.924-3.924-3.99 3.99-.825-.836L7.973 3l.005.006L7.984 3z" transform="rotate(-90 7.949 7.822)"></path></svg>
-      <svg class="quick-datepicker-btn prev-month" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 16 16"><path d="M7.978 11.997l-.005.006L2.3 6.33l.83-.831 4.848 4.848L12.826 5.5l.83.83-5.673 5.673-.005-.006z" transform="rotate(90 7.978 8.751)"></path></svg>
-      <span class="quick-datepicker-text">${data.year}-${this.padding(data.month)}</span>
-      <svg class="quick-datepicker-btn next-month" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 16 16"><path d="M7.978 11.498l-.005.005L2.3 5.831 3.13 5l4.848 4.848L12.826 5l.83.831-5.673 5.672-.005-.005z" transform="rotate(-90 7.978 8.252)"></path></svg>
-      <svg class="quick-datepicker-btn next-year" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 16 16"><path d="M7.984 7l4.75 4.762-.832.817-3.924-3.924-3.99 3.99-.825-.836L7.973 7l.005.006L7.984 7zm0-4l4.75 4.762-.832.817-3.924-3.924-3.99 3.99-.825-.836L7.973 3l.005.006L7.984 3z" transform="rotate(90 7.949 8.122)"></path></svg>
-      </div><div class="quick-datepicker-body"><table>
-      <thead><tr><th>${Quick.lang.MON}</th><th>${Quick.lang.TUE}</th><th>${Quick.lang.WED}</th><th>${Quick.lang.THU}</th><th>${Quick.lang.FRI}</th><th>${Quick.lang.SAT}</th><th>${Quick.lang.SUN}</th></tr></thead>
-      <tbody>`;
-
-        const today = new Date();
-        const initDate = this.getInitDate();
-
-        for (let i = 0; i < data.days.length; i++) {
-            if (i % 7 === 0) html += '<tr>';
-
-            const cellDay = data.days[i];
-            let clazz = '';
-            if (data.month != cellDay.month) clazz = 'minor';
-            if (data.year == initDate.getFullYear() && cellDay.month == initDate.getMonth() + 1 && cellDay.day == initDate.getDate()) clazz = 'curr';
-            if (data.year == today.getFullYear() && cellDay.month == today.getMonth() + 1 && cellDay.day == today.getDate()) clazz = 'today';
-            html += '<td><div data-index="' + cellDay.index + '" class="' + clazz + '">' + cellDay.day + '</div></td>';
-
-            if (i % 7 === 6) html += '</tr>';
-        }
-        html += '</tbody></table></div>';
-        this.$wrapper.innerHTML = html;
-    }
-
-    /** 绑定监听事件 */
-    bindEvents() {
-        // 点击日期选择器
-        this.$wrapper.on('click', e => {
-            const $target = e.target;
-
-            // 点击日历格中的日期
-            if ($target.parentNode.tagName === 'TD') {
-                const date = new Date(this.calData.year, this.calData.month - 1, $target.dataset.index);
-                this.$target.value = this.format(date);
-                this.close();
-            }
-
-            // 点击标题回到初始日期
-            const $currText = this.$wrapper.query('.quick-datepicker-text');
-            if ($currText.contains($target)) {
-                return this.render(this.getInitDate());
-            }
-
-            // 点击上下月/上下年按钮
-            const $prevYear = this.$wrapper.query('.prev-year');
-            const $prevMonth = this.$wrapper.query('.prev-month');
-            const $nextMonth = this.$wrapper.query('.next-month');
-            const $nextYear = this.$wrapper.query('.next-year');
-            const currDate = new Date($currText.innerHTML);
-
-            if ($prevYear.contains($target)) {
-                currDate.setFullYear(currDate.getFullYear() - 1);
-            } else if ($prevMonth.contains($target)) {
-                currDate.setMonth(currDate.getMonth() - 1);
-            } else if ($nextMonth.contains($target)) {
-                currDate.setMonth(currDate.getMonth() + 1);
-            } else if ($nextYear.contains($target)) {
-                currDate.setFullYear(currDate.getFullYear() + 1);
-            } else {
-                return;
-            }
-            this.render(currDate);
-        });
-    }
-
-    close() {
-        this.$overlay.remove();
-        this.$wrapper.remove();
-        this.isOpen = false;
-    }
-
-    /** 日期格式化 */
-    format(date) {
-        return date.getFullYear() + '-' + this.padding(date.getMonth() + 1) + '-' + this.padding(date.getDate());
-    }
-
-    /** 前缀补零 */
-    padding(n) {
-        return n <= 9 ? '0' + n : n;
-    }
-
-    /** 根据目标元素的值获取初始日期 */
-    getInitDate() {
-        return this.$target.value ? new Date(this.$target.value) : new Date();
-    }
-
-    /** 获取指定日期的日历格数据 */
-    getCalendarData(date = new Date()) {
-        const year = date.getFullYear();
-        const month = date.getMonth() + 1;
-
-        // 当前月的第一天
-        const firstDay = new Date(year, month - 1, 1);
-        // 当前月的最后一天
-        const lastDay = new Date(year, month, 0).getDate();
-        // 当前月第一天是星期几（用于判断第一天所在列）
-        let firstWeekDay = firstDay.getDay();
-        if (firstWeekDay === 0) firstWeekDay = 7;
-        const weekdayIndex = firstWeekDay - 1;
-        // 上个月的最后一天（用于填充当前月第一天之前的日期）
-        const lastDayOfLastMonth = (new Date(year, month - 1, 0)).getDate();
-
-        const days = [];
-        for (let i = 0; i < 7 * 6; i++) {
-            const index = i + 1 - weekdayIndex;
-            let day = index;
-            let realMonth = month;
-
-            if (index <= 0) { //上一月
-                realMonth = month - 1;
-                day = lastDayOfLastMonth + index;
-            } else if (index > lastDay) { //下一月
-                realMonth = month + 1;
-                day = day - lastDay;
-            }
-            if (realMonth === 0) realMonth = 12;
-            if (realMonth > 12) realMonth = 1;
-            days.push({ month: realMonth, day, index });
-        }
-        return { year, month, days };
-    }
 }
 
 // --------------------------------------------------------
