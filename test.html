@@ -16,14 +16,6 @@
     <quick-field type="calendar" label="日期" name="date" value="2023-01-05"></quick-field>
     <quick-switch name="isSupplier" checked></quick-switch>
 
-    <!-- <quick-dialog>
-        <div class="buttons">
-            <button>关闭1</button>
-            <button class="primary">确定2</button>
-        </div>
-    </quick-dialog> -->
-
-
     <button onclick="getv()">get</button>
     <button onclick="change()">change</button>
     <button onclick="opend()">open</button>
@@ -37,22 +29,21 @@
 </html>
 
 <script>
+
 function opend() {
-  const dialog = new Quick.Dialog();
-  document.body.append(dialog);
-
-  dialog.slot(document.querySelector('template'))
-  dialog.buttons([{
-    label: '关闭'
-  }, {
-    label: '确定',
-    primary: true,
-    onclick: function(dlg, btn) {
-      dlg.hide();
-      console.log(dlg.getElement('.quick-dialog-panel'));
-    }
-  }]);
-
+  new Quick.Dialog({
+    slot: document.querySelector('template'),
+    buttons: [{
+      label: '关闭'
+    }, {
+      label: '确定',
+      primary: true,
+      onclick: function(dlg, btn) {
+        dlg.hide();
+        console.log(dlg.getElement('.quick-dialog-panel'));
+      }
+    }]
+  });
 }
 
 function openalert() {
