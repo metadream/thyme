@@ -8,6 +8,9 @@ import { Dialog } from './components/Dialog.js';
 
 window.Quick = class { }
 
+Quick.Calendar = Calendar;
+Quick.Field = Field;
+Quick.Switch = Switch;
 Quick.Dialog = Dialog;
 
 Quick.http = Http;
@@ -20,6 +23,4 @@ Quick.setup = function () {
     customElements.define('quick-switch', Switch);
     customElements.define('quick-dialog', Dialog);
 }
-
-
 Quick.setup();
