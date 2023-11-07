@@ -16,21 +16,27 @@
     <quick-field type="calendar" label="日期" name="date" value="2023-01-05"></quick-field>
     <quick-switch name="isSupplier" checked></quick-switch>
 
-    <quick-dialog>
+    <!-- <quick-dialog>
         <div class="buttons">
             <button>关闭1</button>
             <button class="primary">确定2</button>
         </div>
-    </quick-dialog>
+    </quick-dialog> -->
 
 
     <button onclick="getv()">get</button>
     <button onclick="change()">change</button>
+    <button onclick="opend()">open</button>
 </body>
 
 </html>
 
 <script>
+    function opend() {
+        const dialog = new Quick.Dialog();
+        dialog.attach();
+        dialog.addButtons([{ label: '关闭' }, { label: '确定' }])
+    }
 
     function change() {
         document.querySelector('quick-field').value = 'nacy2';
@@ -41,5 +47,4 @@
         const data = Quick.form.getJsonObject('body');
         console.log(data)
     }
-
 </script>

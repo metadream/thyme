@@ -1,4 +1,5 @@
 import dialogStyles from '../styles/dialog.css';
+import { createElement } from '../utility/Util.js';
 import { Component } from './Component.js';
 
 export class Dialog extends Component {
@@ -15,7 +16,9 @@ export class Dialog extends Component {
     `;
 
     onConnected() {
+        console.log('----------------')
         this.panel = this.shadowRoot.querySelector('.quick-dialog-panel');
+        this.footer = this.shadowRoot.querySelector('.quick-dialog-footer');
 
         if (!this.getAttribute('title')) {
             this.shadowRoot.querySelector('.quick-dialog-header').remove();
@@ -23,6 +26,17 @@ export class Dialog extends Component {
 
         this.esc = this.esc.bind(this);
         document.addEventListener('keyup', this.esc);
+    }
+
+    addButtons(buttons) {
+        for (const btn of buttons) {
+            const button = createElement(`<button>${btn.label}</button>`);
+            this.footer.appendChild(button);
+        }
+    }
+
+    attach() {
+        document.body.appendChild(this);
     }
 
     esc(e) {
