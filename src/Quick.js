@@ -6,6 +6,7 @@ import { Field } from './components/Field.js';
 import { Switch } from './components/Switch.js';
 import { Dialog } from './components/Dialog.js';
 import { Alert } from './components/Alert.js';
+import { Confirm } from './components/Confirm.js';
 
 window.Quick = class { }
 
@@ -14,6 +15,7 @@ Quick.Field = Field;
 Quick.Switch = Switch;
 Quick.Dialog = Dialog;
 Quick.Alert = Alert;
+Quick.Confirm = Confirm;
 
 Quick.http = Http;
 Quick.form = Form;
@@ -25,5 +27,6 @@ Quick.setup = function () {
     customElements.define('quick-switch', Switch);
     customElements.define('quick-dialog', Dialog);
     customElements.define('quick-alert', Alert);
+    customElements.define('quick-confirm', Confirm);
 }
 Quick.setup();

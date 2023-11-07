@@ -20,6 +20,7 @@
     <button onclick="change()">change</button>
     <button onclick="opend()">open</button>
     <button onclick="openalert()">alert</button>
+    <button onclick="openc()">confirm</button>
 
     <template>
       <h1 style="margin-top:0">的萨菲</h1>
@@ -39,16 +40,21 @@ function opend() {
       label: '确定',
       primary: true,
       onclick: function(dlg, btn) {
-        dlg.hide();
-        console.log(dlg.getElement('.quick-dialog-panel'));
+        console.log(dlg, btn);
       }
     }]
   });
 }
 
 function openalert() {
-  new Quick.Alert('保存成功', () =>{
-    console.log('----------')
+  new Quick.Alert('保存成功', (dlg, btn) =>{
+    console.log(dlg, btn);
+  });
+}
+
+function openc() {
+  new Quick.Confirm('确定删除吗？', (dlg, btn) =>{
+    console.log(dlg, btn);
   });
 }
 
