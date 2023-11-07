@@ -16,9 +16,9 @@ export class Calendar extends Component {
         en: { MON: 'MON', TUE: 'TUE', WED: 'WED', THU: 'THU', FRI: 'FRI', SAT: 'SAT', SUN: 'SUN' }
     };
 
-    onConnected(shadow) {
-        this.$calendar = shadow.querySelector('.quick-calendar');
-        this.$overlay = shadow.querySelector('.quick-overlay');
+    onConnected() {
+        this.$calendar = this.shadowRoot.querySelector('.quick-calendar');
+        this.$overlay = this.shadowRoot.querySelector('.quick-overlay');
         this.$overlay.on('click', () => this.remove());
         this.i18n = this.lang[this.getAttribute('lang') || 'zh'];
         this.bindEventListeners();
@@ -153,4 +153,5 @@ export class Calendar extends Component {
     padding(n) {
         return n <= 9 ? '0' + n : n;
     }
+
 }
