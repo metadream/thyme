@@ -32,10 +32,10 @@ export class Component extends HTMLElement {
 
         // Add styles
         const style = createElement('style');
-        style.textContent = shadowStyles + (this.styles || '');
+        style.textContent = shadowStyles + this.styles;
         shadowRoot.append(style);
 
-        // Add attributes
+        // Set attributes
         const names = this.getAttributeNames();
         for (const name of names) {
             this.template = this.template.replace(`{{${name}}}`, this.getAttribute(name));
