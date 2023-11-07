@@ -16,7 +16,6 @@ export class Dialog extends Component {
     `;
 
     onConnected() {
-        console.log('----------------')
         this.panel = this.shadowRoot.querySelector('.quick-dialog-panel');
         this.footer = this.shadowRoot.querySelector('.quick-dialog-footer');
 
@@ -24,8 +23,8 @@ export class Dialog extends Component {
             this.shadowRoot.querySelector('.quick-dialog-header').remove();
         }
 
-        this.esc = this.esc.bind(this);
-        document.addEventListener('keyup', this.esc);
+        this.escape = this.escape.bind(this);
+        document.addEventListener('keyup', this.escape);
     }
 
     addButtons(buttons) {
@@ -35,13 +34,9 @@ export class Dialog extends Component {
         }
     }
 
-    attach() {
-        document.body.appendChild(this);
-    }
-
-    esc(e) {
+    escape(e) {
         if (e.keyCode === 27) {
-            document.removeEventListener('keyup', this.esc);
+            document.removeEventListener('keyup', this.escape);
             this.hide();
         }
     }
