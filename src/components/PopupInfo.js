@@ -12,7 +12,6 @@ export class PopupInfo extends Component {
 
     onConnected() {
         // Show instance
-        // Quick.$singleton = $instance;
         this.shadowBody.addClass('quick-fade-in');
 
         // Hide delay
