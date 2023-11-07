@@ -68,6 +68,32 @@ export function enhanceElements() {
 }
 
 /**
+ * Format date with pattern string
+ * @param {Date} date
+ * @param {String} pattern
+ * @param {Boolean} utc
+ * @returns {String}
+ */
+export function formatDate(date, pattern, utc) {
+    const get = utc ? "getUTC" : "get";
+    return pattern
+        .replace(/yyyy/g, date[get + "FullYear"]())
+        .replace(/yy/g, ("" + date[get + "FullYear"]()).slice(-2))
+        .replace(/MM/g, ("0" + (date[get + "Month"]() + 1)).slice(-2))
+        .replace(/M/g, date[get + "Month"]() + 1)
+        .replace(/dd/g, ("0" + date[get + "Date"]()).slice(-2))
+        .replace(/d/g, date[get + "Date"]())
+        .replace(/hh/g, ("0" + date[get + "Hours"]()).slice(-2))
+        .replace(/h/g, date[get + "Hours"]())
+        .replace(/mm/g, ("0" + date[get + "Minutes"]()).slice(-2))
+        .replace(/m/g, date[get + "Minutes"]())
+        .replace(/ss/g, ("0" + date[get + "Seconds"]()).slice(-2))
+        .replace(/s/g, date[get + "Seconds"]())
+        .replace(/SSS/g, ("00" + date[get + "Milliseconds"]()).slice(-3))
+        .replace(/S/g, date[get + "Milliseconds"]());
+}
+
+/**
  * 保留数值精度
  * @param {number} number
  * @param {number} precision
