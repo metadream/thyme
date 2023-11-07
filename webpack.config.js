@@ -8,7 +8,7 @@ export default {
         filename: "quick.js"
     },
 
-    mode: "production",
+    mode: "development",
     module: {
         rules: [{
             test: /\.css$/,
