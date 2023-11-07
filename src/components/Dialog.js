@@ -21,8 +21,6 @@ export class Dialog extends Component {
         }
 
         this.panel = this.getElement('.quick-dialog-panel');
-        this.footer = this.getElement('.quick-dialog-footer');
-
         this.panel.addClass('quick-scale-in');
         this.shadowBody.addClass('quick-fade-in');
 
@@ -30,13 +28,26 @@ export class Dialog extends Component {
         document.addEventListener('keyup', this.escape);
     }
 
-    addButtons(items) {
-        for (const item of items) {
-            const button = createElement(`<button class="${item.type}">${item.label}</button>`);
-            this.footer.appendChild(button);
+    slot(tpl) {
+        const body = this.getElement('.quick-dialog-body');
+        if (tpl instanceof HTMLTemplateElement) {
+            body.appendChild(tpl.content.cloneNode(true));
+        } else {
+            body.innerHTML = tpl;
+        }
+    }
 
+    buttons(items) {
+        const footer = this.getElement('.quick-dialog-footer');
+        for (const item of items) {
+            const button = createElement(`<button>${item.label}</button>`);
+            footer.appendChild(button);
+
+            if (item.primary === true) {
+                button.addClass('primary');
+            }
             button.on('click', () => {
-                item.onclick ? item.onclick(this.shadowBody, button) : this.hide()
+                item.onclick ? item.onclick(this, button) : this.hide()
             });
         }
     }
