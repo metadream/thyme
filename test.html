@@ -2,75 +2,79 @@
 <html>
 
 <head>
-  <meta charset="utf-8" />
-  <title>web components</title>
-  <script src="dist/quick.js"></script>
-  <style>
-  </style>
+    <meta charset="utf-8" />
+    <title>web components</title>
+    <script src="dist/quick.js"></script>
+    <style>
+    </style>
 </head>
 
 <body>
 
-  <div style="height:300px"></div>
-  <quick-field type="calendar" label="用户名" name="username" value="2013-01-05" required></quick-field>
-  <quick-field type="password" label="密码" name="password" value="psd" disabled></quick-field>
-  <quick-field type="calendar" label="日期" name="date" value="2023-01-05"></quick-field>
-  <quick-switch name="isSupplier" checked></quick-switch>
+    <div style="height:300px"></div>
+    <quick-field type="calendar" label="用户名" name="username" value="2013-01-05" required></quick-field>
+    <quick-field type="password" label="密码" name="password" value="psd" disabled></quick-field>
+    <quick-field type="calendar" label="日期" name="date" value="2023-01-05"></quick-field>
+    <quick-switch name="isSupplier" checked></quick-switch>
 
-  <button onclick="getv()">get</button>
-  <button onclick="change()">change</button>
-  <button onclick="opend()">open</button>
-  <button onclick="openalert()">alert</button>
-  <button onclick="openc()">confirm</button>
+    <button onclick="getv()">get</button>
+    <button onclick="change()">change</button>
+    <button onclick="opend()">open</button>
+    <button onclick="openalert()">alert</button>
+    <button onclick="openc()">confirm</button>
+    <button onclick="info()">info</button>
 
-  <div style="height:1000px"></div>
+    <!-- <quick-info type="warn" text="健康法律打算将"></quick-info> -->
+    <div style="height:1000px"></div>
 
-  <quick-toptray></quick-toptray>
+    <quick-toptray></quick-toptray>
 
-  <template>
-    <h1 style="margin-top:0">的萨菲</h1>
-    <div>积分赛打开了几法</div>
-  </template>
+    <template>
+        <h1 style="margin-top:0">的萨菲</h1>
+        <div>积分赛打开了几法</div>
+    </template>
 </body>
 
 </html>
 
 <script>
+    function info() {
+        Quick.success('捷克弗拉斯的');
+    }
+    function opend() {
+        new Quick.Dialog({
+            slot: document.querySelector('template'),
+            buttons: [{
+                label: '关闭'
+            }, {
+                label: '确定',
+                primary: true,
+                onclick: function (dlg, btn) {
+                    console.log(dlg, btn);
+                }
+            }]
+        });
+    }
 
-  function opend() {
-    new Quick.Dialog({
-      slot: document.querySelector('template'),
-      buttons: [{
-        label: '关闭'
-      }, {
-        label: '确定',
-        primary: true,
-        onclick: function (dlg, btn) {
-          console.log(dlg, btn);
-        }
-      }]
-    });
-  }
+    function openalert() {
+        new Quick.Alert('保存成功', (dlg, btn) => {
+            console.log(dlg, btn);
+        });
+    }
 
-  function openalert() {
-    new Quick.Alert('保存成功', (dlg, btn) => {
-      console.log(dlg, btn);
-    });
-  }
+    function openc() {
+        new Quick.Confirm('确定删除吗？', (dlg, btn) => {
+            console.log(dlg, btn);
+        });
+    }
 
-  function openc() {
-    new Quick.Confirm('确定删除吗？', (dlg, btn) => {
-      console.log(dlg, btn);
-    });
-  }
-
-  function change() {
-    document.querySelector('quick-field').value = 'nacy2';
-    document.querySelector('quick-field').disabled = true;
-    document.querySelector('quick-switch').value = 0;
-  }
-  function getv() {
-    const data = Quick.form.getJsonObject('body');
-    console.log(data)
-  }
+    function change() {
+        document.querySelector('quick-field').value = 'nacy2';
+        document.querySelector('quick-field').disabled = true;
+        document.querySelector('quick-switch').value = 0;
+    }
+    function getv() {
+        const data = Quick.form.getJsonObject('body');
+        console.log(data)
+    }
 </script>
