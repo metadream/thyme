@@ -8,27 +8,39 @@ export class Dialog extends Component {
     template = `
         <div class="quick-overlay quick-dialog">
             <div class="quick-dialog-panel">
-                <div class="quick-dialog-header">{{title}}</div>
                 <div class="quick-dialog-body"></div>
                 <div class="quick-dialog-footer"></div>
             </div>
         </div>
     `;
 
-    onConnected() {
-        if (!this.getAttribute('title')) {
-            this.getElement('.quick-dialog-header').remove();
-        }
+    // options = { title, slot, buttons }
+    constructor(options = {}) {
+        super();
+        this.options = options;
+        document.body.append(this);
+    }
 
+    onConnected() {
         this.panel = this.getElement('.quick-dialog-panel');
         this.panel.addClass('quick-scale-in');
         this.shadowBody.addClass('quick-fade-in');
+
+        this.addTitle(this.options.title);
+        this.addSlot(this.options.slot);
+        this.addButtons(this.options.buttons);
 
         this.escape = this.escape.bind(this);
         document.addEventListener('keyup', this.escape);
     }
 
-    slot(tpl) {
+    addTitle(text) {
+        if (!text) return;
+        const title = createElement(`<div class="quick-dialog-header">${text}</div>`);
+        this.panel.insertBefore(title, this.panel.firstChild);
+    }
+
+    addSlot(tpl = '') {
         const body = this.getElement('.quick-dialog-body');
         if (tpl instanceof HTMLTemplateElement) {
             body.appendChild(tpl.content.cloneNode(true));
@@ -37,7 +49,7 @@ export class Dialog extends Component {
         }
     }
 
-    buttons(items) {
+    addButtons(items = []) {
         const footer = this.getElement('.quick-dialog-footer');
         for (const item of items) {
             const button = createElement(`<button>${item.label}</button>`);
