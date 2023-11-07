@@ -7,26 +7,6 @@ export class Component extends HTMLElement {
         super();
     }
 
-    set disabled(v) {
-        this.keyElement.disabled = v;
-    }
-
-    get disabled() {
-        return this.keyElement.disabled;
-    }
-
-    set readOnly(v) {
-        this.keyElement.readOnly = v;
-    }
-
-    get readOnly() {
-        return this.keyElement.readOnly;
-    }
-
-    focus() {
-        this.keyElement.focus();
-    }
-
     connectedCallback() {
         const shadowRoot = this.attachShadow({ mode: 'open' });
 
@@ -49,6 +29,30 @@ export class Component extends HTMLElement {
 
         // Components callback
         this.onConnected && this.onConnected();
+    }
+
+    getElement(selector) {
+        return this.shadowRoot.querySelector(selector);
+    }
+
+    focus() {
+        this.keyElement.focus();
+    }
+
+    set disabled(v) {
+        this.keyElement.disabled = v;
+    }
+
+    get disabled() {
+        return this.keyElement.disabled;
+    }
+
+    set readOnly(v) {
+        this.keyElement.readOnly = v;
+    }
+
+    get readOnly() {
+        return this.keyElement.readOnly;
     }
 
 }

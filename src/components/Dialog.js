@@ -17,11 +17,11 @@ export class Dialog extends Component {
 
     onConnected() {
         if (!this.getAttribute('title')) {
-            this.shadowRoot.querySelector('.quick-dialog-header').remove();
+            this.getElement('.quick-dialog-header').remove();
         }
 
-        this.panel = this.shadowRoot.querySelector('.quick-dialog-panel');
-        this.footer = this.shadowRoot.querySelector('.quick-dialog-footer');
+        this.panel = this.getElement('.quick-dialog-panel');
+        this.footer = this.getElement('.quick-dialog-footer');
 
         this.panel.addClass('quick-scale-in');
         this.shadowBody.addClass('quick-fade-in');

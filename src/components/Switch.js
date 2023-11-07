@@ -19,7 +19,7 @@ export class Switch extends Component {
     }
 
     onConnected() {
-        this.keyElement = this.shadowRoot.querySelector('input');
+        this.keyElement = this.getElement('input');
         if (this.hasAttribute('checked')) {
             this.keyElement.checked = true;
         }

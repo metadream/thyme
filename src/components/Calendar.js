@@ -18,8 +18,8 @@ export class Calendar extends Component {
     };
 
     onConnected() {
-        this.$calendar = this.shadowRoot.querySelector('.quick-calendar');
-        this.$overlay = this.shadowRoot.querySelector('.quick-overlay');
+        this.$calendar = this.getElement('.quick-calendar');
+        this.$overlay = this.getElement('.quick-overlay');
         this.$overlay.on('click', () => this.remove());
         this.i18n = this.lang[this.getAttribute('lang') || 'zh'];
         this.bindEventListeners();
@@ -47,16 +47,16 @@ export class Calendar extends Component {
             }
 
             // 点击标题回到初始日期
-            const $currText = this.$calendar.querySelector('.quick-calendar-text');
+            const $currText = this.getElement('.quick-calendar-text');
             if ($currText.contains($target)) {
                 return this.render(this.initDate);
             }
 
             // 点击上下月/上下年按钮
-            const $prevYear = this.$calendar.querySelector('.prev-year');
-            const $prevMonth = this.$calendar.querySelector('.prev-month');
-            const $nextMonth = this.$calendar.querySelector('.next-month');
-            const $nextYear = this.$calendar.querySelector('.next-year');
+            const $prevYear = this.getElement('.prev-year');
+            const $prevMonth = this.getElement('.prev-month');
+            const $nextMonth = this.getElement('.next-month');
+            const $nextYear = this.getElement('.next-year');
             const currDate = new Date($currText.innerHTML);
 
             if ($prevYear.contains($target)) {

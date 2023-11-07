@@ -21,7 +21,7 @@ export class Field extends Component {
     }
 
     onConnected() {
-        this.keyElement = this.shadowRoot.querySelector('input');
+        this.keyElement = this.getElement('input');
 
         if (this.getAttribute('type') == 'calendar') {
             this.keyElement.readOnly = true;
