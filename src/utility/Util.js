@@ -1,3 +1,8 @@
+/**
+ * 从标签名或HTML字符串创建DOM元素
+ * @param {string} tag
+ * @returns
+ */
 export function createElement(tag) {
     if (!tag) return;
     tag = tag.replace(/[\t\r\n]/mg, '').trim();
@@ -9,6 +14,9 @@ export function createElement(tag) {
     return document.createElement(tag);
 }
 
+/**
+ * DOM元素原型扩展
+ */
 export function enhanceElements() {
     Object.assign(Element.prototype, {
         on(event, fn) {
@@ -59,11 +67,11 @@ export function enhanceElements() {
     });
 }
 
-
 /**
  * 保留数值精度
- * @param number 数值
- * @param precision 小数点位数
+ * @param {number} number
+ * @param {number} precision
+ * @returns
  */
 export function round(number, precision) {
     return Math.round(number + 'e' + precision) / Math.pow(10, precision);
@@ -79,11 +87,11 @@ export function stringify(params) {
 
 /**
  * 将文本内容复制到剪贴板
- * @param text 文本内容
+ * @param {string} text
+ * @returns
  */
 export function copyText(text) {
-    const clipboard = navigator.clipboard;
-    if (!clipboard) return;
-
-    clipboard.writeText(text);
+    if (navigator.clipboard) {
+        navigator.clipboard.writeText(text);
+    }
 }
