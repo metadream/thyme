@@ -36,7 +36,7 @@ export class Field extends Component {
                 $calendar.on('selected', (e) => {
                     this.keyElement.value = e.detail;
                     $calendar.remove();
-                })
+                });
             });
         }
 
