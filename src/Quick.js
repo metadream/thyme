@@ -7,6 +7,7 @@ import { Switch } from './components/Switch.js';
 import { Dialog } from './components/Dialog.js';
 import { Alert } from './components/Alert.js';
 import { Confirm } from './components/Confirm.js';
+import { Toptray } from './components/Toptray.js';
 
 window.Quick = class { }
 
@@ -16,6 +17,7 @@ Quick.Switch = Switch;
 Quick.Dialog = Dialog;
 Quick.Alert = Alert;
 Quick.Confirm = Confirm;
+Quick.Toptray = Toptray;
 
 Quick.http = Http;
 Quick.form = Form;
@@ -28,5 +30,6 @@ Quick.setup = function () {
     customElements.define('quick-dialog', Dialog);
     customElements.define('quick-alert', Alert);
     customElements.define('quick-confirm', Confirm);
+    customElements.define('quick-toptray', Toptray);
 }
 Quick.setup();
