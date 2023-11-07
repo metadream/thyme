@@ -1,5 +1,5 @@
 import calendarStyles from '../styles/calendar.css';
-import { formatDate } from '../utility/Util.js';
+import { getScrollTop, formatDate } from '../utility/Util.js';
 import { Component } from './Component.js';
 
 export class Calendar extends Component {
@@ -27,7 +27,7 @@ export class Calendar extends Component {
 
     attach(target) {
         const pos = target.getBoundingClientRect();
-        this.$calendar.style.top = pos.y + pos.height + 1 + 'px';
+        this.$calendar.style.top = pos.y + pos.height + getScrollTop() + 1 + 'px';
         this.$calendar.style.left = pos.x + 'px';
 
         this.initDate = new Date(target.value);

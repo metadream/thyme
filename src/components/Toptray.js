@@ -1,4 +1,5 @@
 import toptrayStyles from '../styles/toptray.css';
+import { getScrollTop } from '../utility/Util.js';
 import { Component } from './Component.js';
 
 export class Toptray extends Component {
@@ -16,7 +17,7 @@ export class Toptray extends Component {
         const tray = this.shadowBody;
 
         addEventListener('scroll', () => {
-            const y = document.body.scrollTop || document.documentElement.scrollTop
+            const y = getScrollTop();
             if (y > 450) tray.style.display = 'block';
             else tray.style.display = 'none';
         });
@@ -25,9 +26,9 @@ export class Toptray extends Component {
         tray.onclick = function () {
             cancelAnimationFrame(scrollTimer);
             scrollTimer = requestAnimationFrame(function scroll() {
-                const top = document.body.scrollTop || document.documentElement.scrollTop;
-                document.body.scrollTop = document.documentElement.scrollTop = parseInt(top / 1.2);
-                if (top > 0) scrollTimer = requestAnimationFrame(scroll);
+                const y = getScrollTop();
+                document.body.scrollTop = document.documentElement.scrollTop = parseInt(y / 1.2);
+                if (y > 0) scrollTimer = requestAnimationFrame(scroll);
                 else cancelAnimationFrame(scrollTimer);
             });
         }

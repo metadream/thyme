@@ -68,6 +68,14 @@ export function enhanceElements() {
 }
 
 /**
+ * 获取滚动高度
+ * @returns
+ */
+export function getScrollTop() {
+    return document.body.scrollTop || document.documentElement.scrollTop;
+}
+
+/**
  * Format date with pattern string
  * @param {Date} date
  * @param {String} pattern
