@@ -18,10 +18,11 @@ export class Switch extends Component {
         this.keyElement.checked = v === 1 ? true : false;
     }
 
-    onConnected(shadow) {
-        this.keyElement = shadow.querySelector('input');
+    onConnected() {
+        this.keyElement = this.shadowRoot.querySelector('input');
         if (this.hasAttribute('checked')) {
             this.keyElement.checked = true;
         }
     }
+
 }
