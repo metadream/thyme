@@ -1,14 +1,15 @@
 import calendarStyles from '../styles/calendar.css';
+import { formatDate } from '../utility/Util.js';
 import { Component } from './Component.js';
 
 export class Calendar extends Component {
 
     styles = calendarStyles;
     template = `
-      <div>
-        <div class="quick-overlay" style="background:none"></div>
-        <div class="quick-calendar"></div>
-      </div>
+        <div>
+            <div class="quick-overlay" style="background:none"></div>
+            <div class="quick-calendar"></div>
+        </div>
     `;
 
     lang = {
@@ -42,7 +43,7 @@ export class Calendar extends Component {
             // 点击日历格中的日期
             if ($target.parentNode.tagName === 'TD') {
                 const date = new Date(this.calData.year, this.calData.month - 1, $target.dataset.index);
-                this.dispatchEvent(new CustomEvent('selected', { detail: this.format(date) }));
+                this.dispatchEvent(new CustomEvent('selected', { detail: formatDate(date, 'yyyy-MM-dd') }));
             }
 
             // 点击标题回到初始日期
@@ -80,7 +81,7 @@ export class Calendar extends Component {
             <div class="quick-calendar-header">
               <svg class="quick-calendar-btn prev-year" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 16 16"><path d="M7.984 7l4.75 4.762-.832.817-3.924-3.924-3.99 3.99-.825-.836L7.973 7l.005.006L7.984 7zm0-4l4.75 4.762-.832.817-3.924-3.924-3.99 3.99-.825-.836L7.973 3l.005.006L7.984 3z" transform="rotate(-90 7.949 7.822)"></path></svg>
               <svg class="quick-calendar-btn prev-month" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 16 16"><path d="M7.978 11.997l-.005.006L2.3 6.33l.83-.831 4.848 4.848L12.826 5.5l.83.83-5.673 5.673-.005-.006z" transform="rotate(90 7.978 8.751)"></path></svg>
-              <span class="quick-calendar-text">${data.year}-${this.padding(data.month)}</span>
+              <span class="quick-calendar-text">${data.year}-${data.month.toString().padStart(2, 0)}</span>
               <svg class="quick-calendar-btn next-month" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 16 16"><path d="M7.978 11.498l-.005.005L2.3 5.831 3.13 5l4.848 4.848L12.826 5l.83.831-5.673 5.672-.005-.005z" transform="rotate(-90 7.978 8.252)"></path></svg>
               <svg class="quick-calendar-btn next-year" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 16 16"><path d="M7.984 7l4.75 4.762-.832.817-3.924-3.924-3.99 3.99-.825-.836L7.973 7l.005.006L7.984 7zm0-4l4.75 4.762-.832.817-3.924-3.924-3.99 3.99-.825-.836L7.973 3l.005.006L7.984 3z" transform="rotate(90 7.949 8.122)"></path></svg>
             </div>
@@ -91,7 +92,6 @@ export class Calendar extends Component {
         `;
 
         const today = new Date();
-
         for (let i = 0; i < data.days.length; i++) {
             if (i % 7 === 0) html += '<tr>';
 
@@ -104,6 +104,7 @@ export class Calendar extends Component {
 
             if (i % 7 === 6) html += '</tr>';
         }
+
         html += '</tbody></table></div>';
         this.$calendar.innerHTML = html;
     }
@@ -142,16 +143,6 @@ export class Calendar extends Component {
             days.push({ month: realMonth, day, index });
         }
         return { year, month, days };
-    }
-
-    // 日期格式化
-    format(date) {
-        return date.getFullYear() + '-' + this.padding(date.getMonth() + 1) + '-' + this.padding(date.getDate());
-    }
-
-    // 前缀补零
-    padding(n) {
-        return n <= 9 ? '0' + n : n;
     }
 
 }
