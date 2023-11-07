@@ -1,6 +1,6 @@
-import fieldStyles from '../css/field.css';
+import fieldStyles from '../styles/field.css';
+import { createElement } from '../utility/Util.js';
 import { Component } from './Component.js';
-import { createElement } from './Util.js';
 
 export class Field extends Component {
 

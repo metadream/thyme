@@ -1,4 +1,4 @@
-import switchStyles from '../css/switch.css';
+import switchStyles from '../styles/switch.css';
 import { Component } from './Component.js';
 
 export class Switch extends Component {

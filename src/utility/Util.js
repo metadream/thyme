@@ -58,3 +58,32 @@ export function enhanceElements() {
         }
     });
 }
+
+
+/**
+ * 保留数值精度
+ * @param number 数值
+ * @param precision 小数点位数
+ */
+export function round(number, precision) {
+    return Math.round(number + 'e' + precision) / Math.pow(10, precision);
+}
+
+/**
+ * 将对象转换为查询字符串
+ * @param params 参数对象
+ */
+export function stringify(params) {
+    return Object.keys(params).map(key => key + '=' + encodeURI(params[key])).join('&');
+}
+
+/**
+ * 将文本内容复制到剪贴板
+ * @param text 文本内容
+ */
+export function copyText(text) {
+    const clipboard = navigator.clipboard;
+    if (!clipboard) return;
+
+    clipboard.writeText(text);
+}

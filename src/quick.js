@@ -1,17 +1,20 @@
-import { enhanceElements } from './Util.js';
-import { Calendar } from './Calendar.js';
-import { Field } from './Field.js';
-import { Switch } from './Switch.js';
+import { enhanceElements } from './utility/Util.js';
+import { Http } from './utility/Http.js';
+import { Form } from './utility/Form.js';
+import { Calendar } from './components/Calendar.js';
+import { Field } from './components/Field.js';
+import { Switch } from './components/Switch.js';
 
-class Quick {
+window.Quick = class { }
 
-}
+Quick.http = Http;
+Quick.form = Form;
 
-Quick.init = function () {
+Quick.setup = function () {
     enhanceElements();
     customElements.define('quick-calendar', Calendar);
     customElements.define('quick-field', Field);
     customElements.define('quick-switch', Switch);
 }
 
-Quick.init();
+Quick.setup();

@@ -1,4 +1,4 @@
-import calendarStyles from '../css/calendar.css';
+import calendarStyles from '../styles/calendar.css';
 import { Component } from './Component.js';
 
 export class Calendar extends Component {

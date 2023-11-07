@@ -1,5 +1,5 @@
-import shadowStyles from '../css/shadow.css';
-import { createElement } from './Util.js';
+import shadowStyles from '../styles/shadow.css';
+import { createElement } from '../utility/Util.js';
 
 export class Component extends HTMLElement {
 
