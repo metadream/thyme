@@ -20,8 +20,8 @@ export class Field extends Component {
         this.keyElement.value = v;
     }
 
-    onConnected(shadow) {
-        this.keyElement = shadow.querySelector('input');
+    onConnected() {
+        this.keyElement = this.shadowRoot.querySelector('input');
 
         if (this.getAttribute('type') == 'calendar') {
             this.keyElement.readOnly = true;
@@ -29,7 +29,7 @@ export class Field extends Component {
 
             this.keyElement.on('click', () => {
                 const $calendar = createElement('quick-calendar');
-                shadow.append($calendar);
+                this.shadowRoot.append($calendar);
 
                 $calendar.setAttribute('lang', this.getAttribute('lang') || '');
                 $calendar.attach(this.keyElement);
@@ -49,7 +49,7 @@ export class Field extends Component {
         }
 
         if (this.hasAttribute('required')) {
-            shadow.body.classList.add('required');
+            this.shadowBody.classList.add('required');
         }
     }
 
