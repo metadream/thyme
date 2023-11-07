@@ -32,19 +32,28 @@
 </html>
 
 <script>
-    function opend() {
-        const dialog = new Quick.Dialog();
-        dialog.attach();
-        dialog.addButtons([{ label: '关闭' }, { label: '确定' }])
-    }
+function opend() {
+  const dialog = new Quick.Dialog();
+  document.body.append(dialog);
 
-    function change() {
-        document.querySelector('quick-field').value = 'nacy2';
-        document.querySelector('quick-field').disabled = true;
-        document.querySelector('quick-switch').value = 0;
+  dialog.addButtons([{
+    label: '关闭'
+  }, {
+    label: '确定',
+    type: 'primary',
+    onclick: function(dlg, btn) {
+      console.log(dlg,btn);
     }
-    function getv() {
-        const data = Quick.form.getJsonObject('body');
-        console.log(data)
-    }
+  }])
+}
+
+function change() {
+  document.querySelector('quick-field').value = 'nacy2';
+  document.querySelector('quick-field').disabled = true;
+  document.querySelector('quick-switch').value = 0;
+}
+function getv() {
+  const data = Quick.form.getJsonObject('body');
+  console.log(data)
+}
 </script>
