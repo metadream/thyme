@@ -1,25 +1,8 @@
-import { Quick } from './quick.js';
-export class BaseComponent extends HTMLElement {
-    baseStyle = `
-        *, *:before, *:after {
-          box-sizing: border-box;
-        }
-        :host {
-          line-height: 1.6;
-          color: var(--fontColor, #333);
-          font-size: var(--fontSize, 15px);
-          font-family: var(--fontFamily, system-ui, -apple-system, BlinkMacSystemFont, Helvetica, Arial, Tahoma, "PingFang SC", "Hiragino Sans GB", "Heiti SC", "Microsoft YaHei", sans-serif);
-        }
-        .quick-overlay {
-          position: fixed;
-          z-index: 5000;
-          left: 0;
-          right: 0;
-          top: 0;
-          bottom: 0;
-          background: rgba(0, 0, 0, 0.5);
-        }
-    `;
+import shadowStyles from '../css/shadow.css';
+import { createElement } from './Util.js';
+
+export class Component extends HTMLElement {
+
     constructor() {
         super();
     }
@@ -48,8 +31,8 @@ export class BaseComponent extends HTMLElement {
         const shadow = this.attachShadow({ mode: 'open' });
 
         // Add styles
-        const style = document.createElement('style');
-        style.textContent = this.baseStyle + this.style;
+        const style = createElement('style');
+        style.textContent = shadowStyles + (this.styles || '');
         shadow.append(style);
 
         // Add attributes
@@ -60,9 +43,12 @@ export class BaseComponent extends HTMLElement {
         this.template = this.template.replace(/{{[a-zA-Z0-9\-]+}}/g, '');
 
         // Create shadow body
-        const body = Quick.query(this.template);
+        const body = createElement(this.template);
         shadow.body = body;
         shadow.append(body);
+
+        // Components callback
         this.onConnected && this.onConnected(shadow);
     }
+
 }

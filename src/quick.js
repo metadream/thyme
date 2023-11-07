@@ -1,22 +1,17 @@
-export const Quick = {
-    seed: 0,
-    uuid: () => 'q-u-i-c-k-' + ++Quick.seed,
-    append: e => document.body.appendChild(e),
+import { enhanceElements } from './Util.js';
+import { Calendar } from './Calendar.js';
+import { Field } from './Field.js';
+import { Switch } from './Switch.js';
 
-    query(selector, multi = false) {
-        // 如果不是字符串直接返回
-        if (typeof selector != 'string') return selector;
+class Quick {
 
-        // 如果是以 '<' 开头的字符串则创建元素
-        selector = selector.replace(/[\t\r\n]/mg, '').trim();
-        if (selector.indexOf('<') === 0) {
-            const fragment = document.createRange().createContextualFragment(selector);
-            return fragment.firstChild;
-        }
-
-        // 返回单个或多个被选择的元素
-        return multi
-            ? document.querySelectorAll(selector)
-            : document.querySelector(selector);
-    }
 }
+
+Quick.init = function () {
+    enhanceElements();
+    customElements.define('quick-calendar', Calendar);
+    customElements.define('quick-field', Field);
+    customElements.define('quick-switch', Switch);
+}
+
+Quick.init();

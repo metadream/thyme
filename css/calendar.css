@@ -1,0 +1,94 @@
+.quick-calendar {
+    position: absolute;
+    z-index: 5001;
+    color: #666;
+    font-size: 13px;
+    background: #fff;
+    box-shadow: 0 0 16px rgb(0 0 0 / 8%);
+    user-select: none;
+}
+
+.quick-calendar-header {
+    display: flex;
+    align-items: center;
+    height: 40px;
+    padding: 5px;
+    border-bottom: #eee 1px solid;
+}
+
+.quick-calendar-text {
+    flex: 1;
+    text-align: center;
+    color: var(--mainColor, #16c);
+    font-size: 15px;
+    cursor: pointer;
+}
+
+.quick-calendar-btn {
+    width: 26px;
+    height: 26px;
+    padding: 5px;
+    cursor: pointer;
+    border-radius: 3px;
+    transition: .3s all;
+}
+
+.quick-calendar-btn path {
+    fill: #999;
+}
+
+.quick-calendar-btn:hover {
+    background: #eee;
+}
+
+.quick-calendar-body {
+    padding: 10px;
+}
+
+.quick-calendar-body table {
+    width: 100%;
+    border-collapse: collapse;
+}
+
+.quick-calendar-body tr {
+    border: 0;
+    height: auto;
+}
+
+.quick-calendar-body th, .quick-calendar-body td {
+    width: 32px;
+    height: 32px;
+    text-align: center;
+}
+
+.quick-calendar-body td {
+    padding: 3px;
+}
+
+.quick-calendar-body td > div {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100%;
+    border-radius: 3px;
+    cursor: pointer;
+    transition: .3s all;
+}
+
+.quick-calendar-body td > div:hover {
+    background: #eee;
+}
+
+.quick-calendar-body td > div.today {
+    color: #fff;
+    background: var(--mainColor, #16c);
+}
+
+.quick-calendar-body td > div.curr {
+    color: #fff;
+    background: #999;
+}
+
+.quick-calendar-body td > div.minor {
+    color: #ccc;
+}

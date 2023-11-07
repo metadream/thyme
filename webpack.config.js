@@ -1,22 +1,22 @@
-import path from 'path';
-import { fileURLToPath } from 'url';
-const filename = fileURLToPath(
-    import.meta.url);
+import path from "path";
 
 export default {
-    entry: "./src/index.js",
+
+    entry: "./src/Quick.js",
     output: {
-        path: '/home/xehu/Codebase/quick-components/dist',
-        filename: "bundle.js"
+        path: path.resolve("./dist"),
+        filename: "quick.js"
     },
-    mode: 'production',
+
+    mode: "production",
     module: {
-        rules: [
-            // 新增的loader
-            {
-                test: /\.css$/,
-                use: ['style-loader', 'css-loader'],
-            },
-        ],
-    },
+        rules: [{
+            test: /\.css$/,
+            use: [{
+                loader: "css-loader",
+                options: { modules: 'icss' }
+            }]
+        }]
+    }
+
 }

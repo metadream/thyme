@@ -1,0 +1,44 @@
+.quick-switch {
+    position: relative;
+    display: inline-block;
+    width: 46px;
+    height: 28px;
+}
+
+.quick-switch input {
+    opacity: 0;
+    width: 0;
+    height: 0;
+}
+
+.quick-switch i {
+    position: absolute;
+    cursor: pointer;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    background: #ccc;
+    border-radius: 28px;
+    transition: .4s;
+}
+
+.quick-switch i:before {
+    position: absolute;
+    content: "";
+    height: 22px;
+    width: 22px;
+    left: 4px;
+    bottom: 3px;
+    background: white;
+    border-radius: 50%;
+    transition: .4s;
+}
+
+.quick-switch input:checked + i {
+    background: var(--mainColor, #16c);
+}
+
+.quick-switch input:checked + i:before {
+    transform: translateX(16px);
+}

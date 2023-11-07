@@ -1,44 +1,41 @@
 <!DOCTYPE html>
 <html>
-  <head>
+
+<head>
     <meta charset="utf-8" />
     <title>web components</title>
-    <script src="quick.js"></script>
-    <style>
-     :root {
-     }
-    </style>
-  </head>
+    <script src="dist/quick.js"></script>
 
-  <body>
-    <h1>web components</h1>
+</head>
+
+<body>
 
     <quick-field type="calendar" label="用户名" name="username" value="2013-01-05" required></quick-field>
     <quick-field type="password" label="密码" name="password" value="psd" disabled></quick-field>
     <quick-field type="calendar" label="日期" name="date" value="2023-01-05"></quick-field>
 
     <quick-switch name="isSupplier" checked></quick-switch>
-    <input/>
+    <input />
 
     <button onclick="getv()">get</button>
     <button onclick="change()">change</button>
-  </body>
+</body>
+
 </html>
 
 <script>
 
+    function change() {
+        document.querySelector('quick-field').value = 'nacy2';
+        document.querySelector('quick-field').disabled = true;
+        document.querySelector('quick-switch').value = 0;
+    }
+    function getv() {
+        const data = getJsonObject('body');
+        console.log(data)
+    }
 
-function change() {
-  document.querySelector('quick-field').value = 'nacy2';
-  document.querySelector('quick-field').disabled = true;
-  document.querySelector('quick-switch').value = 0;
-}
-function getv() {
-  const data = getJsonObject('body');
-  console.log(data)
-}
-
-function getJsonObject(scope) {
+    function getJsonObject(scope) {
         scope = Quick.query(scope);
         const fields = scope.query('[name]:not([name=""])', true);
         const data = {};
@@ -51,19 +48,19 @@ function getJsonObject(scope) {
             let value = '';
 
             if (field.tagName === 'QUICK-SWITCH') {
-              value = field.value;
+                value = field.value;
             } else
-            if (field.tagName === 'INPUT' || field.tagName === 'TEXTAREA' || field.tagName.startsWith('QUICK-')) {
-                value = field.value = field.value.trim();
-            } else
-            if (field.tagName === 'SELECT') {
-                value = field.options[field.selectedIndex].value;
-            } else
-            if (field.isContentEditable) {
-                value = field.innerHTML = field.innerHTML.trim();
-            } else {
-                value = field.textContent = field.textContent.trim();
-            }
+                if (field.tagName === 'INPUT' || field.tagName === 'TEXTAREA' || field.tagName.startsWith('QUICK-')) {
+                    value = field.value = field.value.trim();
+                } else
+                    if (field.tagName === 'SELECT') {
+                        value = field.options[field.selectedIndex].value;
+                    } else
+                        if (field.isContentEditable) {
+                            value = field.innerHTML = field.innerHTML.trim();
+                        } else {
+                            value = field.textContent = field.textContent.trim();
+                        }
 
             // 数据校验
             let required = field.getAttribute('required');
