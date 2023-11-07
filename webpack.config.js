@@ -2,13 +2,14 @@ import path from "path";
 
 export default {
 
+    mode: "development",
+
     entry: "./src/Quick.js",
     output: {
         path: path.resolve("./dist"),
         filename: "quick.js"
     },
 
-    mode: "development",
     module: {
         rules: [{
             test: /\.css$/,
