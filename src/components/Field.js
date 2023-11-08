@@ -1,5 +1,6 @@
 import fieldStyles from '../styles/field.css';
-import { createElement } from '../modules/Util.js';
+import calendarIcon from "../icons/calendar.svg";
+import { createElement, toDataUri } from '../modules/Util.js';
 import { Component } from './Component.js';
 
 export class Field extends Component {
@@ -25,7 +26,8 @@ export class Field extends Component {
 
         if (this.getAttribute('type') == 'calendar') {
             this.keyElement.readOnly = true;
-            this.keyElement.addClass('icon-trigger', 'icon-calendar');
+            this.keyElement.addClass('icon-trigger');
+            this.keyElement.style.backgroundImage = `url(${toDataUri(calendarIcon)})`;
 
             this.keyElement.on('click', () => {
                 const $calendar = createElement('quick-calendar');

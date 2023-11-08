@@ -29,8 +29,8 @@ export function enhanceElements() {
             return this;
         },
 
-        addClass(name) {
-            this.classList.add(name);
+        addClass(...name) {
+            this.classList.add(...name);
             return this;
         },
 
@@ -73,6 +73,15 @@ export function enhanceElements() {
  */
 export function getScrollTop() {
     return document.body.scrollTop || document.documentElement.scrollTop;
+}
+
+/**
+ * SVG转换为DataUri
+ * @param {string} svg 
+ * @returns 
+ */
+export function toDataUri(svg) {
+    return 'data:image/svg+xml;base64,' + btoa(svg);
 }
 
 /**

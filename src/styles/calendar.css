@@ -85,10 +85,6 @@ svg.icon {
     transition: .3s all;
 }
 
-svg.icon path {
-    fill: #999;
-}
-
 svg.icon:hover {
     background: #eee;
 }

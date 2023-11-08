@@ -1,17 +1,12 @@
 import toptrayStyles from '../styles/toptray.css';
+import arrowTopIcon from "../icons/arrow-top.svg";
 import { getScrollTop } from '../modules/Util.js';
 import { Component } from './Component.js';
 
 export class Toptray extends Component {
 
     styles = toptrayStyles;
-    template = `
-        <div class="quick-toptray" style="bottom:{{x}}px;right:{{y}}px">
-            <svg viewBox="0 0 1024 1024" version="1.1" xmlns="http://www.w3.org/2000/svg">
-                <path d="M954.176 707.328L894.752 768 512 377.344 129.248 768l-59.424-60.672L512 256z"/>
-            </svg>
-        </div>
-    `;
+    template = `<div class="quick-toptray" style="bottom:{{x}}px;right:{{y}}px">${arrowTopIcon}</div>`;
 
     onConnected() {
         const tray = this.shadowBody;

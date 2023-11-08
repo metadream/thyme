@@ -11,6 +11,10 @@
     font-family: var(--fontFamily, system-ui, -apple-system, BlinkMacSystemFont, Helvetica, Arial, Tahoma, "PingFang SC", "Hiragino Sans GB", "Heiti SC", "Microsoft YaHei", sans-serif);
 }
 
+svg.icon path {
+    fill: #999;
+}
+
 .quick-overlay {
     position: fixed;
     z-index: 5000;
