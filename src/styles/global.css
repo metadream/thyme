@@ -181,8 +181,7 @@ table {
     width: 100%;
 }
 
-.quick-grid th,
-.quick-grid td {
+.quick-grid th, .quick-grid td {
     height: 40px;
     padding: 5px 10px;
     white-space: nowrap;
