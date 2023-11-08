@@ -82,13 +82,13 @@
     }
 
     function openalert() {
-        new Quick.Alert('保存成功', (dlg, btn) => {
+        Quick.alert('保存成功', (dlg, btn) => {
             console.log(dlg, btn);
         });
     }
 
     function openc() {
-        new Quick.Confirm('确定删除吗？', (dlg, btn) => {
+        Quick.confirm('确定删除吗？', (dlg, btn) => {
             console.log(dlg, btn);
         });
     }

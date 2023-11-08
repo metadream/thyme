@@ -1,28 +1,67 @@
 import globalStyles from './styles/global.css';
 import { createElement, enhanceElements } from './modules/Util.js';
+import { Language } from './modules/Language.js';
 import { Http } from './modules/Http.js';
 import { Form } from './modules/Form.js';
 import { Calendar } from './components/Calendar.js';
 import { Field } from './components/Field.js';
 import { Switch } from './components/Switch.js';
 import { Dialog } from './components/Dialog.js';
-import { Alert } from './components/Alert.js';
-import { Confirm } from './components/Confirm.js';
 import { PopupInfo } from './components/PopupInfo.js';
 import { Toptray } from './components/Toptray.js';
 
 window.Quick = class { }
-
+Quick.http = Http;
+Quick.form = Form;
 Quick.Calendar = Calendar;
 Quick.Field = Field;
 Quick.Switch = Switch;
 Quick.Dialog = Dialog;
-Quick.Alert = Alert;
-Quick.Confirm = Confirm;
 Quick.Toptray = Toptray;
 
-Quick.http = Http;
-Quick.form = Form;
+Quick.setup = function () {
+    enhanceElements();
+    customElements.define('quick-calendar', Calendar);
+    customElements.define('quick-field', Field);
+    customElements.define('quick-switch', Switch);
+    customElements.define('quick-dialog', Dialog);
+    customElements.define('quick-info', PopupInfo);
+    customElements.define('quick-toptray', Toptray);
+
+    const style = createElement('style');
+    style.textContent = globalStyles;
+    document.head.append(style);
+}
+
+Quick.alert = function (text, callback) {
+    new Dialog({
+        slot: text,
+        buttons: [{
+            label: Language.i18n('OK'),
+            primary: true,
+            onclick: (self, btn) => {
+                callback && callback(self, btn);
+                self.hide();
+            }
+        }]
+    });
+}
+
+Quick.confirm = function (text, callback) {
+    new Dialog({
+        slot: text,
+        buttons: [{
+            label: Language.i18n('NO'),
+        }, {
+            label: Language.i18n('YES'),
+            primary: true,
+            onclick: (self, btn) => {
+                callback && callback(self, btn);
+                self.hide();
+            }
+        }]
+    });
+}
 
 Quick.info = function (text, type, delay) {
     if (this._singleton) {
@@ -44,21 +83,5 @@ Quick.error = function (text) {
 Quick.success = function (text) {
     this.info(text, 'success');
 };
-
-Quick.setup = function () {
-    enhanceElements();
-    customElements.define('quick-calendar', Calendar);
-    customElements.define('quick-field', Field);
-    customElements.define('quick-switch', Switch);
-    customElements.define('quick-dialog', Dialog);
-    customElements.define('quick-alert', Alert);
-    customElements.define('quick-confirm', Confirm);
-    customElements.define('quick-info', PopupInfo);
-    customElements.define('quick-toptray', Toptray);
-
-    const style = createElement('style');
-    style.textContent = globalStyles;
-    document.head.append(style);
-}
 
 Quick.setup();
