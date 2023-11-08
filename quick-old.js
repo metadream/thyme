@@ -1,26 +1,5 @@
 document.head.insertAdjacentHTML('beforeend', `<style>
-.quick-btn-loading {
-  position: absolute;
-  width: 100%;
-  height: 100%;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  border-radius: inherit;
-  background: inherit;
-}
-.quick-btn-loading:before {
-  content: '';
-  position: absolute;
-  width: 18px;
-  height: 18px;
-  border-radius: 50%;
-  border-top: 2px solid rgba(255, 255, 255, 0.3);
-  border-right: 2px solid rgba(255, 255, 255, 0.3);
-  border-bottom: 2px solid rgba(255, 255, 255, 0.3);
-  border-left: 2px solid currentColor;
-  animation: spin .6s linear infinite;
-}
+
 .quick-loading {
   position: fixed;
   z-index: 5100;
@@ -86,11 +65,6 @@ document.head.insertAdjacentHTML('beforeend', `<style>
   height: 14px;
   text-decoration: none;
   margin-left: 5px;
-}
-
-@keyframes spin {
-  from { transform: rotate(0); }
-  to { transform: rotate(360deg); }
 }
 </style>`);
 

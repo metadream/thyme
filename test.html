@@ -45,6 +45,7 @@
     <button onclick="openalert()">alert</button>
     <button onclick="openc()">confirm</button>
     <button onclick="info()" quick-tooltip="间客房送拉将卡洛斯的">info</button>
+    <button onclick="disabletest(this)">disable</button>
 
     <!-- <quick-info type="warn" text="健康法律打算将"></quick-info> -->
     <div style="height:1000px"></div>
@@ -60,6 +61,12 @@
 </html>
 
 <script>
+    function disabletest(btn) {
+        btn.disable();
+        setTimeout(() => {
+            btn.enable();
+        }, 2000);
+    }
     function info() {
         Quick.success('捷克弗拉斯的');
     }

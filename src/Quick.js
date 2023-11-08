@@ -25,12 +25,12 @@ Quick.http = Http;
 Quick.form = Form;
 
 Quick.info = function (text, type, delay) {
-    if (this.__singleton) {
-        this.__singleton.remove();
-        this.__singleton = null;
+    if (this._singleton) {
+        this._singleton.remove();
+        this._singleton = null;
     }
-    this.__singleton = createElement(`<quick-info text="${text}" type="${type}" delay="${delay || 3000}"></quick-info>`);
-    document.body.append(this.__singleton);
+    this._singleton = createElement(`<quick-info text="${text}" type="${type}" delay="${delay || 3000}"></quick-info>`);
+    document.body.append(this._singleton);
 };
 
 Quick.warn = function (text) {

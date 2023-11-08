@@ -46,23 +46,23 @@ export function enhanceElements() {
         swap(el) {
             if (el) el.insertAdjacentElement('beforeBegin', this);
             return this;
-        },
+        }
+    });
 
+    Object.assign(HTMLButtonElement.prototype, {
         disable() {
-            if (this.tagName !== 'BUTTON') return;
             if (this.disabled) return;
             this.disabled = true;
 
             // Add loading to BUTTON if disabled
-            this.loader = createElement('<div class="quick-btn-loading"></div>');
-            this.append(this.loader);
+            this._loader = createElement('<div class="quick-btn-loading"></div>');
+            this.append(this._loader);
         },
 
         enable() {
-            if (this.tagName !== 'BUTTON') return;
             if (!this.disabled) return;
             this.disabled = false;
-            this.loader && this.loader.remove();
+            this._loader && this._loader.remove();
         }
     });
 }
@@ -77,8 +77,8 @@ export function getScrollTop() {
 
 /**
  * SVG转换为DataUri
- * @param {string} svg 
- * @returns 
+ * @param {string} svg
+ * @returns
  */
 export function toDataUri(svg) {
     return 'data:image/svg+xml;base64,' + btoa(svg);
