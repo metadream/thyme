@@ -1,3 +1,4 @@
+import globalStyles from './styles/global.css';
 import { createElement, enhanceElements } from './modules/Util.js';
 import { Http } from './modules/Http.js';
 import { Form } from './modules/Form.js';
@@ -54,6 +55,10 @@ Quick.setup = function () {
     customElements.define('quick-confirm', Confirm);
     customElements.define('quick-info', PopupInfo);
     customElements.define('quick-toptray', Toptray);
+
+    const style = createElement('style');
+    style.textContent = globalStyles;
+    document.head.append(style);
 }
 
 Quick.setup();

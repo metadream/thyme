@@ -87,42 +87,7 @@ document.head.insertAdjacentHTML('beforeend', `<style>
   text-decoration: none;
   margin-left: 5px;
 }
-[quick-tooltip] {
-  position: relative;
-}
-[quick-tooltip]:before, [quick-tooltip]:after {
-  position: absolute;
-  visibility: hidden;
-  pointer-events: none;
-  opacity: 0;
-  bottom: 100%;
-  left: 50%;
-  transform: translate3d(-50%, -10px, 0);
-  transition: opacity .5s;
-}
-[quick-tooltip]:hover:before, [quick-tooltip]:hover:after {
-  visibility: visible;
-  opacity: 1;
-}
-[quick-tooltip]:before {
-  content: '';
-  z-index: 1001;
-  background: transparent;
-  border: 6px solid transparent;
-  border-top-color: rgba(0, 0, 0, 0.7);
-  margin-bottom: -12px;
-}
-[quick-tooltip]:after {
-  content: attr(quick-tooltip);
-  z-index: 1000;
-  margin-right: -300px;
-  padding: 6px 10px;
-  border-radius: 3px;
-  font-size: 14px;
-  line-height: 1.6;
-  background-color: rgba(0, 0, 0, 0.7);
-  color: #fff;
-}
+
 @keyframes spin {
   from { transform: rotate(0); }
   to { transform: rotate(360deg); }

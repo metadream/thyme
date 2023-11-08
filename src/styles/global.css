@@ -1,0 +1,217 @@
+*, *:before, *:after {
+    box-sizing: border-box;
+}
+
+::placeholder {
+    color: var(--minorColor, #999);
+}
+
+html {
+    font-size: var(--fontSize, 15px);
+}
+
+body {
+    margin: 0;
+    line-height: 1.6;
+    color: var(--fontColor, #333);
+    font-family: var(--fontFamily, system-ui, -apple-system, BlinkMacSystemFont, Helvetica, Arial, Tahoma, "PingFang SC", "Hiragino Sans GB", "Heiti SC", "Microsoft YaHei", sans-serif);
+}
+
+a {
+    color: var(--mainColor, inherit);
+    text-decoration: none;
+}
+
+a:hover {
+    text-decoration: underline;
+}
+
+h1, h2, h3, h4, h5 {
+    font-weight: 400;
+    margin: 0 0 var(--spacing, 15px) 0;
+}
+
+h1, h2, h3 {
+    color: var(--headingColor, inherit);
+}
+
+h1 {
+    font-size: 3rem;
+    line-height: 3.8rem;
+}
+
+h2 {
+    font-size: 2.2rem;
+}
+
+h3 {
+    font-size: 1.6rem;
+}
+
+h4 {
+    font-size: 1.2rem;
+}
+
+h5 {
+    font-size: 0.9rem;
+    font-weight: 700;
+    color: inherit;
+}
+
+a, button, label, select {
+    cursor: pointer;
+    font: inherit;
+    outline: 0;
+}
+
+input, select {
+    font: inherit;
+    background-color: transparent;
+    outline: 0;
+}
+
+input[type="file"] {
+    display: none;
+}
+
+img {
+    max-width: 100%;
+}
+
+img.icon {
+    width: 16px;
+}
+
+button, a.button {
+    display: inline-flex;
+    position: relative;
+    justify-content: center;
+    align-items: center;
+    vertical-align: middle;
+    white-space: nowrap;
+    color: var(--fontColor, #fff);
+    background-color: var(--mainColor, #0ad);
+    border: var(--mainColor, #0ad) 1.5px solid;
+    border-radius: var(--borderRadius, 5px);
+    font-weight: 700;
+    font-size: 14px;
+    padding: 0 30px;
+    height: 40px;
+    transition: opacity .3s;
+}
+
+button:not(:first-child), a.button:not(:first-child) {
+    margin-left: 10px;
+}
+
+button>img:not(:last-child), a.button>img:not(:last-child) {
+    margin-right: 5px;
+}
+
+button:hover, a.button:hover {
+    opacity: .8;
+    text-decoration: none;
+}
+
+button:active, a.button:active {
+    opacity: 1;
+}
+
+button:disabled, a.button:disabled {
+    opacity: .5 !important;
+    cursor: default;
+}
+
+button.minor, a.button.minor {
+    color: var(--mainColor, #0ad);
+    background-color: #fff;
+}
+
+table {
+    --headColor: #ddd;
+    --lineColor: #ccc;
+}
+
+.quick-grid {
+    table-layout: fixed;
+    border-collapse: collapse;
+    border-style: hidden;
+    border-radius: var(--borderRadius, 5px);
+    box-shadow: 0 0 0 1px var(--lineColor);
+    width: 100%;
+}
+
+.quick-grid th,
+.quick-grid td {
+    height: 40px;
+    padding: 5px 10px;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+    overflow: hidden;
+}
+
+.quick-grid th {
+    background-color: var(--headColor);
+}
+
+.quick-grid td {
+    border-left: 1px solid #f3f3f3;
+    border-top: 1px solid var(--lineColor);
+}
+
+.quick-grid th:first-child {
+    border-top-left-radius: var(--borderRadius, 5px);
+}
+
+.quick-grid th:last-child {
+    border-top-right-radius: var(--borderRadius, 5px);
+}
+
+.quick-grid tr:last-child td:first-child {
+    border-bottom-left-radius: var(--borderRadius, 5px);
+}
+
+.quick-grid tr:last-child td:last-child {
+    border-bottom-right-radius: var(--borderRadius, 5px);
+}
+
+[quick-tooltip] {
+    position: relative;
+}
+
+[quick-tooltip]:before, [quick-tooltip]:after {
+    position: absolute;
+    visibility: hidden;
+    pointer-events: none;
+    opacity: 0;
+    bottom: 100%;
+    left: 50%;
+    transform: translate3d(-50%, -10px, 0);
+    transition: opacity .5s;
+}
+
+[quick-tooltip]:hover:before, [quick-tooltip]:hover:after {
+    visibility: visible;
+    opacity: 1;
+}
+
+[quick-tooltip]:before {
+    content: '';
+    z-index: 9001;
+    background: transparent;
+    border: 6px solid transparent;
+    border-top-color: rgba(0, 0, 0, 0.7);
+    margin-bottom: -12px;
+}
+
+[quick-tooltip]:after {
+    content: attr(quick-tooltip);
+    z-index: 9000;
+    margin-right: -300px;
+    padding: 6px 10px;
+    font-size: 14px;
+    line-height: 1.6;
+    border-radius: var(--borderRadius, 5px);
+    background-color: rgba(0, 0, 0, 0.7);
+    color: #fff;
+}

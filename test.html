@@ -5,11 +5,33 @@
     <meta charset="utf-8" />
     <title>web components</title>
     <script src="dist/quick.js"></script>
+
     <style>
+        table {}
     </style>
 </head>
 
 <body>
+
+    <div style="margin:auto;width: 800px;"><br><br><br>
+        <table class="quick-grid">
+            <tr>
+                <th>表头1</th>
+                <th>表头2</th>
+                <th>表头3</th>
+            </tr>
+            <tr>
+                <td>1</td>
+                <td>2</td>
+                <td>3</td>
+            </tr>
+            <tr>
+                <td>4</td>
+                <td>5</td>
+                <td>6</td>
+            </tr>
+        </table>
+    </div>
 
     <div style="height:300px"></div>
     <quick-field type="text" label="用户名" name="username" value="" required></quick-field>
@@ -22,7 +44,7 @@
     <button onclick="opend()">open</button>
     <button onclick="openalert()">alert</button>
     <button onclick="openc()">confirm</button>
-    <button onclick="info()">info</button>
+    <button onclick="info()" quick-tooltip="间客房送拉将卡洛斯的">info</button>
 
     <!-- <quick-info type="warn" text="健康法律打算将"></quick-info> -->
     <div style="height:1000px"></div>
