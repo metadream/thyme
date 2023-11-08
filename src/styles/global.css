@@ -127,6 +127,12 @@ button.minor, a.button.minor {
     background-color: #fff;
 }
 
+button.danger, a.button.danger {
+    border-color: var(--dangerColor, red);
+    color: var(--dangerColor, red);
+    background-color: #fff;
+}
+
 .quick-btn-loading {
     position: absolute;
     width: 100%;
