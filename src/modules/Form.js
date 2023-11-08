@@ -41,7 +41,7 @@ export const Form = {
 
             if (!this.validate(value, required, field.dataset.rule)) {
                 field.focus();
-                Quick.error(field.dataset.message || Language.i18n('INPUT_INCORRECT'));
+                Quick.error(field.dataset.message || Language.i18n('INCORRECT_INPUT'));
                 return;
             }
 

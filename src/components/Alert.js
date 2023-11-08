@@ -1,4 +1,5 @@
 import { Dialog } from "./Dialog.js";
+import { Language } from '../modules/Language.js';
 
 export class Alert extends Dialog {
 
@@ -6,7 +7,7 @@ export class Alert extends Dialog {
         super({
             slot: message,
             buttons: [{
-                label: "确定",
+                label: Language.i18n('OK'),
                 primary: true,
                 onclick: (self, btn) => {
                     callback && callback(self, btn);

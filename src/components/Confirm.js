@@ -1,4 +1,5 @@
 import { Dialog } from "./Dialog.js";
+import { Language } from '../modules/Language.js';
 
 export class Confirm extends Dialog {
 
@@ -6,9 +7,9 @@ export class Confirm extends Dialog {
         super({
             slot: message,
             buttons: [{
-                label: "取消",
+                label: Language.i18n('NO'),
             }, {
-                label: "确定",
+                label: Language.i18n('YES'),
                 primary: true,
                 onclick: (self, btn) => {
                     callback && callback(self, btn);

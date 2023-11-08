@@ -4,7 +4,9 @@ import nextYearIcon from "../icons/double-arrow-right.svg";
 import prevMonthIcon from "../icons/arrow-left.svg";
 import nextMonthIcon from "../icons/arrow-right.svg";
 import { getScrollTop, formatDate } from '../modules/Util.js';
+import { Language } from '../modules/Language.js';
 import { Component } from './Component.js';
+
 
 export class Calendar extends Component {
 
@@ -16,16 +18,10 @@ export class Calendar extends Component {
         </div>
     `;
 
-    lang = {
-        zh: { MON: '一', TUE: '二', WED: '三', THU: '四', FRI: '五', SAT: '六', SUN: '日' },
-        en: { MON: 'MON', TUE: 'TUE', WED: 'WED', THU: 'THU', FRI: 'FRI', SAT: 'SAT', SUN: 'SUN' }
-    };
-
     onConnected() {
         this.$calendar = this.getElement('.quick-calendar');
         this.$overlay = this.getElement('.quick-overlay');
         this.$overlay.on('click', () => this.remove());
-        this.i18n = this.lang[this.getAttribute('lang') || 'zh'];
         this.bindEventListeners();
     }
 
@@ -92,7 +88,15 @@ export class Calendar extends Component {
             </div>
             <div class="quick-calendar-body">
               <table>
-                <thead><tr><th>${this.i18n.MON}</th><th>${this.i18n.TUE}</th><th>${this.i18n.WED}</th><th>${this.i18n.THU}</th><th>${this.i18n.FRI}</th><th>${this.i18n.SAT}</th><th>${this.i18n.SUN}</th></tr></thead>
+                <thead><tr>
+                  <th>${Language.i18n('MON')}</th>
+                  <th>${Language.i18n('TUE')}</th>
+                  <th>${Language.i18n('WED')}</th>
+                  <th>${Language.i18n('THU')}</th>
+                  <th>${Language.i18n('FRI')}</th>
+                  <th>${Language.i18n('SAT')}</th>
+                  <th>${Language.i18n('SUN')}</th>
+                </tr></thead>
                 <tbody>
         `;
 
