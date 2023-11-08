@@ -1,11 +1,11 @@
-import popupInfoStyles from '../styles/popup-info.css';
+import toastStyles from '../styles/toast.css';
 import { Component } from './Component.js';
 
-export class PopupInfo extends Component {
+export class Toast extends Component {
 
-    styles = popupInfoStyles;
+    styles = toastStyles;
     template = `
-        <div class="quick-overlay quick-info">
+        <div class="quick-overlay quick-toast">
             <div class="{{type}}">{{text}}</div>
         </div>
     `;

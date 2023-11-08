@@ -7,7 +7,7 @@ import { Calendar } from './components/Calendar.js';
 import { Field } from './components/Field.js';
 import { Switch } from './components/Switch.js';
 import { Dialog } from './components/Dialog.js';
-import { PopupInfo } from './components/PopupInfo.js';
+import { Toast } from './components/Toast.js';
 import { Toptray } from './components/Toptray.js';
 
 window.Quick = class { }
@@ -25,7 +25,7 @@ Quick.setup = function () {
     customElements.define('quick-field', Field);
     customElements.define('quick-switch', Switch);
     customElements.define('quick-dialog', Dialog);
-    customElements.define('quick-info', PopupInfo);
+    customElements.define('quick-toast', Toast);
     customElements.define('quick-toptray', Toptray);
 
     const style = createElement('style');
@@ -68,7 +68,7 @@ Quick.info = function (text, type, delay) {
         this._singleton.remove();
         this._singleton = null;
     }
-    this._singleton = createElement(`<quick-info text="${text}" type="${type}" delay="${delay || 3000}"></quick-info>`);
+    this._singleton = createElement(`<quick-toast text="${text}" type="${type}" delay="${delay || 3000}"></quick-toast>`);
     document.body.append(this._singleton);
 };
 

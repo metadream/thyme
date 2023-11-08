@@ -1,11 +1,11 @@
-.quick-info {
+.quick-toast {
     background: transparent;
     height: 0;
     display: flex;
     justify-content: center;
 }
 
-.quick-info>div {
+.quick-toast>div {
     margin-top: 80px;
     margin-bottom: auto;
     max-width: 80%;
@@ -16,15 +16,15 @@
     color: #fff;
 }
 
-.quick-info>div.warn {
+.quick-toast>div.warn {
     background-color: rgba(255, 140, 0, 0.6);
     color: #333;
 }
 
-.quick-info>div.error {
+.quick-toast>div.error {
     background-color: rgba(217, 37, 7, 0.6);
 }
 
-.quick-info>div.success {
+.quick-toast>div.success {
     background-color: rgba(43, 155, 23, 0.6);
 }
