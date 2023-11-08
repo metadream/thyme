@@ -34,8 +34,8 @@ export function enhanceElements() {
             return this;
         },
 
-        removeClass(name) {
-            this.classList.remove(name);
+        removeClass(...name) {
+            this.classList.remove(...name);
             return this;
         },
 
