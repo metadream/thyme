@@ -2,7 +2,7 @@ import path from "path";
 
 export default {
 
-    mode: "development",
+    mode: "production",
 
     entry: "./src/Quick.js",
     output: {
@@ -17,6 +17,9 @@ export default {
                 loader: "css-loader",
                 options: { modules: 'icss' }
             }]
+        }, {
+            test: /\.svg$/,
+            type: 'asset/source'
         }]
     }
 

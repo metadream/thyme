@@ -1,5 +1,5 @@
 import shadowStyles from '../styles/shadow.css';
-import { createElement } from '../utility/Util.js';
+import { createElement } from '../modules/Util.js';
 
 export class Component extends HTMLElement {
 
@@ -33,6 +33,10 @@ export class Component extends HTMLElement {
 
     getElement(selector) {
         return this.shadowRoot.querySelector(selector);
+    }
+
+    getElements(selector) {
+        return this.shadowRoot.querySelectorAll(selector);
     }
 
     focus() {

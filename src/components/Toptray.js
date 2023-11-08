@@ -1,5 +1,5 @@
 import toptrayStyles from '../styles/toptray.css';
-import { getScrollTop } from '../utility/Util.js';
+import { getScrollTop } from '../modules/Util.js';
 import { Component } from './Component.js';
 
 export class Toptray extends Component {

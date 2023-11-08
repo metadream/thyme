@@ -1,5 +1,9 @@
 import calendarStyles from '../styles/calendar.css';
-import { getScrollTop, formatDate } from '../utility/Util.js';
+import prevYearIcon from "../icons/double-arrow-left.svg";
+import nextYearIcon from "../icons/double-arrow-right.svg";
+import prevMonthIcon from "../icons/arrow-left.svg";
+import nextMonthIcon from "../icons/arrow-right.svg";
+import { getScrollTop, formatDate } from '../modules/Util.js';
 import { Component } from './Component.js';
 
 export class Calendar extends Component {
@@ -53,10 +57,11 @@ export class Calendar extends Component {
             }
 
             // 点击上下月/上下年按钮
-            const $prevYear = this.getElement('.prev-year');
-            const $prevMonth = this.getElement('.prev-month');
-            const $nextMonth = this.getElement('.next-month');
-            const $nextYear = this.getElement('.next-year');
+            const svgIcons = this.getElements('svg.icon');
+            const $prevYear = svgIcons[0];
+            const $prevMonth = svgIcons[1];
+            const $nextMonth = svgIcons[2];
+            const $nextYear = svgIcons[3];
             const currDate = new Date($currText.innerHTML);
 
             if ($prevYear.contains($target)) {
@@ -79,11 +84,11 @@ export class Calendar extends Component {
         const data = this.calData = this.getCalendarData(date);
         let html = `
             <div class="quick-calendar-header">
-              <svg class="quick-calendar-btn prev-year" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 16 16"><path d="M7.984 7l4.75 4.762-.832.817-3.924-3.924-3.99 3.99-.825-.836L7.973 7l.005.006L7.984 7zm0-4l4.75 4.762-.832.817-3.924-3.924-3.99 3.99-.825-.836L7.973 3l.005.006L7.984 3z" transform="rotate(-90 7.949 7.822)"></path></svg>
-              <svg class="quick-calendar-btn prev-month" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 16 16"><path d="M7.978 11.997l-.005.006L2.3 6.33l.83-.831 4.848 4.848L12.826 5.5l.83.83-5.673 5.673-.005-.006z" transform="rotate(90 7.978 8.751)"></path></svg>
+              ${prevYearIcon}
+              ${prevMonthIcon}
               <span class="quick-calendar-text">${data.year}-${data.month.toString().padStart(2, 0)}</span>
-              <svg class="quick-calendar-btn next-month" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 16 16"><path d="M7.978 11.498l-.005.005L2.3 5.831 3.13 5l4.848 4.848L12.826 5l.83.831-5.673 5.672-.005-.005z" transform="rotate(-90 7.978 8.252)"></path></svg>
-              <svg class="quick-calendar-btn next-year" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 16 16"><path d="M7.984 7l4.75 4.762-.832.817-3.924-3.924-3.99 3.99-.825-.836L7.973 7l.005.006L7.984 7zm0-4l4.75 4.762-.832.817-3.924-3.924-3.99 3.99-.825-.836L7.973 3l.005.006L7.984 3z" transform="rotate(90 7.949 8.122)"></path></svg>
+              ${nextMonthIcon}
+              ${nextYearIcon}
             </div>
             <div class="quick-calendar-body">
               <table>

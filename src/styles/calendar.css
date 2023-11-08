@@ -24,23 +24,6 @@
     cursor: pointer;
 }
 
-.quick-calendar-btn {
-    width: 26px;
-    height: 26px;
-    padding: 5px;
-    cursor: pointer;
-    border-radius: 3px;
-    transition: .3s all;
-}
-
-.quick-calendar-btn path {
-    fill: #999;
-}
-
-.quick-calendar-btn:hover {
-    background: #eee;
-}
-
 .quick-calendar-body {
     padding: 10px;
 }
@@ -91,4 +74,21 @@
 
 .quick-calendar-body td > div.minor {
     color: #ccc;
+}
+
+svg.icon {
+    width: 26px;
+    height: 26px;
+    padding: 5px;
+    cursor: pointer;
+    border-radius: 3px;
+    transition: .3s all;
+}
+
+svg.icon path {
+    fill: #999;
+}
+
+svg.icon:hover {
+    background: #eee;
 }

@@ -1,6 +1,6 @@
-import { createElement, enhanceElements } from './utility/Util.js';
-import { Http } from './utility/Http.js';
-import { Form } from './utility/Form.js';
+import { createElement, enhanceElements } from './modules/Util.js';
+import { Http } from './modules/Http.js';
+import { Form } from './modules/Form.js';
 import { Calendar } from './components/Calendar.js';
 import { Field } from './components/Field.js';
 import { Switch } from './components/Switch.js';

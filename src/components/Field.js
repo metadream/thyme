@@ -1,5 +1,5 @@
 import fieldStyles from '../styles/field.css';
-import { createElement } from '../utility/Util.js';
+import { createElement } from '../modules/Util.js';
 import { Component } from './Component.js';
 
 export class Field extends Component {
