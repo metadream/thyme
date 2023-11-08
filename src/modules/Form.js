@@ -1,7 +1,10 @@
+import { Language } from './Language.js';
+
 /**
  * 表单验证和获取
  */
 export const Form = {
+
     /**
      * 将带有name属性的元素数据解析为JSON对象
      * @param scope 获取范围
@@ -11,30 +14,35 @@ export const Form = {
         const fields = scope.querySelectorAll('[name]:not([name=""])');
         const data = {};
 
-        for (let i = 0; i < fields.length; i++) {
-            const field = fields[i];
-            if ((field.type == 'checkbox' || field.type == 'radio') && !field.checked) continue;
-
-            // 去除输入值空格
+        for (const field of fields) {
             let value = '';
-            if (field.tagName === 'INPUT' || field.tagName === 'TEXTAREA') {
-                value = field.value = field.value.trim();
-            } else
-                if (field.tagName === 'SELECT') {
-                    value = field.options[field.selectedIndex].value;
-                } else
-                    if (field.isContentEditable) {
-                        value = field.innerHTML = field.innerHTML.trim();
-                    } else {
-                        value = field.textContent = field.textContent.trim();
-                    }
+            if ((field.type == 'checkbox' || field.type == 'radio') && !field.checked) {
+                continue;
+            }
+            if (field.tagName === 'INPUT' || field.tagName === 'TEXTAREA' || field.tagName.startsWith('QUICK-')) {
+                if (typeof field.value === 'string') {
+                    field.value = field.value.trim();
+                }
+                value = field.value;
+            }
+            else if (field.tagName === 'SELECT') {
+                value = field.options[field.selectedIndex].value;
+            }
+            else if (field.isContentEditable) {
+                value = field.innerHTML = field.innerHTML.trim();
+            }
+            else {
+                value = field.textContent = field.textContent.trim();
+            }
 
             // 数据校验
             let required = field.getAttribute('required');
             required = (required === null || required === 'false') ? false : true;
+
             if (!this.validate(value, required, field.dataset.rule)) {
                 field.focus();
-                throw new Error(field.dataset.message);
+                Quick.error(field.dataset.message || Language.i18n('INPUT_INCORRECT'));
+                return;
             }
 
             // 设置返回对象的键值
@@ -56,9 +64,10 @@ export const Form = {
         const array = [];
         scopes = typeof scopes === 'string' ? document.querySelectorAll(scopes) : scopes;
 
-        for (let i = 0; i < scopes.length; i++) {
-            const obj = this.getJsonObject(scopes[i]);
+        for (const scope of scopes) {
+            const obj = this.getJsonObject(scope);
             if (!obj) return; // !important
+
             if (Object.keys(obj).length !== 0) {
                 array.push(obj);
             }
@@ -77,14 +86,17 @@ export const Form = {
         if (!rule) return true; // 无规则，视为成功
         if (!value) return true; // 空值无需校验，视为成功
 
+        // 有规则但格式不匹配，视为成功（相当于无规则）
         const matches = rule.match(/^(?<type>[a-z0-9]+)(\((?<min>\-?\d+)(,\s*(?<max>\-?\d+))?\))?$/);
-        if (!matches) return true; // 有规则但格式不匹配，视为成功（相当于无规则）
+        if (!matches) return true;
 
+        // 有规则但找不到预设的校验方法，视为成功（相当于无规则）
         const groups = matches.groups;
         const fn = this.validator[groups.type];
-        if (!fn) return true; // 有规则但找不到预设的校验方法，视为成功（相当于无规则）
+        if (!fn) return true;
 
-        return fn(value, groups.min, groups.max); // 由预设的校验方法判断
+        // 由预设的校验方法判断
+        return fn(value, groups.min, groups.max);
     },
 
     /**
