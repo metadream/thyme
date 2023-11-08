@@ -95,69 +95,6 @@ document.head.insertAdjacentHTML('beforeend', `<style>
 </style>`);
 
 // --------------------------------------------------------
-// 国际化
-// --------------------------------------------------------
-
-const LANG = {
-    en: {
-        OK: 'OK',
-        YES: 'YES',
-        NO: 'NO',
-        CANCEL: 'CANCEL',
-        MON: 'MON',
-        TUE: 'TUE',
-        WED: 'WED',
-        THU: 'THU',
-        FRI: 'FRI',
-        SAT: 'SAT',
-        SUN: 'SUN',
-        UPLOAD_ATTACHMENT: 'UPLOAD',
-        MAX_ALLOWED_COUNT: 'The maximum number of upload files allowed is: ',
-        MAX_ALLOWED_SIZE: 'Single file size is not allowed to exceed ',
-        DELETE_ATTACHMENT_CONFIRMATION: 'Are you sure to delete the attachment?',
-        DELETE_ATTACHMENT_SUCCESS: 'Delete succeeded',
-        CLIPBOARD_NOT_SUPPORTED: 'The browser does not support clipboard',
-        COPY_SUCCESS: 'Copy succeeded',
-        COPY_FAILED: 'Copy failed',
-        INPUT_FORMAT_INCORRECT: 'The data at the cursor cannot be empty or in the wrong format',
-        UNSUPPORTED_RESPONSE_TYPE: 'Unsupported response type',
-        NETWORK_CONNECTION_ERROR: 'Network connection error'
-    },
-    zh: {
-        OK: '确定',
-        YES: '确定',
-        NO: '取消',
-        CANCEL: '取消',
-        MON: '一',
-        TUE: '二',
-        WED: '三',
-        THU: '四',
-        FRI: '五',
-        SAT: '六',
-        SUN: '日',
-        UPLOAD_ATTACHMENT: '上传附件',
-        MAX_ALLOWED_COUNT: '单次最多允许上传文件数：',
-        MAX_ALLOWED_SIZE: '单文件大小不允许超过',
-        DELETE_ATTACHMENT_CONFIRMATION: '确定删除该附件吗？',
-        DELETE_ATTACHMENT_SUCCESS: '删除成功',
-        CLIPBOARD_NOT_SUPPORTED: '浏览器不支持剪贴板',
-        COPY_SUCCESS: '复制成功',
-        COPY_FAILED: '复制失败',
-        INPUT_FORMAT_INCORRECT: '光标处数据不能为空或输入格式有误',
-        UNSUPPORTED_RESPONSE_TYPE: '不支持的响应类型',
-        NETWORK_CONNECTION_ERROR: '网络连接异常'
-    },
-}
-
-// --------------------------------------------------------
-// 命名空间
-// --------------------------------------------------------
-
-const Quick = {
-
-}
-
-// --------------------------------------------------------
 // UI组件：居中圆形加载动画
 // --------------------------------------------------------
 
