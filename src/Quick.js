@@ -70,7 +70,7 @@ Quick.info = function (text, type, delay) {
         this._singleton.remove();
         this._singleton = null;
     }
-    this._singleton = createElement(`<quick-toast text="${text}" type="${type}" delay="${delay || 3000}"></quick-toast>`);
+    this._singleton = createElement(`<quick-toast type="${type}" delay="${delay || 3000}">${text}</quick-toast>`);
     document.body.append(this._singleton);
 };
 

@@ -46,7 +46,7 @@
     <div style="height:1000px"></div>
 
 
-    <quick-toast>法艰苦的拉萨</quick-toast>
+    <quick-toast type="warn">法艰苦的拉萨建立的萨迦</quick-toast>
 
     <quick-dialog title="">
         <h1 style="margin-top:0">的萨菲</h1>
@@ -63,11 +63,12 @@
     const dialog = document.querySelector('quick-dialog');
     dialog.buttons([{ label: 'haha' }, {
         label: 'ok',
+        primary: true,
         onclick: (self, btn) => {
             btn.disable();
             console.log('ok');
         }
-    }])
+    }]);
 
     function disabletest(btn) {
         btn.disable();
