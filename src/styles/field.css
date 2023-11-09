@@ -22,9 +22,10 @@
 .quick-field>label {
     position: relative;
     cursor: default;
-    white-space: nowrap;
-    width: 120px;
+    width: 30%;
     padding: 0 20px;
+    white-space: nowrap;
+    overflow: hidden;
 }
 
 .quick-field>label:after {
