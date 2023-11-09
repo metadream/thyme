@@ -39,11 +39,7 @@
     display: flex;
 }
 
-::slotted(quick-button) {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    flex: 1;
+button {
     font: inherit;
     font-weight: 700;
     outline: 0;
@@ -54,16 +50,17 @@
     border: transparent 1px solid;
     border-top-color: #f3f3f3;
     -webkit-tap-highlight-color: rgba(0, 0, 0, 0);
+    flex: 1;
 }
 
-::slotted(quick-button:not(:first-child)) {
+button:not(:first-child) {
     border-left-color: #f3f3f3;
 }
 
-::slotted(quick-button:active), ::slotted(quick-button:disabled) {
+button:active, button:disabled {
     background: #eee;
 }
 
-::slotted(quick-button.primary) {
+button.primary {
     color: #333;
 }

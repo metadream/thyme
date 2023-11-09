@@ -11,8 +11,8 @@ export class Dialog extends Component {
         <div class="quick-overlay quick-dialog">
             <div class="quick-dialog-panel">
                 <div class="quick-dialog-header">{{title}}</div>
-                <div class="quick-dialog-body"><slot name="content"></slot></div>
-                <div class="quick-dialog-footer"><slot></slot></div>
+                <div class="quick-dialog-body"><slot></slot></div>
+                <div class="quick-dialog-footer"></div>
             </div>
         </div>
     `;
