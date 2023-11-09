@@ -15,11 +15,11 @@
     box-shadow: 0 0 5px 0 rgb(0 0 0 / 15%);
 }
 
-.quick-field:focus-within > label:after {
+.quick-field:focus-within>label:after {
     background-color: var(--mainColor, #16c);
 }
 
-.quick-field > label {
+.quick-field>label {
     position: relative;
     cursor: default;
     white-space: nowrap;
@@ -27,7 +27,7 @@
     padding: 0 20px;
 }
 
-.quick-field > label:after {
+.quick-field>label:after {
     content: '';
     position: absolute;
     top: 2px;
@@ -38,11 +38,11 @@
     transition: .3s;
 }
 
-.quick-field.required > label:after {
+.quick-field.required>label:after {
     background-color: red;
 }
 
-.quick-field > input {
+.quick-field>input {
     font: inherit;
     outline: 0;
     border: 0;
@@ -52,8 +52,9 @@
     flex: 1;
 }
 
-.quick-field > input[disabled] {
+.quick-field>input[disabled] {
     color: #999;
+    background-color: #fff;
     pointer-events: none;
 }
 
