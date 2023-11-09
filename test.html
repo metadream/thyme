@@ -53,9 +53,8 @@
             <h1 style="margin-top:0">的萨菲</h1>
             <div>积分赛打开了几法</div>
         </div>
-        <div slot="buttons">
-            <quick-dialog-button>测试</quick-dialog-button>
-        </div>
+        <quick-button>测试</quick-button>
+        <quick-button onclick="submit()">大大</quick-button>
     </quick-dialog>
 
     <quick-toptray></quick-toptray>
@@ -74,6 +73,9 @@
     //     }
     // }])
 
+    function submit() {
+        console.log(123);
+    }
     function disabletest(btn) {
         btn.disable();
         setTimeout(() => {

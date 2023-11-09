@@ -6,7 +6,7 @@ import { Form } from './modules/Form.js';
 import { Calendar } from './components/Calendar.js';
 import { Field } from './components/Field.js';
 import { Switch } from './components/Switch.js';
-import { Dialog, DialogButton } from './components/Dialog.js';
+import { Dialog } from './components/Dialog.js';
 import { Toast } from './components/Toast.js';
 import { Toptray } from './components/Toptray.js';
 
@@ -25,7 +25,6 @@ Quick.setup = function () {
     customElements.define('quick-field', Field);
     customElements.define('quick-switch', Switch);
     customElements.define('quick-dialog', Dialog);
-    customElements.define('quick-dialog-button', DialogButton);
     customElements.define('quick-toast', Toast);
     customElements.define('quick-toptray', Toptray);
 

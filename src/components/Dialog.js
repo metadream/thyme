@@ -12,7 +12,7 @@ export class Dialog extends Component {
             <div class="quick-dialog-panel">
                 <div class="quick-dialog-header">{{title}}</div>
                 <div class="quick-dialog-body"><slot name="content"></slot></div>
-                <div class="quick-dialog-footer"><slot name="buttons"></slot></div>
+                <div class="quick-dialog-footer"><slot></slot></div>
             </div>
         </div>
     `;
@@ -76,12 +76,5 @@ export class Dialog extends Component {
             }
         }
     }
-
-}
-
-export class DialogButton extends Component {
-
-    styles = dialogStyles;
-    template = `<button><slot></slot></button>`;
 
 }

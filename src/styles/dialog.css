@@ -39,7 +39,11 @@
     display: flex;
 }
 
-button {
+::slotted(quick-button) {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex: 1;
     font: inherit;
     font-weight: 700;
     outline: 0;
@@ -50,17 +54,16 @@ button {
     border: transparent 1px solid;
     border-top-color: #f3f3f3;
     -webkit-tap-highlight-color: rgba(0, 0, 0, 0);
-    flex: 1;
 }
 
-button:not(:first-child) {
+::slotted(quick-button:not(:first-child)) {
     border-left-color: #f3f3f3;
 }
 
-button:active, button:disabled {
+::slotted(quick-button:active), ::slotted(quick-button:disabled) {
     background: #eee;
 }
 
-button.primary {
+::slotted(quick-button.primary) {
     color: #333;
 }
