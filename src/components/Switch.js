@@ -4,10 +4,7 @@ import { Component } from './Component.js';
 export class Switch extends Component {
 
     styles = switchStyles;
-    template = `
-        <label class="quick-switch">
-            <input type="checkbox" name="{{name}}"/><i></i>
-        </label>
+    template = `<label class="quick-switch"><input type="checkbox" name="{{name}}"/><i></i></label>
     `;
 
     get value() {
