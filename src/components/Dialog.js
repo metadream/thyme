@@ -2,54 +2,32 @@ import dialogStyles from '../styles/dialog.css';
 import { createElement } from '../modules/Util.js';
 import { Component } from './Component.js';
 
+const HIDDEN = 0, PENDING = 1, OPENED = 2;
 export class Dialog extends Component {
 
+    state = HIDDEN;
     styles = dialogStyles;
     template = `
         <div class="quick-overlay quick-dialog">
             <div class="quick-dialog-panel">
-                <div class="quick-dialog-body"></div>
+                <div class="quick-dialog-header">{{title}}</div>
+                <div class="quick-dialog-body"><slot></slot></div>
                 <div class="quick-dialog-footer"></div>
             </div>
         </div>
     `;
 
-    // options = { title, slot, buttons }
-    constructor(options = {}) {
-        super();
-        this.options = options;
-        document.body.append(this);
-    }
-
     onConnected() {
         this.panel = this.getElement('.quick-dialog-panel');
-        this.panel.addClass('quick-scale-in');
-        this.shadowBody.addClass('quick-fade-in');
-
-        this.addTitle(this.options.title);
-        this.addSlot(this.options.slot);
-        this.addButtons(this.options.buttons);
-
-        this.escape = this.escape.bind(this);
-        document.addEventListener('keyup', this.escape);
-    }
-
-    addTitle(text) {
-        if (!text) return;
-        const title = createElement(`<div class="quick-dialog-header">${text}</div>`);
-        this.panel.insertBefore(title, this.panel.firstChild);
-    }
-
-    addSlot(tpl = '') {
-        const body = this.getElement('.quick-dialog-body');
-        if (tpl instanceof HTMLTemplateElement) {
-            body.appendChild(tpl.content.cloneNode(true));
-        } else {
-            body.innerHTML = tpl;
+        if (!this.getAttribute('title')) {
+            this.getElement('.quick-dialog-header').remove();
         }
+        document.addEventListener('keyup', e => {
+            if (e.keyCode === 27) this.hide();
+        });
     }
 
-    addButtons(items = []) {
+    buttons(items = []) {
         const footer = this.getElement('.quick-dialog-footer');
         for (const item of items) {
             const button = createElement(`<button>${item.label}</button>`);
@@ -64,17 +42,37 @@ export class Dialog extends Component {
         }
     }
 
-    escape(e) {
-        if (e.keyCode === 27) {
-            document.removeEventListener('keyup', this.escape);
-            this.hide();
-        }
+    open() {
+        if (this.state != HIDDEN) return;
+        this.animate('quick-fade-in', 'quick-scale-in', OPENED);
     }
 
     hide() {
-        this.panel.addClass('quick-scale-out');
-        this.shadowBody.addClass('quick-fade-out');
-        this.shadowBody.on('animationend', () => this.remove());
+        if (this.state != OPENED) return;
+        this.animate('quick-fade-out', 'quick-scale-out', HIDDEN);
+    }
+
+    animate(bodyClass, panelClass, state) {
+        this.state = PENDING;
+        const body = this.shadowBody;
+        const panel = this.panel;
+
+        if (state == OPENED) {
+            body.style.display = 'flex';
+        }
+        body.addClass(bodyClass);
+        panel.addClass(panelClass);
+
+        body.onanimationend = () => {
+            panel.removeClass(panelClass);
+            body.removeClass(bodyClass);
+            body.onanimationend = null;
+
+            this.state = state;
+            if (state == HIDDEN) {
+                body.style.display = 'none';
+            }
+        }
     }
 
 }

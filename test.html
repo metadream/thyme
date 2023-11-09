@@ -42,22 +42,33 @@
     <button onclick="openc()" class="danger">delete</button>
     <button onclick="info()" class="minor" quick-tooltip="间客房送拉将卡洛斯的">info</button>
     <button onclick="disabletest(this)">disable</button>
+    <button onclick="dialog.open()">opennewdialog</button>
 
     <div style="height:1000px"></div>
 
     <quick-toast>法艰苦的拉萨</quick-toast>
 
-    <quick-toptray></quick-toptray>
-
-    <template>
+    <quick-dialog title="">
         <h1 style="margin-top:0">的萨菲</h1>
         <div>积分赛打开了几法</div>
-    </template>
+    </quick-dialog>
+
+    <quick-toptray></quick-toptray>
+
 </body>
 
 </html>
 
 <script>
+    const dialog = document.querySelector('quick-dialog');
+    dialog.buttons([{
+        label: 'ok',
+        onclick: () => {
+            console.log('---ok');
+            dialog.hide();
+        }
+    }])
+
     function disabletest(btn) {
         btn.disable();
         setTimeout(() => {

@@ -1,5 +1,5 @@
 .quick-dialog {
-    display: flex;
+    display: none;
     justify-content: center;
     align-items: center;
     -moz-user-select: none;
@@ -57,8 +57,7 @@ button:not(:first-child) {
     border-left-color: #f3f3f3;
 }
 
-button:active,
-button:disabled {
+button:active, button:disabled {
     background: #eee;
 }
 
