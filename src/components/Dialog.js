@@ -11,8 +11,8 @@ export class Dialog extends Component {
         <div class="quick-overlay quick-dialog">
             <div class="quick-dialog-panel">
                 <div class="quick-dialog-header">{{title}}</div>
-                <div class="quick-dialog-body"><slot></slot></div>
-                <div class="quick-dialog-footer"></div>
+                <div class="quick-dialog-body"><slot name="content"></slot></div>
+                <div class="quick-dialog-footer"><slot name="buttons"></slot></div>
             </div>
         </div>
     `;
@@ -42,8 +42,9 @@ export class Dialog extends Component {
         }
     }
 
-    open() {
+    open(removable = false) {
         if (this.state != HIDDEN) return;
+        this.removable = removable;
         this.animate('quick-fade-in', 'quick-scale-in', OPENED);
     }
 
@@ -70,9 +71,17 @@ export class Dialog extends Component {
 
             this.state = state;
             if (state == HIDDEN) {
-                body.style.display = 'none';
+                if (this.removable) this.remove();
+                else body.style.display = 'none';
             }
         }
     }
+
+}
+
+export class DialogButton extends Component {
+
+    styles = dialogStyles;
+    template = `<button><slot></slot></button>`;
 
 }

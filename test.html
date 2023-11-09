@@ -37,7 +37,6 @@
 
     <button onclick="getv()">get</button>
     <button onclick="change()">change</button>
-    <button onclick="opend()">open</button>
     <button onclick="openalert()">alert</button>
     <button onclick="openc()" class="danger">delete</button>
     <button onclick="info()" class="minor" quick-tooltip="间客房送拉将卡洛斯的">info</button>
@@ -46,11 +45,17 @@
 
     <div style="height:1000px"></div>
 
+
     <quick-toast>法艰苦的拉萨</quick-toast>
 
     <quick-dialog title="">
-        <h1 style="margin-top:0">的萨菲</h1>
-        <div>积分赛打开了几法</div>
+        <div slot="content">
+            <h1 style="margin-top:0">的萨菲</h1>
+            <div>积分赛打开了几法</div>
+        </div>
+        <div slot="buttons">
+            <quick-dialog-button>测试</quick-dialog-button>
+        </div>
     </quick-dialog>
 
     <quick-toptray></quick-toptray>
@@ -61,13 +66,13 @@
 
 <script>
     const dialog = document.querySelector('quick-dialog');
-    dialog.buttons([{
-        label: 'ok',
-        onclick: () => {
-            console.log('---ok');
-            dialog.hide();
-        }
-    }])
+    // dialog.buttons([{
+    //     label: 'ok',
+    //     onclick: () => {
+    //         console.log('---ok');
+    //         dialog.hide();
+    //     }
+    // }])
 
     function disabletest(btn) {
         btn.disable();
@@ -77,20 +82,6 @@
     }
     function info() {
         Quick.success('捷克弗拉斯的');
-    }
-    function opend() {
-        new Quick.Dialog({
-            slot: document.querySelector('template'),
-            buttons: [{
-                label: '关闭'
-            }, {
-                label: '确定',
-                primary: true,
-                onclick: function (dlg, btn) {
-                    console.log(dlg, btn);
-                }
-            }]
-        });
     }
 
     function openalert() {
