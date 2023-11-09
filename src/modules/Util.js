@@ -80,7 +80,7 @@ export function getScrollTop() {
  * @param {string} svg
  * @returns
  */
-export function toDataUri(svg) {
+export function toDataURI(svg) {
     return 'data:image/svg+xml;base64,' + btoa(svg);
 }
 
