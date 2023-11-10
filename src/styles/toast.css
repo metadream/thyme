@@ -30,11 +30,11 @@
 }
 
 .quick-bounce-in {
-    animation: bounceIn cubic-bezier(.17, .88, .48, 1.42) .3s forwards;
+    animation: bounceIn cubic-bezier(.17, .88, .48, 1.5) .3s forwards;
 }
 
 .quick-bounce-out {
-    animation: bounceOut cubic-bezier(.17, .88, .48, 1.42) .3s forwards;
+    animation: bounceOut cubic-bezier(.17, .88, .48, 1.5) .3s forwards;
 }
 
 @keyframes bounceIn {
