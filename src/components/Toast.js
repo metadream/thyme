@@ -1,9 +1,9 @@
-import toastStyles from '../styles/toast.css';
+import styles from '../styles/toast.css';
 import { Component } from './Component.js';
 
 export class Toast extends Component {
 
-    styles = toastStyles;
+    styles = styles;
     template = `<div class="quick-overlay quick-toast"><div class="{{type}}"><slot></slot></div></div>`;
 
     onConnected() {

@@ -39,23 +39,17 @@ export class Component extends HTMLElement {
     }
 
     focus() {
-        this.keyElement.focus();
-    }
-
-    set disabled(v) {
-        this.keyElement.disabled = v;
+        this?.nativeElement?.focus();
     }
 
     get disabled() {
-        return this.keyElement.disabled;
+        return this?.nativeElement?.disabled;
     }
 
-    set readOnly(v) {
-        this.keyElement.readOnly = v;
-    }
-
-    get readOnly() {
-        return this.keyElement.readOnly;
+    set disabled(v) {
+        if (this.nativeElement) {
+            this.nativeElement.disabled = v;
+        }
     }
 
 }

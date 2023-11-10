@@ -1,25 +1,24 @@
-import switchStyles from '../styles/switch.css';
+import styles from '../styles/switch.css';
 import { Component } from './Component.js';
 
 export class Switch extends Component {
 
-    styles = switchStyles;
-    template = `<label class="quick-switch"><input type="checkbox" name="{{name}}"/><i></i></label>
-    `;
+    styles = styles;
+    template = `<label class="quick-switch"><input type="checkbox" name="{{name}}"/><i></i></label>`;
+
+    onConnected() {
+        this.nativeElement = this.getElement('input');
+        if (this.hasAttribute('checked')) {
+            this.nativeElement.checked = true;
+        }
+    }
 
     get value() {
-        return this.keyElement.checked ? 1 : 0;
+        return this.nativeElement.checked ? 1 : 0;
     }
 
     set value(v) {
-        this.keyElement.checked = v === 1 ? true : false;
-    }
-
-    onConnected() {
-        this.keyElement = this.getElement('input');
-        if (this.hasAttribute('checked')) {
-            this.keyElement.checked = true;
-        }
+        this.nativeElement.checked = v === 1 ? true : false;
     }
 
 }

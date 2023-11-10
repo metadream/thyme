@@ -1,5 +1,5 @@
-import { createElement } from '../modules/Util.js';
 import styles from '../styles/button.css';
+import { createElement } from '../modules/Util.js';
 import { Component } from './Component.js';
 
 export class Button extends Component {

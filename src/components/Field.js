@@ -1,16 +1,16 @@
-import fieldStyles from '../styles/field.css';
+import styles from '../styles/field.css';
 import calendarIcon from "../icons/calendar.svg";
 import { createElement, toDataURI } from '../modules/Util.js';
 import { Component } from './Component.js';
 
 export class Field extends Component {
 
-    styles = fieldStyles;
+    styles = styles;
     template = `<div class="quick-field"><label>{{label}}</label><input type="{{type}}" value="{{value}}"/></div>`;
 
     onConnected() {
         const input = this.getElement('input');
-        this.keyElement = input;
+        this.nativeElement = input;
 
         if (this.getAttribute('type') == 'calendar') {
             input.readOnly = true;
@@ -42,11 +42,19 @@ export class Field extends Component {
     }
 
     get value() {
-        return this.keyElement.value;
+        return this.nativeElement.value;
     }
 
     set value(v) {
-        this.keyElement.value = v;
+        this.nativeElement.value = v;
+    }
+
+    get readOnly() {
+        return this.nativeElement.readOnly;
+    }
+
+    set readOnly(v) {
+        this.nativeElement.readOnly = v;
     }
 
 }

@@ -1,11 +1,11 @@
-import toptrayStyles from '../styles/toptray.css';
+import styles from '../styles/toptray.css';
 import arrowTopIcon from "../icons/arrow-top.svg";
 import { getScrollTop } from '../modules/Util.js';
 import { Component } from './Component.js';
 
 export class Toptray extends Component {
 
-    styles = toptrayStyles;
+    styles = styles;
     template = `<div class="quick-toptray" style="bottom:{{x}}px;right:{{y}}px">${arrowTopIcon}</div>`;
 
     onConnected() {

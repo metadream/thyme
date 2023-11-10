@@ -1,4 +1,4 @@
-import calendarStyles from '../styles/calendar.css';
+import styles from '../styles/calendar.css';
 import prevYearIcon from "../icons/double-arrow-left.svg";
 import nextYearIcon from "../icons/double-arrow-right.svg";
 import prevMonthIcon from "../icons/arrow-left.svg";
@@ -9,7 +9,7 @@ import { Component } from './Component.js';
 
 export class Calendar extends Component {
 
-    styles = calendarStyles;
+    styles = styles;
     template = `
         <div>
             <div class="quick-overlay" style="background:none"></div>

@@ -1,4 +1,4 @@
-import dialogStyles from '../styles/dialog.css';
+import styles from '../styles/dialog.css';
 import { createElement } from '../modules/Util.js';
 import { Component } from './Component.js';
 
@@ -6,7 +6,7 @@ const HIDDEN = 0, PENDING = 1, OPENED = 2;
 export class Dialog extends Component {
 
     state = HIDDEN;
-    styles = dialogStyles;
+    styles = styles;
     template = `
         <div class="quick-overlay quick-dialog">
             <div class="quick-dialog-panel">
