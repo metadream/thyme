@@ -3,6 +3,7 @@ import { createElement, enhanceElements } from './modules/Util.js';
 import { Locale } from './modules/Locale.js';
 import { Http } from './modules/Http.js';
 import { Form } from './modules/Form.js';
+import { Button } from './components/Button.js';
 import { Calendar } from './components/Calendar.js';
 import { Field } from './components/Field.js';
 import { Switch } from './components/Switch.js';
@@ -13,6 +14,7 @@ import { Toptray } from './components/Toptray.js';
 window.Quick = class { }
 Quick.http = Http;
 Quick.form = Form;
+Quick.Button = Button;
 Quick.Calendar = Calendar;
 Quick.Field = Field;
 Quick.Switch = Switch;
@@ -21,6 +23,7 @@ Quick.Toptray = Toptray;
 
 Quick.setup = function () {
     enhanceElements();
+    customElements.define('quick-button', Button);
     customElements.define('quick-calendar', Calendar);
     customElements.define('quick-field', Field);
     customElements.define('quick-switch', Switch);

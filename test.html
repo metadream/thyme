@@ -9,7 +9,10 @@
 
 <body>
 
-    <div style="margin:auto;width: 800px;"><br><br><br>
+    <div style="margin:auto;width: 800px;"><br><br>
+        <quick-button onclick="testbutton()">测试按钮</quick-button>
+        <quick-button class="outlined">测试按钮</quick-button>
+        <br>
         <table class="quick-grid">
             <tr>
                 <th>表头1</th>
@@ -60,6 +63,9 @@
 </html>
 
 <script>
+    function testbutton() {
+        console.log('-----------test button');
+    }
     const dialog = document.querySelector('quick-dialog');
     dialog.buttons([{ label: 'haha' }, {
         label: 'ok',

@@ -1,0 +1,67 @@
+button, a.button {
+    display: inline-flex;
+    position: relative;
+    justify-content: center;
+    align-items: center;
+    vertical-align: middle;
+    font: inherit;
+    white-space: nowrap;
+    cursor: pointer;
+    color: var(--fontColor, #fff);
+    background-color: var(--mainColor, #0ad);
+    border-radius: var(--borderRadius, 5px);
+    border: 0;
+    outline: 0;
+    font-weight: 700;
+    font-size: 14px;
+    padding: 0 30px;
+    height: 40px;
+    transition: opacity .3s;
+    overflow: hidden;
+}
+
+button:not(:first-child), a.button:not(:first-child) {
+    margin-left: 10px;
+}
+
+button > img:not(:last-child), a.button > img:not(:last-child) {
+    margin-right: 5px;
+}
+
+button:disabled, a.button:disabled {
+    opacity: .5;
+    cursor: default;
+}
+
+button.outlined, a.button.outlined {
+    color: var(--mainColor, #0ad);
+    border: var(--mainColor, #0ad) 1.5px solid;
+    background-color: #fff;
+}
+
+button.danger, a.button.danger {
+    border-color: var(--dangerColor, red);
+    color: var(--dangerColor, red);
+    background-color: #fff;
+}
+
+.ripple {
+    position: absolute;
+    width: 0;
+    height: 0;
+    border-radius: 50%;
+    background-color: currentColor;
+    transform: scale(0);
+    opacity: 0.6;
+}
+
+.ripple.fade-out {
+    animation: ripple .6s ease-out;
+}
+
+@keyframes ripple {
+    to {
+        transform: scale(1);
+        opacity: 0;
+    }
+}
