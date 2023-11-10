@@ -27,9 +27,12 @@ export class Dialog extends Component {
         });
     }
 
-    buttons(items = []) {
+    set buttons(items = []) {
         const footer = this.getElement('.quick-dialog-footer');
-        for (const item of items) {
+        for (let item of items) {
+            if (typeof item === 'string') {
+                item = { label: item };
+            }
             const button = createElement(`<button>${item.label}</button>`);
             footer.appendChild(button);
 

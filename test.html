@@ -78,14 +78,14 @@
         // btn.disabled = true;
     }
     const dialog = document.querySelector('quick-dialog');
-    dialog.buttons([{ label: 'haha' }, {
+    dialog.buttons = ['string', {
         label: 'ok',
         primary: true,
         onclick: (self, btn) => {
             btn.disable();
             console.log('ok');
         }
-    }]);
+    }];
 
     function disabletest(btn) {
         btn.disable();

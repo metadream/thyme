@@ -36,36 +36,31 @@ Quick.setup = function () {
     document.head.append(style);
 }
 
-Quick.alert = function (text, callback) {
+Quick.alert = function (text, callback, isConfirm) {
     const dialog = createElement(`<quick-dialog>${text}</quick-dialog>`);
     document.body.appendChild(dialog);
 
-    dialog.buttons([{
-        label: Locale.get('OK'),
+    const buttons = [];
+    if (isConfirm) {
+        buttons.push({ label: Locale.get('NO') });
+        buttons.push({ label: Locale.get('YES') });
+    } else {
+        buttons.push({ label: Locale.get('OK') });
+    }
+    Object.assign(buttons[buttons.length - 1], {
         primary: true,
         onclick: (self, btn) => {
             callback && callback(self, btn);
             self.hide();
         }
-    }]);
+    })
+
+    dialog.buttons = buttons;
     dialog.open(true);
 }
 
 Quick.confirm = function (text, callback) {
-    const dialog = createElement(`<quick-dialog>${text}</quick-dialog>`);
-    document.body.appendChild(dialog);
-
-    dialog.buttons([{
-        label: Locale.get('NO'),
-    }, {
-        label: Locale.get('YES'),
-        primary: true,
-        onclick: (self, btn) => {
-            callback && callback(self, btn);
-            self.hide();
-        }
-    }]);
-    dialog.open(true);
+    this.alert(text, callback, true);
 }
 
 Quick.info = function (text, type, delay) {

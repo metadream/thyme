@@ -28,3 +28,31 @@
 .quick-toast>div.success {
     background-color: rgba(43, 155, 23, 0.6);
 }
+
+.quick-bounce-in {
+    animation: bounceIn cubic-bezier(.17, .88, .48, 1.42) .3s forwards;
+}
+
+.quick-bounce-out {
+    animation: bounceOut cubic-bezier(.17, .88, .48, 1.42) .3s forwards;
+}
+
+@keyframes bounceIn {
+    from {
+        transform: translateY(-150px);
+    }
+
+    to {
+        transform: translateY(0);
+    }
+}
+
+@keyframes bounceOut {
+    from {
+        transform: translateY(0);
+    }
+
+    to {
+        transform: translateY(-150px);
+    }
+}
