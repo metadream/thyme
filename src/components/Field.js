@@ -41,6 +41,10 @@ export class Field extends Component {
         }
     }
 
+    focus() {
+        this.nativeElement.focus();
+    }
+
     get value() {
         return this.nativeElement.value;
     }
@@ -55,6 +59,14 @@ export class Field extends Component {
 
     set readOnly(v) {
         this.nativeElement.readOnly = v;
+    }
+
+    get disabled() {
+        return this.nativeElement.disabled;
+    }
+
+    set disabled(v) {
+        this.nativeElement.disabled = v;
     }
 
 }

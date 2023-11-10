@@ -10,7 +10,7 @@
 <body>
 
     <div style="margin:auto;width: 800px;"><br><br>
-        <quick-button onclick="testbutton()">测试按钮</quick-button>
+        <quick-button id="aaa" onclick="testbutton(this)">测试按钮</quick-button>
         <quick-button class="outlined">测试按钮</quick-button>
         <quick-button target="_blank" href="http://baidu.com">链接按钮</quick-button>
 
@@ -65,8 +65,11 @@
 </html>
 
 <script>
-    function testbutton() {
+
+
+    function testbutton(btn) {
         console.log('-----------test button');
+        btn.disabled = true;
     }
     const dialog = document.querySelector('quick-dialog');
     dialog.buttons([{ label: 'haha' }, {

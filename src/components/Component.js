@@ -38,18 +38,4 @@ export class Component extends HTMLElement {
         return this.internals.querySelectorAll(selector);
     }
 
-    focus() {
-        this?.nativeElement?.focus();
-    }
-
-    get disabled() {
-        return this?.nativeElement?.disabled;
-    }
-
-    set disabled(v) {
-        if (this.nativeElement) {
-            this.nativeElement.disabled = v;
-        }
-    }
-
 }

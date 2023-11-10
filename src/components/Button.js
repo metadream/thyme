@@ -26,10 +26,6 @@ export class Button extends Component {
         });
     }
 
-    set template(v) {
-        this._template = v;
-    }
-
     get template() {
         if (this._template) return this._template;
 
@@ -37,6 +33,18 @@ export class Button extends Component {
         return href
             ? `<a class="button" href="{{href}}" target="{{target}}"><slot></slot></a>`
             : `<button class="{{class}}"><slot></slot></button>`;
+    }
+
+    set template(v) {
+        this._template = v;
+    }
+
+    get disabled() {
+        return this.internals.disabled;
+    }
+
+    set disabled(v) {
+        this.internals.disabled = v;
     }
 
 }
