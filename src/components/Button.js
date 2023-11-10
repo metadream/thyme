@@ -16,9 +16,9 @@ export class Button extends Component {
 
         button.on('mousedown', () => {
             const rect = button.getBoundingClientRect();
-            const size = (rect.width > rect.height ? rect.width : rect.height) * 2;
-            ripple.style.width = size + 'px';
-            ripple.style.height = size + 'px';
+            const size = (rect.width > rect.height ? rect.width : rect.height) * 2 + 'px';
+            ripple.style.width = size;
+            ripple.style.height = size;
         });
     }
 
