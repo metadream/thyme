@@ -33,6 +33,9 @@ export class Field extends Component {
         if (this.hasAttribute('required')) {
             this.internals.addClass('required');
         }
+        if (this.hasAttribute('maxlength')) {
+            input.maxLength = this.getAttribute('maxlength');
+        }
         if (this.hasAttribute('readonly')) {
             input.readOnly = true;
         }
