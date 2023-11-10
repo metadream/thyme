@@ -40,6 +40,7 @@
 }
 
 button {
+    position: relative;
     font: inherit;
     font-weight: 700;
     outline: 0;
@@ -61,13 +62,13 @@ button.primary {
     color: var(--fontColor);
 }
 
-button:active, button:disabled {
+button:active {
     background-color: var(--paleColor);
 }
 
 button:disabled {
-    color: revert;
     cursor: default;
+    background-color: #fff;
 }
 
 .quick-fade-in {
@@ -84,6 +85,42 @@ button:disabled {
 
 .quick-scale-out {
     animation: scaleOut ease .3s forwards;
+}
+
+.quick-btn-loading {
+    position: absolute;
+    left: 0;
+    right: 0;
+    top: 0;
+    bottom: 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border-radius: inherit;
+    background-color: inherit;
+}
+
+.quick-btn-loading:before {
+    content: '';
+    position: absolute;
+    width: 18px;
+    height: 18px;
+    border-radius: 50%;
+    border-left: 2px solid currentColor;
+    border-right: 2px solid var(--lineColor);
+    border-top: 2px solid var(--lineColor);
+    border-bottom: 2px solid var(--lineColor);
+    animation: spin .6s linear infinite;
+}
+
+@keyframes spin {
+    from {
+        transform: rotate(0);
+    }
+
+    to {
+        transform: rotate(360deg);
+    }
 }
 
 @keyframes fadeIn {

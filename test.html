@@ -51,7 +51,6 @@
     <button onclick="openalert()">alert</button>
     <button onclick="openc()" class="danger">delete</button>
     <button onclick="info()" class="minor" quick-tooltip="间客房送拉将卡洛斯的">info</button>
-    <button onclick="disabletest(this)">disable</button>
     <button onclick="dialog.open()">opennewdialog</button>
 
     <div style="height:1000px"></div>
@@ -71,8 +70,6 @@
 </html>
 
 <script>
-
-
     function testbutton(btn) {
         console.log('-----------test button');
         btn.loading = true;
@@ -80,22 +77,21 @@
             btn.loading = false;
         }, 2000);
     }
+
     const dialog = document.querySelector('quick-dialog');
     dialog.buttons = ['string', {
         label: 'ok',
         primary: true,
         onclick: (self, btn) => {
-            btn.disable();
-            console.log('ok');
+            btn.loading = true;
+            setTimeout(() => {
+                btn.loading = false;
+                console.log('ok');
+            }, 2000);
+
         }
     }];
 
-    function disabletest(btn) {
-        btn.disable();
-        setTimeout(() => {
-            btn.enable();
-        }, 2000);
-    }
     function info() {
         Quick.success('捷克弗拉斯的');
     }

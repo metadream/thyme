@@ -34,6 +34,7 @@ export class Dialog extends Component {
                 item = { label: item };
             }
             const button = createElement(`<button>${item.label}</button>`);
+            this.defineLoading(button);
             footer.appendChild(button);
 
             if (item.primary === true) {
@@ -43,6 +44,23 @@ export class Dialog extends Component {
                 item.onclick ? item.onclick(this, button) : this.hide()
             });
         }
+    }
+
+    defineLoading(button) {
+        Object.defineProperty(button, "loading", {
+            set: function (v) {
+                v = !!v;
+                if (this.disabled == v) return;
+                this.disabled = v;
+
+                if (v) {
+                    this._loader = createElement('<div class="quick-btn-loading"></div>');
+                    this.append(this._loader);
+                } else {
+                    this._loader && this._loader.remove();
+                }
+            }
+        });
     }
 
     open(removable = false) {
