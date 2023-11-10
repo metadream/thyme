@@ -13,10 +13,17 @@ export class Button extends Component {
         }
     }
 
-    set template(v) { }
+    set template(v) {
+        this._template = v;
+    }
+
     get template() {
+        if (this._template) return this._template;
+
         const href = this.getAttribute('href');
-        return href ? `<a class="button" href="{{href}}"><slot></slot></a>` : `<button class="{{class}}"><slot></slot></button>`;
+        return href
+            ? `<a class="button" href="{{href}}" target="{{target}}"><slot></slot></a>`
+            : `<button class="{{class}}"><slot></slot></button>`;
     }
 
 }
