@@ -75,7 +75,10 @@
 
     function testbutton(btn) {
         console.log('-----------test button');
-        // btn.disabled = true;
+        btn.loading = true;
+        setTimeout(() => {
+            btn.loading = false;
+        }, 2000);
     }
     const dialog = document.querySelector('quick-dialog');
     dialog.buttons = ['string', {

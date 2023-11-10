@@ -5,7 +5,6 @@
 4. quick-pagination
 
 - dialog button disable() 无效
-
-- shadow.css keyframes 移除
+- css quick-前缀
 - button outlined plain...
 - global.css 移除

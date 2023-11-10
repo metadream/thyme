@@ -48,23 +48,6 @@ export function enhanceElements() {
             return this;
         }
     });
-
-    Object.assign(HTMLButtonElement.prototype, {
-        disable() {
-            if (this.disabled) return;
-            this.disabled = true;
-
-            // Add loading to BUTTON if disabled
-            this._loader = createElement('<div class="quick-btn-loading"></div>');
-            this.append(this._loader);
-        },
-
-        enable() {
-            if (!this.disabled) return;
-            this.disabled = false;
-            this._loader && this._loader.remove();
-        }
-    });
 }
 
 /**

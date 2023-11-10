@@ -85,4 +85,17 @@ export class Button extends Component {
         this.internals.disabled = v;
     }
 
+    set loading(v) {
+        v = !!v;
+        if (this.disabled == v) return;
+        this.disabled = v;
+
+        if (v) {
+            this._loader = createElement('<div class="quick-btn-loading"></div>');
+            this.internals.append(this._loader);
+        } else {
+            this._loader && this._loader.remove();
+        }
+    }
+
 }
