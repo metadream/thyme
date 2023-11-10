@@ -8,14 +8,14 @@ export class Toast extends Component {
 
     onConnected() {
         // Show instance
-        const body = this.shadowBody;
-        body.addClass('quick-fade-in');
+        const { internals } = this;
+        internals.addClass('quick-fade-in');
 
         // Hide delay
         const delay = this.getAttribute('delay') || 3000;
         setTimeout(() => {
-            body.addClass('quick-fade-out');
-            body.on('animationend', () => this.remove());
+            internals.addClass('quick-fade-out');
+            internals.on('animationend', () => this.remove());
         }, delay);
     }
 

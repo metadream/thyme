@@ -55,24 +55,23 @@ export class Dialog extends Component {
 
     animate(bodyClass, panelClass, state) {
         this.state = PENDING;
-        const body = this.shadowBody;
-        const panel = this.panel;
+        const { internals, panel } = this;
 
         if (state == OPENED) {
-            body.style.display = 'flex';
+            internals.style.display = 'flex';
         }
-        body.addClass(bodyClass);
+        internals.addClass(bodyClass);
         panel.addClass(panelClass);
 
-        body.onanimationend = () => {
+        internals.onanimationend = () => {
             panel.removeClass(panelClass);
-            body.removeClass(bodyClass);
-            body.onanimationend = null;
+            internals.removeClass(bodyClass);
+            internals.onanimationend = null;
 
             this.state = state;
             if (state == HIDDEN) {
                 if (this.removable) this.remove();
-                else body.style.display = 'none';
+                else internals.style.display = 'none';
             }
         }
     }

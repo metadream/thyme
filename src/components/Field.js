@@ -31,7 +31,7 @@ export class Field extends Component {
         }
 
         if (this.hasAttribute('required')) {
-            this.shadowBody.addClass('required');
+            this.internals.addClass('required');
         }
         if (this.hasAttribute('readonly')) {
             input.readOnly = true;

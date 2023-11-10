@@ -9,16 +9,16 @@ export class Toptray extends Component {
     template = `<div class="quick-toptray" style="bottom:{{x}}px;right:{{y}}px">${arrowTopIcon}</div>`;
 
     onConnected() {
-        const tray = this.shadowBody;
+        const { internals } = this;
 
         addEventListener('scroll', () => {
             const y = getScrollTop();
-            if (y > 450) tray.style.display = 'block';
-            else tray.style.display = 'none';
+            if (y > 450) internals.style.display = 'block';
+            else internals.style.display = 'none';
         });
 
         let scrollTimer;
-        tray.onclick = function () {
+        internals.onclick = function () {
             cancelAnimationFrame(scrollTimer);
             scrollTimer = requestAnimationFrame(function scroll() {
                 const y = getScrollTop();

@@ -7,7 +7,7 @@ export class Button extends Component {
     styles = styles;
 
     onConnected() {
-        const button = this.shadowBody;
+        const button = this.internals;
 
         if (this.hasAttribute('disabled')) {
             button.setAttribute('disabled', true);

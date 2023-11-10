@@ -8,35 +8,34 @@ export class Component extends HTMLElement {
     }
 
     connectedCallback() {
-        const shadowRoot = this.attachShadow({ mode: 'open' });
+        this.attachShadow({ mode: 'open' });
+        this.shadowRoot.append(this.createStyles());
+        this.shadowRoot.append(this.createInternals());
+        this.onConnected && this.onConnected();
+    }
 
-        // Add styles
+    createStyles() {
         const style = createElement('style');
         style.textContent = shadowStyles + this.styles;
-        shadowRoot.append(style);
+        return style;
+    }
 
-        // Set attributes
+    createInternals() {
         const names = this.getAttributeNames();
         for (const name of names) {
             this.template = this.template.replace(`{{${name}}}`, this.getAttribute(name));
         }
         this.template = this.template.replace(/{{[a-zA-Z0-9\-]+}}/g, '');
-
-        // Create shadow body
-        const shadowBody = createElement(this.template);
-        this.shadowBody = shadowBody;
-        shadowRoot.append(shadowBody);
-
-        // Components callback
-        this.onConnected && this.onConnected();
+        this.internals = createElement(this.template);
+        return this.internals;
     }
 
     getElement(selector) {
-        return this.shadowRoot.querySelector(selector);
+        return this.internals.querySelector(selector);
     }
 
     getElements(selector) {
-        return this.shadowRoot.querySelectorAll(selector);
+        return this.internals.querySelectorAll(selector);
     }
 
     focus() {
