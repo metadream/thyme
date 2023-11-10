@@ -130,6 +130,17 @@ export const Form = {
                 return d.getFullYear() == m[1] && d.getMonth() == m[2] - 1 && d.getDate() == m[3];
             }
             return false;
+        },
+
+        // 邮件格式
+        email: function (value) {
+            return /^\w+([_\-+.]\w+)*@\w+([-.]\w+)*\.([a-zA-Z]{2,})$/.test(value);
+        },
+
+        // 网址格式
+        url: function (value) {
+            return /^$|^(https?\:\/\/)?([a-zA-Z0-9\-]+\.){1,}[a-zA-Z]{2,6}(\/[\S]*)?$/.test(value);
         }
     }
+
 }
