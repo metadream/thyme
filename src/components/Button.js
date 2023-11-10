@@ -7,22 +7,60 @@ export class Button extends Component {
     styles = styles;
 
     onConnected() {
-        const button = this.internals;
-
         if (this.hasAttribute('disabled')) {
-            button.setAttribute('disabled', true);
+            this.internals.setAttribute('disabled', true);
         }
+        this.addRipples();
+    }
+
+    addRipples() {
+        const button = this.internals;
+        let _ripple;
 
         button.on('mousedown', () => {
-            const rect = button.getBoundingClientRect();
-            const size = (rect.width > rect.height ? rect.width : rect.height) * 2 + 'px';
             const ripple = createElement('<div class="ripple"></div>');
             button.append(ripple);
+            _ripple = ripple;
 
+            ripple.end = false;
+            ripple.up = false;
+            ripple.fadeOut = function () {
+                ripple.addClass('fade-out');
+                ripple.on('animationend', ripple.remove);
+            }
+
+            const rect = button.getBoundingClientRect();
+            const size = Math.sqrt(rect.width ** 2 + rect.height ** 2) + 'px';
             ripple.style.width = size;
             ripple.style.height = size;
+
             ripple.addClass('spread');
-            ripple.on('animationend', ripple.remove);
+            ripple.on('animationend', () => {
+                ripple.end = true;
+                if (ripple != _ripple) {
+                    ripple.fadeOut();
+                    return;
+                }
+                if (ripple.up) {
+                    ripple.fadeOut();
+                }
+            });
+
+        });
+
+        button.on('mouseup', () => {
+            _ripple.up = true;
+            if (_ripple.end) {
+                _ripple.fadeOut();
+            }
+        });
+
+        button.on('mouseleave', () => {
+            if (!_ripple) return;
+            _ripple.up = true;
+            if (_ripple.end) {
+                _ripple.fadeOut();
+            }
         });
     }
 

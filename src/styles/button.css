@@ -25,7 +25,7 @@ button:not(:first-child), a.button:not(:first-child) {
     margin-left: 10px;
 }
 
-button > img:not(:last-child), a.button > img:not(:last-child) {
+button>img:not(:last-child), a.button>img:not(:last-child) {
     margin-right: 5px;
 }
 
@@ -48,19 +48,41 @@ button.danger, a.button.danger {
 
 .ripple {
     position: absolute;
-    width: 0;
-    height: 0;
     border-radius: 50%;
     background-color: currentColor;
     transform: scale(0);
-    opacity: 0.6;
+    opacity: 0;
+    width: 0;
+    height: 0;
 }
 
 .ripple.spread {
-    animation: spread .6s ease-out;
+    animation: spread .3s ease-out forwards;
+}
+
+.ripple.fade-out {
+    animation: fadeOut .3s linear forwards;
 }
 
 @keyframes spread {
+    from {
+        transform: scale(0);
+        opacity: 0.6;
+    }
+
+    to {
+        transform: scale(1);
+        opacity: 0.3;
+    }
+}
+
+
+@keyframes fadeOut {
+    from {
+        transform: scale(1);
+        opacity: 0.3;
+    }
+
     to {
         transform: scale(1);
         opacity: 0;
