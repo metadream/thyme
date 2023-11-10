@@ -1,4 +1,4 @@
-import { Language } from './Language.js';
+import { Locale } from './Locale.js';
 
 /**
  * HTTP请求方法集
@@ -43,7 +43,7 @@ export const Http = {
                 if (contentType.includes('application/json')) {
                     result = await response.json();
                 } else {
-                    throw new Error(Language.i18n('UNSUPPORTED_RESPONSE'));
+                    throw new Error(Locale.get('UNSUPPORTED_RESPONSE'));
                 }
 
             if (!response.ok) {
@@ -51,7 +51,7 @@ export const Http = {
             }
             return result;
         } catch (e) {
-            Quick.error(e.message || Language.i18n('NETWORK_ERROR'));
+            Quick.error(e.message || Locale.get('NETWORK_ERROR'));
         }
     }
 

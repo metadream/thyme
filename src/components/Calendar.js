@@ -4,9 +4,8 @@ import nextYearIcon from "../icons/double-arrow-right.svg";
 import prevMonthIcon from "../icons/arrow-left.svg";
 import nextMonthIcon from "../icons/arrow-right.svg";
 import { getScrollTop, formatDate } from '../modules/Util.js';
-import { Language } from '../modules/Language.js';
+import { Locale } from '../modules/Locale.js';
 import { Component } from './Component.js';
-
 
 export class Calendar extends Component {
 
@@ -89,13 +88,13 @@ export class Calendar extends Component {
             <div class="quick-calendar-body">
               <table>
                 <thead><tr>
-                  <th>${Language.i18n('MON')}</th>
-                  <th>${Language.i18n('TUE')}</th>
-                  <th>${Language.i18n('WED')}</th>
-                  <th>${Language.i18n('THU')}</th>
-                  <th>${Language.i18n('FRI')}</th>
-                  <th>${Language.i18n('SAT')}</th>
-                  <th>${Language.i18n('SUN')}</th>
+                  <th>${Locale.get('MON')}</th>
+                  <th>${Locale.get('TUE')}</th>
+                  <th>${Locale.get('WED')}</th>
+                  <th>${Locale.get('THU')}</th>
+                  <th>${Locale.get('FRI')}</th>
+                  <th>${Locale.get('SAT')}</th>
+                  <th>${Locale.get('SUN')}</th>
                 </tr></thead>
                 <tbody>
         `;

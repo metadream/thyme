@@ -1,4 +1,4 @@
-import { Language } from './Language.js';
+import { Locale } from './Locale.js';
 
 /**
  * 表单验证和获取
@@ -41,7 +41,7 @@ export const Form = {
 
             if (!this.validate(value, required, field.dataset.rule)) {
                 field.focus();
-                Quick.error(field.dataset.message || Language.i18n('INCORRECT_INPUT'));
+                Quick.error(field.dataset.message || Locale.get('INCORRECT_INPUT'));
                 return;
             }
 

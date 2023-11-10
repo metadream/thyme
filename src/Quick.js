@@ -1,6 +1,6 @@
 import globalStyles from './styles/global.css';
 import { createElement, enhanceElements } from './modules/Util.js';
-import { Language } from './modules/Language.js';
+import { Locale } from './modules/Locale.js';
 import { Http } from './modules/Http.js';
 import { Form } from './modules/Form.js';
 import { Calendar } from './components/Calendar.js';
@@ -38,7 +38,7 @@ Quick.alert = function (text, callback) {
     document.body.appendChild(dialog);
 
     dialog.buttons([{
-        label: Language.i18n('OK'),
+        label: Locale.get('OK'),
         primary: true,
         onclick: (self, btn) => {
             callback && callback(self, btn);
@@ -53,9 +53,9 @@ Quick.confirm = function (text, callback) {
     document.body.appendChild(dialog);
 
     dialog.buttons([{
-        label: Language.i18n('NO'),
+        label: Locale.get('NO'),
     }, {
-        label: Language.i18n('YES'),
+        label: Locale.get('YES'),
         primary: true,
         onclick: (self, btn) => {
             callback && callback(self, btn);

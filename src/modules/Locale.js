@@ -1,4 +1,4 @@
-export const Language = {
+export const Locale = {
 
     'zh-CN': {
         OK: '确定',
@@ -31,7 +31,7 @@ export const Language = {
         NETWORK_ERROR: 'Network connection error'
     },
 
-    i18n(key) {
+    get(key) {
         const lang = this[navigator.language] ? navigator.language : 'en';
         return this[lang][key];
     }
