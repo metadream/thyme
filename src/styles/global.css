@@ -82,57 +82,6 @@ img.icon {
     width: 16px;
 }
 
-button, a.button {
-    display: inline-flex;
-    position: relative;
-    justify-content: center;
-    align-items: center;
-    vertical-align: middle;
-    white-space: nowrap;
-    color: var(--fontColor, #fff);
-    background-color: var(--mainColor, #0ad);
-    border: var(--mainColor, #0ad) 1.5px solid;
-    border-radius: var(--borderRadius, 5px);
-    font-weight: 700;
-    font-size: 14px;
-    padding: 0 30px;
-    height: 40px;
-    transition: opacity .3s;
-}
-
-button:not(:first-child), a.button:not(:first-child) {
-    margin-left: 10px;
-}
-
-button>img:not(:last-child), a.button>img:not(:last-child) {
-    margin-right: 5px;
-}
-
-button:hover, a.button:hover {
-    opacity: .8;
-    text-decoration: none;
-}
-
-button:active, a.button:active {
-    opacity: 1;
-}
-
-button:disabled, a.button:disabled {
-    opacity: .5 !important;
-    cursor: default;
-}
-
-button.minor, a.button.minor {
-    color: var(--mainColor, #0ad);
-    background-color: #fff;
-}
-
-button.danger, a.button.danger {
-    border-color: var(--dangerColor, red);
-    color: var(--dangerColor, red);
-    background-color: #fff;
-}
-
 .quick-btn-loading {
     position: absolute;
     width: 100%;
@@ -141,7 +90,7 @@ button.danger, a.button.danger {
     justify-content: center;
     align-items: center;
     border-radius: inherit;
-    background: inherit;
+    background-color: inherit;
 }
 
 .quick-btn-loading:before {
@@ -237,7 +186,7 @@ table {
 [quick-tooltip]:before {
     content: '';
     z-index: 9001;
-    background: transparent;
+    background-color: transparent;
     border: 6px solid transparent;
     border-top-color: rgba(0, 0, 0, 0.7);
     margin-bottom: -12px;

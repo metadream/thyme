@@ -18,7 +18,7 @@
     bottom: 0;
     left: 0;
     right: 0;
-    background: #ccc;
+    background-color: var(--lineColor);
     border-radius: 28px;
     transition: .4s;
 }
@@ -30,15 +30,15 @@
     width: 22px;
     left: 4px;
     bottom: 3px;
-    background: white;
+    background-color: #fff;
     border-radius: 50%;
     transition: .4s;
 }
 
-.quick-switch input:checked + i {
-    background: var(--mainColor, #16c);
+.quick-switch input:checked+i {
+    background-color: var(--primaryColor);
 }
 
-.quick-switch input:checked + i:before {
+.quick-switch input:checked+i:before {
     transform: translateX(16px);
 }

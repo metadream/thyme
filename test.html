@@ -5,6 +5,11 @@
     <meta charset="utf-8" />
     <title>web components</title>
     <script src="dist/quick.js"></script>
+    <style>
+        :root {
+            --dangerColor: blue
+        }
+    </style>
 </head>
 
 <body>
@@ -13,6 +18,7 @@
         <quick-button id="aaa" onclick="testbutton(this)">测试按钮</quick-button>
         <quick-button class="outlined">测试按钮</quick-button>
         <quick-button target="_blank" href="http://baidu.com">链接按钮</quick-button>
+        <quick-button class="outlined danger">测试按钮</quick-button>
 
         <br>
         <table class="quick-grid">

@@ -1,8 +1,8 @@
 .quick-toast {
-    background: transparent;
-    height: 0;
     display: flex;
     justify-content: center;
+    background-color: transparent;
+    height: 0;
 }
 
 .quick-toast>div {
@@ -18,7 +18,7 @@
 
 .quick-toast>div.warn {
     background-color: rgba(255, 140, 0, 0.6);
-    color: #333;
+    color: var(--fontColor);
 }
 
 .quick-toast>div.error {

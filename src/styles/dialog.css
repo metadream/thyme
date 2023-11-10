@@ -11,11 +11,11 @@
 .quick-dialog-panel {
     display: flex;
     flex-direction: column;
-    background: #fff;
+    background-color: #fff;
     max-width: 80%;
     max-height: 80%;
     min-width: 300px;
-    border-radius: var(--borderRadius, 5px);
+    border-radius: var(--borderRadius);
     overflow: hidden;
 }
 
@@ -25,7 +25,7 @@
     align-items: center;
     height: 45px;
     font-weight: 700;
-    background-color: #eee;
+    background-color: var(--paleColor);
 }
 
 .quick-dialog-body {
@@ -45,22 +45,27 @@ button {
     outline: 0;
     height: 45px;
     cursor: pointer;
-    background: #fff;
-    color: #999;
-    border: transparent 1px solid;
-    border-top-color: #f3f3f3;
+    background-color: #fff;
+    color: var(--minorColor);
+    border: 1px solid transparent;
+    border-top-color: var(--paleColor);
     -webkit-tap-highlight-color: rgba(0, 0, 0, 0);
     flex: 1;
 }
 
 button:not(:first-child) {
-    border-left-color: #f3f3f3;
-}
-
-button:active, button:disabled {
-    background: #eee;
+    border-left-color: var(--paleColor);
 }
 
 button.primary {
-    color: #333;
+    color: var(--fontColor);
+}
+
+button:active, button:disabled {
+    background-color: var(--paleColor);
+}
+
+button:disabled {
+    color: revert;
+    cursor: default;
 }

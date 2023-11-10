@@ -8,13 +8,13 @@ button, a.button {
     text-decoration: none;
     white-space: nowrap;
     cursor: pointer;
-    color: var(--fontColor, #fff);
-    background-color: var(--mainColor, #0ad);
-    border-radius: var(--borderRadius, 5px);
+    color: #fff;
     border: 0;
     outline: 0;
     font-weight: 700;
-    font-size: 14px;
+    font-size: var(--fontSize);
+    background-color: var(--primaryColor);
+    border-radius: var(--borderRadius);
     padding: 0 30px;
     height: 40px;
     transition: opacity .3s;
@@ -25,24 +25,20 @@ button:not(:first-child), a.button:not(:first-child) {
     margin-left: 10px;
 }
 
-button>img:not(:last-child), a.button>img:not(:last-child) {
-    margin-right: 5px;
-}
-
 button:disabled, a.button:disabled {
     opacity: .5;
     cursor: default;
 }
 
 button.outlined, a.button.outlined {
-    color: var(--mainColor, #0ad);
-    border: var(--mainColor, #0ad) 1.5px solid;
+    color: var(--primaryColor);
+    border: 1.5px solid currentColor;
     background-color: #fff;
 }
 
 button.danger, a.button.danger {
-    border-color: var(--dangerColor, red);
-    color: var(--dangerColor, red);
+    color: var(--dangerColor);
+    border-color: currentColor;
     background-color: #fff;
 }
 
