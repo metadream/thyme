@@ -19,10 +19,6 @@ export class Button extends Component {
             const size = (rect.width > rect.height ? rect.width : rect.height) * 2;
             ripple.style.width = size + 'px';
             ripple.style.height = size + 'px';
-            ripple.addClass('fade-out');
-        });
-        button.on('mouseup', () => {
-            ripple.removeClass('fade-out');
         });
     }
 

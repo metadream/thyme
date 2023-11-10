@@ -45,7 +45,7 @@ button.danger, a.button.danger {
     background-color: #fff;
 }
 
-.ripple {
+button .ripple {
     position: absolute;
     width: 0;
     height: 0;
@@ -55,7 +55,7 @@ button.danger, a.button.danger {
     opacity: 0.6;
 }
 
-.ripple.fade-out {
+button:active .ripple {
     animation: ripple .6s ease-out;
 }
 
