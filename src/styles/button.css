@@ -46,8 +46,7 @@ button.danger, a.button.danger {
     background-color: #fff;
 }
 
-button::after, a.button::after {
-    content: '';
+.ripple {
     position: absolute;
     width: 0;
     height: 0;
@@ -57,13 +56,11 @@ button::after, a.button::after {
     opacity: 0.6;
 }
 
-button:active::after, a.button:active::after {
-    width: 300px;
-    height: 300px;
-    animation: ripple .6s ease-out;
+.ripple.spread {
+    animation: spread .6s ease-out;
 }
 
-@keyframes ripple {
+@keyframes spread {
     to {
         transform: scale(1);
         opacity: 0;
