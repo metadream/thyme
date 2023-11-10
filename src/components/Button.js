@@ -4,7 +4,6 @@ import { Component } from './Component.js';
 export class Button extends Component {
 
     styles = styles;
-    template = `<button class="{{class}}"><slot></slot></button>`;
 
     onConnected() {
         const button = this.shadowBody;
@@ -12,6 +11,12 @@ export class Button extends Component {
         if (this.hasAttribute('disabled')) {
             button.setAttribute('disabled', true);
         }
+    }
+
+    set template(v) { }
+    get template() {
+        const href = this.getAttribute('href');
+        return href ? `<a class="button" href="{{href}}"><slot></slot></a>` : `<button class="{{class}}"><slot></slot></button>`;
     }
 
 }
