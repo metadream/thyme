@@ -12,21 +12,20 @@
     padding: 6px 15px;
     border-radius: 3px;
     font-weight: 700;
-    background-color: rgba(0, 0, 0, 0.6);
     color: #fff;
+    background-color: color-mix(in srgb, var(--fontColor) 80%, transparent);
 }
 
-.quick-toast>div.warn {
-    background-color: rgba(255, 140, 0, 0.6);
-    color: var(--fontColor, var(--_fontColor));
+.quick-toast>div.warning {
+    --fontColor: var(--_warningColor);
 }
 
 .quick-toast>div.error {
-    background-color: rgba(217, 37, 7, 0.6);
+    --fontColor: var(--_dangerColor);
 }
 
 .quick-toast>div.success {
-    background-color: rgba(43, 155, 23, 0.6);
+    --fontColor: var(--_successColor);
 }
 
 .bounce-in {

@@ -73,8 +73,8 @@ Quick.info = function (text, type, delay) {
     document.body.append(this._singleton);
 };
 
-Quick.warn = function (text) {
-    this.info(text, 'warn');
+Quick.warning = function (text) {
+    this.info(text, 'warning');
 };
 
 Quick.error = function (text) {

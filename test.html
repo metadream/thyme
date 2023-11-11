@@ -16,9 +16,8 @@
         <quick-button id="aaa" onclick="testbutton(this)">测试按钮</quick-button>
         <quick-button class="outlined">测试按钮</quick-button>
         <quick-button target="_blank" href="http://baidu.com">链接按钮</quick-button>
-        <quick-button class="outlined danger">测试按钮</quick-button>
 
-        <br>
+        <br><br>
         <table class="quick-table-list">
             <tr>
                 <th>表头1</th>
@@ -48,8 +47,12 @@
     <button onclick="change()">change</button>
     <button onclick="openalert()">alert</button>
     <button onclick="openc()" class="danger">delete</button>
-    <button onclick="info()" class="minor" quick-tooltip="间客房送拉将卡洛斯的">info</button>
     <button onclick="dialog.open()">opennewdialog</button>
+
+    <button onclick="Quick.info('捷克的角色可弗拉斯的')" quick-tooltip="间客房送拉将卡洛斯的">info</button>
+    <button onclick="Quick.warning('捷克的角色可弗拉斯的')">warning</button>
+    <button onclick="Quick.error('捷克的角色可弗拉斯的')">error</button>
+    <button onclick="Quick.success('捷克的角色可弗拉斯的')">success</button>
 
     <div style="height:1000px"></div>
 
@@ -89,10 +92,6 @@
 
         }
     }];
-
-    function info() {
-        Quick.success('捷克弗拉斯的');
-    }
 
     function openalert() {
         Quick.alert('保存成功', (dlg, btn) => {
