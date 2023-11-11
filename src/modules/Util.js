@@ -1,17 +1,18 @@
 /**
  * 从标签名或HTML字符串创建DOM元素
- * @param {string} tag
+ * @param {string} content
  * @returns
  */
-export function createElement(tag) {
-    if (!tag) return;
-    tag = tag.replace(/[\t\r\n]/mg, '').trim();
+export function createElement(content) {
+    if (!content) return;
+    content = content.replace(/[\t\r\n]/mg, '').trim();
 
-    if (tag.indexOf('<') === 0) {
-        const fragment = document.createRange().createContextualFragment(tag);
-        return fragment.firstChild;
+    if (content.indexOf('<') === 0) {
+        const template = document.createElement('template');
+        template.innerHTML = content;
+        return template.content.firstElementChild.cloneNode(true);
     }
-    return document.createElement(tag);
+    return document.createElement(content);
 }
 
 /**
