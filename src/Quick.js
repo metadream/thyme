@@ -10,8 +10,9 @@ import { Field } from './components/Field.js';
 import { Switch } from './components/Switch.js';
 import { Toast } from './components/Toast.js';
 import { Toptray } from './components/Toptray.js';
+import { Upload } from './components/Upload.js';
 
-window.Quick = class { }
+window.Quick = class Quick { }
 Quick.http = Http;
 Quick.form = Form;
 Quick.Button = Button;
@@ -21,6 +22,7 @@ Quick.Field = Field;
 Quick.Switch = Switch;
 Quick.Toast = Toast;
 Quick.Toptray = Toptray;
+Quick.Upload = Upload;
 
 Quick.setup = function () {
     enhanceElements();
@@ -31,6 +33,7 @@ Quick.setup = function () {
     customElements.define('quick-switch', Switch);
     customElements.define('quick-toast', Toast);
     customElements.define('quick-toptray', Toptray);
+    customElements.define('quick-upload', Upload);
 
     const style = createElement('style');
     style.textContent = globalStyles;
@@ -86,3 +89,4 @@ Quick.success = function (text) {
 };
 
 Quick.setup();
+export default Quick;

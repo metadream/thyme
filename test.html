@@ -10,6 +10,9 @@
 </head>
 
 <body>
+    <div style="border:1px solid #666;margin: 60px;">
+        <quick-upload multiple="10"></quick-upload>
+    </div>
 
     <div style="margin:auto;width: 800px;"><br><br>
         <quick-button id="aaa" onclick="testbutton(this)">测试按钮</quick-button>
@@ -55,9 +58,6 @@
 
     <div style="height:1000px"></div>
 
-
-    <quick-toast type="warn">法艰苦的拉萨建立的萨迦</quick-toast>
-
     <quick-dialog title="">
         <h1 style="margin-top:0">的萨菲</h1>
         <div>积分赛打开了几法</div>
@@ -70,12 +70,27 @@
 </html>
 
 <script>
+    const uploader = document.querySelector('quick-upload');
+    uploader.entries = [{
+        _id: 'a-1',
+        previewUrl: 'http://baidu.com',
+        downloadUrl: 'http://baidu.com',
+        originalName: '经发卡笋了了的萨.jpg'
+    }, {
+        _id: 'a-2',
+        previewUrl: 'http://baidu.com',
+        downloadUrl: 'http://baidu.com',
+        originalName: '卡拉萨擦丝的.xlsx'
+    }];
+    uploader.onUpload = async function (entry) {
+        console.log('onUpload---------', entry)
+    }
+    uploader.onRemove = async function (entry) {
+        console.log('onRemove---------', entry)
+    }
+
     function testbutton(btn) {
-        console.log('-----------test button');
-        btn.loading = true;
-        setTimeout(() => {
-            btn.loading = false;
-        }, 2000);
+        console.log(uploader.entries)
     }
 
     const dialog = document.querySelector('quick-dialog');

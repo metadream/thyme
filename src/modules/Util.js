@@ -1,4 +1,21 @@
 /**
+ * Nano Id without '-' and '_'
+ * @see https://github.com/ai/nanoid/blob/main/index.browser.js
+ * @param {number} size
+ */
+export function nanoId(size = 21) {
+    return crypto.getRandomValues(new Uint8Array(size)).reduce((id, byte) => {
+        byte &= 61;
+        if (byte < 36) {
+            id += byte.toString(36);
+        } else {
+            id += (byte - 26).toString(36).toUpperCase();
+        }
+        return id;
+    }, '');
+}
+
+/**
  * 从标签名或HTML字符串创建DOM元素
  * @param {string} content
  * @returns

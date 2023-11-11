@@ -3,7 +3,7 @@ import { Minifier } from './webpack.plugin.js';
 
 export default {
 
-    mode: "development",
+    mode: "production",
     plugins: [new Minifier()],
 
     entry: "./src/Quick.js",

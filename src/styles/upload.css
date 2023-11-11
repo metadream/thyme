@@ -1,0 +1,49 @@
+.quick-upload {
+    display: flex;
+}
+
+.file-list {
+    margin-left: 15px;
+    display: flex;
+    flex-wrap: wrap;
+    flex: 1;
+}
+
+.file-entry {
+    display: flex;
+    margin: 0 0 5px 5px;
+    padding: 3px 8px;
+    border-radius: var(--borderRadius, var(--_borderRadius));
+    background-color: var(--paleColor, var(--_paleColor));
+}
+
+.file-entry>a {
+    display: flex;
+    align-items: center;
+    margin-left: 5px;
+    color: var(--grayColor, var(--_grayColor));
+    text-decoration: none;
+    cursor: pointer;
+}
+
+a.chooser {
+    cursor: pointer;
+    color: var(--primaryColor, var(--_primaryColor));
+    font-weight: 700;
+}
+
+a.chooser:hover, a.preview-link:hover {
+    text-decoration: underline;
+}
+
+a.download-icon svg.icon path {
+    fill: var(--primaryColor, var(--_primaryColor));
+}
+
+a.remove-icon svg.icon path {
+    fill: var(--dangerColor, var(--_dangerColor));
+}
+
+input[type="file"] {
+    display: none;
+}
