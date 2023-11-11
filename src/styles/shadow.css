@@ -3,7 +3,6 @@
 }
 
 :host {
-    --_fontSize: 15px;
     --_primaryColor: #0ad;
     --_grayColor: #666;
     --_minorColor: #999;
@@ -12,6 +11,7 @@
     --_dangerColor: #e41;
     --_fontColor: #333;
     --_fontFamily: system-ui, -apple-system, BlinkMacSystemFont, Helvetica, Arial, Tahoma, "PingFang SC", "Hiragino Sans GB", "Heiti SC", "Microsoft YaHei", sans-serif;
+    --_fontSize: 15px;
     --_borderRadius: 5px;
 
     font-size: var(--fontSize, var(--_fontSize));

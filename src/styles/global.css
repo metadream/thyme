@@ -2,23 +2,35 @@
     box-sizing: border-box;
 }
 
+:root {
+    --primaryColor: #19c;
+    --minorColor: #999;
+    --headingColor: #333;
+    --fontColor: #333;
+    --fontFamily: system-ui, -apple-system, BlinkMacSystemFont, Helvetica, Arial, Tahoma, "PingFang SC", "Hiragino Sans GB", "Heiti SC", "Microsoft YaHei", sans-serif;
+    --fontSize: 15px;
+    --spacing: 15px;
+}
+
 ::placeholder {
-    color: var(--minorColor, #999);
+    color: var(--minorColor);
 }
 
 html {
-    font-size: var(--fontSize, 15px);
+    font-size: var(--fontSize);
 }
 
 body {
     margin: 0;
     line-height: 1.6;
-    color: var(--fontColor, #333);
-    font-family: var(--fontFamily, system-ui, -apple-system, BlinkMacSystemFont, Helvetica, Arial, Tahoma, "PingFang SC", "Hiragino Sans GB", "Heiti SC", "Microsoft YaHei", sans-serif);
+    font-family: var(--fontFamily);
+    color: var(--fontColor);
 }
 
 a {
-    color: var(--mainColor, inherit);
+    cursor: pointer;
+    font: inherit;
+    color: var(--primaryColor);
     text-decoration: none;
 }
 
@@ -26,13 +38,33 @@ a:hover {
     text-decoration: underline;
 }
 
+label {
+    cursor: pointer;
+}
+
+input, select {
+    cursor: pointer;
+    font: inherit;
+    background-color: transparent;
+    outline: 0;
+}
+
+img {
+    max-width: 100%;
+}
+
+img.icon {
+    width: 16px;
+    height: 16px;
+}
+
 h1, h2, h3, h4, h5 {
     font-weight: 400;
-    margin: 0 0 var(--spacing, 15px) 0;
+    margin: 0 0 var(--spacing) 0;
 }
 
 h1, h2, h3 {
-    color: var(--headingColor, inherit);
+    color: var(--headingColor);
 }
 
 h1 {
@@ -56,30 +88,6 @@ h5 {
     font-size: 0.9rem;
     font-weight: 700;
     color: inherit;
-}
-
-a, button, label, select {
-    cursor: pointer;
-    font: inherit;
-    outline: 0;
-}
-
-input, select {
-    font: inherit;
-    background-color: transparent;
-    outline: 0;
-}
-
-input[type="file"] {
-    display: none;
-}
-
-img {
-    max-width: 100%;
-}
-
-img.icon {
-    width: 16px;
 }
 
 table {
