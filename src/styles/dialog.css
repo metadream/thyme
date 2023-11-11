@@ -71,23 +71,7 @@ button:disabled {
     background-color: #fff;
 }
 
-.quick-fade-in {
-    animation: fadeIn ease .3s forwards;
-}
-
-.quick-fade-out {
-    animation: fadeOut ease .3s forwards;
-}
-
-.quick-scale-in {
-    animation: scaleIn ease .3s forwards;
-}
-
-.quick-scale-out {
-    animation: scaleOut ease .3s forwards;
-}
-
-.quick-btn-loading {
+button .loading {
     position: absolute;
     left: 0;
     right: 0;
@@ -100,7 +84,7 @@ button:disabled {
     background-color: inherit;
 }
 
-.quick-btn-loading:before {
+button .loading:before {
     content: '';
     position: absolute;
     width: 18px;
@@ -111,6 +95,22 @@ button:disabled {
     border-top: 2px solid var(--lineColor, var(--_lineColor));
     border-bottom: 2px solid var(--lineColor, var(--_lineColor));
     animation: spin .6s linear infinite;
+}
+
+.fade-in {
+    animation: fadeIn ease .3s forwards;
+}
+
+.fade-out {
+    animation: fadeOut ease .3s forwards;
+}
+
+.scale-in {
+    animation: scaleIn ease .3s forwards;
+}
+
+.scale-out {
+    animation: scaleOut ease .3s forwards;
 }
 
 @keyframes spin {

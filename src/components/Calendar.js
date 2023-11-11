@@ -46,7 +46,7 @@ export class Calendar extends Component {
             }
 
             // 点击标题回到初始日期
-            const $currText = this.getElement('.quick-calendar-text');
+            const $currText = this.getElement('.quick-calendar-title');
             if ($currText.contains($target)) {
                 return this.render(this.initDate);
             }
@@ -81,7 +81,7 @@ export class Calendar extends Component {
             <div class="quick-calendar-header">
               ${prevYearIcon}
               ${prevMonthIcon}
-              <span class="quick-calendar-text">${data.year}-${data.month.toString().padStart(2, 0)}</span>
+              <span class="quick-calendar-title">${data.year}-${data.month.toString().padStart(2, 0)}</span>
               ${nextMonthIcon}
               ${nextYearIcon}
             </div>

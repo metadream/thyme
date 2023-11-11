@@ -29,11 +29,11 @@
     background-color: rgba(43, 155, 23, 0.6);
 }
 
-.quick-bounce-in {
+.bounce-in {
     animation: bounceIn cubic-bezier(.17, .88, .48, 1.5) .3s forwards;
 }
 
-.quick-bounce-out {
+.bounce-out {
     animation: bounceOut cubic-bezier(.17, .88, .48, 1.5) .3s forwards;
 }
 

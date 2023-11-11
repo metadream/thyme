@@ -9,12 +9,12 @@ export class Toast extends Component {
     onConnected() {
         // Show instance
         const { internals } = this;
-        internals.addClass('quick-bounce-in');
+        internals.addClass('bounce-in');
 
         // Hide delay
         const delay = this.getAttribute('delay') || 3000;
         setTimeout(() => {
-            internals.addClass('quick-bounce-out');
+            internals.addClass('bounce-out');
             internals.on('animationend', () => this.remove());
         }, delay);
     }

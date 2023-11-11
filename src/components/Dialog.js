@@ -54,7 +54,7 @@ export class Dialog extends Component {
                 this.disabled = v;
 
                 if (v) {
-                    this._loader = createElement('<div class="quick-btn-loading"></div>');
+                    this._loader = createElement('<div class="loading"></div>');
                     this.append(this._loader);
                 } else {
                     this._loader && this._loader.remove();
@@ -66,12 +66,12 @@ export class Dialog extends Component {
     open(removable = false) {
         if (this.state != HIDDEN) return;
         this.removable = removable;
-        this.animate('quick-fade-in', 'quick-scale-in', OPENED);
+        this.animate('fade-in', 'scale-in', OPENED);
     }
 
     hide() {
         if (this.state != OPENED) return;
-        this.animate('quick-fade-out', 'quick-scale-out', HIDDEN);
+        this.animate('fade-out', 'scale-out', HIDDEN);
     }
 
     animate(bodyClass, panelClass, state) {

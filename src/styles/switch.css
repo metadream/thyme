@@ -35,10 +35,10 @@
     transition: .3s;
 }
 
-.quick-switch input:checked+i {
+input:checked+i {
     background-color: var(--primaryColor, var(--_primaryColor));
 }
 
-.quick-switch input:checked+i:before {
+input:checked+i:before {
     transform: translateX(16px);
 }
