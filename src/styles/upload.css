@@ -2,16 +2,20 @@
     display: flex;
 }
 
+.file-chooser {
+    margin-right: 20px;
+}
+
 .file-list {
-    margin-left: 15px;
     display: flex;
     flex-wrap: wrap;
     flex: 1;
+    margin: 0 -5px -5px 0;
 }
 
 .file-entry {
     display: flex;
-    margin: 0 0 5px 5px;
+    margin: 0 5px 5px 0;
     padding: 3px 8px;
     border-radius: var(--borderRadius, var(--_borderRadius));
     background-color: var(--paleColor, var(--_paleColor));
@@ -46,4 +50,9 @@ a.remove-icon svg.icon path {
 
 input[type="file"] {
     display: none;
+}
+
+svg.icon {
+    width: 16px;
+    height: 16px;
 }

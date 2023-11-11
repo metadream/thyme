@@ -6,45 +6,49 @@
     <title>web components</title>
     <script src="dist/quick.js"></script>
     <style>
+        body {
+            padding: 50px;
+        }
     </style>
 </head>
 
 <body>
-    <div style="border:1px solid #666;margin: 60px;">
-        <quick-upload multiple="10"></quick-upload>
+    <div style="border:1px solid #666;">
+        <quick-upload multiple="10" readonlys></quick-upload>
     </div>
 
-    <div style="margin:auto;width: 800px;"><br><br>
-        <quick-button id="aaa" onclick="testbutton(this)">测试按钮</quick-button>
-        <quick-button class="outlined">测试按钮</quick-button>
-        <quick-button target="_blank" href="http://baidu.com">链接按钮</quick-button>
+    <br><br>
+    <quick-button id="aaa" onclick="testbutton(this)">获取文件</quick-button>
+    <quick-button class="tonal" onclick="setuploader()">只读附件</quick-button>
+    <quick-button class="outlined">测试按钮</quick-button>
+    <quick-button target="_blank" href="http://baidu.com">链接按钮</quick-button>
 
-        <br><br>
-        <table class="quick-table-list">
-            <tr>
-                <th>表头1</th>
-                <th>表头2</th>
-                <th>表头3</th>
-            </tr>
-            <tr>
-                <td>1</td>
-                <td>2</td>
-                <td>3</td>
-            </tr>
-            <tr>
-                <td>4</td>
-                <td>5</td>
-                <td>6</td>
-            </tr>
-        </table>
-    </div>
+    <br><br><br>
+    <table class="quick-table-list">
+        <tr>
+            <th>表头1</th>
+            <th>表头2</th>
+            <th>表头3</th>
+        </tr>
+        <tr>
+            <td>1</td>
+            <td>2</td>
+            <td>3</td>
+        </tr>
+        <tr>
+            <td>4</td>
+            <td>5</td>
+            <td>6</td>
+        </tr>
+    </table>
 
-    <div style="height:100px"></div>
+    <br><br>
     <quick-field type="text" maxlength="3" data-rule="mail" label="用户名" name="username" value="" required></quick-field>
     <quick-field type="password" label="密码" name="password" value="psd" disabled></quick-field>
     <quick-field type="calendar" label="日期" name="date" value="2023-01-05"></quick-field>
     <quick-switch name="isSupplier" checked></quick-switch>
 
+    <br><br>
     <button onclick="getv()">get</button>
     <button onclick="change()">change</button>
     <button onclick="openalert()">alert</button>
@@ -87,6 +91,10 @@
     }
     uploader.onRemove = async function (entry) {
         console.log('onRemove---------', entry)
+    }
+
+    function setuploader() {
+        uploader.setAttribute('readonly', true);
     }
 
     function testbutton(btn) {

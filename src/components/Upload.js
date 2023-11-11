@@ -11,7 +11,7 @@ export class Upload extends Component {
     styles = styles;
     template = `
         <div class="quick-upload">
-            <div>
+            <div class="file-chooser">
                 <input type="file" accept="{{accept}}"/>
                 <a class="chooser">${Locale.get('UPLOAD_BUTTON_TEXT')}</a>
             </div>
@@ -19,16 +19,22 @@ export class Upload extends Component {
         </div>`;
 
     onConnected() {
-        const $file = this.getElement('input[type="file"]');
-        const $chooser = this.getElement('a.chooser');
-        $chooser.on('click', () => $file.click());
-        $file.on('change', e => this.upload(e.target.files));
-
         this._entries = [];
+        this.readOnly = this.hasAttribute('readonly');
         this.maxSize = JSON.parse(this.getAttribute('maxsize')) || 1;
         this.maxFiles = JSON.parse(this.getAttribute('multiple')) || 1;
-        if (this.maxFiles > 1) {
-            $file.setAttribute('multiple', 'multiple');
+
+        if (this.readOnly) {
+            this.getElement('.file-chooser').remove();
+        } else {
+            const $file = this.getElement('input[type="file"]');
+            const $chooser = this.getElement('a.chooser');
+            $chooser.on('click', () => $file.click());
+            $file.on('change', e => this.upload(e.target.files));
+
+            if (this.maxFiles > 1) {
+                $file.setAttribute('multiple', 'multiple');
+            }
         }
     }
 
@@ -73,7 +79,11 @@ export class Upload extends Component {
         `);
 
         const $removeBtn = $entry.querySelector('.remove-icon');
-        $removeBtn.on('click', () => this.remove(entry));
+        if (this.readOnly) {
+            $removeBtn.remove();
+        } else {
+            $removeBtn.on('click', () => this.remove(entry));
+        }
 
         const $uploadList = this.getElement('.file-list');
         $uploadList.append($entry);
