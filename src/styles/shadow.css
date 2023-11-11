@@ -3,25 +3,25 @@
 }
 
 :host {
-    --fontSize: 15px;
-    --primaryColor: #0ad;
-    --grayColor: #666;
-    --minorColor: #999;
-    --lineColor: #ccc;
-    --paleColor: #eee;
-    --dangerColor: #e41;
-    --fontColor: #333;
-    --fontFamily: system-ui, -apple-system, BlinkMacSystemFont, Helvetica, Arial, Tahoma, "PingFang SC", "Hiragino Sans GB", "Heiti SC", "Microsoft YaHei", sans-serif;
-    --borderRadius: 5px;
+    --_fontSize: 15px;
+    --_primaryColor: #0ad;
+    --_grayColor: #666;
+    --_minorColor: #999;
+    --_lineColor: #ccc;
+    --_paleColor: #eee;
+    --_dangerColor: #e41;
+    --_fontColor: #333;
+    --_fontFamily: system-ui, -apple-system, BlinkMacSystemFont, Helvetica, Arial, Tahoma, "PingFang SC", "Hiragino Sans GB", "Heiti SC", "Microsoft YaHei", sans-serif;
+    --_borderRadius: 5px;
 
-    font-size: var(--fontSize);
-    font-family: var(--fontFamily);
-    color: var(--fontColor);
+    font-size: var(--fontSize, var(--_fontSize));
+    font-family: var(--fontFamily, var(--_fontFamily));
+    color: var(--fontColor, var(--_fontColor));
     line-height: 1.6;
 }
 
 svg.icon path {
-    fill: var(--minorColor);
+    fill: var(--minorColor, var(--_minorColor));
 }
 
 .quick-overlay {

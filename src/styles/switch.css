@@ -18,7 +18,7 @@
     bottom: 0;
     left: 0;
     right: 0;
-    background-color: var(--lineColor);
+    background-color: var(--lineColor, var(--_lineColor));
     border-radius: 28px;
     transition: .3s;
 }
@@ -36,7 +36,7 @@
 }
 
 .quick-switch input:checked+i {
-    background-color: var(--primaryColor);
+    background-color: var(--primaryColor, var(--_primaryColor));
 }
 
 .quick-switch input:checked+i:before {

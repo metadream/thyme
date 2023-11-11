@@ -18,7 +18,7 @@
 
 .quick-toast>div.warn {
     background-color: rgba(255, 140, 0, 0.6);
-    color: var(--fontColor);
+    color: var(--fontColor, var(--_fontColor));
 }
 
 .quick-toast>div.error {

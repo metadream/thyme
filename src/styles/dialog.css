@@ -15,7 +15,7 @@
     max-width: 80%;
     max-height: 80%;
     min-width: 300px;
-    border-radius: var(--borderRadius);
+    border-radius: var(--borderRadius, var(--_borderRadius));
     overflow: hidden;
 }
 
@@ -25,7 +25,7 @@
     align-items: center;
     height: 45px;
     font-weight: 700;
-    background-color: var(--paleColor);
+    background-color: var(--paleColor, var(--_paleColor));
 }
 
 .quick-dialog-body {
@@ -47,23 +47,23 @@ button {
     height: 45px;
     cursor: pointer;
     background-color: #fff;
-    color: var(--minorColor);
+    color: var(--minorColor, var(--_minorColor));
     border: 1px solid transparent;
-    border-top-color: var(--paleColor);
+    border-top-color: var(--paleColor, var(--_paleColor));
     -webkit-tap-highlight-color: rgba(0, 0, 0, 0);
     flex: 1;
 }
 
 button:not(:first-child) {
-    border-left-color: var(--paleColor);
+    border-left-color: var(--paleColor, var(--_paleColor));
 }
 
 button.primary {
-    color: var(--fontColor);
+    color: var(--fontColor, var(--_fontColor));
 }
 
 button:active {
-    background-color: var(--paleColor);
+    background-color: var(--paleColor, var(--_paleColor));
 }
 
 button:disabled {
@@ -107,9 +107,9 @@ button:disabled {
     height: 18px;
     border-radius: 50%;
     border-left: 2px solid currentColor;
-    border-right: 2px solid var(--lineColor);
-    border-top: 2px solid var(--lineColor);
-    border-bottom: 2px solid var(--lineColor);
+    border-right: 2px solid var(--lineColor, var(--_lineColor));
+    border-top: 2px solid var(--lineColor, var(--_lineColor));
+    border-bottom: 2px solid var(--lineColor, var(--_lineColor));
     animation: spin .6s linear infinite;
 }
 
