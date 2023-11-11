@@ -19,13 +19,23 @@ export function createElement(tag) {
  */
 export function enhanceElements() {
     Object.assign(Element.prototype, {
-        on(event, fn) {
-            this.addEventListener(event, fn);
+        on(events, fn) {
+            if (typeof events === 'string') {
+                events = [events];
+            }
+            for (const event of events) {
+                this.addEventListener(event, fn);
+            }
             return this;
         },
 
-        off(event, fn) {
-            this.removeEventListener(event, fn);
+        off(events, fn) {
+            if (typeof events === 'string') {
+                events = [events];
+            }
+            for (const event of events) {
+                this.removeEventListener(event, fn);
+            }
             return this;
         },
 

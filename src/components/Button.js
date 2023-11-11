@@ -48,14 +48,7 @@ export class Button extends Component {
 
         });
 
-        button.on('mouseup', () => {
-            _ripple.up = true;
-            if (_ripple.end) {
-                _ripple.fadeOut();
-            }
-        });
-
-        button.on('mouseleave', () => {
+        button.on(['mouseup', 'mouseleave'], () => {
             if (!_ripple) return;
             _ripple.up = true;
             if (_ripple.end) {
