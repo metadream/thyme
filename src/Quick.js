@@ -5,9 +5,9 @@ import { Http } from './modules/Http.js';
 import { Form } from './modules/Form.js';
 import { Button } from './components/Button.js';
 import { Calendar } from './components/Calendar.js';
+import { Dialog } from './components/Dialog.js';
 import { Field } from './components/Field.js';
 import { Switch } from './components/Switch.js';
-import { Dialog } from './components/Dialog.js';
 import { Toast } from './components/Toast.js';
 import { Toptray } from './components/Toptray.js';
 
@@ -16,18 +16,19 @@ Quick.http = Http;
 Quick.form = Form;
 Quick.Button = Button;
 Quick.Calendar = Calendar;
+Quick.Dialog = Dialog;
 Quick.Field = Field;
 Quick.Switch = Switch;
-Quick.Dialog = Dialog;
+Quick.Toast = Toast;
 Quick.Toptray = Toptray;
 
 Quick.setup = function () {
     enhanceElements();
     customElements.define('quick-button', Button);
     customElements.define('quick-calendar', Calendar);
+    customElements.define('quick-dialog', Dialog);
     customElements.define('quick-field', Field);
     customElements.define('quick-switch', Switch);
-    customElements.define('quick-dialog', Dialog);
     customElements.define('quick-toast', Toast);
     customElements.define('quick-toptray', Toptray);
 
@@ -47,6 +48,7 @@ Quick.alert = function (text, callback, isConfirm) {
     } else {
         buttons.push({ label: Locale.get('OK') });
     }
+
     Object.assign(buttons[buttons.length - 1], {
         primary: true,
         onclick: (self, btn) => {
@@ -54,7 +56,6 @@ Quick.alert = function (text, callback, isConfirm) {
             self.hide();
         }
     })
-
     dialog.buttons = buttons;
     dialog.open(true);
 }
