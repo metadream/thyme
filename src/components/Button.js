@@ -62,7 +62,7 @@ export class Button extends Component {
 
         const href = this.getAttribute('href');
         return href
-            ? `<a class="button" href="{{href}}" target="{{target}}"><slot></slot></a>`
+            ? `<a class="button" href="{{href}}" target="{{target}}" draggable="false"><slot></slot></a>`
             : `<button class="{{class}}"><slot></slot></button>`;
     }
 
