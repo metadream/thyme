@@ -1,8 +1,10 @@
 import path from "path";
+import { Minifier } from './webpack.plugin.js';
 
 export default {
 
-    mode: "production",
+    mode: "development",
+    plugins: [new Minifier()],
 
     entry: "./src/Quick.js",
     output: {
