@@ -1,10 +1,15 @@
 import styles from '../styles/switch.css';
 import { Component } from './Component.js';
 
+/**
+ * 开关组件
+ * @example <quick-switch checked></quick-switch>
+ * @example this.value = true|false, 0|1
+ */
 export class Switch extends Component {
 
     styles = styles;
-    template = `<label class="quick-switch"><input type="checkbox" name="{{name}}"/><i></i></label>`;
+    template = `<label class="quick-switch"><input type="checkbox"/><i></i></label>`;
 
     onConnected() {
         this.nativeElement = this.findElement('input');
@@ -23,7 +28,7 @@ export class Switch extends Component {
     }
 
     set value(v) {
-        this.nativeElement.checked = v === 1 ? true : false;
+        this.nativeElement.checked = !!v;
     }
 
 }
