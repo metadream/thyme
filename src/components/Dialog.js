@@ -18,9 +18,9 @@ export class Dialog extends Component {
     `;
 
     onConnected() {
-        this.panel = this.getElement('.quick-dialog-panel');
+        this.panel = this.findElement('.quick-dialog-panel');
         if (!this.getAttribute('title')) {
-            this.getElement('.quick-dialog-header').remove();
+            this.findElement('.quick-dialog-header').remove();
         }
         document.addEventListener('keyup', e => {
             if (e.keyCode === 27) this.hide();
@@ -28,7 +28,7 @@ export class Dialog extends Component {
     }
 
     set buttons(items = []) {
-        const footer = this.getElement('.quick-dialog-footer');
+        const footer = this.findElement('.quick-dialog-footer');
         for (let item of items) {
             if (typeof item === 'string') {
                 item = { label: item };

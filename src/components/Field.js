@@ -9,7 +9,7 @@ export class Field extends Component {
     template = `<div class="quick-field"><label>{{label}}</label><input type="{{type}}" value="{{value}}"/></div>`;
 
     onConnected() {
-        const input = this.getElement('input');
+        const input = this.findElement('input');
         this.nativeElement = input;
 
         if (this.getAttribute('type') == 'calendar') {

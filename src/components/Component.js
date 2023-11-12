@@ -30,11 +30,11 @@ export class Component extends HTMLElement {
         return this.internals;
     }
 
-    getElement(selector) {
+    findElement(selector) {
         return this.internals.querySelector(selector);
     }
 
-    getElements(selector) {
+    findElements(selector) {
         return this.internals.querySelectorAll(selector);
     }
 

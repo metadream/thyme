@@ -18,8 +18,8 @@ export class Calendar extends Component {
     `;
 
     onConnected() {
-        this.$calendar = this.getElement('.quick-calendar');
-        this.$overlay = this.getElement('.quick-overlay');
+        this.$calendar = this.findElement('.quick-calendar');
+        this.$overlay = this.findElement('.quick-overlay');
         this.$overlay.on('click', () => this.remove());
         this.bindEventListeners();
     }
@@ -48,13 +48,13 @@ export class Calendar extends Component {
             }
 
             // 点击标题回到初始日期
-            const $currText = this.getElement('.quick-calendar-title');
+            const $currText = this.findElement('.quick-calendar-title');
             if ($currText.contains($target)) {
                 return this.render(this.initDate);
             }
 
             // 点击上下月/上下年按钮
-            const svgIcons = this.getElements('svg.icon');
+            const svgIcons = this.findElements('svg.icon');
             const $prevYear = svgIcons[0];
             const $prevMonth = svgIcons[1];
             const $nextMonth = svgIcons[2];

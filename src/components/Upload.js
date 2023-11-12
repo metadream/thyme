@@ -25,10 +25,10 @@ export class Upload extends Component {
         this.maxFiles = this.getIntAttribute('multiple');
 
         if (this.readOnly) {
-            this.getElement('.file-chooser').remove();
+            this.findElement('.file-chooser').remove();
         } else {
-            const $file = this.getElement('input[type="file"]');
-            const $chooser = this.getElement('a.chooser');
+            const $file = this.findElement('input[type="file"]');
+            const $chooser = this.findElement('a.chooser');
             $chooser.on('click', () => $file.click());
             $file.on('change', e => this.upload(e.target.files));
 
@@ -85,7 +85,7 @@ export class Upload extends Component {
             $removeBtn.on('click', () => this.remove(entry));
         }
 
-        const $uploadList = this.getElement('.file-list');
+        const $uploadList = this.findElement('.file-list');
         $uploadList.append($entry);
         this._entries.push(entry);
     }
@@ -99,7 +99,7 @@ export class Upload extends Component {
                 Quick.success(Locale.get('DELETE_FILE_SUCCESS'));
             }
 
-            const $entry = this.getElement('#' + entry._id);
+            const $entry = this.findElement('#' + entry._id);
             $entry.remove();
 
             const index = this.entries.findIndex(v => v._id == entry._id);

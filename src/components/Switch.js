@@ -7,7 +7,7 @@ export class Switch extends Component {
     template = `<label class="quick-switch"><input type="checkbox" name="{{name}}"/><i></i></label>`;
 
     onConnected() {
-        this.nativeElement = this.getElement('input');
+        this.nativeElement = this.findElement('input');
         if (this.getBooleanAttribute('checked')) {
             this.nativeElement.checked = true;
         }
