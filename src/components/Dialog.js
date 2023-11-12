@@ -2,6 +2,13 @@ import styles from '../styles/dialog.css';
 import { createElement } from '../modules/Util.js';
 import { Component } from './Component.js';
 
+/**
+ * 对话框组件
+ * @example <quick-dialog title="">any contents</quick-dialog>
+ * @example this.buttons([{ label: string, primary: true|false, onclick: function }])
+ * @example this.open(true|false)
+ * @example this.hide()
+ */
 const HIDDEN = 0, PENDING = 1, OPENED = 2;
 export class Dialog extends Component {
 
@@ -33,6 +40,7 @@ export class Dialog extends Component {
             if (typeof item === 'string') {
                 item = { label: item };
             }
+
             const button = createElement(`<button>${item.label}</button>`);
             this.defineLoading(button);
             footer.appendChild(button);
