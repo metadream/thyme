@@ -1,16 +1,10 @@
 export const Locale = {
 
     'zh-CN': {
-        OK: '确定',
-        YES: '确定',
-        NO: '取消',
-        MON: '一',
-        TUE: '二',
-        WED: '三',
-        THU: '四',
-        FRI: '五',
-        SAT: '六',
-        SUN: '日',
+        OK: '确定', YES: '确定', NO: '取消',
+        MON: '一', TUE: '二', WED: '三', THU: '四', FRI: '五', SAT: '六', SUN: '日',
+
+        EMPTY_SELECT_OPTION: '<空>',
 
         UPLOAD_BUTTON_TEXT: '上传附件',
         NO_FILES_SELECTED: '未选择任何文件',
@@ -24,16 +18,10 @@ export const Locale = {
         NETWORK_ERROR: '网络连接异常'
     },
     'en': {
-        OK: 'OK',
-        YES: 'YES',
-        NO: 'NO',
-        MON: 'MON',
-        TUE: 'TUE',
-        WED: 'WED',
-        THU: 'THU',
-        FRI: 'FRI',
-        SAT: 'SAT',
-        SUN: 'SUN',
+        OK: 'OK', YES: 'YES', NO: 'NO',
+        MON: 'MON', TUE: 'TUE', WED: 'WED', THU: 'THU', FRI: 'FRI', SAT: 'SAT', SUN: 'SUN',
+
+        EMPTY_SELECT_OPTION: '<Empty>',
 
         UPLOAD_BUTTON_TEXT: 'UPLOAD',
         NO_FILES_SELECTED: 'No files selected',

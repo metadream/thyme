@@ -16,6 +16,7 @@ export class Component extends HTMLElement {
         this.shadowRoot.append(this.createStyles());
         this.shadowRoot.append(this.createInternals());
         this.onConnected && this.onConnected();
+        this.onRendered && setTimeout(() => this.onRendered());
     }
 
     createStyles() {
