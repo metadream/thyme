@@ -1,6 +1,10 @@
 import shadowStyles from '../styles/shadow.css';
 import { createElement } from '../modules/Util.js';
 
+/**
+ * 基础组件
+ * 功能：创建样式、创建模板、提供公共方法
+ */
 export class Component extends HTMLElement {
 
     constructor() {
