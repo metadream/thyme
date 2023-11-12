@@ -98,9 +98,10 @@ button.success, a.button.success {
     width: 18px;
     height: 18px;
     border-radius: 50%;
-    border-top: 2px solid rgba(255, 255, 255, 0.3);
-    border-right: 2px solid rgba(255, 255, 255, 0.3);
-    border-bottom: 2px solid rgba(255, 255, 255, 0.3);
+    --circleColor: color-mix(in srgb, currentColor 20%, transparent);
+    border-top: 2px solid var(--circleColor);
+    border-right: 2px solid var(--circleColor);
+    border-bottom: 2px solid var(--circleColor);
     border-left: 2px solid currentColor;
     animation: spin .6s linear infinite;
 }

@@ -2,14 +2,21 @@ import styles from '../styles/button.css';
 import { createElement } from '../modules/Util.js';
 import { Component } from './Component.js';
 
+/**
+ * 按钮组件
+ * @example <quick-button href="/users" target="_blank" disabled></quick-button>
+ * @example <quick-button class="minor,warning,danger,success|tonal,outlined"></quick-button>
+ * @example this.disable = true|false
+ * @example this.loading = true|false
+ */
 export class Button extends Component {
 
     styles = styles;
+    linkTemplate = '<a class="button {{class}}" href="{{href}}" target="{{target}}" draggable="false"><slot></slot></a>';
+    buttonTemplate = '<button class="{{class}}"><slot></slot></button>';
 
     onConnected() {
-        if (this.getBooleanAttribute('disabled')) {
-            this.internals.setAttribute('disabled', true);
-        }
+        this.disabled = this.getBooleanAttribute('disabled');
         this.addRipples();
     }
 
@@ -37,15 +44,10 @@ export class Button extends Component {
             ripple.addClass('spread');
             ripple.on('animationend', () => {
                 ripple.end = true;
-                if (ripple != _ripple) {
-                    ripple.fadeOut();
-                    return;
-                }
-                if (ripple.up) {
+                if (ripple != _ripple || ripple.up) {
                     ripple.fadeOut();
                 }
             });
-
         });
 
         button.on(['mouseup', 'mouseleave'], () => {
@@ -59,11 +61,7 @@ export class Button extends Component {
 
     get template() {
         if (this._template) return this._template;
-
-        const href = this.getAttribute('href');
-        return href
-            ? `<a class="button" href="{{href}}" target="{{target}}" draggable="false"><slot></slot></a>`
-            : `<button class="{{class}}"><slot></slot></button>`;
+        return this.getAttribute('href') ? this.linkTemplate : this.buttonTemplate;
     }
 
     set template(v) {
