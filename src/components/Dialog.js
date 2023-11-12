@@ -5,7 +5,7 @@ import { Component } from './Component.js';
 /**
  * 对话框组件
  * @example <quick-dialog title="">any contents</quick-dialog>
- * @example this.buttons([{ label: string, primary: true|false, onclick: function }])
+ * @example this.buttons = [{ label: string, primary: true|false, onclick: function(self, btn) }]
  * @example this.open(true|false)
  * @example this.hide()
  */
@@ -34,6 +34,7 @@ export class Dialog extends Component {
         });
     }
 
+    // 添加按钮
     set buttons(items = []) {
         const footer = this.findElement('.quick-dialog-footer');
         for (let item of items) {
@@ -54,6 +55,7 @@ export class Dialog extends Component {
         }
     }
 
+    // 定义按钮loading
     defineLoading(button) {
         Object.defineProperty(button, "loading", {
             set: function (v) {
