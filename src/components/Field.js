@@ -21,7 +21,6 @@ export class Field extends Component {
                 const $calendar = createElement('quick-calendar');
                 this.shadowRoot.append($calendar);
 
-                $calendar.setAttribute('lang', this.getAttribute('lang') || '');
                 $calendar.attach(input);
                 $calendar.on('selected', e => {
                     input.value = e.target.value;
@@ -30,16 +29,17 @@ export class Field extends Component {
             });
         }
 
-        if (this.hasAttribute('required')) {
+        const maxLength = this.getIntAttribute('maxlength');
+        if (maxLength > 0) {
+            input.maxLength = maxLength;
+        }
+        if (this.getBooleanAttribute('required')) {
             this.internals.addClass('required');
         }
-        if (this.hasAttribute('maxlength')) {
-            input.maxLength = this.getAttribute('maxlength');
-        }
-        if (this.hasAttribute('readonly')) {
+        if (this.getBooleanAttribute('readonly')) {
             input.readOnly = true;
         }
-        if (this.hasAttribute('disabled')) {
+        if (this.getBooleanAttribute('disabled')) {
             input.disabled = true;
         }
     }

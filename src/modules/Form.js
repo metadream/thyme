@@ -36,9 +36,7 @@ export const Form = {
             }
 
             // 数据校验
-            let required = field.getAttribute('required');
-            required = (required === null || required === 'false') ? false : true;
-
+            const required = field.getBooleanAttribute('required');
             if (!this.validate(value, required, field.dataset.rule)) {
                 field.focus();
                 Quick.error(field.dataset.message || Locale.get('INCORRECT_INPUT'));

@@ -7,7 +7,7 @@ export class Button extends Component {
     styles = styles;
 
     onConnected() {
-        if (this.hasAttribute('disabled')) {
+        if (this.getBooleanAttribute('disabled')) {
             this.internals.setAttribute('disabled', true);
         }
         this.addRipples();

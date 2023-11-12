@@ -74,6 +74,16 @@ export function enhanceElements() {
         swap(el) {
             if (el) el.insertAdjacentElement('beforeBegin', this);
             return this;
+        },
+
+        getBooleanAttribute(name) {
+            const value = this.getAttribute(name);
+            return value !== null && value !== 'null' && value !== 'undefined' && value !== 'false' && value !== '0';
+        },
+
+        getIntAttribute(name) {
+            const value = this.getAttribute(name) || '0';
+            return /^\d+$/.test(value) ? parseInt(value) : 0;
         }
     });
 }
