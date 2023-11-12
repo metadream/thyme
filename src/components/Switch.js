@@ -11,6 +11,11 @@ export class Switch extends Component {
         if (this.hasAttribute('checked')) {
             this.nativeElement.checked = true;
         }
+
+        const event = new Event('change');
+        this.nativeElement.on('change', () => {
+            this.dispatchEvent(event);
+        });
     }
 
     get value() {

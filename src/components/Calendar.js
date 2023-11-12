@@ -36,13 +36,15 @@ export class Calendar extends Component {
 
     bindEventListeners() {
         // 点击日期选择器
+        const event = new Event('selected');
         this.$calendar.on('click', e => {
             const $target = e.target;
 
             // 点击日历格中的日期
             if ($target.parentNode.tagName === 'TD') {
                 const date = new Date(this.calData.year, this.calData.month - 1, $target.dataset.index);
-                this.dispatchEvent(new CustomEvent('selected', { detail: formatDate(date, 'yyyy-MM-dd') }));
+                this.value = formatDate(date, 'yyyy-MM-dd');
+                this.dispatchEvent(event);
             }
 
             // 点击标题回到初始日期

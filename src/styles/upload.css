@@ -32,7 +32,7 @@
 
 a.chooser {
     cursor: pointer;
-    color: var(--primaryColor, var(--_primaryColor));
+    color: var(--linkColor, var(--_primaryColor));
     font-weight: 700;
 }
 

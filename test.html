@@ -127,6 +127,14 @@
         });
     }
 
+    const switcher = document.querySelector('quick-switch');
+    // switcher.on('change', function onswicth(e) {
+    //     console.log('----------', e.target.value)
+    // })
+    switcher.onchange = function onswicth(e) {
+        console.log('-------11---', e.target.value)
+    }
+
     function change() {
         document.querySelector('quick-field').value = 'nacy2';
         document.querySelector('quick-field').disabled = true;

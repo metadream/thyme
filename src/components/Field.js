@@ -23,8 +23,8 @@ export class Field extends Component {
 
                 $calendar.setAttribute('lang', this.getAttribute('lang') || '');
                 $calendar.attach(input);
-                $calendar.on('selected', (e) => {
-                    input.value = e.detail;
+                $calendar.on('selected', e => {
+                    input.value = e.target.value;
                     $calendar.remove();
                 });
             });
