@@ -1,17 +1,23 @@
 import styles from '../styles/toast.css';
 import { Component } from './Component.js';
 
+/**
+ * 消息组件
+ * @example <quick-toast type="warning|error|success">content</quick-toast>
+ * @example Quick.info(text)
+ * @example Quick.warning(text)
+ * @example Quick.error(text)
+ * @example Quick.success(text)
+ */
 export class Toast extends Component {
 
     styles = styles;
     template = `<div class="quick-overlay quick-toast"><div class="{{type}}"><slot></slot></div></div>`;
 
     onConnected() {
-        // Show instance
         const { internals } = this;
         internals.addClass('bounce-in');
 
-        // Hide delay
         const delay = this.getIntAttribute('delay') || 3000;
         setTimeout(() => {
             internals.addClass('bounce-out');

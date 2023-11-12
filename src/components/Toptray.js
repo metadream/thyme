@@ -3,6 +3,10 @@ import arrowTopIcon from "../icons/arrow-top.svg";
 import { getScrollTop } from '../modules/Util.js';
 import { Component } from './Component.js';
 
+/**
+ * 滚动到顶部的托盘组件
+ * @example <quick-toptray x="10" y="10"></quick-toptray>
+ */
 export class Toptray extends Component {
 
     styles = styles;
@@ -20,9 +24,11 @@ export class Toptray extends Component {
         let scrollTimer;
         internals.onclick = function () {
             cancelAnimationFrame(scrollTimer);
+
             scrollTimer = requestAnimationFrame(function scroll() {
                 const y = getScrollTop();
                 document.body.scrollTop = document.documentElement.scrollTop = parseInt(y / 1.2);
+
                 if (y > 0) scrollTimer = requestAnimationFrame(scroll);
                 else cancelAnimationFrame(scrollTimer);
             });

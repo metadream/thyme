@@ -6,6 +6,13 @@ import { createElement, formatBytes, nanoId } from "../modules/Util.js";
 import { Locale } from '../modules/Locale.js';
 import { Component } from './Component.js';
 
+/**
+ * 上传组件
+ * @example <quick-upload multiple="9" maxsize="1024000" accept="image/*" readonly></quick-upload>
+ * @example this.entries = [{_id, previewUrl, downloadUrl, originalName}]
+ * @example this.onUpload = async function(entry) {}
+ * @example this.onRemove = async function(entry) {}
+ */
 export class Upload extends Component {
 
     styles = styles;

@@ -4,8 +4,8 @@ import { Component } from './Component.js';
 
 /**
  * 按钮组件
- * @example <quick-button href="/users" target="_blank" disabled></quick-button>
- * @example <quick-button class="minor|warning|danger|success, tonal|outlined"></quick-button>
+ * @example <quick-button href="/users" target="_blank" disabled>text</quick-button>
+ * @example <quick-button class="minor|warning|danger|success, tonal|outlined">text</quick-button>
  * @example this.disable = true|false
  * @example this.loading = true|false
  */

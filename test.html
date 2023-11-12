@@ -19,7 +19,7 @@
 
     <br><br>
     <quick-button id="aaa" onclick="testbutton(this)">获取文件</quick-button>
-    <quick-button class="tonal" onclick="setuploader()">只读附件</quick-button>
+    <quick-button class="tonal" onclick="setuploader()">测试按钮</quick-button>
     <quick-button class="outlined">测试按钮</quick-button>
     <quick-button target="_blank" class="tonal" href="http://baidu.com">链接按钮</quick-button>
     <quick-button class="tonal danger" disabled>测试按钮</quick-button>
@@ -46,7 +46,7 @@
     </table>
 
     <br><br>
-    <quick-field type="text" maxlength="3" data-rule="mail" label="用户名" name="username" value="" required></quick-field>
+    <quick-field type="text" maxlength="30" label="用户名" name="username" value="" required></quick-field>
     <quick-field type="password" label="密码" name="password" value="psd" disabled></quick-field>
     <quick-field type="calendar" label="日期" name="date" value="2023-01-05"></quick-field>
     <quick-switch name="isSupplier" checked></quick-switch>
@@ -96,7 +96,6 @@
     }
 
     function setuploader() {
-        uploader.readOnly = true;
     }
 
     function testbutton(btn) {
@@ -140,7 +139,7 @@
     function change() {
         document.querySelector('quick-field').value = 'nacy2';
         document.querySelector('quick-field').disabled = true;
-        document.querySelector('quick-switch').value = 0;
+        document.querySelector('quick-switch').value = undefined;
     }
     function getv() {
         const data = Quick.form.getJsonObject('body');
