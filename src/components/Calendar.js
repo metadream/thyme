@@ -7,6 +7,16 @@ import { getScrollTop, formatDate } from '../modules/Util.js';
 import { Locale } from '../modules/Locale.js';
 import { Component } from './Component.js';
 
+/**
+ * 日历组件
+ * @example const $calendar = createElement('quick-calendar');
+ *          this.shadowRoot.append($calendar);
+ *          $calendar.attach(input);
+ *          $calendar.on('selected', e => {
+ *              input.value = e.target.value;
+ *              $calendar.remove();
+ *          });
+ */
 export class Calendar extends Component {
 
     styles = styles;
@@ -24,6 +34,7 @@ export class Calendar extends Component {
         this.bindEventListeners();
     }
 
+    // 依附到某个元素
     attach(target) {
         const pos = target.getBoundingClientRect();
         this.$calendar.style.top = pos.y + pos.height + getScrollTop() + 1 + 'px';
@@ -34,6 +45,7 @@ export class Calendar extends Component {
         this.render(this.initDate);
     }
 
+    // 绑定事件
     bindEventListeners() {
         // 点击日期选择器
         const event = new Event('selected');
