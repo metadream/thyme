@@ -14,8 +14,8 @@ export const Locale = {
 
         UPLOAD_BUTTON_TEXT: '上传附件',
         NO_FILES_SELECTED: '未选择任何文件',
-        MAX_ALLOWED_COUNT: '单次最多允许上传文件数：',
-        MAX_ALLOWED_SIZE: '单文件大小不允许超过',
+        MAX_ALLOWED_FILES: '最多允许上传 {{maxFiles}} 个文件',
+        MAX_ALLOWED_SIZE: '单文件大小不允许超过 {{maxSize}}',
         DELETE_FILE_CONFIRMATION: '确定删除该附件吗？',
         DELETE_FILE_SUCCESS: '删除成功',
 
@@ -37,8 +37,8 @@ export const Locale = {
 
         UPLOAD_BUTTON_TEXT: 'UPLOAD',
         NO_FILES_SELECTED: 'No files selected',
-        MAX_ALLOWED_COUNT: 'The maximum number of upload files allowed is: ',
-        MAX_ALLOWED_SIZE: 'Single file size is not allowed to exceed ',
+        MAX_ALLOWED_FILES: 'The maximum number of upload files allowed is {{maxFiles}}',
+        MAX_ALLOWED_SIZE: 'Single file size is not allowed to exceed {{maxSize}}',
         DELETE_FILE_CONFIRMATION: 'Are you sure to delete the attachment?',
         DELETE_FILE_SUCCESS: 'Delete succeeded',
 
@@ -47,9 +47,15 @@ export const Locale = {
         NETWORK_ERROR: 'Network connection error'
     },
 
-    get(key) {
+    get(key, replacement) {
         const lang = this[navigator.language] ? navigator.language : 'en';
-        return this[lang][key];
+        let text = this[lang][key];
+        if (replacement) {
+            for (const [k, v] of Object.entries(replacement)) {
+                text = text.replace(`{{${k}}}`, v);
+            }
+        }
+        return text;
     }
 
 }

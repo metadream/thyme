@@ -2,7 +2,7 @@ import styles from '../styles/upload.css';
 import downloadIcon from '../icons/round-download.svg';
 import removeIcon from '../icons/round-cross.svg';
 import Quick from '../Quick.js';
-import { createElement, nanoId } from "../modules/Util.js";
+import { createElement, formatBytes, nanoId } from "../modules/Util.js";
 import { Locale } from '../modules/Locale.js';
 import { Component } from './Component.js';
 
@@ -20,9 +20,9 @@ export class Upload extends Component {
 
     onConnected() {
         this._entries = [];
-        this.readOnly = this.hasAttribute('readonly');
-        this.maxSize = JSON.parse(this.getAttribute('maxsize')) || 1;
-        this.maxFiles = JSON.parse(this.getAttribute('multiple')) || 1;
+        this.readOnly = this.getBooleanAttribute('readonly');
+        this.maxSize = this.getIntAttribute('maxsize'); // bytes
+        this.maxFiles = this.getIntAttribute('multiple');
 
         if (this.readOnly) {
             this.getElement('.file-chooser').remove();
@@ -43,13 +43,13 @@ export class Upload extends Component {
             Quick.info(Locale.get('NO_FILES_SELECTED'));
             return;
         }
-        if (files.length > this.maxFiles) {
-            Quick.warning(Locale.get('MAX_ALLOWED_COUNT') + this.maxFiles);
+        if (files.length + this.entries.length > this.maxFiles) {
+            Quick.warning(Locale.get('MAX_ALLOWED_FILES', { maxFiles: this.maxFiles }));
             return;
         }
         for (const file of files) {
-            if (file.size > this.maxSize * 1024 * 1024) {
-                return Quick.warning(Locale.get('MAX_ALLOWED_SIZE') + this.maxSize + 'MB');
+            if (this.maxSize > 0 && file.size > this.maxSize) {
+                return Quick.warning(Locale.get('MAX_ALLOWED_SIZE', { maxSize: formatBytes(this.maxSize) }));
             }
         }
         for (const file of files) {
