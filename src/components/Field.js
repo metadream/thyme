@@ -3,6 +3,11 @@ import calendarIcon from "../icons/calendar.svg";
 import { createElement, toDataURI } from '../modules/Util.js';
 import { Component } from './Component.js';
 
+/**
+ * 文本框组件
+ * @example <quick-field label="" type="text|password|calendar" maxlength="" name="" value=""></quick-field>
+ * @example <quick-field data-rule="varchar|integer|decimal|date|email|url" data-message="" required></quick-field>
+ */
 export class Field extends Component {
 
     styles = styles;
