@@ -1,19 +1,19 @@
-.quick-upload {
+.upload {
     display: flex;
 }
 
-.file-chooser {
+.upload-chooser {
     margin-right: 20px;
 }
 
-.file-list {
+.upload-list {
     display: flex;
     flex-wrap: wrap;
     flex: 1;
     margin: 0 -5px -5px 0;
 }
 
-.file-entry {
+.upload-entry {
     display: flex;
     margin: 0 5px 5px 0;
     padding: 3px 8px;
@@ -21,7 +21,7 @@
     background-color: var(--paleColor, var(--ac));
 }
 
-.file-entry > a {
+.upload-entry > a {
     display: flex;
     align-items: center;
     margin-left: 5px;

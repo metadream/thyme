@@ -10,7 +10,7 @@ import { Component } from './Component.js';
 export class Toptray extends Component {
 
     styles = styles;
-    template = `<div class="quick-toptray" style="bottom:{{x}}px;right:{{y}}px">${arrowTopIcon}</div>`;
+    template = `<div class="toptray" style="bottom:{{x}}px;right:{{y}}px">${arrowTopIcon}</div>`;
 
     onConnected() {
         const { internals } = this;

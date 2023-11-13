@@ -1,17 +1,17 @@
-.quick-select {
+.select {
     position: relative;
     -webkit-user-select: none;
     -moz-user-select: none;
     user-select: none;
 }
 
-.quick-field {
+.field {
     display: flex;
     align-items: center;
     cursor: pointer;
 }
 
-.quick-options {
+.options {
     display: flex;
     flex-direction: column;
     position: absolute;
@@ -28,35 +28,35 @@
     box-shadow: 0 0 16px rgb(0 0 0 / 8%);
 }
 
-.quick-options.dropdown {
+.options.dropdown {
     opacity: 1;
     transform: scaleY(1);
 }
 
-.quick-options::-webkit-scrollbar {
+.options::-webkit-scrollbar {
     width: 7px;
 }
 
-.quick-options::-webkit-scrollbar-thumb {
+.options::-webkit-scrollbar-thumb {
     background-color: var(--lineColor, var(--lc));
 }
 
-.quick-option {
+.option {
     cursor: pointer;
     padding: 5px 20px;
     transition: .3s;
 }
 
-.quick-option.disabled {
+.option.disabled {
     color: var(--minorColor, var(--mc));
     cursor: default;
 }
 
-.quick-option:not(.disabled):hover {
+.option:not(.disabled):hover {
     background-color: var(--paleColor, var(--ac));
 }
 
-.quick-overlay {
+.overlay {
     background: none;
 }
 

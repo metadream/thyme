@@ -15,7 +15,7 @@ export class Dialog extends Component {
     state = HIDDEN;
     styles = styles;
     template = `
-        <div class="quick-overlay dialog">
+        <div class="overlay dialog">
             <div class="dialog-panel">
                 <div class="dialog-header">{{title}}</div>
                 <div class="dialog-body"><slot></slot></div>

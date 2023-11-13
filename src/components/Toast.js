@@ -12,7 +12,7 @@ import { Component } from './Component.js';
 export class Toast extends Component {
 
     styles = styles;
-    template = `<div class="quick-overlay quick-toast"><div class="{{type}}"><slot></slot></div></div>`;
+    template = `<div class="overlay toast"><div class="{{type}}"><slot></slot></div></div>`;
 
     onConnected() {
         const { internals } = this;

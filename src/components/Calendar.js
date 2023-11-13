@@ -22,14 +22,14 @@ export class Calendar extends Component {
     styles = styles;
     template = `
         <div>
-            <div class="quick-overlay" style="background:none"></div>
+            <div class="overlay" style="background:none"></div>
             <div class="calendar"></div>
         </div>
     `;
 
     onConnected() {
         this.$calendar = this.findElement('.calendar');
-        this.$overlay = this.findElement('.quick-overlay');
+        this.$overlay = this.findElement('.overlay');
         this.$overlay.on('click', () => this.remove());
         this.bindEventListeners();
     }

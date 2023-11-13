@@ -12,9 +12,9 @@ export class Select extends Component {
 
     styles = styles;
     template = `
-    <div class="quick-select">
-        <div class="quick-field"><input type="text" readonly/>${arrowBottomIcon}</div>
-        <div class="quick-options"><slot></slot></div>
+    <div class="select">
+        <div class="field"><input type="text" readonly/>${arrowBottomIcon}</div>
+        <div class="options"><slot></slot></div>
     </div>`;
 
     onRendered() {
@@ -22,10 +22,10 @@ export class Select extends Component {
         const options = slot.assignedElements();
         slot.remove();
 
-        this.$options = this.findElement('.quick-options');
+        this.$options = this.findElement('.options');
         this.render(options);
 
-        this.$field = this.findElement('.quick-field');
+        this.$field = this.findElement('.field');
         this.$field.on('click', () => this.pulldown());
     }
 
@@ -36,7 +36,7 @@ export class Select extends Component {
             let { label, value, disabled } = option;
             label = label || Locale.get('EMPTY_SELECT_OPTION');
 
-            const $option = createElement(`<a class="quick-option">${label}</a>`);
+            const $option = createElement(`<a class="option">${label}</a>`);
             this.$options.append($option);
 
             if (disabled) {
@@ -57,7 +57,7 @@ export class Select extends Component {
 
     pulldown() {
         this.$options.addClass('dropdown');
-        this.$overlay = createElement('<div class="quick-overlay"></div>');
+        this.$overlay = createElement('<div class="overlay"></div>');
         this.$overlay.on('click', () => this.pullup());
         this.internals.append(this.$overlay);
     }

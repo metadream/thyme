@@ -1,11 +1,11 @@
-.quick-toast {
+.toast {
     display: flex;
     justify-content: center;
     background-color: transparent;
     height: 0;
 }
 
-.quick-toast > div {
+.toast > div {
     margin-top: 80px;
     margin-bottom: auto;
     max-width: 80%;
@@ -16,15 +16,15 @@
     background-color: color-mix(in srgb, var(--fontColor) 80%, transparent);
 }
 
-.quick-toast > div.warning {
+.toast > div.warning {
     --fontColor: var(--wc);
 }
 
-.quick-toast > div.error {
+.toast > div.error {
     --fontColor: var(--dc);
 }
 
-.quick-toast > div.success {
+.toast > div.success {
     --fontColor: var(--sc);
 }
 
