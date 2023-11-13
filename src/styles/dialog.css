@@ -1,4 +1,4 @@
-.quick-dialog {
+.dialog {
     display: none;
     justify-content: center;
     align-items: center;
@@ -8,7 +8,7 @@
     user-select: none;
 }
 
-.quick-dialog-panel {
+.dialog-panel {
     display: flex;
     flex-direction: column;
     background-color: #fff;
@@ -19,7 +19,7 @@
     overflow: hidden;
 }
 
-.quick-dialog-header {
+.dialog-header {
     display: flex;
     justify-content: center;
     align-items: center;
@@ -28,14 +28,14 @@
     background-color: var(--paleColor, var(--ac));
 }
 
-.quick-dialog-body {
+.dialog-body {
     flex: 1;
     overflow-x: hidden;
     overflow-y: auto;
     padding: 25px;
 }
 
-.quick-dialog-footer {
+.dialog-footer {
     display: flex;
 }
 

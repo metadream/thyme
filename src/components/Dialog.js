@@ -15,19 +15,19 @@ export class Dialog extends Component {
     state = HIDDEN;
     styles = styles;
     template = `
-        <div class="quick-overlay quick-dialog">
-            <div class="quick-dialog-panel">
-                <div class="quick-dialog-header">{{title}}</div>
-                <div class="quick-dialog-body"><slot></slot></div>
-                <div class="quick-dialog-footer"></div>
+        <div class="quick-overlay dialog">
+            <div class="dialog-panel">
+                <div class="dialog-header">{{title}}</div>
+                <div class="dialog-body"><slot></slot></div>
+                <div class="dialog-footer"></div>
             </div>
         </div>
     `;
 
     onConnected() {
-        this.panel = this.findElement('.quick-dialog-panel');
+        this.panel = this.findElement('.dialog-panel');
         if (!this.getAttribute('title')) {
-            this.findElement('.quick-dialog-header').remove();
+            this.findElement('.dialog-header').remove();
         }
         document.addEventListener('keyup', e => {
             if (e.keyCode === 27) this.hide();
@@ -36,7 +36,7 @@ export class Dialog extends Component {
 
     // 添加按钮
     set buttons(items = []) {
-        const footer = this.findElement('.quick-dialog-footer');
+        const footer = this.findElement('.dialog-footer');
         for (let item of items) {
             if (typeof item === 'string') {
                 item = { label: item };
