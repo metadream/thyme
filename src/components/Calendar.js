@@ -23,12 +23,12 @@ export class Calendar extends Component {
     template = `
         <div>
             <div class="quick-overlay" style="background:none"></div>
-            <div class="quick-calendar"></div>
+            <div class="calendar"></div>
         </div>
     `;
 
     onConnected() {
-        this.$calendar = this.findElement('.quick-calendar');
+        this.$calendar = this.findElement('.calendar');
         this.$overlay = this.findElement('.quick-overlay');
         this.$overlay.on('click', () => this.remove());
         this.bindEventListeners();
@@ -60,7 +60,7 @@ export class Calendar extends Component {
             }
 
             // 点击标题回到初始日期
-            const $currText = this.findElement('.quick-calendar-title');
+            const $currText = this.findElement('.calendar-title');
             if ($currText.contains($target)) {
                 return this.render(this.initDate);
             }
@@ -92,14 +92,14 @@ export class Calendar extends Component {
     render(date) {
         const data = this.calData = this.getCalendarData(date);
         let html = `
-            <div class="quick-calendar-header">
+            <div class="calendar-header">
               ${prevYearIcon}
               ${prevMonthIcon}
-              <span class="quick-calendar-title">${data.year}-${data.month.toString().padStart(2, 0)}</span>
+              <span class="calendar-title">${data.year}-${data.month.toString().padStart(2, 0)}</span>
               ${nextMonthIcon}
               ${nextYearIcon}
             </div>
-            <div class="quick-calendar-body">
+            <div class="calendar-body">
               <table>
                 <thead><tr>
                   <th>${Locale.get('MON')}</th>
