@@ -13,9 +13,11 @@ export class Field extends Component {
     styles = styles;
     template = `<div class="field"><label>{{label}}</label><input type="{{type}}" value="{{value}}"/></div>`;
 
+    #nativeElement;
+
     onConnected() {
         const input = this.findElement('input');
-        this.nativeElement = input;
+        this.#nativeElement = input;
 
         if (this.getAttribute('type') == 'calendar') {
             input.readOnly = true;
@@ -50,31 +52,31 @@ export class Field extends Component {
     }
 
     focus() {
-        this.nativeElement.focus();
+        this.#nativeElement.focus();
     }
 
     get value() {
-        return this.nativeElement.value;
+        return this.#nativeElement.value;
     }
 
     set value(v) {
-        this.nativeElement.value = v;
+        this.#nativeElement.value = v;
     }
 
     get readOnly() {
-        return this.nativeElement.readOnly;
+        return this.#nativeElement.readOnly;
     }
 
     set readOnly(v) {
-        this.nativeElement.readOnly = v;
+        this.#nativeElement.readOnly = v;
     }
 
     get disabled() {
-        return this.nativeElement.disabled;
+        return this.#nativeElement.disabled;
     }
 
     set disabled(v) {
-        this.nativeElement.disabled = v;
+        this.#nativeElement.disabled = v;
     }
 
 }

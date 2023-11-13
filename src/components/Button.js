@@ -12,8 +12,10 @@ import { Component } from './Component.js';
 export class Button extends Component {
 
     styles = styles;
+
     #linkTemplate = '<a class="button {{class}}" href="{{href}}" target="{{target}}" draggable="false"><slot></slot></a>';
     #buttonTemplate = '<button class="{{class}}"><slot></slot></button>';
+    #loader;
 
     onConnected() {
         this.disabled = this.getBooleanAttribute('disabled');
@@ -43,10 +45,10 @@ export class Button extends Component {
         this.disabled = v;
 
         if (v) {
-            this._loader = createElement('<div class="loading"></div>');
-            this.internals.append(this._loader);
+            this.#loader = createElement('<div class="loading"></div>');
+            this.internals.append(this.#loader);
         } else {
-            this._loader && this._loader.remove();
+            this.#loader && this.#loader.remove();
         }
     }
 

@@ -27,14 +27,18 @@ export class Upload extends Component {
 
     #uploadCallback;
     #removeCallback;
+    #entries;
+    #readOnly;
+    #maxSize;
+    #maxFiles;
 
     onConnected() {
-        this._entries = [];
-        this.readOnly = this.getBooleanAttribute('readonly');
-        this.maxSize = this.getIntAttribute('maxsize'); // bytes
-        this.maxFiles = this.getIntAttribute('multiple');
+        this.#entries = [];
+        this.#readOnly = this.getBooleanAttribute('readonly');
+        this.#maxSize = this.getIntAttribute('maxsize'); // bytes
+        this.#maxFiles = this.getIntAttribute('multiple');
 
-        if (this.readOnly) {
+        if (this.#readOnly) {
             this.findElement('.upload-chooser').remove();
         } else {
             const $file = this.findElement('input[type="file"]');
@@ -42,7 +46,7 @@ export class Upload extends Component {
             $chooser.on('click', () => $file.click());
             $file.on('change', e => this.#upload(e.target.files));
 
-            if (this.maxFiles > 1) {
+            if (this.#maxFiles > 1) {
                 $file.setAttribute('multiple', 'multiple');
             }
         }
@@ -52,13 +56,13 @@ export class Upload extends Component {
         if (!files || files.length === 0) {
             return;
         }
-        if (files.length + this.entries.length > this.maxFiles) {
-            Quick.warning(Locale.get('MAX_ALLOWED_FILES', { maxFiles: this.maxFiles }));
+        if (files.length + this.#entries.length > this.#maxFiles) {
+            Quick.warning(Locale.get('MAX_ALLOWED_FILES', { maxFiles: this.#maxFiles }));
             return;
         }
         for (const file of files) {
-            if (this.maxSize > 0 && file.size > this.maxSize) {
-                return Quick.warning(Locale.get('MAX_ALLOWED_SIZE', { maxSize: formatBytes(this.maxSize) }));
+            if (this.#maxSize > 0 && file.size > this.#maxSize) {
+                return Quick.warning(Locale.get('MAX_ALLOWED_SIZE', { maxSize: formatBytes(this.#maxSize) }));
             }
         }
         for (const file of files) {
@@ -80,7 +84,7 @@ export class Upload extends Component {
     #render(entry) {
         if (!entry || !entry._id) return;
         const $entry = createElement(`
-            <div class="upload-entry" id="${entry._id}">
+            <div class="upload-entry" id="_${entry._id}">
                 <a class="preview-link" target="_blank" href="${entry.previewUrl}">${entry.originalName}</a>
                 <a class="download-icon" href="${entry.downloadUrl}" download="${entry.originalName}">${downloadIcon}</a>
                 <a class="remove-icon">${removeIcon}</a>
@@ -88,7 +92,7 @@ export class Upload extends Component {
         `);
 
         const $removeBtn = $entry.querySelector('.remove-icon');
-        if (this.readOnly) {
+        if (this.#readOnly) {
             $removeBtn.remove();
         } else {
             $removeBtn.on('click', () => this.#remove(entry));
@@ -96,7 +100,7 @@ export class Upload extends Component {
 
         const $uploadList = this.findElement('.upload-list');
         $uploadList.append($entry);
-        this._entries.push(entry);
+        this.#entries.push(entry);
     }
 
     #remove(entry) {
@@ -108,20 +112,20 @@ export class Upload extends Component {
                 Quick.success(Locale.get('DELETE_SUCCESS'));
             }
 
-            const $entry = this.findElement('#' + entry._id);
+            const $entry = this.findElement('#_' + entry._id);
             $entry.remove();
 
-            const index = this.entries.findIndex(v => v._id == entry._id);
-            this.entries.splice(index, 1);
+            const index = this.#entries.findIndex(v => v._id == entry._id);
+            this.#entries.splice(index, 1);
         });
     }
 
     get entries() {
-        return this._entries;
+        return this.#entries;
     }
 
     set entries(entries) {
-        this._entries.length = 0;
+        this.#entries.length = 0;
         if (entries && Array.isArray(entries)) {
             entries.forEach(v => this.#render(v));
         }

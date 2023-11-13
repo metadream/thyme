@@ -27,34 +27,39 @@ export class Calendar extends Component {
         </div>
     `;
 
+    #calendar;
+    #initDate;
+    #calData;
+
     onConnected() {
-        this.$calendar = this.findElement('.calendar');
-        this.$overlay = this.findElement('.overlay');
-        this.$overlay.on('click', () => this.remove());
+        const overlay = this.findElement('.overlay');
+        overlay.on('click', () => this.remove());
+
+        this.#calendar = this.findElement('.calendar');
         this.#bindEvents();
     }
 
     // 依附到某个元素
     attach(target) {
         const pos = target.getBoundingClientRect();
-        this.$calendar.style.top = pos.y + pos.height + getScrollTop() + 1 + 'px';
-        this.$calendar.style.left = pos.x + 'px';
+        this.#calendar.style.top = pos.y + pos.height + getScrollTop() + 1 + 'px';
+        this.#calendar.style.left = pos.x + 'px';
 
-        this.initDate = new Date(target.value);
-        this.initDate = isNaN(this.initDate.getTime()) ? new Date() : this.initDate;
-        this.#render(this.initDate);
+        this.#initDate = new Date(target.value);
+        this.#initDate = isNaN(this.#initDate.getTime()) ? new Date() : this.#initDate;
+        this.#render(this.#initDate);
     }
 
     // 绑定事件
     #bindEvents() {
         // 点击日期选择器
         const event = new Event('selected');
-        this.$calendar.on('click', e => {
+        this.#calendar.on('click', e => {
             const $target = e.target;
 
             // 点击日历格中的日期
             if ($target.parentNode.tagName === 'TD') {
-                const date = new Date(this.calData.year, this.calData.month - 1, $target.dataset.index);
+                const date = new Date(this.#calData.year, this.#calData.month - 1, $target.dataset.index);
                 this.value = formatDate(date, 'yyyy-MM-dd');
                 this.dispatchEvent(event);
             }
@@ -62,7 +67,7 @@ export class Calendar extends Component {
             // 点击标题回到初始日期
             const $currText = this.findElement('.calendar-title');
             if ($currText.contains($target)) {
-                return this.#render(this.initDate);
+                return this.#render(this.#initDate);
             }
 
             // 点击上下月/上下年按钮
@@ -90,7 +95,7 @@ export class Calendar extends Component {
 
     // 渲染日历
     #render(date) {
-        const data = this.calData = this.#getCalendarData(date);
+        const data = this.#calData = this.#getCalendarData(date);
         let html = `
             <div class="calendar-header">
               ${prevYearIcon}
@@ -120,7 +125,7 @@ export class Calendar extends Component {
             const cellDay = data.days[i];
             let clazz = '';
             if (data.month != cellDay.month) clazz = 'minor';
-            if (data.year == this.initDate.getFullYear() && cellDay.month == this.initDate.getMonth() + 1 && cellDay.day == this.initDate.getDate()) clazz = 'curr';
+            if (data.year == this.#initDate.getFullYear() && cellDay.month == this.#initDate.getMonth() + 1 && cellDay.day == this.#initDate.getDate()) clazz = 'curr';
             if (data.year == today.getFullYear() && cellDay.month == today.getMonth() + 1 && cellDay.day == today.getDate()) clazz = 'today';
             html += '<td><div data-index="' + cellDay.index + '" class="' + clazz + '">' + cellDay.day + '</div></td>';
 
@@ -128,7 +133,7 @@ export class Calendar extends Component {
         }
 
         html += '</tbody></table></div>';
-        this.$calendar.innerHTML = html;
+        this.#calendar.innerHTML = html;
     }
 
     // 获取指定日期的日历格数据

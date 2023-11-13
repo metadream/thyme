@@ -12,7 +12,6 @@ import { Component } from './Component.js';
 const HIDDEN = 0, PENDING = 1, OPENED = 2;
 export class Dialog extends Component {
 
-    #state = HIDDEN;
     styles = styles;
     template = `
         <div class="overlay dialog">
@@ -24,8 +23,12 @@ export class Dialog extends Component {
         </div>
     `;
 
+    #state = HIDDEN;
+    #panel;
+    #removable;
+
     onConnected() {
-        this.panel = this.findElement('.dialog-panel');
+        this.#panel = this.findElement('.dialog-panel');
         if (!this.getAttribute('title')) {
             this.findElement('.dialog-header').remove();
         }
@@ -57,7 +60,7 @@ export class Dialog extends Component {
 
     open(removable = false) {
         if (this.#state != HIDDEN) return;
-        this.removable = removable;
+        this.#removable = removable;
         this.#animate('fade-in', 'scale-in', OPENED);
     }
 
@@ -68,22 +71,22 @@ export class Dialog extends Component {
 
     #animate(bodyClass, panelClass, state) {
         this.#state = PENDING;
-        const { internals, panel } = this;
+        const { internals } = this;
 
         if (state == OPENED) {
             internals.style.display = 'flex';
         }
         internals.addClass(bodyClass);
-        panel.addClass(panelClass);
+        this.#panel.addClass(panelClass);
 
         internals.onanimationend = () => {
-            panel.removeClass(panelClass);
+            this.#panel.removeClass(panelClass);
             internals.removeClass(bodyClass);
             internals.onanimationend = null;
 
             this.#state = state;
             if (state == HIDDEN) {
-                if (this.removable) this.remove();
+                if (this.#removable) this.remove();
                 else internals.style.display = 'none';
             }
         }
