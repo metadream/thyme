@@ -1,23 +1,23 @@
 .quick-field {
     display: flex;
     align-items: center;
-    border: 1px solid var(--lineColor, var(--_lineColor));
-    border-radius: var(--borderRadius, var(--_borderRadius));
+    border: 1px solid var(--lineColor, var(--lc));
+    border-radius: var(--borderRadius, var(--br));
     height: 40px;
     margin: 5px;
     transition: .3s;
 }
 
 .quick-field:focus-within {
-    border-color: var(--primaryColor, var(--_primaryColor));
+    border-color: var(--primaryColor, var(--pc));
     box-shadow: 0 0 5px 0 rgb(0 0 0 / 15%);
 }
 
-.quick-field:focus-within>label:after {
-    background-color: var(--primaryColor, var(--_primaryColor));
+.quick-field:focus-within > label:after {
+    background-color: var(--primaryColor, var(--pc));
 }
 
-.quick-field>label {
+.quick-field > label {
     position: relative;
     cursor: default;
     width: 30%;
@@ -26,22 +26,22 @@
     overflow: hidden;
 }
 
-.quick-field>label:after {
+.quick-field > label:after {
     content: '';
     position: absolute;
     top: 2px;
     bottom: 2px;
     right: 0;
     width: 1px;
-    background-color: var(--lineColor, var(--_lineColor));
+    background-color: var(--lineColor, var(--lc));
     transition: .3s;
 }
 
-.quick-field.required>label:after {
-    background-color: var(--dangerColor, var(--_dangerColor));
+.quick-field.required > label:after {
+    background-color: var(--dangerColor, var(--dc));
 }
 
-.quick-field>input {
+.quick-field > input {
     font: inherit;
     outline: 0;
     border: 0;
@@ -51,8 +51,8 @@
     flex: 1;
 }
 
-.quick-field>input[disabled] {
-    color: var(--minorColor, var(--_minorColor));
+.quick-field > input[disabled] {
+    color: var(--minorColor, var(--mc));
     background-color: #fff;
     pointer-events: none;
 }

@@ -38,7 +38,7 @@
 }
 
 .quick-options::-webkit-scrollbar-thumb {
-    background-color: var(--lineColor, var(--_lineColor));
+    background-color: var(--lineColor, var(--lc));
 }
 
 .quick-option {
@@ -48,12 +48,12 @@
 }
 
 .quick-option.disabled {
-    color: var(--minorColor, var(--_minorColor));
+    color: var(--minorColor, var(--mc));
     cursor: default;
 }
 
 .quick-option:not(.disabled):hover {
-    background-color: var(--paleColor, var(--_paleColor));
+    background-color: var(--paleColor, var(--ac));
 }
 
 .quick-overlay {

@@ -17,9 +17,9 @@ button, a.button {
     border: 0;
     outline: 0;
     font-weight: 700;
-    font-size: var(--fontSize, var(--_fontSize));
-    background-color: var(--primaryColor, var(--_primaryColor));
-    border-radius: var(--borderRadius, var(--_borderRadius));
+    font-size: var(--fontSize, var(--fs));
+    background-color: var(--primaryColor, var(--pc));
+    border-radius: var(--borderRadius, var(--br));
     padding: 0 30px;
     height: 40px;
     transition: opacity .3s;
@@ -37,30 +37,30 @@ button:disabled, a.button:disabled {
 
 button.outlined, a.button.outlined {
     padding: 0 28.5px;
-    color: var(--primaryColor, var(--_primaryColor));
+    color: var(--primaryColor, var(--pc));
     border: 1.5px solid currentColor;
     background-color: #fff;
 }
 
 button.tonal, a.button.tonal {
-    color: var(--primaryColor, var(--_primaryColor));
+    color: var(--primaryColor, var(--pc));
     background-color: color-mix(in srgb, currentColor 20%, transparent);
 }
 
 button.minor, a.button.minor {
-    --primaryColor: var(--_fontColor);
+    --primaryColor: var(--fc);
 }
 
 button.warning, a.button.warning {
-    --primaryColor: var(--_warningColor);
+    --primaryColor: var(--wc);
 }
 
 button.danger, a.button.danger {
-    --primaryColor: var(--_dangerColor);
+    --primaryColor: var(--dc);
 }
 
 button.success, a.button.success {
-    --primaryColor: var(--_successColor);
+    --primaryColor: var(--sc);
 }
 
 .ripple {
@@ -127,7 +127,6 @@ button.success, a.button.success {
         opacity: 0.3;
     }
 }
-
 
 @keyframes fadeOut {
     from {

@@ -17,22 +17,22 @@
     display: flex;
     margin: 0 5px 5px 0;
     padding: 3px 8px;
-    border-radius: var(--borderRadius, var(--_borderRadius));
-    background-color: var(--paleColor, var(--_paleColor));
+    border-radius: var(--borderRadius, var(--br));
+    background-color: var(--paleColor, var(--ac));
 }
 
-.file-entry>a {
+.file-entry > a {
     display: flex;
     align-items: center;
     margin-left: 5px;
-    color: var(--grayColor, var(--_grayColor));
+    color: var(--grayColor, var(--gc));
     text-decoration: none;
     cursor: pointer;
 }
 
 a.chooser {
     cursor: pointer;
-    color: var(--linkColor, var(--_primaryColor));
+    color: var(--linkColor, var(--pc));
     font-weight: 700;
 }
 
@@ -41,11 +41,11 @@ a.chooser:hover, a.preview-link:hover {
 }
 
 a.download-icon svg.icon path {
-    fill: var(--primaryColor, var(--_primaryColor));
+    fill: var(--primaryColor, var(--pc));
 }
 
 a.remove-icon svg.icon path {
-    fill: var(--dangerColor, var(--_dangerColor));
+    fill: var(--dangerColor, var(--dc));
 }
 
 input[type="file"] {
