@@ -21,12 +21,12 @@ export const Locale = {
         EMPTY_OPTION: '<Empty>',
 
         UPLOAD: 'UPLOAD',
-        MAX_ALLOWED_FILES: 'The maximum number of upload files allowed is {{maxFiles}}',
+        MAX_ALLOWED_FILES: 'Uploaded files is not allowed to exceed {{maxFiles}}',
         MAX_ALLOWED_SIZE: 'Single file size is not allowed to exceed {{maxSize}}',
-        DELETE_PROMPT: 'Sure to delete?',
+        DELETE_PROMPT: 'Sure you want to delete?',
         DELETE_SUCCESS: 'Delete succeeded',
 
-        INCORRECT_INPUT: 'The data at the cursor cannot be empty or in the wrong format',
+        INCORRECT_INPUT: 'The data at the cursor is incorrect',
         UNSUPPORTED_RESPONSE: 'Unsupported response type',
         NETWORK_ERROR: 'Network connection error'
     },
