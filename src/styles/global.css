@@ -40,22 +40,11 @@ a:hover {
     text-decoration: underline;
 }
 
-label {
-    cursor: pointer;
-}
-
-input, select {
-    cursor: pointer;
-    font: inherit;
-    background-color: transparent;
-    outline: 0;
-}
-
 img {
     max-width: 100%;
 }
 
-img.icon {
+img.icon, svg.icon {
     width: 16px;
     height: 16px;
 }
