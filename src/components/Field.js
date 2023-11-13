@@ -11,7 +11,7 @@ import { Component } from './Component.js';
 export class Field extends Component {
 
     styles = styles;
-    template = `<div class="quick-field"><label>{{label}}</label><input type="{{type}}" value="{{value}}"/></div>`;
+    template = `<div class="field"><label>{{label}}</label><input type="{{type}}" value="{{value}}"/></div>`;
 
     onConnected() {
         const input = this.findElement('input');

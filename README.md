@@ -8,3 +8,5 @@ https://juejin.cn/post/7025161032435761189 , Helvetica, Arial, Tahoma, "PingFang
 SC", "Hiragino Sans GB", "Heiti SC", "Microsoft YaHei", sans-serif
 
 - 灰色变量重命名
+
+- icon-trigger 不使用背景图标
