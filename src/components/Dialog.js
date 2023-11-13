@@ -44,7 +44,7 @@ export class Dialog extends Component {
 
             const button = createElement(`<button>${item.label}</button>`);
             this.defineLoading(button);
-            footer.appendChild(button);
+            footer.append(button);
 
             if (item.primary === true) {
                 button.addClass('primary');

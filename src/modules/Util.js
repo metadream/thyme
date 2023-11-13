@@ -33,6 +33,23 @@ export function createElement(content) {
 }
 
 /**
+ * 创建样式标签
+ * @returns 
+ */
+export function createStyles(content) {
+    const style = createElement('style');
+    style.textContent = content;
+    return style;
+}
+
+/**
+ * 注册自定义组件
+ */
+export function registerComponent(tagName, component) {
+    customElements.define(tagName, component);
+}
+
+/**
  * DOM元素原型扩展
  */
 export function enhanceElements() {

@@ -1,5 +1,5 @@
 import globalStyles from './styles/global.css';
-import { createElement, enhanceElements } from './modules/Util.js';
+import { createElement, enhanceElements, registerComponent, createStyles } from './modules/Util.js';
 import { Locale } from './modules/Locale.js';
 import { Http } from './modules/Http.js';
 import { Form } from './modules/Form.js';
@@ -13,83 +13,84 @@ import { Toast } from './components/Toast.js';
 import { Toptray } from './components/Toptray.js';
 import { Upload } from './components/Upload.js';
 
-window.Quick = class Quick { }
-Quick.http = Http;
-Quick.form = Form;
-Quick.Button = Button;
-Quick.Calendar = Calendar;
-Quick.Dialog = Dialog;
-Quick.Field = Field;
-Quick.Select = Select;
-Quick.Switch = Switch;
-Quick.Toast = Toast;
-Quick.Toptray = Toptray;
-Quick.Upload = Upload;
+class Quick {
 
-Quick.setup = function () {
-    enhanceElements();
-    customElements.define('quick-button', Button);
-    customElements.define('quick-calendar', Calendar);
-    customElements.define('quick-dialog', Dialog);
-    customElements.define('quick-field', Field);
-    customElements.define('quick-select', Select);
-    customElements.define('quick-switch', Switch);
-    customElements.define('quick-toast', Toast);
-    customElements.define('quick-toptray', Toptray);
-    customElements.define('quick-upload', Upload);
+    static http = Http;
+    static form = Form;
+    static Button = Button;
+    static Calendar = Calendar;
+    static Dialog = Dialog;
+    static Field = Field;
+    static Select = Select;
+    static Switch = Switch;
+    static Toast = Toast;
+    static Toptray = Toptray;
+    static Upload = Upload;
 
-    const style = createElement('style');
-    style.textContent = globalStyles;
-    document.head.append(style);
-}
+    static {
+        enhanceElements();
+        document.head.append(createStyles(globalStyles));
 
-Quick.alert = function (text, callback, isConfirm) {
-    const dialog = createElement(`<quick-dialog>${text}</quick-dialog>`);
-    document.body.appendChild(dialog);
-
-    const buttons = [];
-    if (isConfirm) {
-        buttons.push({ label: Locale.get('NO') });
-        buttons.push({ label: Locale.get('YES') });
-    } else {
-        buttons.push({ label: Locale.get('OK') });
+        registerComponent('quick-button', Button);
+        registerComponent('quick-calendar', Calendar);
+        registerComponent('quick-dialog', Dialog);
+        registerComponent('quick-field', Field);
+        registerComponent('quick-select', Select);
+        registerComponent('quick-switch', Switch);
+        registerComponent('quick-toast', Toast);
+        registerComponent('quick-toptray', Toptray);
+        registerComponent('quick-upload', Upload);
     }
 
-    Object.assign(buttons[buttons.length - 1], {
-        primary: true,
-        onclick: (self, btn) => {
-            callback && callback(self, btn);
-            self.hide();
+    static alert(text, callback, isConfirm) {
+        const dialog = createElement(`<quick-dialog>${text}</quick-dialog>`);
+        document.body.append(dialog);
+
+        const buttons = [];
+        if (isConfirm) {
+            buttons.push({ label: Locale.get('NO') });
+            buttons.push({ label: Locale.get('YES') });
+        } else {
+            buttons.push({ label: Locale.get('OK') });
         }
-    })
-    dialog.buttons = buttons;
-    dialog.open(true);
-}
 
-Quick.confirm = function (text, callback) {
-    this.alert(text, callback, true);
-}
-
-Quick.info = function (text, type, delay) {
-    if (this._singleton) {
-        this._singleton.remove();
-        this._singleton = null;
+        Object.assign(buttons[buttons.length - 1], {
+            primary: true,
+            onclick: (self, btn) => {
+                callback && callback(self, btn);
+                self.hide();
+            }
+        })
+        dialog.buttons = buttons;
+        dialog.open(true);
     }
-    this._singleton = createElement(`<quick-toast type="${type}" delay="${delay}">${text}</quick-toast>`);
-    document.body.append(this._singleton);
-};
 
-Quick.warning = function (text) {
-    this.info(text, 'warning');
-};
+    static confirm(text, callback) {
+        this.alert(text, callback, true);
+    }
 
-Quick.error = function (text) {
-    this.info(text, 'error', 5000);
-};
+    static info(text, type, delay) {
+        if (this._toast) {
+            this._toast.remove();
+            this._toast = null;
+        }
+        this._toast = createElement(`<quick-toast type="${type}" delay="${delay}">${text}</quick-toast>`);
+        document.body.append(this._toast);
+    }
 
-Quick.success = function (text) {
-    this.info(text, 'success');
-};
+    static warning(text) {
+        this.info(text, 'warning');
+    }
 
-Quick.setup();
+    static error(text) {
+        this.info(text, 'error', 5000);
+    }
+
+    static success(text) {
+        this.info(text, 'success');
+    }
+
+}
+
+window.Quick = Quick;
 export default Quick;

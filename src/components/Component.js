@@ -1,5 +1,5 @@
 import shadowStyles from '../styles/shadow.css';
-import { createElement } from '../modules/Util.js';
+import { createElement, createStyles } from '../modules/Util.js';
 
 /**
  * 基础组件
@@ -13,16 +13,10 @@ export class Component extends HTMLElement {
 
     connectedCallback() {
         this.attachShadow({ mode: 'open' });
-        this.shadowRoot.append(this.createStyles());
+        this.shadowRoot.append(createStyles(shadowStyles + this.styles));
         this.shadowRoot.append(this.createInternals());
         this.onConnected && this.onConnected();
         this.onRendered && setTimeout(() => this.onRendered());
-    }
-
-    createStyles() {
-        const style = createElement('style');
-        style.textContent = shadowStyles + this.styles;
-        return style;
     }
 
     createInternals() {
