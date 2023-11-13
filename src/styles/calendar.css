@@ -1,4 +1,4 @@
-.quick-calendar {
+.calendar {
     position: absolute;
     z-index: 5001;
     font-size: 13px;
@@ -8,7 +8,7 @@
     user-select: none;
 }
 
-.quick-calendar-header {
+.calendar-header {
     display: flex;
     align-items: center;
     height: 40px;
@@ -16,7 +16,7 @@
     border-bottom: 1px solid var(--paleColor, var(--ac));
 }
 
-.quick-calendar-title {
+.calendar-title {
     flex: 1;
     text-align: center;
     color: var(--primaryColor, var(--pc));
@@ -24,31 +24,31 @@
     cursor: pointer;
 }
 
-.quick-calendar-body {
+.calendar-body {
     padding: 10px;
 }
 
-.quick-calendar-body table {
+table {
     width: 100%;
     border-collapse: collapse;
 }
 
-.quick-calendar-body tr {
+tr {
     border: 0;
     height: auto;
 }
 
-.quick-calendar-body th, .quick-calendar-body td {
+th, td {
     width: 32px;
     height: 32px;
     text-align: center;
 }
 
-.quick-calendar-body td {
+td {
     padding: 3px;
 }
 
-.quick-calendar-body td > div {
+td > div {
     display: flex;
     justify-content: center;
     align-items: center;
@@ -58,21 +58,21 @@
     transition: .3s all;
 }
 
-.quick-calendar-body td > div:hover {
+td > div:hover {
     background-color: var(--paleColor, var(--ac));
 }
 
-.quick-calendar-body td > div.today {
+td > div.today {
     color: #fff;
     background-color: var(--primaryColor, var(--pc));
 }
 
-.quick-calendar-body td > div.curr {
+td > div.curr {
     color: #fff;
     background-color: var(--minorColor, var(--mc));
 }
 
-.quick-calendar-body td > div.minor {
+td > div.minor {
     color: var(--lineColor, var(--lc));
 }
 
