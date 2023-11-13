@@ -26,10 +26,6 @@ button, a.button {
     overflow: hidden;
 }
 
-button:not(:first-child), a.button:not(:first-child) {
-    margin-left: 10px;
-}
-
 button:disabled, a.button:disabled {
     opacity: .5;
     cursor: default;
