@@ -20,7 +20,7 @@ export class Upload extends Component {
         <div class="upload">
             <div class="upload-chooser">
                 <input type="file" accept="{{accept}}"/>
-                <a class="chooser">${Locale.get('UPLOAD_BUTTON_TEXT')}</a>
+                <a class="chooser">${Locale.get('UPLOAD')}</a>
             </div>
             <div class="upload-list"></div>
         </div>`;
@@ -98,12 +98,12 @@ export class Upload extends Component {
     }
 
     remove(entry) {
-        Quick.confirm(Locale.get('DELETE_FILE_CONFIRMATION'), async (_cfm, btn) => {
+        Quick.confirm(Locale.get('DELETE_PROMPT'), async (_cfm, btn) => {
             if (!entry.file && this.removeCallback) {
                 btn.loadding = true;
                 await this.removeCallback(entry);
                 btn.loadding = false;
-                Quick.success(Locale.get('DELETE_FILE_SUCCESS'));
+                Quick.success(Locale.get('DELETE_SUCCESS'));
             }
 
             const $entry = this.findElement('#' + entry._id);

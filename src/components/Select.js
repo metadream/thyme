@@ -34,7 +34,7 @@ export class Select extends Component {
 
         for (const option of options) {
             let { label, value, disabled } = option;
-            label = label || Locale.get('EMPTY_SELECT_OPTION');
+            label = label || Locale.get('EMPTY_OPTION');
 
             const $option = createElement(`<a class="option">${label}</a>`);
             this.$options.append($option);
