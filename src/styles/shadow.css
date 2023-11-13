@@ -12,7 +12,7 @@
     --mc: #999;
     --lc: #ccc;
     --ac: #eee;
-    --ff: "Helvetica Neue", Helvetica, Arial, "PingFang SC", "Hiragino Sans GB", "Heiti SC", "Microsoft YaHei", "WenQuanYi Micro Hei", sans-serif;
+    --ff: system-ui, -apple-system, BlinkMacSystemFont, "Helvetica Neue", Helvetica, Arial, "PingFang SC", "Hiragino Sans GB", "Heiti SC", "Microsoft YaHei", "WenQuanYi Micro Hei", sans-serif;
     --fs: 15px;
     --br: 5px;
     font-size: var(--fontSize, var(--fs));
