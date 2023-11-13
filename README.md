@@ -9,6 +9,7 @@
   - 图标
   - set/get value
   - 增加hidden字段保存value
+  - 支持多选
 
 - quick-calendar
   - icon-trigger 不使用背景图标
