@@ -19,4 +19,4 @@
 
 - 增加checkbox、radio
 - upload增加 loading
-
+- table独立以便样式隔离
