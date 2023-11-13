@@ -18,14 +18,14 @@
     margin: 0 5px 5px 0;
     padding: 3px 8px;
     border-radius: var(--borderRadius, var(--br));
-    background-color: var(--paleColor, var(--ac));
+    background-color: var(--platColor);
 }
 
-.upload-entry > a {
+.upload-entry>a {
     display: flex;
     align-items: center;
     margin-left: 5px;
-    color: var(--grayColor, var(--gc));
+    color: var(--carbonColor);
     text-decoration: none;
     cursor: pointer;
 }
@@ -45,7 +45,7 @@ a.download-icon svg.icon path {
 }
 
 a.remove-icon svg.icon path {
-    fill: var(--dangerColor, var(--dc));
+    fill: var(--errorColor, var(--ec));
 }
 
 input[type="file"] {

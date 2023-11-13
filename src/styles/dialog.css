@@ -25,7 +25,7 @@
     align-items: center;
     height: 45px;
     font-weight: 700;
-    background-color: var(--paleColor, var(--ac));
+    background-color: var(--platColor);
 }
 
 .dialog-body {
@@ -47,15 +47,15 @@ button {
     height: 45px;
     cursor: pointer;
     background-color: #fff;
-    color: var(--minorColor, var(--mc));
+    color: var(--grayColor);
     border: 1px solid transparent;
-    border-top-color: var(--paleColor, var(--ac));
+    border-top-color: var(--platColor);
     -webkit-tap-highlight-color: rgba(0, 0, 0, 0);
     flex: 1;
 }
 
 button:not(:first-child) {
-    border-left-color: var(--paleColor, var(--ac));
+    border-left-color: var(--platColor);
 }
 
 button.primary {
@@ -63,7 +63,7 @@ button.primary {
 }
 
 button:active {
-    background-color: var(--paleColor, var(--ac));
+    background-color: var(--platColor);
 }
 
 button:disabled {
@@ -91,9 +91,9 @@ button .loading:before {
     height: 18px;
     border-radius: 50%;
     border-left: 2px solid currentColor;
-    border-right: 2px solid var(--lineColor, var(--lc));
-    border-top: 2px solid var(--lineColor, var(--lc));
-    border-bottom: 2px solid var(--lineColor, var(--lc));
+    border-right: 2px solid var(--silverColor);
+    border-top: 2px solid var(--silverColor);
+    border-bottom: 2px solid var(--silverColor);
     animation: spin .6s linear infinite;
 }
 

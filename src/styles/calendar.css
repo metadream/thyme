@@ -2,7 +2,7 @@
     position: absolute;
     z-index: 5001;
     font-size: 13px;
-    color: var(--grayColor, var(--gc));
+    color: var(--carbonColor);
     background-color: #fff;
     box-shadow: 0 0 16px rgb(0 0 0 / 8%);
     user-select: none;
@@ -13,7 +13,7 @@
     align-items: center;
     height: 40px;
     padding: 5px;
-    border-bottom: 1px solid var(--paleColor, var(--ac));
+    border-bottom: 1px solid var(--platColor);
 }
 
 .calendar-title {
@@ -48,7 +48,7 @@ td {
     padding: 3px;
 }
 
-td > div {
+td>div {
     display: flex;
     justify-content: center;
     align-items: center;
@@ -58,22 +58,22 @@ td > div {
     transition: .3s all;
 }
 
-td > div:hover {
-    background-color: var(--paleColor, var(--ac));
+td>div:hover {
+    background-color: var(--platColor);
 }
 
-td > div.today {
+td>div.today {
     color: #fff;
     background-color: var(--primaryColor, var(--pc));
 }
 
-td > div.curr {
+td>div.curr {
     color: #fff;
-    background-color: var(--minorColor, var(--mc));
+    background-color: var(--grayColor);
 }
 
-td > div.minor {
-    color: var(--lineColor, var(--lc));
+td>div.minor {
+    color: var(--silverColor);
 }
 
 svg.icon {
@@ -86,5 +86,5 @@ svg.icon {
 }
 
 svg.icon:hover {
-    background-color: var(--paleColor, var(--ac));
+    background-color: var(--platColor);
 }

@@ -18,7 +18,7 @@
     bottom: 0;
     left: 0;
     right: 0;
-    background-color: var(--lineColor, var(--lc));
+    background-color: var(--silverColor);
     border-radius: 28px;
     transition: .3s;
 }
@@ -35,10 +35,10 @@
     transition: .3s;
 }
 
-input:checked + i {
+input:checked+i {
     background-color: var(--primaryColor, var(--pc));
 }
 
-input:checked + i:before {
+input:checked+i:before {
     transform: translateX(16px);
 }

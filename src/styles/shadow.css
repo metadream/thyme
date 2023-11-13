@@ -4,14 +4,14 @@
 
 :host {
     --pc: #19c;
-    --dc: #e58;
+    --ec: #e58;
     --wc: #f80;
     --sc: #3b6;
     --fc: #333;
-    --gc: #666;
-    --mc: #999;
-    --lc: #ccc;
-    --ac: #eee;
+    --carbonColor: #666;
+    --grayColor: #999;
+    --silverColor: #ccc;
+    --platColor: #eee;
     --ff: system-ui, -apple-system, BlinkMacSystemFont, "Helvetica Neue", Helvetica, Arial, "PingFang SC", "Hiragino Sans GB", "Heiti SC", "Microsoft YaHei", "WenQuanYi Micro Hei", sans-serif;
     --fs: 15px;
     --br: 5px;
@@ -22,7 +22,7 @@
 }
 
 svg.icon path {
-    fill: var(--minorColor, var(--mc));
+    fill: var(--grayColor);
 }
 
 .overlay {

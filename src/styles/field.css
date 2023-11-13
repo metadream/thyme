@@ -1,7 +1,7 @@
 .field {
     display: flex;
     align-items: center;
-    border: 1px solid var(--lineColor, var(--lc));
+    border: 1px solid var(--silverColor);
     border-radius: var(--borderRadius, var(--br));
     height: 40px;
     transition: .3s;
@@ -12,7 +12,7 @@
     box-shadow: 0 0 5px 0 rgb(0 0 0 / 15%);
 }
 
-.field:focus-within > label:after {
+.field:focus-within>label:after {
     background-color: var(--primaryColor, var(--pc));
 }
 
@@ -32,12 +32,12 @@
     bottom: 2px;
     right: 0;
     width: 1px;
-    background-color: var(--lineColor, var(--lc));
+    background-color: var(--silverColor);
     transition: .3s;
 }
 
-.field.required > label:after {
-    background-color: var(--dangerColor, var(--dc));
+.field.required>label:after {
+    background-color: var(--errorColor, var(--ec));
 }
 
 .field input {
@@ -51,7 +51,7 @@
 }
 
 .field input[disabled] {
-    color: var(--minorColor, var(--mc));
+    color: var(--grayColor);
     background-color: #fff;
     pointer-events: none;
 }
