@@ -31,7 +31,7 @@ export class Calendar extends Component {
         this.$calendar = this.findElement('.calendar');
         this.$overlay = this.findElement('.overlay');
         this.$overlay.on('click', () => this.remove());
-        this.bindEventListeners();
+        this.#bindEvents();
     }
 
     // 依附到某个元素
@@ -42,11 +42,11 @@ export class Calendar extends Component {
 
         this.initDate = new Date(target.value);
         this.initDate = isNaN(this.initDate.getTime()) ? new Date() : this.initDate;
-        this.render(this.initDate);
+        this.#render(this.initDate);
     }
 
     // 绑定事件
-    bindEventListeners() {
+    #bindEvents() {
         // 点击日期选择器
         const event = new Event('selected');
         this.$calendar.on('click', e => {
@@ -62,7 +62,7 @@ export class Calendar extends Component {
             // 点击标题回到初始日期
             const $currText = this.findElement('.calendar-title');
             if ($currText.contains($target)) {
-                return this.render(this.initDate);
+                return this.#render(this.initDate);
             }
 
             // 点击上下月/上下年按钮
@@ -84,13 +84,13 @@ export class Calendar extends Component {
             } else {
                 return;
             }
-            this.render(currDate);
+            this.#render(currDate);
         });
     }
 
     // 渲染日历
-    render(date) {
-        const data = this.calData = this.getCalendarData(date);
+    #render(date) {
+        const data = this.calData = this.#getCalendarData(date);
         let html = `
             <div class="calendar-header">
               ${prevYearIcon}
@@ -132,7 +132,7 @@ export class Calendar extends Component {
     }
 
     // 获取指定日期的日历格数据
-    getCalendarData(date = new Date()) {
+    #getCalendarData(date = new Date()) {
         const year = date.getFullYear();
         const month = date.getMonth() + 1;
 

@@ -25,6 +25,9 @@ export class Upload extends Component {
             <div class="upload-list"></div>
         </div>`;
 
+    #uploadCallback;
+    #removeCallback;
+
     onConnected() {
         this._entries = [];
         this.readOnly = this.getBooleanAttribute('readonly');
@@ -37,7 +40,7 @@ export class Upload extends Component {
             const $file = this.findElement('input[type="file"]');
             const $chooser = this.findElement('a.chooser');
             $chooser.on('click', () => $file.click());
-            $file.on('change', e => this.upload(e.target.files));
+            $file.on('change', e => this.#upload(e.target.files));
 
             if (this.maxFiles > 1) {
                 $file.setAttribute('multiple', 'multiple');
@@ -45,9 +48,8 @@ export class Upload extends Component {
         }
     }
 
-    async upload(files) {
+    async #upload(files) {
         if (!files || files.length === 0) {
-            Quick.info(Locale.get('NO_FILES_SELECTED'));
             return;
         }
         if (files.length + this.entries.length > this.maxFiles) {
@@ -68,14 +70,14 @@ export class Upload extends Component {
                 downloadUrl: tempUrl,
                 file
             };
-            if (this.uploadCallback) {
-                await this.uploadCallback(entry);
-                this.render(entry);
+            if (this.#uploadCallback) {
+                await this.#uploadCallback(entry);
+                this.#render(entry);
             }
         }
     }
 
-    render(entry) {
+    #render(entry) {
         if (!entry || !entry._id) return;
         const $entry = createElement(`
             <div class="upload-entry" id="${entry._id}">
@@ -89,7 +91,7 @@ export class Upload extends Component {
         if (this.readOnly) {
             $removeBtn.remove();
         } else {
-            $removeBtn.on('click', () => this.remove(entry));
+            $removeBtn.on('click', () => this.#remove(entry));
         }
 
         const $uploadList = this.findElement('.upload-list');
@@ -97,11 +99,11 @@ export class Upload extends Component {
         this._entries.push(entry);
     }
 
-    remove(entry) {
+    #remove(entry) {
         Quick.confirm(Locale.get('DELETE_PROMPT'), async (_cfm, btn) => {
-            if (!entry.file && this.removeCallback) {
+            if (!entry.file && this.#removeCallback) {
                 btn.loadding = true;
-                await this.removeCallback(entry);
+                await this.#removeCallback(entry);
                 btn.loadding = false;
                 Quick.success(Locale.get('DELETE_SUCCESS'));
             }
@@ -121,16 +123,16 @@ export class Upload extends Component {
     set entries(entries) {
         this._entries.length = 0;
         if (entries && Array.isArray(entries)) {
-            entries.forEach(v => this.render(v));
+            entries.forEach(v => this.#render(v));
         }
     }
 
     set onUpload(callback) {
-        this.uploadCallback = callback;
+        this.#uploadCallback = callback;
     }
 
     set onRemove(callback) {
-        this.removeCallback = callback;
+        this.#removeCallback = callback;
     }
 
 }

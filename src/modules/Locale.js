@@ -6,13 +6,12 @@ export const Locale = {
         EMPTY_OPTION: '<空>',
 
         UPLOAD: '上传附件',
-        NO_FILES_SELECTED: '未选择任何文件',
         MAX_ALLOWED_FILES: '最多允许上传 {{maxFiles}} 个文件',
         MAX_ALLOWED_SIZE: '单文件大小不允许超过 {{maxSize}}',
         DELETE_PROMPT: '确定删除吗？',
         DELETE_SUCCESS: '删除成功',
 
-        INCORRECT_INPUT: '光标处数据不能为空或输入格式有误',
+        INCORRECT_INPUT: '光标处数据有误',
         UNSUPPORTED_RESPONSE: '不支持的响应类型',
         NETWORK_ERROR: '网络连接异常'
     },
@@ -22,7 +21,6 @@ export const Locale = {
         EMPTY_OPTION: '<Empty>',
 
         UPLOAD: 'UPLOAD',
-        NO_FILES_SELECTED: 'No files selected',
         MAX_ALLOWED_FILES: 'The maximum number of upload files allowed is {{maxFiles}}',
         MAX_ALLOWED_SIZE: 'Single file size is not allowed to exceed {{maxSize}}',
         DELETE_PROMPT: 'Sure to delete?',

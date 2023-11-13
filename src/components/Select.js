@@ -23,13 +23,13 @@ export class Select extends Component {
         slot.remove();
 
         this.$options = this.findElement('.options');
-        this.render(options);
+        this.#render(options);
 
         this.$field = this.findElement('.field');
-        this.$field.on('click', () => this.pulldown());
+        this.$field.on('click', () => this.#pulldown());
     }
 
-    render(options) {
+    #render(options) {
         const input = this.findElement('input');
 
         for (const option of options) {
@@ -48,21 +48,21 @@ export class Select extends Component {
                     console.log('option.value=', { label, value });
                     input.value = label;
 
-                    this.pullup();
+                    this.#pullup();
                     // this.dispatchEvent(event);
                 });
             }
         }
     }
 
-    pulldown() {
+    #pulldown() {
         this.$options.addClass('dropdown');
         this.$overlay = createElement('<div class="overlay"></div>');
-        this.$overlay.on('click', () => this.pullup());
+        this.$overlay.on('click', () => this.#pullup());
         this.internals.append(this.$overlay);
     }
 
-    pullup() {
+    #pullup() {
         this.$options.removeClass('dropdown');
         this.$overlay.remove();
     }

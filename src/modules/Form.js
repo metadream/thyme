@@ -3,13 +3,13 @@ import { Locale } from './Locale.js';
 /**
  * 表单验证和获取
  */
-export const Form = {
+export class Form {
 
     /**
      * 将带有name属性的元素数据解析为JSON对象
      * @param scope 获取范围
      */
-    getJsonObject(scope) {
+    static getJsonObject(scope) {
         scope = typeof scope === 'string' ? document.querySelector(scope) : scope;
         const fields = scope.querySelectorAll('[name]:not([name=""])');
         const data = {};
@@ -37,7 +37,7 @@ export const Form = {
 
             // 数据校验
             const required = field.getBooleanAttribute('required');
-            if (!this.validate(value, required, field.dataset.rule)) {
+            if (!this.#validate(value, required, field.dataset.rule)) {
                 field.focus();
                 Quick.error(field.dataset.message || Locale.get('INCORRECT_INPUT'));
                 return;
@@ -52,13 +52,13 @@ export const Form = {
             }
         }
         return data;
-    },
+    }
 
     /**
      * 将带name属性的一组元素解析为JSON数组
      * @param scopes 数组内每组对象的获取范围
      */
-    getJsonArray(scopes) {
+    static getJsonArray(scopes) {
         const array = [];
         scopes = typeof scopes === 'string' ? document.querySelectorAll(scopes) : scopes;
 
@@ -71,7 +71,7 @@ export const Form = {
             }
         }
         return array;
-    },
+    }
 
     /**
      * 数据校验
@@ -79,7 +79,7 @@ export const Form = {
      * @param required 是否必填
      * @param rule 数据规则
      */
-    validate(value, required, rule) {
+    static #validate(value, required, rule) {
         if (required && !value) return false; // 必填但空值，校验失败
         if (!rule) return true; // 无规则，视为成功
         if (!value) return true; // 空值无需校验，视为成功
@@ -90,17 +90,17 @@ export const Form = {
 
         // 有规则但找不到预设的校验方法，视为成功（相当于无规则）
         const groups = matches.groups;
-        const fn = this.validator[groups.type];
+        const fn = this.#validator[groups.type];
         if (!fn) return true;
 
         // 由预设的校验方法判断
         return fn(value, groups.min, groups.max);
-    },
+    }
 
     /**
      * 常用类型验证器
      */
-    validator: {
+    static #validator = {
         // 字符串格式
         varchar: function (value, min, max) {
             if (!max) { max = min, min = 0; }

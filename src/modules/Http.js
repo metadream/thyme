@@ -3,29 +3,29 @@ import { Locale } from './Locale.js';
 /**
  * HTTP请求方法集
  */
-export const Http = {
+export class Http {
 
-    get(url) {
-        return this.request('GET', url);
-    },
+    static get(url) {
+        return this.#request('GET', url);
+    }
 
-    post(url, data) {
-        return this.request('POST', url, data);
-    },
+    static post(url, data) {
+        return this.#request('POST', url, data);
+    }
 
-    put(url, data) {
-        return this.request('PUT', url, data);
-    },
+    static put(url, data) {
+        return this.#request('PUT', url, data);
+    }
 
-    patch(url, data) {
-        return this.request('PATCH', url, data);
-    },
+    static patch(url, data) {
+        return this.#request('PATCH', url, data);
+    }
 
-    delete(url, data) {
-        return this.request('DELETE', url, data);
-    },
+    static delete(url, data) {
+        return this.#request('DELETE', url, data);
+    }
 
-    async request(method, url, data) {
+    static async #request(method, url, data) {
         const options = { method, headers: {}, body: data };
 
         if (Object.prototype.toString.call(data) != '[object FormData]') {

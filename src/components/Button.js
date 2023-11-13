@@ -12,15 +12,45 @@ import { Component } from './Component.js';
 export class Button extends Component {
 
     styles = styles;
-    linkTemplate = '<a class="button {{class}}" href="{{href}}" target="{{target}}" draggable="false"><slot></slot></a>';
-    buttonTemplate = '<button class="{{class}}"><slot></slot></button>';
+    #linkTemplate = '<a class="button {{class}}" href="{{href}}" target="{{target}}" draggable="false"><slot></slot></a>';
+    #buttonTemplate = '<button class="{{class}}"><slot></slot></button>';
 
     onConnected() {
         this.disabled = this.getBooleanAttribute('disabled');
-        this.addRipples();
+        this.#addRipples();
     }
 
-    addRipples() {
+    get template() {
+        if (this._template) return this._template;
+        return this.getAttribute('href') ? this.#linkTemplate : this.#buttonTemplate;
+    }
+
+    set template(v) {
+        this._template = v;
+    }
+
+    get disabled() {
+        return this.internals.disabled;
+    }
+
+    set disabled(v) {
+        this.internals.disabled = v;
+    }
+
+    set loading(v) {
+        v = !!v;
+        if (this.disabled == v) return;
+        this.disabled = v;
+
+        if (v) {
+            this._loader = createElement('<div class="loading"></div>');
+            this.internals.append(this._loader);
+        } else {
+            this._loader && this._loader.remove();
+        }
+    }
+
+    #addRipples() {
         const button = this.internals;
         let _ripple;
 
@@ -57,36 +87,6 @@ export class Button extends Component {
                 _ripple.fadeOut();
             }
         });
-    }
-
-    get template() {
-        if (this._template) return this._template;
-        return this.getAttribute('href') ? this.linkTemplate : this.buttonTemplate;
-    }
-
-    set template(v) {
-        this._template = v;
-    }
-
-    get disabled() {
-        return this.internals.disabled;
-    }
-
-    set disabled(v) {
-        this.internals.disabled = v;
-    }
-
-    set loading(v) {
-        v = !!v;
-        if (this.disabled == v) return;
-        this.disabled = v;
-
-        if (v) {
-            this._loader = createElement('<div class="loading"></div>');
-            this.internals.append(this._loader);
-        } else {
-            this._loader && this._loader.remove();
-        }
     }
 
 }

@@ -12,7 +12,7 @@ import { Component } from './Component.js';
 const HIDDEN = 0, PENDING = 1, OPENED = 2;
 export class Dialog extends Component {
 
-    state = HIDDEN;
+    #state = HIDDEN;
     styles = styles;
     template = `
         <div class="overlay dialog">
@@ -43,7 +43,7 @@ export class Dialog extends Component {
             }
 
             const button = createElement(`<button>${item.label}</button>`);
-            this.defineLoading(button);
+            this.#defineLoading(button);
             footer.append(button);
 
             if (item.primary === true) {
@@ -55,8 +55,42 @@ export class Dialog extends Component {
         }
     }
 
+    open(removable = false) {
+        if (this.#state != HIDDEN) return;
+        this.removable = removable;
+        this.#animate('fade-in', 'scale-in', OPENED);
+    }
+
+    hide() {
+        if (this.#state != OPENED) return;
+        this.#animate('fade-out', 'scale-out', HIDDEN);
+    }
+
+    #animate(bodyClass, panelClass, state) {
+        this.#state = PENDING;
+        const { internals, panel } = this;
+
+        if (state == OPENED) {
+            internals.style.display = 'flex';
+        }
+        internals.addClass(bodyClass);
+        panel.addClass(panelClass);
+
+        internals.onanimationend = () => {
+            panel.removeClass(panelClass);
+            internals.removeClass(bodyClass);
+            internals.onanimationend = null;
+
+            this.#state = state;
+            if (state == HIDDEN) {
+                if (this.removable) this.remove();
+                else internals.style.display = 'none';
+            }
+        }
+    }
+
     // 定义按钮loading
-    defineLoading(button) {
+    #defineLoading(button) {
         Object.defineProperty(button, "loading", {
             set: function (v) {
                 v = !!v;
@@ -71,40 +105,6 @@ export class Dialog extends Component {
                 }
             }
         });
-    }
-
-    open(removable = false) {
-        if (this.state != HIDDEN) return;
-        this.removable = removable;
-        this.animate('fade-in', 'scale-in', OPENED);
-    }
-
-    hide() {
-        if (this.state != OPENED) return;
-        this.animate('fade-out', 'scale-out', HIDDEN);
-    }
-
-    animate(bodyClass, panelClass, state) {
-        this.state = PENDING;
-        const { internals, panel } = this;
-
-        if (state == OPENED) {
-            internals.style.display = 'flex';
-        }
-        internals.addClass(bodyClass);
-        panel.addClass(panelClass);
-
-        internals.onanimationend = () => {
-            panel.removeClass(panelClass);
-            internals.removeClass(bodyClass);
-            internals.onanimationend = null;
-
-            this.state = state;
-            if (state == HIDDEN) {
-                if (this.removable) this.remove();
-                else internals.style.display = 'none';
-            }
-        }
     }
 
 }

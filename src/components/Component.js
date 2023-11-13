@@ -14,19 +14,9 @@ export class Component extends HTMLElement {
     connectedCallback() {
         this.attachShadow({ mode: 'open' });
         this.shadowRoot.append(createStyles(shadowStyles + this.styles));
-        this.shadowRoot.append(this.createInternals());
+        this.shadowRoot.append(this.#createInternals());
         this.onConnected && this.onConnected();
         this.onRendered && setTimeout(() => this.onRendered());
-    }
-
-    createInternals() {
-        const names = this.getAttributeNames();
-        for (const name of names) {
-            this.template = this.template.replace(`{{${name}}}`, this.getAttribute(name));
-        }
-        this.template = this.template.replace(/{{[a-zA-Z0-9\-]+}}/g, '');
-        this.internals = createElement(this.template);
-        return this.internals;
     }
 
     findElement(selector) {
@@ -35,6 +25,16 @@ export class Component extends HTMLElement {
 
     findElements(selector) {
         return this.internals.querySelectorAll(selector);
+    }
+
+    #createInternals() {
+        const names = this.getAttributeNames();
+        for (const name of names) {
+            this.template = this.template.replace(`{{${name}}}`, this.getAttribute(name));
+        }
+        this.template = this.template.replace(/{{[a-zA-Z0-9\-]+}}/g, '');
+        this.internals = createElement(this.template);
+        return this.internals;
     }
 
 }
