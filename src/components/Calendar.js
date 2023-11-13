@@ -1,6 +1,6 @@
 import styles from '../styles/calendar.css';
-import prevYearIcon from "../icons/double-arrow-left.svg";
-import nextYearIcon from "../icons/double-arrow-right.svg";
+import prevYearIcon from "../icons/arrows-left.svg";
+import nextYearIcon from "../icons/arrows-right.svg";
 import prevMonthIcon from "../icons/arrow-left.svg";
 import nextMonthIcon from "../icons/arrow-right.svg";
 import { getScrollTop, formatDate } from '../modules/Util.js';
