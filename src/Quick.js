@@ -17,15 +17,7 @@ class Quick {
 
     static http = Http;
     static form = Form;
-    static Button = Button;
-    static Calendar = Calendar;
-    static Dialog = Dialog;
-    static Field = Field;
-    static Select = Select;
-    static Switch = Switch;
-    static Toast = Toast;
-    static Toptray = Toptray;
-    static Upload = Upload;
+    static #toast;
 
     static {
         enhanceElements();
@@ -70,12 +62,12 @@ class Quick {
     }
 
     static info(text, type, delay) {
-        if (this._toast) {
-            this._toast.remove();
-            this._toast = null;
+        if (this.#toast) {
+            this.#toast.remove();
+            this.#toast = null;
         }
-        this._toast = createElement(`<quick-toast type="${type}" delay="${delay}">${text}</quick-toast>`);
-        document.body.append(this._toast);
+        this.#toast = createElement(`<quick-toast type="${type}" delay="${delay}">${text}</quick-toast>`);
+        document.body.append(this.#toast);
     }
 
     static warning(text) {
