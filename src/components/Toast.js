@@ -2,8 +2,8 @@ import styles from '../styles/toast.css';
 import { Component } from './Component.js';
 
 /**
- * 消息组件
- * @example <quick-toast type="warning|error|success">content</quick-toast>
+ * 悬浮消息组件
+ * @example <tag type="warning|error|success">text</tag>
  * @example Quick.info(text)
  * @example Quick.warning(text)
  * @example Quick.error(text)
