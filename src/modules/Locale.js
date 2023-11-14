@@ -15,6 +15,7 @@ export const Locale = {
         UNSUPPORTED_RESPONSE: '不支持的响应类型',
         NETWORK_ERROR: '网络连接异常'
     },
+
     'en': {
         OK: 'OK', YES: 'YES', NO: 'NO',
         MON: 'MON', TUE: 'TUE', WED: 'WED', THU: 'THU', FRI: 'FRI', SAT: 'SAT', SUN: 'SUN',
