@@ -12,9 +12,10 @@ export class Component extends HTMLElement {
     }
 
     connectedCallback() {
-        this.attachShadow({ mode: 'open' });
-        this.shadowRoot.append(createStyles(shadowStyles + this.styles));
-        this.shadowRoot.append(this.#createInternals());
+        const shadow = this.attachShadow({ mode: 'open' });
+        shadow.append(createStyles(shadowStyles + this.styles));
+        shadow.append(this.#createInternals());
+
         this.onConnected && this.onConnected();
         this.onRendered && setTimeout(() => this.onRendered());
     }
@@ -31,8 +32,9 @@ export class Component extends HTMLElement {
         const names = this.getAttributeNames();
         let tpl = this.template;
 
+        // 替换变量占位符
         names.forEach(n => tpl = tpl.replace(new RegExp('{{\\s*' + n + '\\s*}}', 'g'), this.attr(n)));
-        tpl = tpl.replace(/\s+\w+\s*=\s*"\s*{{\s*[a-zA-Z0-9\-]+\s*}}\s*"/g, '');
+        tpl = tpl.replace(/\s+[\w\-]+\s*=\s*"\s*{{\s*[\w\-]+\s*}}\s*"/g, '');
 
         this.internals = createElement(tpl);
         return this.internals;
