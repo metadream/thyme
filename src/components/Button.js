@@ -12,7 +12,7 @@ import { Component } from './Component.js';
 export class Button extends Component {
 
     styles = styles;
-    #loader;
+    #loading;
 
     onConnected() {
         this.disabled = this.battr('disabled');
@@ -39,10 +39,10 @@ export class Button extends Component {
         this.disabled = v;
 
         if (v) {
-            this.#loader = createElement('<div class="loading"></div>');
-            this.internals.append(this.#loader);
+            this.#loading = createElement('<div class="loading"></div>');
+            this.internals.append(this.#loading);
         } else {
-            this.#loader && this.#loader.remove();
+            this.#loading && this.#loading.remove();
         }
     }
 
