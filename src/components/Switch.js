@@ -3,7 +3,7 @@ import { Component } from './Component.js';
 
 /**
  * 开关组件
- * @example <quick-switch checked></quick-switch>
+ * @example <tag checked></tag>
  * @example this.value = true|false, 0|1
  */
 export class Switch extends Component {
