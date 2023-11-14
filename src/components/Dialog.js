@@ -4,12 +4,12 @@ import { Component } from './Component.js';
 
 /**
  * 对话框组件
- * @example <quick-dialog title="">any contents</quick-dialog>
+ * @example <tag title="">content</tag>
  * @example this.buttons = [{ label: string, primary: true|false, onclick: function(self, btn) }]
  * @example this.open(true|false)
  * @example this.hide()
  */
-const HIDDEN = 0, PENDING = 1, OPENED = 2;
+const HIDDEN = 0, TRANSFORMING = 1, OPENED = 2;
 export class Dialog extends Component {
 
     styles = styles;
@@ -46,7 +46,7 @@ export class Dialog extends Component {
             }
 
             const button = createElement(`<button>${item.label}</button>`);
-            this.#defineLoading(button);
+            this.#addLoading(button);
             footer.append(button);
 
             if (item.primary === true) {
@@ -70,7 +70,7 @@ export class Dialog extends Component {
     }
 
     #animate(bodyClass, panelClass, state) {
-        this.#state = PENDING;
+        this.#state = TRANSFORMING;
         const { internals } = this;
 
         if (state == OPENED) {
@@ -92,8 +92,8 @@ export class Dialog extends Component {
         }
     }
 
-    // 定义按钮loading
-    #defineLoading(button) {
+    // 按钮Loading
+    #addLoading(button) {
         Object.defineProperty(button, "loading", {
             set: function (v) {
                 v = !!v;
