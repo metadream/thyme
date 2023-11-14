@@ -50,20 +50,6 @@ export function registerComponent(tagName, component) {
 }
 
 /**
- * String原型扩展
- */
-export function enhanceStrings() {
-    Object.assign(String.prototype, {
-        asBoolean() {
-            return this !== 'null' && this !== 'undefined' && this !== 'false' && this !== '0';
-        },
-        asInt() {
-            return /^\d+$/.test(this) ? parseInt(this) : 0;
-        }
-    });
-}
-
-/**
  * DOM元素原型扩展
  */
 export function enhanceElements() {
@@ -106,6 +92,16 @@ export function enhanceElements() {
                 this.removeAttribute(name);
             }
             this.setAttribute(name, value);
+        },
+
+        battr(name) { // 获取布尔型属性（undefined将转换为true）
+            const v = this.attr(name);
+            return v !== null && v !== 'null' && v !== 'undefined' && v !== 'false' && v !== '0';
+        },
+
+        iattr(name) { // 获取整型属性
+            const v = this.attr(name);
+            return /^\d+$/.test(v) ? parseInt(v) : 0;
         },
 
         remove() {

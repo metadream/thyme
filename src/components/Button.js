@@ -18,7 +18,7 @@ export class Button extends Component {
     #loader;
 
     onConnected() {
-        this.disabled = this.attr('disabled')?.asBoolean();
+        this.disabled = this.battr('disabled');
         this.#addRipples();
     }
 

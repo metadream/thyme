@@ -42,17 +42,17 @@ export class Field extends Component {
             });
         }
 
-        const maxLength = this.attr('maxlength')?.asInt();
+        const maxLength = this.iattr('maxlength');
         if (maxLength > 0) {
             input.maxLength = maxLength;
         }
-        if (this.attr('required')?.asBoolean()) {
+        if (this.battr('required')) {
             this.internals.addClass('required');
         }
-        if (this.attr('readonly')?.asBoolean()) {
+        if (this.battr('readonly')) {
             input.readOnly = true;
         }
-        if (this.attr('disabled')?.asBoolean()) {
+        if (this.battr('disabled')) {
             input.disabled = true;
         }
     }

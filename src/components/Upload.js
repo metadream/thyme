@@ -34,9 +34,9 @@ export class Upload extends Component {
 
     onConnected() {
         this.#entries = [];
-        this.#readOnly = this.attr('readonly')?.asBoolean();
-        this.#maxSize = this.attr('maxsize')?.asInt(); // bytes
-        this.#maxFiles = this.attr('multiple')?.asInt();
+        this.#readOnly = this.battr('readonly');
+        this.#maxSize = this.iattr('maxsize'); // bytes
+        this.#maxFiles = this.iattr('multiple');
 
         if (this.#readOnly) {
             this.query('.upload-chooser').remove();
