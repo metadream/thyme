@@ -20,6 +20,9 @@ export class Form {
                 continue;
             }
             if (field.tagName === 'INPUT' || field.tagName === 'TEXTAREA' || field.tagName.startsWith('QUICK-')) {
+                if (field.value === null || field.value === undefined) {
+                    continue;
+                }
                 if (typeof field.value === 'string') {
                     field.value = field.value.trim();
                 }
