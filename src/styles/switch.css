@@ -1,7 +1,7 @@
 .switch {
     position: relative;
     display: inline-block;
-    width: 42px;
+    width: 40px;
     height: 26px;
 }
 
@@ -40,5 +40,5 @@ input:checked+i {
 }
 
 input:checked+i:before {
-    transform: translateX(14px);
+    transform: translateX(12px);
 }
