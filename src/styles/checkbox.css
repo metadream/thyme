@@ -2,6 +2,7 @@ label {
     display: inline-flex;
     align-items: center;
     cursor: pointer;
+    user-select: none;
 }
 
 label.disabled {
@@ -37,9 +38,9 @@ input::before {
 
 input:checked::before {
     transform: scale(1);
-    clip-path: polygon(10% 50%, 0 65%, 50% 100%, 100% 10%, 85% 0%, 45% 70%);
+    clip-path: polygon(10% 45%, 0% 58%, 45% 94%, 100% 15%, 86% 6%, 43% 67%);
 }
 
-input + div {
+input+div {
     margin-left: 5px;
 }

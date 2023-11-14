@@ -20,6 +20,7 @@
     <br><br>
     <quick-checkbox name="os" value="andriod" required>Android</quick-checkbox>
     <quick-checkbox name="os" value="windows" id="aa">Windows</quick-checkbox>
+    <quick-switch name="isSupplier" checked></quick-switch>
 
     <br><br>
     <div style="border:1px solid #666;">
@@ -46,6 +47,7 @@
     <quick-button class="tonal danger" disabled>测试按钮</quick-button>
     <br><br>
     <quick-button class="warning outlined" onclick="loadingtest(this)">测试按钮</quick-button>
+    <quick-button onclick="getv()">get</quick-button>
 
     <br><br><br>
     <table class="quick-table-list">
@@ -70,10 +72,8 @@
     <quick-field type="text" maxlength="30" label="用户名" name="username" data-rule="integer(2)" required></quick-field>
     <quick-field type="password" label="密码" name="password" value="psd" disabled></quick-field>
     <quick-field type="calendar" label="日期" name="date" value="2023-01-05"></quick-field>
-    <quick-switch name="isSupplier" checked></quick-switch>
 
     <br><br>
-    <button onclick="getv()">get</button>
     <button onclick="change()">change</button>
     <button onclick="openalert()">alert</button>
     <button onclick="openc()" class="danger">delete</button>
