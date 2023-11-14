@@ -85,7 +85,7 @@ table {
     --headBgColor: #ddd;
 }
 
-.quick-table-list {
+table.list {
     table-layout: fixed;
     border-collapse: collapse;
     border-style: hidden;
@@ -94,7 +94,7 @@ table {
     width: 100%;
 }
 
-.quick-table-list th, .quick-table-list td {
+table.list th, table.list td {
     height: 40px;
     padding: 5px 10px;
     white-space: nowrap;
@@ -102,36 +102,36 @@ table {
     overflow: hidden;
 }
 
-.quick-table-list th {
+table.list th {
     background-color: var(--headBgColor);
 }
 
-.quick-table-list td {
+table.list td {
     border-left: 1px solid #f3f3f3;
     border-top: 1px solid var(--lineColor);
 }
 
-.quick-table-list th:first-child {
+table.list th:first-child {
     border-top-left-radius: var(--borderRadius);
 }
 
-.quick-table-list th:last-child {
+table.list th:last-child {
     border-top-right-radius: var(--borderRadius);
 }
 
-.quick-table-list tr:last-child td:first-child {
+table.list tr:last-child td:first-child {
     border-bottom-left-radius: var(--borderRadius);
 }
 
-.quick-table-list tr:last-child td:last-child {
+table.list tr:last-child td:last-child {
     border-bottom-right-radius: var(--borderRadius);
 }
 
-[quick-tooltip] {
+[tooltip] {
     position: relative;
 }
 
-[quick-tooltip]:before, [quick-tooltip]:after {
+[tooltip]:before, [tooltip]:after {
     position: absolute;
     visibility: hidden;
     pointer-events: none;
@@ -142,12 +142,12 @@ table {
     transition: opacity .5s;
 }
 
-[quick-tooltip]:hover:before, [quick-tooltip]:hover:after {
+[tooltip]:hover:before, [tooltip]:hover:after {
     visibility: visible;
     opacity: 1;
 }
 
-[quick-tooltip]:before {
+[tooltip]:before {
     content: '';
     z-index: 9001;
     background-color: transparent;
@@ -156,8 +156,8 @@ table {
     margin-bottom: -12px;
 }
 
-[quick-tooltip]:after {
-    content: attr(quick-tooltip);
+[tooltip]:after {
+    content: attr(tooltip);
     z-index: 9000;
     margin-right: -300px;
     padding: 6px 10px;

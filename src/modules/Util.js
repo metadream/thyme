@@ -34,7 +34,7 @@ export function createElement(content) {
 
 /**
  * 创建样式标签
- * @returns 
+ * @returns
  */
 export function createStyles(content) {
     const style = createElement('style');
