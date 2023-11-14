@@ -1,42 +1,42 @@
 import styles from '../styles/calendar.css';
+import calendarIcon from "../icons/calendar.svg";
 import prevYearIcon from "../icons/arrows-left.svg";
 import nextYearIcon from "../icons/arrows-right.svg";
 import prevMonthIcon from "../icons/arrow-left.svg";
 import nextMonthIcon from "../icons/arrow-right.svg";
-import { getScrollTop, formatDate } from '../modules/Util.js';
+import { createElement, createStyles, getScrollTop, formatDate } from '../modules/Util.js';
 import { Locale } from '../modules/Locale.js';
-import { Component } from './Component.js';
+import { Field } from './Field.js';
 
 /**
  * 日历组件
- * @example const $calendar = createElement('quick-calendar');
- *          this.shadowRoot.append($calendar);
- *          $calendar.attach(input);
- *          $calendar.on('selected', e => {
- *              input.value = e.target.value;
- *              $calendar.remove();
- *          });
+ * @example
  */
-export class Calendar extends Component {
+export class Calendar extends Field {
 
-    styles = styles;
-    template = `
-        <div>
-            <div class="overlay" style="background:none"></div>
-            <div class="calendar"></div>
-        </div>
-    `;
-
+    #template = '<div><div class="overlay"></div><div class="calendar"></div></div>';
     #calendar;
     #initDate;
     #calData;
+    #wrapper;
 
     onConnected() {
-        const overlay = this.query('.overlay');
-        overlay.on('click', () => this.remove());
+        super.onConnected();
+        this.shadowRoot.append(createStyles(styles));
+        this.readOnly = true;
 
-        this.#calendar = this.query('.calendar');
-        this.#bindEvents();
+        const icon = this.createIcon(calendarIcon);
+        icon.on('click', () => {
+            this.#wrapper = createElement(this.#template);
+            this.shadowRoot.append(this.#wrapper);
+
+            const overlay = this.#wrapper.querySelector('.overlay');
+            overlay.on('click', () => this.#wrapper.remove());
+
+            this.#calendar = this.#wrapper.querySelector('.calendar');
+            this.#bindEvents();
+            this.attach(this.query('input'));
+        })
     }
 
     // 依附到某个元素
@@ -53,7 +53,6 @@ export class Calendar extends Component {
     // 绑定事件
     #bindEvents() {
         // 点击日期选择器
-        const event = new Event('selected');
         this.#calendar.on('click', e => {
             const $target = e.target;
 
@@ -61,17 +60,17 @@ export class Calendar extends Component {
             if ($target.parentNode.tagName === 'TD') {
                 const date = new Date(this.#calData.year, this.#calData.month - 1, $target.dataset.index);
                 this.value = formatDate(date, 'yyyy-MM-dd');
-                this.dispatchEvent(event);
+                this.#wrapper.remove();
             }
 
             // 点击标题回到初始日期
-            const $currText = this.query('.calendar-title');
+            const $currText = this.#calendar.querySelector('.calendar-title');
             if ($currText.contains($target)) {
                 return this.#render(this.#initDate);
             }
 
             // 点击上下月/上下年按钮
-            const svgIcons = this.queryAll('svg.icon');
+            const svgIcons = this.#calendar.querySelectorAll('svg.icon');
             const $prevYear = svgIcons[0];
             const $prevMonth = svgIcons[1];
             const $nextMonth = svgIcons[2];

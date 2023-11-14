@@ -70,8 +70,8 @@
 
     <br><br>
     <quick-field type="text" maxlength="30" label="用户名" name="username" data-rule="integer(2)" required></quick-field>
-    <quick-field type="password" label="密码" name="password" value="psd" disabled></quick-field>
-    <quick-field type="calendar" label="日期" name="date" value="2023-01-05"></quick-field>
+    <quick-field type="password" name="password" value="" placeholder="password"></quick-field>
+    <quick-calendar label="日期" name="date" value="2023-01-05"></quick-calendar>
 
     <br><br>
     <button onclick="change()">change</button>
@@ -97,6 +97,10 @@
 </html>
 
 <script>
+    function search() {
+        console.log('--------------search');
+    }
+
     const uploader = document.querySelector('quick-upload');
     uploader.entries = [{
         _id: 'a-1',

@@ -1,3 +1,7 @@
+.overlay {
+    background: none;
+}
+
 .calendar {
     position: absolute;
     z-index: 5001;
@@ -76,7 +80,7 @@ td>div.minor {
     color: var(--silverColor);
 }
 
-svg.icon {
+.calendar svg.icon {
     width: 24px;
     height: 24px;
     padding: 5px;
@@ -85,6 +89,6 @@ svg.icon {
     transition: .3s all;
 }
 
-svg.icon:hover {
+.calendar svg.icon:hover {
     background-color: var(--platColor);
 }

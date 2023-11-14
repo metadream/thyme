@@ -1,12 +1,10 @@
 import styles from '../styles/field.css';
-import calendarIcon from "../icons/calendar.svg";
-import { createElement, toDataURI } from '../modules/Util.js';
+import { createElement } from '../modules/Util.js';
 import { Component } from './Component.js';
 
 /**
  * 文本框组件
- * @example <quick-field label="" type="text|password|calendar" maxlength="" value=""></quick-field>
- * @example <quick-field data-rule="varchar|integer|decimal|date|email|url" data-message="" required></quick-field>
+ * @example <tag label="" icon="">not required</tag>
  */
 export class Field extends Component {
 
@@ -14,75 +12,68 @@ export class Field extends Component {
     template = `<div class="field">
         <label>{{label}}</label>
         <slot>
-            <input type="{{type}}" value="{{value}}"/>
-            <i class="icon"></i>
+            <input type="{{type}}" placeholder="{{placeholder}}" maxlength="{{maxlength}}" value="{{value}}"/>
+            <input type="hidden" value="{{value}}"/>
         </slot>
     </div>`;
 
-    #nativeElement;
+    #displayField;
+    #hiddenField;
 
     onConnected() {
-        const input = this.query('input');
-        this.#nativeElement = input;
+        this.#displayField = this.query('input');
+        this.#hiddenField = this.query('input[type="hidden"]');
+        if (!this.#hiddenField) return;
 
-        if (this.attr('type') == 'calendar') {
-            input.readOnly = true;
-            input.addClass('icon-trigger');
-            input.style.backgroundImage = `url(${toDataURI(calendarIcon)})`;
+        this.#displayField.readOnly = this.battr('readonly');
+        this.#displayField.disabled = this.battr('disabled');
+        this.createIcon(this.attr('icon'));
 
-            input.on('click', () => {
-                const $calendar = createElement('quick-calendar');
-                this.shadowRoot.append($calendar);
-
-                $calendar.attach(input);
-                $calendar.on('selected', e => {
-                    input.value = e.target.value;
-                    $calendar.remove();
-                });
-            });
-        }
-
-        const maxLength = this.iattr('maxlength');
-        if (maxLength > 0) {
-            input.maxLength = maxLength;
-        }
         if (this.battr('required')) {
             this.internals.addClass('required');
         }
-        if (this.battr('readonly')) {
-            input.readOnly = true;
+        if (!this.attr('label')) {
+            this.query('label').remove();
         }
-        if (this.battr('disabled')) {
-            input.disabled = true;
-        }
+    }
+
+    createIcon(src) {
+        if (!src) return;
+        src = src.trim();
+        src = src.startsWith('<') ? src : `<img src="${src}"/>`;
+
+        const $icon = createElement(`<i class="icon">${src}</i>`);
+        this.internals.append($icon);
+        return $icon;
     }
 
     focus() {
-        this.#nativeElement.focus();
+        this.#displayField.focus();
     }
 
     get value() {
-        return this.#nativeElement.value;
+        return this.#hiddenField.value;
     }
 
     set value(v) {
-        this.#nativeElement.value = v;
+        this.#displayField.value = v;
+        this.#hiddenField.value = v;
     }
 
     get readOnly() {
-        return this.#nativeElement.readOnly;
+        return this.#displayField.readOnly;
     }
 
     set readOnly(v) {
-        this.#nativeElement.readOnly = v;
+        this.#displayField.readOnly = v;
     }
 
     get disabled() {
-        return this.#nativeElement.disabled;
+        return this.#displayField.disabled;
     }
 
     set disabled(v) {
-        this.#nativeElement.disabled = v;
+        this.#displayField.disabled = v;
     }
 
 }
