@@ -19,3 +19,4 @@
 
 - upload 增加 loading
 - table-list, table-detail 独立以便样式隔离
+- globalStyles 精简
