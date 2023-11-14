@@ -19,22 +19,23 @@ export class Component extends HTMLElement {
         this.onRendered && setTimeout(() => this.onRendered());
     }
 
-    #createInternals() {
-        const names = this.getAttributeNames();
-        for (const name of names) {
-            this.template = this.template.replace(`{{${name}}}`, this.attr(name));
-        }
-        this.template = this.template.replace(/{{[a-zA-Z0-9\-]+}}/g, '');
-        this.internals = createElement(this.template);
-        return this.internals;
-    }
-
     query(selector) {
         return this.internals.querySelector(selector);
     }
 
     queryAll(selector) {
         return this.internals.querySelectorAll(selector);
+    }
+
+    #createInternals() {
+        const names = this.getAttributeNames();
+        let tpl = this.template;
+
+        names.forEach(n => tpl = tpl.replace(new RegExp('{{\\s*' + n + '\\s*}}', 'g'), this.attr(n)));
+        tpl = tpl.replace(/\s+\w+\s*=\s*"\s*{{\s*[a-zA-Z0-9\-]+\s*}}\s*"/g, '');
+
+        this.internals = createElement(tpl);
+        return this.internals;
     }
 
 }

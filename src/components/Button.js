@@ -12,9 +12,6 @@ import { Component } from './Component.js';
 export class Button extends Component {
 
     styles = styles;
-
-    #linkTemplate = '<a class="button {{class}}" href="{{href}}" target="{{target}}" draggable="false"><slot></slot></a>';
-    #buttonTemplate = '<button class="{{class}}"><slot></slot></button>';
     #loader;
 
     onConnected() {
@@ -23,12 +20,9 @@ export class Button extends Component {
     }
 
     get template() {
-        if (this._template) return this._template;
-        return this.attr('href') ? this.#linkTemplate : this.#buttonTemplate;
-    }
-
-    set template(v) {
-        this._template = v;
+        return this.attr('href')
+            ? '<a class="button {{class}}" href="{{href}}" target="{{target}}" draggable="false"><slot></slot></a>'
+            : '<button class="{{class}}"><slot></slot></button>';
     }
 
     get disabled() {
