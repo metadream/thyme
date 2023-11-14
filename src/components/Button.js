@@ -18,13 +18,13 @@ export class Button extends Component {
     #loader;
 
     onConnected() {
-        this.disabled = this.getBooleanAttribute('disabled');
+        this.disabled = this.attr('disabled')?.asBoolean();
         this.#addRipples();
     }
 
     get template() {
         if (this._template) return this._template;
-        return this.getAttribute('href') ? this.#linkTemplate : this.#buttonTemplate;
+        return this.attr('href') ? this.#linkTemplate : this.#buttonTemplate;
     }
 
     set template(v) {

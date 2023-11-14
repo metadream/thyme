@@ -32,10 +32,10 @@ export class Calendar extends Component {
     #calData;
 
     onConnected() {
-        const overlay = this.findElement('.overlay');
+        const overlay = this.query('.overlay');
         overlay.on('click', () => this.remove());
 
-        this.#calendar = this.findElement('.calendar');
+        this.#calendar = this.query('.calendar');
         this.#bindEvents();
     }
 
@@ -65,13 +65,13 @@ export class Calendar extends Component {
             }
 
             // 点击标题回到初始日期
-            const $currText = this.findElement('.calendar-title');
+            const $currText = this.query('.calendar-title');
             if ($currText.contains($target)) {
                 return this.#render(this.#initDate);
             }
 
             // 点击上下月/上下年按钮
-            const svgIcons = this.findElements('svg.icon');
+            const svgIcons = this.queryAll('svg.icon');
             const $prevYear = svgIcons[0];
             const $prevMonth = svgIcons[1];
             const $nextMonth = svgIcons[2];

@@ -36,7 +36,7 @@ export class Form {
             }
 
             // 数据校验
-            const required = field.getBooleanAttribute('required');
+            const required = field.attr('required')?.asBoolean();
             if (!this.#validate(value, required, field.dataset.rule)) {
                 field.focus();
                 Quick.error(field.dataset.message || Locale.get('INCORRECT_INPUT'));
@@ -44,7 +44,7 @@ export class Form {
             }
 
             // 设置返回对象的键值
-            const name = field.getAttribute('name');
+            const name = field.attr('name');
             if (data[name]) {
                 data[name] += ',' + value;
             } else {

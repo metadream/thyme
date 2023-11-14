@@ -28,9 +28,9 @@ export class Dialog extends Component {
     #removable;
 
     onConnected() {
-        this.#panel = this.findElement('.dialog-panel');
-        if (!this.getAttribute('title')) {
-            this.findElement('.dialog-header').remove();
+        this.#panel = this.query('.dialog-panel');
+        if (!this.attr('title')) {
+            this.query('.dialog-header').remove();
         }
         document.addEventListener('keyup', e => {
             if (e.keyCode === 27) this.hide();
@@ -39,7 +39,7 @@ export class Dialog extends Component {
 
     // 添加按钮
     set buttons(items = []) {
-        const footer = this.findElement('.dialog-footer');
+        const footer = this.query('.dialog-footer');
         for (let item of items) {
             if (typeof item === 'string') {
                 item = { label: item };

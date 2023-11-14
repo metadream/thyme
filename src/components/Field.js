@@ -11,15 +11,21 @@ import { Component } from './Component.js';
 export class Field extends Component {
 
     styles = styles;
-    template = `<div class="field"><label>{{label}}</label><input type="{{type}}" value="{{value}}"/></div>`;
+    template = `<div class="field">
+        <label>{{label}}</label>
+        <slot>
+            <input type="{{type}}" value="{{value}}"/>
+            <i class="icon"></i>
+        </slot>
+    </div>`;
 
     #nativeElement;
 
     onConnected() {
-        const input = this.findElement('input');
+        const input = this.query('input');
         this.#nativeElement = input;
 
-        if (this.getAttribute('type') == 'calendar') {
+        if (this.attr('type') == 'calendar') {
             input.readOnly = true;
             input.addClass('icon-trigger');
             input.style.backgroundImage = `url(${toDataURI(calendarIcon)})`;
@@ -36,17 +42,17 @@ export class Field extends Component {
             });
         }
 
-        const maxLength = this.getIntAttribute('maxlength');
+        const maxLength = this.attr('maxlength')?.asInt();
         if (maxLength > 0) {
             input.maxLength = maxLength;
         }
-        if (this.getBooleanAttribute('required')) {
+        if (this.attr('required')?.asBoolean()) {
             this.internals.addClass('required');
         }
-        if (this.getBooleanAttribute('readonly')) {
+        if (this.attr('readonly')?.asBoolean()) {
             input.readOnly = true;
         }
-        if (this.getBooleanAttribute('disabled')) {
+        if (this.attr('disabled')?.asBoolean()) {
             input.disabled = true;
         }
     }

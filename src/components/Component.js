@@ -19,22 +19,22 @@ export class Component extends HTMLElement {
         this.onRendered && setTimeout(() => this.onRendered());
     }
 
-    findElement(selector) {
-        return this.internals.querySelector(selector);
-    }
-
-    findElements(selector) {
-        return this.internals.querySelectorAll(selector);
-    }
-
     #createInternals() {
         const names = this.getAttributeNames();
         for (const name of names) {
-            this.template = this.template.replace(`{{${name}}}`, this.getAttribute(name));
+            this.template = this.template.replace(`{{${name}}}`, this.attr(name));
         }
         this.template = this.template.replace(/{{[a-zA-Z0-9\-]+}}/g, '');
         this.internals = createElement(this.template);
         return this.internals;
+    }
+
+    query(selector) {
+        return this.internals.querySelector(selector);
+    }
+
+    queryAll(selector) {
+        return this.internals.querySelectorAll(selector);
     }
 
 }

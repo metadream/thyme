@@ -50,6 +50,20 @@ export function registerComponent(tagName, component) {
 }
 
 /**
+ * String原型扩展
+ */
+export function enhanceStrings() {
+    Object.assign(String.prototype, {
+        asBoolean() {
+            return this !== 'null' && this !== 'undefined' && this !== 'false' && this !== '0';
+        },
+        asInt() {
+            return /^\d+$/.test(this) ? parseInt(this) : 0;
+        }
+    });
+}
+
+/**
  * DOM元素原型扩展
  */
 export function enhanceElements() {
@@ -84,6 +98,16 @@ export function enhanceElements() {
             return this;
         },
 
+        attr(name, value) {
+            if (value === undefined) {
+                return this.getAttribute(name);
+            }
+            if (value === null) {
+                this.removeAttribute(name);
+            }
+            this.setAttribute(name, value);
+        },
+
         remove() {
             return this.parentNode && this.parentNode.removeChild(this);
         },
@@ -91,16 +115,6 @@ export function enhanceElements() {
         swap(el) {
             if (el) el.insertAdjacentElement('beforeBegin', this);
             return this;
-        },
-
-        getBooleanAttribute(name) {
-            const value = this.getAttribute(name);
-            return value !== null && value !== 'null' && value !== 'undefined' && value !== 'false' && value !== '0';
-        },
-
-        getIntAttribute(name) {
-            const value = this.getAttribute(name) || '0';
-            return /^\d+$/.test(value) ? parseInt(value) : 0;
         }
     });
 }

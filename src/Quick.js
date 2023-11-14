@@ -1,5 +1,5 @@
 import globalStyles from './styles/global.css';
-import { createElement, enhanceElements, registerComponent, createStyles } from './modules/Util.js';
+import { createElement, enhanceStrings, enhanceElements, registerComponent, createStyles } from './modules/Util.js';
 import { Locale } from './modules/Locale.js';
 import { Http } from './modules/Http.js';
 import { Form } from './modules/Form.js';
@@ -28,6 +28,7 @@ class Quick {
     static Upload = Upload;
 
     static {
+        enhanceStrings();
         enhanceElements();
         document.head.append(createStyles(globalStyles));
 

@@ -21,19 +21,19 @@ export class Select extends Component {
     #options;
 
     onRendered() {
-        const slot = this.findElement('slot');
+        const slot = this.query('slot');
         const options = slot.assignedElements();
         slot.remove();
 
-        this.#options = this.findElement('.options');
+        this.#options = this.query('.options');
         this.#render(options);
 
-        const field = this.findElement('.field');
+        const field = this.query('.field');
         field.on('click', () => this.#pulldown());
     }
 
     #render(options) {
-        const input = this.findElement('input');
+        const input = this.query('input');
 
         for (const option of options) {
             let { label, value, disabled } = option;
@@ -43,7 +43,7 @@ export class Select extends Component {
             this.#options.append($option);
 
             if (disabled) {
-                $option.setAttribute('disabled', true);
+                $option.attr('disabled', true);
                 $option.addClass('disabled');
             } else {
                 const event = new Event('change');

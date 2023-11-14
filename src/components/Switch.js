@@ -14,8 +14,8 @@ export class Switch extends Component {
     #nativeElement;
 
     onConnected() {
-        this.#nativeElement = this.findElement('input');
-        if (this.getBooleanAttribute('checked')) {
+        this.#nativeElement = this.query('input');
+        if (this.attr('checked')?.asBoolean()) {
             this.#nativeElement.checked = true;
         }
 

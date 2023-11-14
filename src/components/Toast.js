@@ -18,7 +18,7 @@ export class Toast extends Component {
         const { internals } = this;
         internals.addClass('bounce-in');
 
-        const delay = this.getIntAttribute('delay') || 3000;
+        const delay = this.attr('delay')?.asInt() || 3000;
         setTimeout(() => {
             internals.addClass('bounce-out');
             internals.on('animationend', () => this.remove());
