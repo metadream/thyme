@@ -32,7 +32,7 @@ export class Component extends HTMLElement {
         const names = this.getAttributeNames();
         let tpl = this.template;
 
-        // 替换变量占位符
+        // 替换模板变量占位符
         names.forEach(n => tpl = tpl.replace(new RegExp('{{\\s*' + n + '\\s*}}', 'g'), this.attr(n)));
         tpl = tpl.replace(/\s+[\w\-]+\s*=\s*"\s*{{\s*[\w\-]+\s*}}\s*"/g, '');
 
