@@ -1,0 +1,45 @@
+label {
+    display: inline-flex;
+    align-items: center;
+    cursor: pointer;
+}
+
+label.disabled {
+    color: #999;
+    cursor: default;
+}
+
+label.disabled input {
+    background-color: #ccc;
+}
+
+input {
+    display: grid;
+    place-content: center;
+    -webkit-appearance: none;
+    appearance: none;
+    outline: 0;
+    margin: 0;
+    color: #fff;
+    background-color: #19c;
+    width: 20px;
+    height: 20px;
+    border-radius: 5px;
+}
+
+input::before {
+    content: "";
+    width: 12px;
+    height: 12px;
+    transform: scale(0);
+    background-color: #fff;
+}
+
+input:checked::before {
+    transform: scale(1);
+    clip-path: polygon(10% 50%, 0 65%, 50% 100%, 100% 10%, 85% 0%, 45% 70%);
+}
+
+input + div {
+    margin-left: 5px;
+}

@@ -5,6 +5,7 @@ import { Http } from './modules/Http.js';
 import { Form } from './modules/Form.js';
 import { Button } from './components/Button.js';
 import { Calendar } from './components/Calendar.js';
+import { Checkbox } from './components/Checkbox.js';
 import { Dialog } from './components/Dialog.js';
 import { Field } from './components/Field.js';
 import { Select } from './components/Select.js';
@@ -25,6 +26,7 @@ class Quick {
 
         registerComponent('quick-button', Button);
         registerComponent('quick-calendar', Calendar);
+        registerComponent('quick-checkbox', Checkbox);
         registerComponent('quick-dialog', Dialog);
         registerComponent('quick-field', Field);
         registerComponent('quick-select', Select);
