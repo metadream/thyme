@@ -1,23 +1,21 @@
 ## TODO
 
 - quick-field
-  - 仅生成外框，可slot以下组件
-  - default outlined tonal
+  - 选配：label, input(text+hidden), icon(onclick)
+  - 样式：default outlined tonal
+  - set/get value (includes hidden)
+  - 有 slot 则替换默认内容（如switch，checkbox，radio）
 
-- quick-select 
-  - 宽度100%，可控外部制
-  - 图标
-  - set/get value
-  - 增加hidden字段保存value
+- quick-select extends field
+  - set icon onclick
   - 支持多选
 
-- quick-calendar
+- quick-calendar extends field
   - icon-trigger 不使用背景图标
+  - set icon onclick
 
-- quick-switch
+- quick-switch?
+- 增加checkbox、radio?
 
-- quick-input？
-
-- 增加checkbox、radio
-- upload增加 loading
-- table独立以便样式隔离
+- upload 增加 loading
+- table-list, table-detail 独立以便样式隔离
