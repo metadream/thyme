@@ -7,39 +7,67 @@ import { createElement, createStyles } from '../modules/Util.js';
  */
 export class Component extends HTMLElement {
 
+    #props = {}; // Camelcase properties cache
+
+    static get observedAttributes() {
+        return this.attrs || [];
+    };
+
     constructor() {
         super();
+        this.#defineProps();
+
+        const c = this.constructor;
+        this.attachShadow({ mode: 'open' });
+        this.shadowRoot.append(createStyles(shadowStyles + c.styles));
+        this.shadowRoot.append(createElement(c.template));
+    }
+
+    attributeChangedCallback(name, oldValue, newValue) {
+        if (oldValue === newValue) return;
+        if (this.onAttributeChanged) {
+            this.onAttributeChanged(name, oldValue, newValue);
+        }
     }
 
     connectedCallback() {
-        const shadow = this.attachShadow({ mode: 'open' });
-        shadow.append(createStyles(shadowStyles + this.styles));
-        shadow.append(this.#createInternals());
-
         this.onConnected && this.onConnected();
         this.onRendered && setTimeout(() => this.onRendered());
     }
 
     query(selector) {
-        return this.internals.querySelector(selector);
+        return this.shadowRoot.querySelector(selector);
     }
 
     queryAll(selector) {
-        return this.internals.querySelectorAll(selector);
+        return this.shadowRoot.querySelectorAll(selector);
     }
 
-    #createInternals() {
-        const names = this.getAttributeNames();
-        let tpl = this.template;
+    slots(name) {
+        const selector = name ? `slot[name="${name}"]` : 'slot';
+        return this.query(selector).assignedElements();
+    }
 
-        // 替换属性变量占位符
-        names.forEach(n => tpl = tpl.replace(new RegExp('{{\\s*' + n + '\\s*}}', 'g'), this.attr(n)));
-        // 删除未设置属性的占位符
-        tpl = tpl.replace(/\s+[\w\-]+\s*=\s*["']\s*{{\s*[\w\-]+\s*}}\s*["']/g, '');
-        tpl = tpl.replace(/{{\s*[\w\-]+\s*}}/g, '');
+    // 同步更新属性值
+    #defineProps() {
+        const attrs = new Set([...this.constructor.observedAttributes]);
+        attrs.forEach(name => {
+            Object.defineProperty(this, this.#camelCase(name), {
+                set: value => this.attr(name, value),
+                get: () => this.attr(name)
+            });
+        });
+    }
 
-        this.internals = createElement(tpl);
-        return this.internals;
+    // 将属性名转换为驼峰式
+    #camelCase(name) {
+        let prop = this.#props[name];
+        if (!prop) {
+            const np = name.split('-');
+            prop = [np.shift(), ...np.map(n => n[0].toUpperCase() + n.slice(1))].join('');
+            this.#props[name] = prop;
+        }
+        return prop;
     }
 
 }
