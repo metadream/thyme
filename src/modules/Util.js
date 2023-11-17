@@ -116,6 +116,24 @@ export function enhanceElements() {
 }
 
 /**
+ * 转换为布尔值（undefined将转换为true）
+ * @param {string} v
+ * @returns
+ */
+export function parseBoolean(v) {
+    return v !== null && v !== 'null' && v !== 'undefined' && v !== 'false' && v !== '0';
+}
+
+/**
+ * 转换为整型（非数字返回0）
+ * @param {string} v
+ * @returns
+ */
+export function parseInteger(v) {
+    return /^\d+$/.test(v) ? parseInt(v) : 0;
+}
+
+/**
  * 获取滚动高度
  * @returns
  */
