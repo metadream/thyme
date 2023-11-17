@@ -4,50 +4,50 @@ import prevYearIcon from "../icons/arrows-left.svg";
 import nextYearIcon from "../icons/arrows-right.svg";
 import prevMonthIcon from "../icons/arrow-left.svg";
 import nextMonthIcon from "../icons/arrow-right.svg";
-import { createElement, createStyles, getScrollTop, formatDate } from '../modules/Util.js';
+import { createElement, getScrollTop, formatDate } from '../modules/Util.js';
 import { Locale } from '../modules/Locale.js';
 import { Field } from './Field.js';
 
 /**
  * 日历组件
- * @example
+ * @example <tag></tag>
  */
 export class Calendar extends Field {
 
     #template = '<div><div class="overlay"></div><div class="calendar"></div></div>';
-    #calendar;
-    #initDate;
-    #calData;
     #wrapper;
+    #calendar;
+    #initialDate;
+    #gridData;
 
     onConnected() {
-        super.onConnected();
-        this.shadowRoot.append(createStyles(styles));
-        this.readOnly = true;
+        this.query('style').append(styles);
+        this.readonly = true;
+        this.icon = calendarIcon;
+        this.icon.on('click', () => this.#popup());
+    }
 
-        const icon = this.createIcon(calendarIcon);
-        icon.on('click', () => {
-            this.#wrapper = createElement(this.#template);
-            this.shadowRoot.append(this.#wrapper);
+    #popup() {
+        this.#wrapper = createElement(this.#template);
+        this.shadowRoot.append(this.#wrapper);
 
-            const overlay = this.#wrapper.querySelector('.overlay');
-            overlay.on('click', () => this.#wrapper.remove());
+        const overlay = this.#wrapper.querySelector('.overlay');
+        overlay.on('click', () => this.#wrapper.remove());
 
-            this.#calendar = this.#wrapper.querySelector('.calendar');
-            this.#bindEvents();
-            this.attach(this.query('input'));
-        })
+        this.#calendar = this.#wrapper.querySelector('.calendar');
+        this.#bindEvents();
+        this.#attach(this.query('input'));
     }
 
     // 依附到某个元素
-    attach(target) {
+    #attach(target) {
         const pos = target.getBoundingClientRect();
         this.#calendar.style.top = pos.y + pos.height + getScrollTop() + 1 + 'px';
         this.#calendar.style.left = pos.x + 'px';
 
-        this.#initDate = new Date(target.value);
-        this.#initDate = isNaN(this.#initDate.getTime()) ? new Date() : this.#initDate;
-        this.#render(this.#initDate);
+        this.#initialDate = new Date(target.value);
+        this.#initialDate = isNaN(this.#initialDate.getTime()) ? new Date() : this.#initialDate;
+        this.#render(this.#initialDate);
     }
 
     // 绑定事件
@@ -58,7 +58,7 @@ export class Calendar extends Field {
 
             // 点击日历格中的日期
             if ($target.parentNode.tagName === 'TD') {
-                const date = new Date(this.#calData.year, this.#calData.month - 1, $target.dataset.index);
+                const date = new Date(this.#gridData.year, this.#gridData.month - 1, $target.dataset.index);
                 this.value = formatDate(date, 'yyyy-MM-dd');
                 this.#wrapper.remove();
             }
@@ -66,7 +66,7 @@ export class Calendar extends Field {
             // 点击标题回到初始日期
             const $currText = this.#calendar.querySelector('.calendar-title');
             if ($currText.contains($target)) {
-                return this.#render(this.#initDate);
+                return this.#render(this.#initialDate);
             }
 
             // 点击上下月/上下年按钮
@@ -94,7 +94,7 @@ export class Calendar extends Field {
 
     // 渲染日历
     #render(date) {
-        const data = this.#calData = this.#getCalendarData(date);
+        const data = this.#gridData = this.#getGridData(date);
         let html = `
             <div class="calendar-header">
               ${prevYearIcon}
@@ -124,7 +124,7 @@ export class Calendar extends Field {
             const cellDay = data.days[i];
             let clazz = '';
             if (data.month != cellDay.month) clazz = 'minor';
-            if (data.year == this.#initDate.getFullYear() && cellDay.month == this.#initDate.getMonth() + 1 && cellDay.day == this.#initDate.getDate()) clazz = 'curr';
+            if (data.year == this.#initialDate.getFullYear() && cellDay.month == this.#initialDate.getMonth() + 1 && cellDay.day == this.#initialDate.getDate()) clazz = 'curr';
             if (data.year == today.getFullYear() && cellDay.month == today.getMonth() + 1 && cellDay.day == today.getDate()) clazz = 'today';
             html += '<td><div data-index="' + cellDay.index + '" class="' + clazz + '">' + cellDay.day + '</div></td>';
 
@@ -136,7 +136,7 @@ export class Calendar extends Field {
     }
 
     // 获取指定日期的日历格数据
-    #getCalendarData(date = new Date()) {
+    #getGridData(date = new Date()) {
         const year = date.getFullYear();
         const month = date.getMonth() + 1;
 
