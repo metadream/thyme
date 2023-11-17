@@ -1,79 +1,61 @@
 import styles from '../styles/field.css';
-import { createElement } from '../modules/Util.js';
+import { createElement, parseBoolean } from "../modules/Util.js";
 import { Component } from './Component.js';
 
 /**
  * 文本框组件
- * @example <tag label="" icon="">not required</tag>
+ * @example <tag>not required</tag>
+ * @example element.icon = Element|HTML
+ *          element.icon.onclick = ...
  */
 export class Field extends Component {
 
-    styles = styles;
-    template = `<div class="field">
-        <label>{{label}}</label>
-        <slot>
-            <input type="{{type}}" placeholder="{{placeholder}}" maxlength="{{maxlength}}" value="{{value}}"/>
-            <input type="hidden" value="{{value}}"/>
-        </slot>
-    </div>`;
+    static styles = styles;
+    static attrs = ['label', 'required', 'type', 'maxlength', 'placeholder', 'value', 'readonly', 'disabled'];
+    static template = '<div class="field"><div class="field-body"><slot><input/></slot></div></div>';
 
-    #displayField;
-    #hiddenField;
+    #input;
 
-    onConnected() {
-        this.#displayField = this.query('input');
-        this.#hiddenField = this.query('input[type="hidden"]');
-        if (!this.#hiddenField) return;
-
-        this.#displayField.readOnly = this.battr('readonly');
-        this.#displayField.disabled = this.battr('disabled');
-        this.createIcon(this.attr('icon'));
-
-        if (this.battr('required')) {
-            this.internals.addClass('required');
+    onAttributeChanged(name, _, value) {
+        switch (name) {
+            case 'label': this.#renderLabel(value); break;
+            case 'required': this.#renderDivider(value); break;
+            default: this.#renderInput(name, value);
         }
-        if (!this.attr('label')) {
+    }
+
+    #renderLabel(value) {
+        if (value) {
+            const $label = createElement(`<label>${value}</label>`);
+            const $body = this.query('.field-body');
+            $body.parentNode.insertBefore($label, $body);
+        } else {
             this.query('label').remove();
         }
     }
 
-    createIcon(src) {
-        if (!src) return;
-        src = src.trim();
-        src = src.startsWith('<') ? src : `<img src="${src}"/>`;
+    #renderDivider(value) {
+        parseBoolean(value) ? this.shell.addClass('required') : this.shell.removeClass('required');
+    }
 
-        const $icon = createElement(`<i class="icon">${src}</i>`);
-        this.internals.append($icon);
-        return $icon;
+    #renderInput(name, value) {
+        this.#input = this.query('input');
+        this.#input && this.#input.attr(name, value);
     }
 
     focus() {
-        this.#displayField.focus();
+        this.#input && this.#input.focus();
     }
 
-    get value() {
-        return this.#hiddenField.value;
+    set icon(el) {
+        const $icon = createElement('<div class="field-icon"></div>');
+        typeof el === 'string' ? $icon.innerHTML = el : $icon.append(el);
+        $icon.tabIndex = -1;
+        this.shell.append($icon);
     }
 
-    set value(v) {
-        this.#displayField.value = v;
-        this.#hiddenField.value = v;
-    }
-
-    get readOnly() {
-        return this.#displayField.readOnly;
-    }
-
-    set readOnly(v) {
-        this.#displayField.readOnly = v;
-    }
-
-    get disabled() {
-        return this.#displayField.disabled;
-    }
-
-    set disabled(v) {
-        this.#displayField.disabled = v;
+    get icon() {
+        return this.query('.field-icon');
     }
 
 }
