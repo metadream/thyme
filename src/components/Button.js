@@ -5,8 +5,7 @@ import { Component } from './Component.js';
 /**
  * 按钮组件
  * @example <tag href="/users" target="_blank">text</tag>
- * @example <tag variant="minor|warning|danger|success, tonal|outlined" disabled>text</tag>
- * @example this.disable = true|false
+ * @example <tag variant="minor|warning|danger|success, tonal|outlined">text</tag>
  * @example this.loading = true|false
  */
 export class Button extends Component {
@@ -16,21 +15,27 @@ export class Button extends Component {
     #attrs = ['variant', 'href', 'target'];
 
     onChanged(name, _, value) {
-        this.shell && this.#render(name, value);
+        const button = this.shell;
+        if (button) { // 由于模板是后渲染的，所以初始时shell不存在
+            if (name === 'variant') {
+                value && button.addClass(...value.split(/\s+/));
+            } else {
+                button.attr(name, value);
+            }
+        }
     }
 
     onConnected() {
-        const template = this.attr('href')
+        // 由于属性无法在构造函数或静态变量中获取，故此处不能使用静态模板
+        this.render(this.attr('href')
             ? '<a class="button" draggable="false"><slot></slot></a>'
-            : '<button><slot></slot></button>';
-
-        this.shell = createElement(template);
-        this.shadowRoot.append(this.shell);
+            : '<button><slot></slot></button>');
         this.#addRipples();
 
+        // 初始化所有属性
         const attrs = this.#attrs.concat(this.constructor.attrs);
         for (const name of attrs) {
-            this.#render(name, this.attr(name));
+            this.onChanged(name, null, this.attr(name));
         }
     }
 
@@ -45,16 +50,6 @@ export class Button extends Component {
         } else {
             const loading = this.query('.loading');
             loading && loading.remove();
-        }
-    }
-
-    #render(name, value) {
-        const button = this.shell;
-        if (name === 'variant') {
-            if (value)
-                button.addClass(...value.split(/\s+/));
-        } else {
-            button.attr(name, value);
         }
     }
 
