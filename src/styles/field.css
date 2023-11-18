@@ -4,7 +4,6 @@
     border: 1px solid var(--silverColor);
     border-radius: var(--borderRadius, var(--br));
     height: 40px;
-    transition: .3s;
 }
 
 .field:focus-within {
@@ -25,7 +24,6 @@
 }
 
 .field.tonal>label {
-    height: 100%;
     border-top-left-radius: var(--borderRadius, var(--br));
     border-bottom-left-radius: var(--borderRadius, var(--br));
     background-color: var(--platColor);
@@ -37,7 +35,8 @@
     align-items: center;
     cursor: default;
     width: 30%;
-    padding: 0 20px;
+    height: 100%;
+    padding: 7px 20px;
     white-space: nowrap;
     overflow: hidden;
 }
@@ -45,8 +44,8 @@
 .field>label:after {
     content: '';
     position: absolute;
-    top: 2px;
-    bottom: 2px;
+    top: 9px;
+    bottom: 9px;
     right: 0;
     width: 1px;
     background-color: var(--silverColor);
