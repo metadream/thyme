@@ -1,16 +1,13 @@
-.upload {
-    display: flex;
-}
-
-.upload-chooser {
-    margin-right: 20px;
+.field {
+    align-items: baseline;
+    height: auto;
+    min-height: 40px;
 }
 
 .upload-list {
     display: flex;
     flex-wrap: wrap;
     flex: 1;
-    margin: 0 -5px -5px 0;
 }
 
 .upload-entry {
@@ -28,16 +25,6 @@
     color: var(--carbonColor);
     text-decoration: none;
     cursor: pointer;
-}
-
-a.chooser {
-    cursor: pointer;
-    color: var(--linkColor, var(--pc));
-    font-weight: 700;
-}
-
-a.chooser:hover, a.preview-link:hover {
-    text-decoration: underline;
 }
 
 a.download-icon svg.icon path {
