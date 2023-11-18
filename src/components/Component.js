@@ -7,23 +7,31 @@ import { createElement, createStyles } from '../modules/Util.js';
  */
 export class Component extends HTMLElement {
 
-    #props = {}; // Camelcase properties cache
+    // 驼峰式属性缓存
+    #props = {};
 
+    // 受监听的属性名列表
     static get observedAttributes() {
         return this.attrs || [];
     };
 
+    // 构造函数（执行顺序1）
     constructor() {
         super();
         this.#defineProps();
 
+        // 添加主机样式和组件样式
         const c = this.constructor;
         this.attachShadow({ mode: 'open' });
         this.shadowRoot.append(createStyles(shadowStyles + c.styles));
+
+        // 添加模板元素
+        // 由于attributeChangedCallback 方法可能需要查找元素，故在构造函数而非 connectedCallback 中添加
         this.shell = createElement(c.template);
         this.shadowRoot.append(this.shell || '');
     }
 
+    // 属性值改变回调函数（执行顺序2）
     attributeChangedCallback(name, oldValue, newValue) {
         if (oldValue === newValue) return;
         if (this.onAttributeChanged) {
@@ -31,25 +39,30 @@ export class Component extends HTMLElement {
         }
     }
 
+    // DOM渲染回调函数（执行顺序3）
     connectedCallback() {
         this.onConnected && this.onConnected();
+        // 获取Slot插入元素需延迟回调
         this.onRendered && setTimeout(() => this.onRendered());
     }
 
+    // 查找影子内单个元素快捷方法
     query(selector) {
         return this.shadowRoot.querySelector(selector);
     }
 
+    // 查找影子内所有元素快捷方法
     queryAll(selector) {
         return this.shadowRoot.querySelectorAll(selector);
     }
 
+    // 查找Slot插入元素快捷方法
     slots(name) {
         const selector = name ? `slot[name="${name}"]` : 'slot';
         return this.query(selector).assignedElements();
     }
 
-    // 同步更新属性值
+    // 同步更新属性值（props/attrs）
     #defineProps() {
         const attrs = new Set([...this.constructor.observedAttributes]);
         attrs.forEach(name => {
