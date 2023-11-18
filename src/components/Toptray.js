@@ -9,20 +9,20 @@ import { Component } from './Component.js';
  */
 export class Toptray extends Component {
 
-    styles = styles;
-    template = `<div class="toptray" style="bottom:{{x}}px;right:{{y}}px">${arrowTopIcon}</div>`;
+    static styles = styles;
+    static template = `<div class="toptray" style="bottom:{{x}}px;right:{{y}}px">${arrowTopIcon}</div>`;
 
     onConnected() {
-        const { internals } = this;
+        const { shell } = this;
 
         addEventListener('scroll', () => {
             const y = getScrollTop();
-            if (y > 450) internals.style.display = 'block';
-            else internals.style.display = 'none';
+            if (y > 450) shell.style.display = 'block';
+            else shell.style.display = 'none';
         });
 
         let scrollTimer;
-        internals.onclick = function () {
+        shell.onclick = function () {
             cancelAnimationFrame(scrollTimer);
 
             scrollTimer = requestAnimationFrame(function scroll() {

@@ -15,8 +15,8 @@ import { Component } from './Component.js';
  */
 export class Upload extends Component {
 
-    styles = styles;
-    template = `
+    static styles = styles;
+    static template = `
         <div class="upload">
             <div class="upload-chooser">
                 <input type="file" accept="{{accept}}"/>

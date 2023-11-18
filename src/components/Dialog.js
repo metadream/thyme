@@ -12,8 +12,8 @@ import { Component } from './Component.js';
 const HIDDEN = 0, TRANSFORMING = 1, OPENED = 2;
 export class Dialog extends Component {
 
-    styles = styles;
-    template = `
+    static styles = styles;
+    static template = `
         <div class="overlay dialog">
             <div class="dialog-panel">
                 <div class="dialog-header">{{title}}</div>
@@ -71,23 +71,23 @@ export class Dialog extends Component {
 
     #animate(bodyClass, panelClass, state) {
         this.#state = TRANSFORMING;
-        const { internals } = this;
+        const { shell } = this;
 
         if (state == OPENED) {
-            internals.style.display = 'flex';
+            shell.style.display = 'flex';
         }
-        internals.addClass(bodyClass);
+        shell.addClass(bodyClass);
         this.#panel.addClass(panelClass);
 
-        internals.onanimationend = () => {
+        shell.onanimationend = () => {
             this.#panel.removeClass(panelClass);
-            internals.removeClass(bodyClass);
-            internals.onanimationend = null;
+            shell.removeClass(bodyClass);
+            shell.onanimationend = null;
 
             this.#state = state;
             if (state == HIDDEN) {
                 if (this.#removable) this.remove();
-                else internals.style.display = 'none';
+                else shell.style.display = 'none';
             }
         }
     }

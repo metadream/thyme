@@ -51,7 +51,8 @@ export class Button extends Component {
     #render(name, value) {
         const button = this.shell;
         if (name === 'variant') {
-            button.addClass(...value.split(/\s+/));
+            if (value)
+                button.addClass(...value.split(/\s+/));
         } else {
             button.attr(name, value);
         }

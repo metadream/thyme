@@ -8,8 +8,8 @@ import { Component } from './Component.js';
  */
 export class Switch extends Component {
 
-    styles = styles;
-    template = `<label class="switch"><input type="checkbox"/><i></i></label>`;
+    static styles = styles;
+    static template = `<label class="switch"><input type="checkbox"/><i></i></label>`;
 
     #nativeElement;
 

@@ -19,4 +19,4 @@
 - internals.on xxx.on -> this.on
 - svg.icon
 
-- battr iattr internals "{{ parseBoolean parseInteger
+- battr iattr "{{ parseBoolean parseInteger

@@ -10,8 +10,8 @@ import { Locale } from "../modules/Locale.js";
  */
 export class Select extends Component {
 
-    styles = styles;
-    template = `
+    static styles = styles;
+    static template = `
     <div class="select">
         <div class="field"><input type="text" readonly/>${arrowBottomIcon}</div>
         <div class="options"><slot></slot></div>
@@ -62,7 +62,7 @@ export class Select extends Component {
         this.#options.addClass('dropdown');
         this.#overlay = createElement('<div class="overlay"></div>');
         this.#overlay.on('click', () => this.#pullup());
-        this.internals.append(this.#overlay);
+        this.shell.append(this.#overlay);
     }
 
     #pullup() {
