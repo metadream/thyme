@@ -89,7 +89,7 @@ export function enhanceElements() {
                 return this.getAttribute(name);
             }
             if (value === null) {
-                this.removeAttribute(name);
+                return this.removeAttribute(name);
             }
             this.setAttribute(name, value);
         },
