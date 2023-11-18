@@ -7,6 +7,7 @@
   - value checked;
   - 支持多选
 
-- upload 增加 loading accept
+- quick-upload
+  - 增加 loading accept
 
 - parseBoolean parseInteger
