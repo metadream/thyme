@@ -14,13 +14,20 @@ export class Field extends Component {
     static attrs = ['label', 'required', 'type', 'maxlength', 'placeholder', 'value', 'readonly', 'disabled'];
     static template = '<div class="field"><div class="field-body"><slot><input/></slot></div></div>';
 
-    #input;
-
     onAttributeChanged(name, _, value) {
         switch (name) {
             case 'label': this.#renderLabel(value); break;
             case 'required': this.#renderDivider(value); break;
             default: this.#renderInput(name, value);
+        }
+    }
+
+    onConnected() {
+        const $input = this.query('input');
+        if ($input) {
+            $input.on('change', e => this.value = e.target.value);
+            this.value = $input.value;
+            this.focus = () => $input.focus();
         }
     }
 
@@ -39,12 +46,11 @@ export class Field extends Component {
     }
 
     #renderInput(name, value) {
-        this.#input = this.query('input');
-        this.#input && this.#input.attr(name, value);
-    }
-
-    focus() {
-        this.#input && this.#input.focus();
+        const $input = this.query('input');
+        if ($input) {
+            $input.attr(name, value);
+            $input[name] = value;
+        }
     }
 
     set icon(el) {
