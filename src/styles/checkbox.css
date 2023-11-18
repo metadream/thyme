@@ -21,8 +21,8 @@ input {
     appearance: none;
     outline: 0;
     margin: 0;
-    width: 20px;
-    height: 20px;
+    width: 18px;
+    height: 18px;
     color: #fff;
     background-color: var(--primaryColor, var(--pc));
     border-radius: var(--borderRadius, var(--br));
@@ -30,10 +30,10 @@ input {
 
 input::before {
     content: "";
-    width: 12px;
-    height: 12px;
+    width: 10px;
+    height: 10px;
     background-color: #fff;
-    clip-path: polygon(10% 45%, 0% 58%, 45% 94%, 100% 15%, 86% 6%, 43% 67%);
+    clip-path: polygon(10% 46%, 0% 59%, 45% 95%, 100% 16%, 86% 7%, 43% 68%);
     transform: scale(0);
     transition: .2s transform;
 }
