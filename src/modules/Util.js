@@ -101,11 +101,12 @@ export function enhanceElements() {
             return this;
         },
 
-        attach(target) {
-            const pos = target.getBoundingClientRect();
+        attach(target, fitWidth) {
+            const rect = target.getBoundingClientRect();
             this.style.position = 'absolute';
-            this.style.left = pos.x + 'px';
-            this.style.top = pos.y + pos.height + getScrollTop() + 1 + 'px';
+            this.style.left = rect.x + 'px';
+            this.style.top = rect.y + rect.height + getScrollTop() + 1 + 'px';
+            fitWidth && (this.style.width = rect.width + 'px');
             return this;
         },
 

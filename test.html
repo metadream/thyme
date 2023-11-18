@@ -39,7 +39,7 @@
         <option value="1">iPhone</option>
         <option value="2" disabled>Oppo</option>
         <option value="3">Huawei</option>
-        <option value="4" checked>Xiaomi</option>
+        <option value="4" selected>Xiaomi</option>
         <option value="5">Windows</option>
         <option value="6">Google</option>
         <option value="7" disabled>Nokia</option>
@@ -92,7 +92,8 @@
 </html>
 
 <script>
-    const ff = document.querySelector('quick-field');
+    const ff = document.querySelector('quick-select');
+    console.log(ff.value)
 
     function post(btn) {
         const data = Quick.form.getJsonObject('body');

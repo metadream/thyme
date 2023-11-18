@@ -6,57 +6,74 @@ import { Field } from './Field.js';
 
 /**
  * 下拉选项组件
- * @example <tag><option value="">text</option></tag>
+ * @example <tag><option value="" selected>text</option></tag>
  */
 export class Select extends Field {
 
-    #template = `<div class="select"><div class="overlay"></div><div class="options"></div></div>`;
+    #template = `<div><div class="overlay"></div><div class="select"></div></div>`;
+    #label;
+    #options;
 
     onConnected() {
         super.onConnected();
-
         this.query('style').append(styles);
-        this.readonly = true;
+
+        // 添加图标和用于显示文本的标签
+        this.#label = this.query('.field-body');
         this.icon = arrowBottomIcon;
     }
 
     onAssigned() {
+        // 获取选项列表
         const slot = this.query('slot');
-        const options = slot.assignedElements();
+        this.#options = slot.assignedElements();
         slot.remove();
 
-        this.icon.on('click', () => {
-            this.#pulldown(options);
-        });
+        // 初始化标签和值
+        const selected = this.#options.find(v => v.selected);
+        selected && this.#value(selected.value, selected.label);
+
+        // 图标点击事件
+        this.icon.on('click', () => this.#pulldown());
     }
 
-    #pulldown(options) {
+    #pulldown() {
         const $wrapper = createElement(this.#template);
         this.shadowRoot.append($wrapper);
 
         const $overlay = this.query('.overlay');
         $overlay.on('click', () => $wrapper.remove());
 
-        const $options = this.query('.options');
-        $options.addClass('expand');
+        const $select = this.query('.select');
+        $select.attach(this.#label, true);
 
-        for (const option of options) {
-            let { label, value, disabled } = option;
+        // 创建选项节点
+        for (const option of this.#options) {
+            let { label, value, selected, disabled } = option;
             label = label || Locale.get('EMPTY_OPTION');
-
             const $option = createElement(`<a class="option">${label}</a>`);
-            $options.append($option);
+            $select.append($option);
 
+            if (selected) {
+                $option.addClass('selected');
+            }
             if (disabled) {
-                $option.attr('disabled', true);
                 $option.addClass('disabled');
             } else {
                 $option.on('click', () => {
-                    this.value = label;
+                    this.#value(value, label);
+                    this.#options.forEach(v => v.selected = false);
+                    option.selected = true;
+
                     $wrapper.remove();
                 });
             }
         }
+    }
+
+    #value(value, label) {
+        this.value = value;
+        this.#label.innerHTML = label;
     }
 
 }
