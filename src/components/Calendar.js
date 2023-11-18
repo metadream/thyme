@@ -31,10 +31,10 @@ export class Calendar extends Field {
         this.#wrapper = createElement(this.#template);
         this.shadowRoot.append(this.#wrapper);
 
-        const overlay = this.#wrapper.querySelector('.overlay');
+        const overlay = this.query('.overlay');
         overlay.on('click', () => this.#wrapper.remove());
 
-        this.#calendar = this.#wrapper.querySelector('.calendar');
+        this.#calendar = this.query('.calendar');
         this.#bindEvents();
         this.#attach(this.query('input'));
     }
