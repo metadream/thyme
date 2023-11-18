@@ -38,7 +38,7 @@ button.outlined, a.button.outlined {
 
 button.tonal, a.button.tonal {
     color: var(--primaryColor, var(--pc));
-    background-color: color-mix(in srgb, currentColor 20%, transparent);
+    background-color: color-mix(in srgb, currentColor 20%, #fff);
 }
 
 button.minor, a.button.minor {
