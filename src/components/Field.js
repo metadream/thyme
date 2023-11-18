@@ -47,10 +47,7 @@ export class Field extends Component {
 
     #renderInput(name, value) {
         const $input = this.query('input');
-        if ($input) {
-            $input.attr(name, value);
-            $input[name] = value;
-        }
+        $input && $input.attr(name, value);
     }
 
     set icon(el) {

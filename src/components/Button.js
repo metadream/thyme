@@ -6,7 +6,7 @@ import { Component } from './Component.js';
  * 按钮组件
  * @example <tag href="/users" target="_blank">text</tag>
  * @example <tag variant="minor|warning|danger|success, tonal|outlined">text</tag>
- * @example this.loading = true|false
+ * @example element.loading = true|false
  */
 export class Button extends Component {
 

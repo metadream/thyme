@@ -4,7 +4,7 @@ import prevYearIcon from "../icons/arrows-left.svg";
 import nextYearIcon from "../icons/arrows-right.svg";
 import prevMonthIcon from "../icons/arrow-left.svg";
 import nextMonthIcon from "../icons/arrow-right.svg";
-import { createElement, getScrollTop, formatDate } from '../modules/Util.js';
+import { createElement, formatDate } from '../modules/Util.js';
 import { Locale } from '../modules/Locale.js';
 import { Field } from './Field.js';
 
@@ -28,24 +28,24 @@ export class Calendar extends Field {
     }
 
     #pulldown() {
+        // 创建外包装
         this.#wrapper = createElement(this.#template);
         this.shadowRoot.append(this.#wrapper);
 
+        // 遮罩关闭事件
         const overlay = this.query('.overlay');
         overlay.on('click', () => this.#wrapper.remove());
 
+        // 日历面板事件
         this.#calendar = this.query('.calendar');
         this.#bindEvents();
-        this.#attach(this.query('input'));
-    }
 
-    // 依附到某个元素
-    #attach(target) {
-        const pos = target.getBoundingClientRect();
-        this.#calendar.style.top = pos.y + pos.height + getScrollTop() + 1 + 'px';
-        this.#calendar.style.left = pos.x + 'px';
+        // 依附到文本框
+        const $input = this.query('input');
+        this.#calendar.attach($input);
 
-        this.#initialDate = new Date(target.value);
+        // 根据文本框日期初始化渲染
+        this.#initialDate = new Date($input.value);
         this.#initialDate = isNaN(this.#initialDate.getTime()) ? new Date() : this.#initialDate;
         this.#render(this.#initialDate);
     }

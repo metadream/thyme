@@ -110,6 +110,12 @@ export function enhanceElements() {
             return /^\d+$/.test(v) ? parseInt(v) : 0;
         },
 
+        attach(target) {
+            const pos = target.getBoundingClientRect();
+            this.style.top = pos.y + pos.height + getScrollTop() + 1 + 'px';
+            this.style.left = pos.x + 'px';
+        },
+
         remove() {
             return this.parentNode && this.parentNode.removeChild(this);
         },
