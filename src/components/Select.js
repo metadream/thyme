@@ -13,6 +13,8 @@ export class Select extends Field {
     #template = `<div class="select"><div class="overlay"></div><div class="options"></div></div>`;
 
     onConnected() {
+        super.onConnected();
+
         this.query('style').append(styles);
         this.readonly = true;
         this.icon = arrowBottomIcon;

@@ -21,6 +21,8 @@ export class Calendar extends Field {
     #gridData;
 
     onConnected() {
+        super.onConnected();
+
         this.query('style').append(styles);
         this.readonly = true;
         this.icon = calendarIcon;

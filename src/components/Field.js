@@ -4,7 +4,7 @@ import { Component } from './Component.js';
 
 /**
  * 文本框组件
- * @example <tag>not required</tag>
+ * @example <tag variant="tonal|plain">not required</tag>
  * @example element.icon = Element|HTML
  *          element.icon.onclick = ...
  */
@@ -28,6 +28,11 @@ export class Field extends Component {
             $input.on('change', e => this.value = e.target.value);
             this.value = $input.value;
             this.focus = () => $input.focus();
+        }
+
+        const variant = this.attr('variant');
+        if (variant) {
+            this.shell.addClass(variant);
         }
     }
 

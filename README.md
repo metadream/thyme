@@ -1,7 +1,7 @@
 ## TODO
 
 - quick-field
-  - 样式：default outlined tonal
+  - 样式：tonal plain
 
 - quick-select
   - value checked;
@@ -9,5 +9,3 @@
 
 - quick-upload
   - 增加 loading accept
-
-- parseBoolean parseInteger
