@@ -26,9 +26,8 @@ export class Component extends HTMLElement {
         this.shadowRoot.append(createStyles(shadowStyles + c.styles));
 
         // 添加模板元素
-        // 由于attributeChangedCallback 方法可能需要查找元素，故在构造函数而非 connectedCallback 中添加
-        this.shell = createElement(c.template);
-        this.shadowRoot.append(this.shell || '');
+        // 由于 attributeChangedCallback 方法可能需要查找元素，故在构造函数而非 connectedCallback 中添加
+        this.render(c.template);
     }
 
     // 属性值改变回调函数（执行顺序2）
@@ -42,6 +41,12 @@ export class Component extends HTMLElement {
         this.onConnected && this.onConnected();
         // 获取Slot插入元素需延迟回调
         this.onAssigned && setTimeout(() => this.onAssigned());
+    }
+
+    // 渲染模板并添加元素
+    render(template) {
+        this.shell = createElement(template);
+        this.shadowRoot.append(this.shell || '');
     }
 
     // 查找影子内单个元素快捷方法
