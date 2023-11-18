@@ -35,6 +35,15 @@ a.remove-icon svg.icon path {
     fill: var(--errorColor, var(--ec));
 }
 
+a:hover {
+    text-decoration: underline;
+}
+
 input[type="file"] {
     display: none;
+}
+
+svg.icon {
+    width: 16px;
+    height: 16px;
 }
