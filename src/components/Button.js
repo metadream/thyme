@@ -1,5 +1,5 @@
 import styles from '../styles/button.css';
-import { createElement, parseBoolean } from '../modules/Util.js';
+import { createElement } from '../modules/Util.js';
 import { Component } from './Component.js';
 
 /**
@@ -52,8 +52,6 @@ export class Button extends Component {
         const button = this.shell;
         if (name === 'variant') {
             button.addClass(...value.split(/\s+/));
-        } else if (name === 'disabled') {
-            button[name] = parseBoolean(value);
         } else {
             button.attr(name, value);
         }

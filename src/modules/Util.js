@@ -1,3 +1,5 @@
+const booleanAttributes = ['required', 'readonly', 'checked', 'disabled'];
+
 /**
  * Nano Id without '-' and '_'
  * @see https://github.com/ai/nanoid/blob/main/index.browser.js
@@ -85,11 +87,15 @@ export function enhanceElements() {
         },
 
         attr(name, value) {
-            if (value === undefined) {
-                return this.getAttribute(name);
-            }
             if (value === null) {
                 return this.removeAttribute(name);
+            }
+            if (value === undefined) {
+                value = this.getAttribute(name);
+                return booleanAttributes.includes(name) ? parseBoolean(value) : value;
+            }
+            if (booleanAttributes.includes(name) && !parseBoolean(value)) {
+                return this.attr(name, null);
             }
             this.setAttribute(name, value);
         },
@@ -121,7 +127,7 @@ export function enhanceElements() {
  * @returns
  */
 export function parseBoolean(v) {
-    return v !== null && v !== 'null' && v !== 'undefined' && v !== 'false' && v !== '0';
+    return v !== null && v !== false && v !== 'null' && v !== 'undefined' && v !== 'false' && v !== '0';
 }
 
 /**

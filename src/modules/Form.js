@@ -16,7 +16,7 @@ export class Form {
 
         for (const field of fields) {
             let value = '';
-            if ((field.type == 'checkbox' || field.type == 'radio') && !field.checked) {
+            if ((field.type == 'checkbox' || field.type == 'radio' || field.tagName == 'QUICK-CHECKBOX') && !field.checked) {
                 continue;
             }
             if (field.tagName === 'INPUT' || field.tagName === 'TEXTAREA' || field.tagName.startsWith('QUICK-')) {
