@@ -1,5 +1,5 @@
 import styles from '../styles/field.css';
-import { createElement } from '../modules/Util.js';
+import { createElement, parseBoolean } from '../modules/Util.js';
 import { Component } from './Component.js';
 
 /**
@@ -47,7 +47,7 @@ export class Field extends Component {
     }
 
     #renderDivider(value) {
-        value ? this.shell.addClass('required') : this.shell.removeClass('required');
+        parseBoolean(value) ? this.shell.addClass('required') : this.shell.removeClass('required');
     }
 
     #renderInput(name, value) {
