@@ -28,7 +28,7 @@
     <quick-calendar label="生日" name="birthday" value="2023-01-05"></quick-calendar>
 
     <quick-field label="是否学生"><quick-switch name="isStudent"></quick-switch></quick-field>
-    <quick-field label="兴趣爱好">
+    <quick-field label="兴趣爱好" variant="tonal">
         <quick-checkbox name="hobby" value="football">足球</quick-checkbox>
         <quick-checkbox name="hobby" value="basketball" checked>篮球</quick-checkbox>
         <quick-checkbox name="hobby" value="pingpong" id="pp">乒乓球</quick-checkbox>
@@ -92,8 +92,7 @@
 </html>
 
 <script>
-    const ff = document.querySelector('#pp');
-    ff.checked = true;
+    const ff = document.querySelector('quick-field');
 
     function post(btn) {
         const data = Quick.form.getJsonObject('body');
