@@ -1,4 +1,5 @@
 import styles from '../styles/toast.css';
+import { parseInteger } from "../modules/Util.js";
 import { Component } from './Component.js';
 
 /**
@@ -11,17 +12,20 @@ import { Component } from './Component.js';
  */
 export class Toast extends Component {
 
-    styles = styles;
-    template = `<div class="overlay toast"><div class="{{type}}"><slot></slot></div></div>`;
+    static styles = styles;
+    static template = `<div class="overlay toast"><div><slot></slot></div></div>`;
 
     onConnected() {
-        const { internals } = this;
-        internals.addClass('bounce-in');
+        const $toast = this.query('.toast');
+        $toast.addClass('bounce-in');
 
-        const delay = this.iattr('delay') || 3000;
+        const type = this.attr('type');
+        type && $toast.querySelector('div').addClass(type);
+
+        const delay = parseInteger(this.attr('delay')) || 3000;
         setTimeout(() => {
-            internals.addClass('bounce-out');
-            internals.on('animationend', () => this.remove());
+            $toast.addClass('bounce-out');
+            $toast.on('animationend', () => this.remove());
         }, delay);
     }
 
