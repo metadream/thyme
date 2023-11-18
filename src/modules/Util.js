@@ -1,5 +1,3 @@
-const booleanAttributes = ['required', 'readonly', 'checked', 'disabled'];
-
 /**
  * Nano Id without '-' and '_'
  * @see https://github.com/ai/nanoid/blob/main/index.browser.js
@@ -15,6 +13,13 @@ export function nanoId(size = 21) {
         }
         return id;
     }, '');
+}
+
+/**
+ * 注册自定义组件
+ */
+export function registerComponent(tagName, component) {
+    customElements.define(tagName, component);
 }
 
 /**
@@ -36,19 +41,13 @@ export function createElement(content) {
 
 /**
  * 创建样式标签
+ * @param {string} content
  * @returns
  */
-export function createStyles(content) {
+export function createStyle(content) {
     const style = createElement('style');
     style.textContent = content;
     return style;
-}
-
-/**
- * 注册自定义组件
- */
-export function registerComponent(tagName, component) {
-    customElements.define(tagName, component);
 }
 
 /**
@@ -76,55 +75,58 @@ export function enhanceElements() {
             return this;
         },
 
-        addClass(...name) {
-            this.classList.add(...name);
+        addClass(...names) {
+            this.classList.add(...names);
             return this;
         },
 
-        removeClass(...name) {
-            this.classList.remove(...name);
+        removeClass(...names) {
+            this.classList.remove(...names);
             return this;
         },
 
         attr(name, value) {
             if (value === null) {
-                return this.removeAttribute(name);
+                this.removeAttribute(name);
+                return this;
             }
             if (value === undefined) {
                 value = this.getAttribute(name);
-                return booleanAttributes.includes(name) ? parseBoolean(value) : value;
+                return isBooleanAttribute(name) ? parseBoolean(value) : value;
             }
-            if (booleanAttributes.includes(name) && !parseBoolean(value)) {
+            if (isBooleanAttribute(name) && !parseBoolean(value)) {
                 return this.attr(name, null);
             }
             this.setAttribute(name, value);
-        },
-
-        battr(name) { // 获取布尔型属性（undefined将转换为true）
-            const v = this.attr(name);
-            return v !== null && v !== 'null' && v !== 'undefined' && v !== 'false' && v !== '0';
-        },
-
-        iattr(name) { // 获取整型属性
-            const v = this.attr(name);
-            return /^\d+$/.test(v) ? parseInt(v) : 0;
+            return this;
         },
 
         attach(target) {
             const pos = target.getBoundingClientRect();
-            this.style.top = pos.y + pos.height + getScrollTop() + 1 + 'px';
+            this.style.position = 'absolute';
             this.style.left = pos.x + 'px';
-        },
-
-        remove() {
-            return this.parentNode && this.parentNode.removeChild(this);
+            this.style.top = pos.y + pos.height + getScrollTop() + 1 + 'px';
+            return this;
         },
 
         swap(el) {
             if (el) el.insertAdjacentElement('beforeBegin', this);
             return this;
+        },
+
+        remove() {
+            return this.parentNode && this.parentNode.removeChild(this);
         }
     });
+}
+
+/**
+ * 是否布尔型属性
+ * @param {string} name
+ * @returns
+ */
+export function isBooleanAttribute(name) {
+    return ['required', 'readonly', 'checked', 'disabled'].includes(name);
 }
 
 /**
@@ -165,9 +167,9 @@ export function toDataURI(svg) {
 /**
  * Format date with pattern string
  * @param {Date} date
- * @param {String} pattern
+ * @param {string} pattern
  * @param {Boolean} utc
- * @returns {String}
+ * @returns {string}
  */
 export function formatDate(date, pattern, utc) {
     const get = utc ? "getUTC" : "get";
@@ -190,8 +192,8 @@ export function formatDate(date, pattern, utc) {
 
 /**
  * Format the number of bytes to be easily recognizable by humans
- * @param {Number} bytes
- * @returns {String}
+ * @param {number} bytes
+ * @returns {string}
  */
 export function formatBytes(bytes) {
     const unit = ["B", "KB", "MB", "GB", "TB", "PB", "EB", "ZB"];
@@ -201,30 +203,10 @@ export function formatBytes(bytes) {
 }
 
 /**
- * 保留数值精度
- * @param {number} number
- * @param {number} precision
- * @returns
- */
-export function round(number, precision) {
-    return Math.round(number + 'e' + precision) / Math.pow(10, precision);
-}
-
-/**
  * 将对象转换为查询字符串
- * @param params 参数对象
+ * @param {Object} params
+ * @returns
  */
 export function stringify(params) {
     return Object.keys(params).map(key => key + '=' + encodeURI(params[key])).join('&');
-}
-
-/**
- * 将文本内容复制到剪贴板
- * @param {string} text
- * @returns
- */
-export function copyText(text) {
-    if (navigator.clipboard) {
-        navigator.clipboard.writeText(text);
-    }
 }

@@ -16,10 +16,12 @@ export class Form {
 
         for (const field of fields) {
             let value = '';
-            if ((field.type == 'checkbox' || field.type == 'radio' || field.tagName == 'QUICK-CHECKBOX') && !field.checked) {
+            const { type, tagName } = field;
+
+            if ((type == 'checkbox' || type == 'radio' || tagName == 'QUICK-CHECKBOX') && !field.checked) {
                 continue;
             }
-            if (field.tagName === 'INPUT' || field.tagName === 'TEXTAREA' || field.tagName.startsWith('QUICK-')) {
+            if (tagName === 'INPUT' || tagName === 'TEXTAREA' || tagName.startsWith('QUICK-')) {
                 if (field.value === null || field.value === undefined) {
                     continue;
                 }
@@ -28,7 +30,7 @@ export class Form {
                 }
                 value = field.value;
             }
-            else if (field.tagName === 'SELECT') {
+            else if (tagName === 'SELECT') {
                 value = field.options[field.selectedIndex].value;
             }
             else if (field.isContentEditable) {

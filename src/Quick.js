@@ -1,5 +1,5 @@
 import globalStyles from './styles/global.css';
-import { createElement, createStyles, enhanceElements, registerComponent } from './modules/Util.js';
+import { createElement, createStyle, enhanceElements, registerComponent } from './modules/Util.js';
 import { Locale } from './modules/Locale.js';
 import { Http } from './modules/Http.js';
 import { Form } from './modules/Form.js';
@@ -22,7 +22,7 @@ class Quick {
 
     static {
         enhanceElements();
-        document.head.append(createStyles(globalStyles));
+        document.head.append(createStyle(globalStyles));
 
         registerComponent('quick-button', Button);
         registerComponent('quick-calendar', Calendar);

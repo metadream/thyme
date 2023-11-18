@@ -1,5 +1,5 @@
 import shadowStyles from '../styles/shadow.css';
-import { createElement, createStyles } from '../modules/Util.js';
+import { createElement, createStyle } from '../modules/Util.js';
 
 /**
  * 基础组件
@@ -23,7 +23,7 @@ export class Component extends HTMLElement {
         // 添加主机样式和组件样式
         const c = this.constructor;
         this.attachShadow({ mode: 'open' });
-        this.shadowRoot.append(createStyles(shadowStyles + c.styles));
+        this.shadowRoot.append(createStyle(shadowStyles + c.styles));
 
         // 添加模板元素
         // 由于 attributeChangedCallback 方法可能需要查找元素，故在构造函数而非 connectedCallback 中添加
