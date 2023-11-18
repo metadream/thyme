@@ -20,3 +20,4 @@
 - svg.icon
 
 - battr iattr "{{ parseBoolean parseInteger
+- select : value checked;

@@ -3,12 +3,6 @@
     user-select: none;
 }
 
-.field {
-    display: flex;
-    align-items: center;
-    cursor: pointer;
-}
-
 .options {
     display: flex;
     flex-direction: column;
@@ -26,16 +20,20 @@
     box-shadow: 0 0 16px rgb(0 0 0 / 8%);
 }
 
-.options.dropdown {
+.options.expand {
     opacity: 1;
     transform: scaleY(1);
 }
 
 .options::-webkit-scrollbar {
-    width: 7px;
+    width: 6px;
 }
 
 .options::-webkit-scrollbar-thumb {
+    background-color: var(--platColor);
+}
+
+.options::-webkit-scrollbar-thumb:hover {
     background-color: var(--silverColor);
 }
 
@@ -63,4 +61,8 @@ input {
     outline: 0;
     border: 0;
     cursor: pointer;
+}
+
+::slotted(*) {
+    display: none;
 }

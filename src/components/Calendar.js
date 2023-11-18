@@ -24,10 +24,10 @@ export class Calendar extends Field {
         this.query('style').append(styles);
         this.readonly = true;
         this.icon = calendarIcon;
-        this.icon.on('click', () => this.#popup());
+        this.icon.on('click', () => this.#pulldown());
     }
 
-    #popup() {
+    #pulldown() {
         this.#wrapper = createElement(this.#template);
         this.shadowRoot.append(this.#wrapper);
 
