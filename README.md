@@ -15,3 +15,8 @@
   - set icon onclick
 
 - upload 增加 loading
+
+- internals.on xxx.on -> this.on
+- svg.icon
+
+- battr iattr internals "{{
