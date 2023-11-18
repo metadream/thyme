@@ -1,10 +1,11 @@
 import styles from '../styles/upload.css';
+import uploadIcon from '../icons/upload.svg';
 import downloadIcon from '../icons/round-download.svg';
 import removeIcon from '../icons/round-cross.svg';
 import Quick from '../Quick.js';
 import { createElement, formatBytes, parseInteger, nanoId } from "../modules/Util.js";
 import { Locale } from '../modules/Locale.js';
-import { Component } from './Component.js';
+import { Field } from './Field.js';
 
 /**
  * 上传组件
@@ -13,43 +14,45 @@ import { Component } from './Component.js';
  * @example this.onUpload = async function(entry) {}
  * @example this.onRemove = async function(entry) {}
  */
-export class Upload extends Component {
+export class Upload extends Field {
 
-    static styles = styles;
-    static template = `
-        <div class="upload">
-            <div class="upload-chooser">
-                <input type="file"/>
-                <a class="chooser">${Locale.get('UPLOAD')}</a>
-            </div>
-            <div class="upload-list"></div>
-        </div>`;
-
+    #template = `<input type="file"/><div class="upload-list"></div>`;
     #uploadCallback;
     #removeCallback;
-    #entries;
+    #entries = [];
     #readOnly;
     #maxSize;
     #maxFiles;
 
     onConnected() {
-        this.#entries = [];
+        super.onConnected();
+
+        // 创建外包装
+        this.query('style').append(styles);
+        this.query('.field-body').innerHTML = this.#template;
+
+        // 添加图标和事件
+        const $file = this.query('input[type="file"]');
+        $file.on('change', e => this.#upload(e.target.files));
+        this.icon = uploadIcon;
+        this.icon.on('click', () => $file.click());
+
         this.#readOnly = this.attr('readonly');
         this.#maxSize = parseInteger(this.attr('maxsize')); // bytes
         this.#maxFiles = parseInteger(this.attr('multiple'));
 
-        if (this.#readOnly) {
-            this.query('.upload-chooser').remove();
-        } else {
-            const $file = this.query('input[type="file"]');
-            const $chooser = this.query('a.chooser');
-            $chooser.on('click', () => $file.click());
-            $file.on('change', e => this.#upload(e.target.files));
+        // if (this.#readOnly) {
+        //     this.query('.upload-chooser').remove();
+        // } else {
+        //     const $file = this.query('input[type="file"]');
+        //     const $chooser = this.query('a.chooser');
+        //     $chooser.on('click', () => $file.click());
+        //     $file.on('change', e => this.#upload(e.target.files));
 
-            if (this.#maxFiles > 1) {
-                $file.attr('multiple', 'multiple');
-            }
-        }
+        //     if (this.#maxFiles > 1) {
+        //         $file.attr('multiple', 'multiple');
+        //     }
+        // }
     }
 
     async #upload(files) {
