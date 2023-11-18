@@ -1,36 +1,37 @@
 import styles from '../styles/button.css';
-import { createElement } from '../modules/Util.js';
+import { createElement, parseBoolean } from '../modules/Util.js';
 import { Component } from './Component.js';
 
 /**
  * 按钮组件
  * @example <tag href="/users" target="_blank">text</tag>
- * @example <tag class="minor|warning|danger|success, tonal|outlined" disabled>text</tag>
+ * @example <tag variant="minor|warning|danger|success, tonal|outlined" disabled>text</tag>
  * @example this.disable = true|false
  * @example this.loading = true|false
  */
 export class Button extends Component {
 
-    styles = styles;
-    #loading;
+    static styles = styles;
+    static attrs = ['disabled'];
+    #attrs = ['variant', 'href', 'target'];
+
+    onAttributeChanged(name, _, value) {
+        this.shell && this.#render(name, value);
+    }
 
     onConnected() {
-        this.disabled = this.battr('disabled');
+        const template = this.attr('href')
+            ? '<a class="button" draggable="false"><slot></slot></a>'
+            : '<button><slot></slot></button>';
+
+        this.shell = createElement(template);
+        this.shadowRoot.append(this.shell);
         this.#addRipples();
-    }
 
-    get template() {
-        return this.attr('href')
-            ? '<a class="button {{class}}" href="{{href}}" target="{{target}}" draggable="false"><slot></slot></a>'
-            : '<button class="{{class}}"><slot></slot></button>';
-    }
-
-    get disabled() {
-        return this.internals.disabled;
-    }
-
-    set disabled(v) {
-        this.internals.disabled = v;
+        const attrs = this.#attrs.concat(this.constructor.attrs);
+        for (const name of attrs) {
+            this.#render(name, this.attr(name));
+        }
     }
 
     set loading(v) {
@@ -39,15 +40,27 @@ export class Button extends Component {
         this.disabled = v;
 
         if (v) {
-            this.#loading = createElement('<div class="loading"></div>');
-            this.internals.append(this.#loading);
+            const loading = createElement('<div class="loading"></div>');
+            this.shell.append(loading);
         } else {
-            this.#loading && this.#loading.remove();
+            const loading = this.query('.loading');
+            loading && loading.remove();
+        }
+    }
+
+    #render(name, value) {
+        const button = this.shell;
+        if (name === 'variant') {
+            button.addClass(...value.split(/\s+/));
+        } else if (name === 'disabled') {
+            button[name] = parseBoolean(value);
+        } else {
+            button.attr(name, value);
         }
     }
 
     #addRipples() {
-        const button = this.internals;
+        const button = this.shell;
         let _ripple;
 
         button.on('mousedown', () => {
