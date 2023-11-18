@@ -1,6 +1,7 @@
 label {
     display: inline-flex;
     align-items: center;
+    vertical-align: middle;
     cursor: pointer;
     user-select: none;
 }
