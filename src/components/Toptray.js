@@ -5,24 +5,22 @@ import { Component } from './Component.js';
 
 /**
  * 滚动到顶部的托盘组件
- * @example <tag x="10" y="10"></tag>
+ * @example <tag x="30" y="30"></tag>
  */
 export class Toptray extends Component {
 
     static styles = styles;
-    static template = `<div class="toptray" style="bottom:{{x}}px;right:{{y}}px">${arrowTopIcon}</div>`;
+    static template = `<div class="toptray">${arrowTopIcon}</div>`;
 
     onConnected() {
         const { shell } = this;
-
-        addEventListener('scroll', () => {
-            const y = getScrollTop();
-            if (y > 450) shell.style.display = 'block';
-            else shell.style.display = 'none';
-        });
+        const x = this.attr('x');
+        const y = this.attr('y');
+        if (x) shell.style.right = x + 'px';
+        if (y) shell.style.bottom = y + 'px';
 
         let scrollTimer;
-        shell.onclick = function () {
+        shell.onclick = () => {
             cancelAnimationFrame(scrollTimer);
 
             scrollTimer = requestAnimationFrame(function scroll() {
@@ -33,6 +31,12 @@ export class Toptray extends Component {
                 else cancelAnimationFrame(scrollTimer);
             });
         }
+
+        addEventListener('scroll', () => {
+            const y = getScrollTop();
+            if (y > 450) shell.style.display = 'block';
+            else shell.style.display = 'none';
+        });
     }
 
 }
