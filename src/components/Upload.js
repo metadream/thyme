@@ -19,7 +19,7 @@ export class Upload extends Component {
     static template = `
         <div class="upload">
             <div class="upload-chooser">
-                <input type="file" accept="{{accept}}"/>
+                <input type="file"/>
                 <a class="chooser">${Locale.get('UPLOAD')}</a>
             </div>
             <div class="upload-list"></div>
