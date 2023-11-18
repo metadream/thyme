@@ -11,7 +11,7 @@ import { Field } from './Field.js';
 export class Select extends Field {
 
     #template = `<div><div class="overlay"></div><div class="select"></div></div>`;
-    #label;
+    #fieldBody;
     #options;
 
     onConnected() {
@@ -19,7 +19,7 @@ export class Select extends Field {
         this.query('style').append(styles);
 
         // 添加图标和用于显示文本的标签
-        this.#label = this.query('.field-body');
+        this.#fieldBody = this.query('.field-body');
         this.icon = arrowBottomIcon;
     }
 
@@ -45,7 +45,7 @@ export class Select extends Field {
         $overlay.on('click', () => $wrapper.remove());
 
         const $select = this.query('.select');
-        $select.attach(this.#label, true);
+        $select.attach(this.#fieldBody, true);
 
         // 创建选项节点
         for (const option of this.#options) {
@@ -73,7 +73,7 @@ export class Select extends Field {
 
     #value(value, label) {
         this.value = value;
-        this.#label.innerHTML = label;
+        this.#fieldBody.innerHTML = label;
     }
 
 }
