@@ -1,23 +1,12 @@
 ## TODO
 
 - quick-field
-  - 选配：label, input(text+hidden), icon(onclick)
   - 样式：default outlined tonal
-  - set/get value (includes hidden)
-  - 有 slot 则替换默认内容（如switch，checkbox）
 
-- quick-select extends field
-  - set icon onclick
+- quick-select
+  - value checked;
   - 支持多选
 
-- quick-calendar extends field
-  - icon-trigger 不使用背景图标
-  - set icon onclick
+- upload 增加 loading accept
 
-- upload 增加 loading
-
-- internals.on xxx.on -> this.on
-- svg.icon
-
-- battr iattr "{{ parseBoolean parseInteger
-- select : value checked;
+- battr iattr parseBoolean parseInteger
