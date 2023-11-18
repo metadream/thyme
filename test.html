@@ -14,6 +14,10 @@
             display: inline-block;
             margin: 5px;
         }
+
+        quick-checkbox {
+            margin-right: 10px;
+        }
     </style>
 </head>
 
@@ -26,8 +30,8 @@
     <quick-field label="是否学生"><quick-switch name="isStudent"></quick-switch></quick-field>
     <quick-field label="兴趣爱好">
         <quick-checkbox name="hobby" value="football">足球</quick-checkbox>
-        <quick-checkbox name="hobby" value="basketball" id="aa">篮球</quick-checkbox>
-        <quick-checkbox name="hobby" value="pingpong" id="aa">乒乓球</quick-checkbox>
+        <quick-checkbox name="hobby" value="basketball" checked>篮球</quick-checkbox>
+        <quick-checkbox name="hobby" value="pingpong" id="pp">乒乓球</quick-checkbox>
     </quick-field>
 
     <quick-select label="手机品牌" name="brand" multiple="5">
@@ -88,6 +92,8 @@
 </html>
 
 <script>
+    const ff = document.querySelector('#pp');
+
     function post(btn) {
         const data = Quick.form.getJsonObject('body');
         console.log(data)

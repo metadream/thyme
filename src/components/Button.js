@@ -14,7 +14,7 @@ export class Button extends Component {
     static attrs = ['disabled'];
     #attrs = ['variant', 'href', 'target'];
 
-    onChanged(name, _, value) {
+    onChanged(name, value) {
         const button = this.shell;
         if (button) { // 由于模板是后渲染的，所以初始时shell不存在
             if (name === 'variant') {
@@ -35,7 +35,7 @@ export class Button extends Component {
         // 初始化所有属性
         const attrs = this.#attrs.concat(this.constructor.attrs);
         for (const name of attrs) {
-            this.onChanged(name, null, this.attr(name));
+            this.onChanged(name, this.attr(name));
         }
     }
 

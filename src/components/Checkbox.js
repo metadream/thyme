@@ -11,20 +11,17 @@ export class Checkbox extends Component {
     static attrs = ['value', 'checked', 'disabled'];
     static template = `<label><input type="checkbox"/><div><slot></slot></div></label>`;
 
-    onChanged(name, _, value) {
-        const $checkbox = this.query('input');
-        $checkbox.attr(name, value);
-
+    onChanged(name, value) {
+        this.query('input').attr(name, value);
         if (name === 'disabled') {
             this.shell.addClass('disabled');
         }
     }
 
     onConnected() {
-        const $checkbox = this.query('input');
-        $checkbox.on('change', e => {
+        this.query('input').on('change', e => {
             this.checked = e.target.checked;
-        })
+        });
     }
 
 }

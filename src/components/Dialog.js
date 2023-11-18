@@ -5,9 +5,9 @@ import { Component } from './Component.js';
 /**
  * 对话框组件
  * @example <tag title="">content</tag>
- * @example this.buttons = [{ label: string, primary: true|false, onclick: function(self, btn) }]
- * @example this.open(true|false)
- * @example this.hide()
+ * @example element.buttons = [{ label: string, primary: true|false, onclick: function(self, btn) }]
+ * @example element.open(true|false)
+ * @example element.hide()
  */
 const HIDDEN = 0, TRANSFORMING = 1, OPENED = 2;
 export class Dialog extends Component {

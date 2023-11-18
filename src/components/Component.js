@@ -33,7 +33,7 @@ export class Component extends HTMLElement {
     // 属性值改变回调函数（执行顺序2）
     attributeChangedCallback(name, oldValue, newValue) {
         if (oldValue === newValue) return;
-        this.onChanged && this.onChanged(name, oldValue, newValue);
+        this.onChanged && this.onChanged(name, newValue);
     }
 
     // DOM渲染回调函数（执行顺序3）
