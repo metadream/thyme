@@ -9,47 +9,54 @@
         body {
             padding: 50px;
         }
+
+        quick-button {
+            display: inline-block;
+            margin: 5px;
+        }
     </style>
 </head>
 
 <body>
-    <div style="border:1px solid #666;">
-        <quick-upload multiple="5" maxsize="20000240"></quick-upload>
-    </div>
+    <quick-field label="用户名" name="username" maxlength="10" required></quick-field>
+    <quick-field type="password" label="密码" name="password"></quick-field>
+    <quick-field label="年龄" name="age" data-rule="integer(2)" data-message="请输入整数"></quick-field>
+    <quick-calendar label="生日" name="birthday" value="2023-01-05"></quick-calendar>
+
+    <quick-field label="是否学生"><quick-switch name="isStudent"></quick-switch></quick-field>
+    <quick-field label="兴趣爱好">
+        <quick-checkbox name="hobby" value="football">足球</quick-checkbox>
+        <quick-checkbox name="hobby" value="basketball" id="aa">篮球</quick-checkbox>
+        <quick-checkbox name="hobby" value="pingpong" id="aa">乒乓球</quick-checkbox>
+    </quick-field>
+
+    <quick-select label="手机品牌" name="brand" multiple="5">
+        <option></option>
+        <option value="1">iPhone</option>
+        <option value="2" disabled>Oppo</option>
+        <option value="3">Huawei</option>
+        <option value="4" checked>Xiaomi</option>
+        <option value="5">Windows</option>
+        <option value="6">Google</option>
+        <option value="7" disabled>Nokia</option>
+        <option value="8">HTC</option>
+        <option value="9">Samsang</option>
+        <option value="0">TCL</option>
+    </quick-select>
+
+    <quick-upload multiple="5" maxsize="20000240"></quick-upload>
+
+    <br>
+    <quick-button variant="tonal warning" onclick="post(this)">提交数据</quick-button>
+    <quick-button onclick="Quick.alert('你好，世界')">Alert</quick-button>
+    <quick-button onclick="confirm()" variant="danger outlined">Confirm</quick-button>
+    <quick-button onclick="dialog.open()">Dialog</quick-button>
+    <quick-button onclick="Quick.info('捷克的角色可弗拉斯的')" tooltip="间客房送拉将卡洛斯的">Info</quick-button>
+    <quick-button onclick="Quick.warning('捷克的角色可弗拉斯的')">Warning</quick-button>
+    <quick-button onclick="Quick.error('捷克的角色可弗拉斯的')">Error</quick-button>
+    <quick-button onclick="Quick.success('捷克的角色可弗拉斯的')">Success</quick-button>
 
     <br><br>
-    <quick-checkbox name="os" value="andriod" required>Android</quick-checkbox>
-    <quick-checkbox name="os" value="windows" id="aa">Windows</quick-checkbox>
-    <quick-switch name="isSupplier" checked></quick-switch>
-
-    <br><br>
-    <div style="border:1px solid #666;">
-        <quick-select label="品牌" name="brand" multiple="5" style="width:200px">
-            <option></option>
-            <option value="1">iPhone</option>
-            <option value="2" disabled>Oppo</option>
-            <option value="3">Huawei</option>
-            <option value="4" checked>Xiaomi</option>
-            <option value="5">Windows</option>
-            <option value="6">Google</option>
-            <option value="7" disabled>Nokia</option>
-            <option value="8">HTC</option>
-            <option value="9">Samsang</option>
-            <option value="0">TCL</option>
-        </quick-select>
-    </div>
-
-    <br><br>
-    <quick-button id="aaa" onclick="testbutton(this)">获取文件</quick-button>
-    <quick-button class="tonal" onclick="setuploader()">测试按钮</quick-button>
-    <quick-button class="outlined">测试按钮</quick-button>
-    <quick-button target="_blank" class="tonal" href="http://baidu.com">链接按钮</quick-button>
-    <quick-button class="tonal danger" disabled>测试按钮</quick-button>
-    <br><br>
-    <quick-button class="warning outlined" onclick="loadingtest(this)">测试按钮</quick-button>
-    <quick-button onclick="getv()">get</quick-button>
-
-    <br><br><br>
     <table class="list">
         <tr>
             <th>表头1</th>
@@ -68,29 +75,6 @@
         </tr>
     </table>
 
-    <br><br>
-    <quick-field type="text" maxlength="30" label="用户名" name="username" data-rule="integer(2)" required></quick-field>
-    <quick-field type="password" name="password" value="" placeholder="password"></quick-field>
-    <quick-calendar label="日期" name="date" value="2023-01-05"></quick-calendar>
-
-    <quick-field type="text" label="激发了第三"="password">
-        <svg slot="icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 16 16">
-            <path
-                d="M10.9 3.2H5.1v1.6H3.9V3.2H1.2v3.2h13.6V3.2h-2.7v1.6h-1.2V3.2zM12.1 2H15a1 1 0 0 1 1 1v12a1 1 0 0 1-1 1H1a1 1 0 0 1-1-1V3a1 1 0 0 1 1-1h2.9V.4h1.2V2h5.8V.4h1.2V2zm2.7 5.6H1.2v7.2h13.6V7.6z" />
-        </svg>
-    </quick-field>
-
-    <br><br>
-    <button onclick="change()">change</button>
-    <button onclick="openalert()">alert</button>
-    <button onclick="openc()" class="danger">delete</button>
-    <button onclick="dialog.open()">opennewdialog</button>
-
-    <button onclick="Quick.info('捷克的角色可弗拉斯的')" tooltip="间客房送拉将卡洛斯的">info</button>
-    <button onclick="Quick.warning('捷克的角色可弗拉斯的')">warning</button>
-    <button onclick="Quick.error('捷克的角色可弗拉斯的')">error</button>
-    <button onclick="Quick.success('捷克的角色可弗拉斯的')">success</button>
-
     <div style="height:1000px"></div>
 
     <quick-dialog>
@@ -104,8 +88,15 @@
 </html>
 
 <script>
-    function search() {
-        console.log('--------------search');
+    function post(btn) {
+        const data = Quick.form.getJsonObject('body');
+        console.log(data)
+        if (!data) return;
+
+        btn.loading = true;
+        setTimeout(() => {
+            btn.loading = false;
+        }, 2000);
     }
 
     const uploader = document.querySelector('quick-upload');
@@ -127,61 +118,23 @@
         console.log('onRemove---------', entry)
     }
 
-    function setuploader() {
-    }
-
-    function testbutton(btn) {
-        console.log(uploader.entries)
-    }
-
-    function loadingtest(btn) {
-        btn.loading = true;
-        setTimeout(() => {
-            btn.loading = false;
-        }, 2000);
-    }
-
     const dialog = document.querySelector('quick-dialog');
-    dialog.buttons = ['string', {
-        label: 'ok',
+    dialog.buttons = ['关闭', {
+        label: '确定',
         primary: true,
         onclick: (self, btn) => {
             btn.loading = true;
             setTimeout(() => {
                 btn.loading = false;
                 console.log('ok');
-            }, 2000);
+            }, 1000);
 
         }
     }];
 
-    function openalert() {
-        Quick.alert('保存成功', (dlg, btn) => {
-            console.log(dlg, btn);
-        });
-    }
-
-    function openc() {
+    function confirm() {
         Quick.confirm('确定删除吗？', (dlg, btn) => {
             console.log(dlg, btn);
         });
-    }
-
-    const switcher = document.querySelector('quick-switch');
-    // switcher.on('change', function onswicth(e) {
-    //     console.log('----------', e.target.value)
-    // })
-    switcher.onchange = function onswicth(e) {
-        console.log('-------11---', e.target.value)
-    }
-
-    function change() {
-        document.querySelector('quick-field').value = 'nacy2';
-        document.querySelector('quick-field').disabled = true;
-        document.querySelector('quick-switch').value = undefined;
-    }
-    function getv() {
-        const data = Quick.form.getJsonObject('body');
-        console.log(data)
     }
 </script>
