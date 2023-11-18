@@ -2,7 +2,7 @@ import styles from '../styles/upload.css';
 import downloadIcon from '../icons/round-download.svg';
 import removeIcon from '../icons/round-cross.svg';
 import Quick from '../Quick.js';
-import { createElement, formatBytes, nanoId } from "../modules/Util.js";
+import { createElement, formatBytes, parseInteger, nanoId } from "../modules/Util.js";
 import { Locale } from '../modules/Locale.js';
 import { Component } from './Component.js';
 
@@ -34,9 +34,9 @@ export class Upload extends Component {
 
     onConnected() {
         this.#entries = [];
-        this.#readOnly = this.battr('readonly');
-        this.#maxSize = this.iattr('maxsize'); // bytes
-        this.#maxFiles = this.iattr('multiple');
+        this.#readOnly = this.attr('readonly');
+        this.#maxSize = parseInteger(this.attr('maxsize')); // bytes
+        this.#maxFiles = parseInteger(this.attr('multiple'));
 
         if (this.#readOnly) {
             this.query('.upload-chooser').remove();

@@ -4,33 +4,32 @@ import { Component } from './Component.js';
 /**
  * 开关组件
  * @example <tag checked></tag>
- * @example this.value = true|false, 0|1
+ * @example element.checked = true|false
+ * @example element.value = 1|0
  */
 export class Switch extends Component {
 
     static styles = styles;
+    static attrs = ['checked'];
     static template = `<label class="switch"><input type="checkbox"/><i></i></label>`;
 
-    #nativeElement;
+    onChanged(name, value) {
+        this.query('input').attr(name, value);
+    }
 
     onConnected() {
-        this.#nativeElement = this.query('input');
-        if (this.battr('checked')) {
-            this.#nativeElement.checked = true;
-        }
-
-        const event = new Event('change');
-        this.#nativeElement.on('change', () => {
-            this.dispatchEvent(event);
+        this.value = this.value || 0;
+        this.query('input').on('change', e => {
+            this.checked = e.target.checked;
         });
     }
 
     get value() {
-        return this.#nativeElement.checked ? 1 : 0;
+        return this.checked ? 1 : 0;
     }
 
     set value(v) {
-        this.#nativeElement.checked = !!v;
+        this.checked = !!v;
     }
 
 }

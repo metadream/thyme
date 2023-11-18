@@ -6,15 +6,11 @@ import { Field } from './Field.js';
 
 /**
  * 下拉选项组件
- * @example <quick-select></quick-select>
+ * @example <tag><option value="">text</option></tag>
  */
 export class Select extends Field {
 
-    #template = `
-    <div class="select">
-        <div class="overlay"></div>
-        <div class="options"></div>
-    </div>`;
+    #template = `<div class="select"><div class="overlay"></div><div class="options"></div></div>`;
 
     onConnected() {
         this.query('style').append(styles);

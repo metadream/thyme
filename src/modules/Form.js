@@ -41,7 +41,7 @@ export class Form {
             }
 
             // 数据校验
-            const required = field.battr('required');
+            const required = field.attr('required');
             if (!this.#validate(value, required, field.dataset.rule)) {
                 field.focus();
                 Quick.error(field.dataset.message || Locale.get('INCORRECT_INPUT'));
