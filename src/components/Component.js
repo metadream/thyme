@@ -20,8 +20,8 @@ export class Component extends HTMLElement {
         const c = this.constructor;
         this.attachShadow({ mode: 'open' });
         this.shadowRoot.append(createStyles(shadowStyles + c.styles));
-        this.shell = createElement(c.template || this.template);
-        this.shadowRoot.append(this.shell);
+        this.shell = createElement(c.template);
+        this.shadowRoot.append(this.shell || '');
     }
 
     attributeChangedCallback(name, oldValue, newValue) {
