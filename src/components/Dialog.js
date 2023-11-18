@@ -16,7 +16,7 @@ export class Dialog extends Component {
     static template = `
         <div class="overlay dialog">
             <div class="dialog-panel">
-                <div class="dialog-header">{{title}}</div>
+                <div class="dialog-header"></div>
                 <div class="dialog-body"><slot></slot></div>
                 <div class="dialog-footer"></div>
             </div>
@@ -24,14 +24,13 @@ export class Dialog extends Component {
     `;
 
     #state = HIDDEN;
-    #panel;
     #removable;
 
     onConnected() {
-        this.#panel = this.query('.dialog-panel');
-        if (!this.attr('title')) {
-            this.query('.dialog-header').remove();
-        }
+        const title = this.attr('title');
+        const header = this.query('.dialog-header');
+        title ? header.innerHTML = title : header.remove();
+
         document.addEventListener('keyup', e => {
             if (e.keyCode === 27) this.hide();
         });
@@ -72,15 +71,17 @@ export class Dialog extends Component {
     #animate(bodyClass, panelClass, state) {
         this.#state = TRANSFORMING;
         const { shell } = this;
+        shell.addClass(bodyClass);
 
         if (state == OPENED) {
             shell.style.display = 'flex';
         }
-        shell.addClass(bodyClass);
-        this.#panel.addClass(panelClass);
+
+        const panel = this.query('.dialog-panel');
+        panel.addClass(panelClass);
 
         shell.onanimationend = () => {
-            this.#panel.removeClass(panelClass);
+            panel.removeClass(panelClass);
             shell.removeClass(bodyClass);
             shell.onanimationend = null;
 
@@ -101,10 +102,11 @@ export class Dialog extends Component {
                 this.disabled = v;
 
                 if (v) {
-                    this._loader = createElement('<div class="loading"></div>');
-                    this.append(this._loader);
+                    const loading = createElement('<div class="loading"></div>');
+                    this.append(loading);
                 } else {
-                    this._loader && this._loader.remove();
+                    const loading = button.querySelector('.loading');
+                    loading && loading.remove();
                 }
             }
         });
