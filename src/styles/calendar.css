@@ -16,7 +16,7 @@
     display: flex;
     align-items: center;
     height: 40px;
-    padding: 5px;
+    padding: 7px;
     border-bottom: 1px solid var(--platColor);
 }
 
@@ -81,9 +81,9 @@ td>div.minor {
 }
 
 .calendar svg.icon {
-    width: 24px;
-    height: 24px;
-    padding: 5px;
+    width: auto;
+    height: 100%;
+    padding: 6px;
     cursor: pointer;
     border-radius: 3px;
     transition: .3s all;
