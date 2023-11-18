@@ -14,7 +14,7 @@ export class Field extends Component {
     static attrs = ['label', 'required', 'type', 'maxlength', 'placeholder', 'value', 'readonly', 'disabled'];
     static template = '<div class="field"><div class="field-body"><slot><input/></slot></div></div>';
 
-    onAttributeChanged(name, _, value) {
+    onChanged(name, _, value) {
         switch (name) {
             case 'label': this.#renderLabel(value); break;
             case 'required': this.#renderDivider(value); break;

@@ -22,7 +22,7 @@ export class Select extends Field {
         this.icon = arrowBottomIcon;
     }
 
-    onRendered() {
+    onAssigned() {
         const slot = this.query('slot');
         const options = slot.assignedElements();
         slot.remove();

@@ -34,16 +34,14 @@ export class Component extends HTMLElement {
     // 属性值改变回调函数（执行顺序2）
     attributeChangedCallback(name, oldValue, newValue) {
         if (oldValue === newValue) return;
-        if (this.onAttributeChanged) {
-            this.onAttributeChanged(name, oldValue, newValue);
-        }
+        this.onChanged && this.onChanged(name, oldValue, newValue);
     }
 
     // DOM渲染回调函数（执行顺序3）
     connectedCallback() {
         this.onConnected && this.onConnected();
         // 获取Slot插入元素需延迟回调
-        this.onRendered && setTimeout(() => this.onRendered());
+        this.onAssigned && setTimeout(() => this.onAssigned());
     }
 
     // 查找影子内单个元素快捷方法

@@ -15,7 +15,7 @@ export class Button extends Component {
     static attrs = ['disabled'];
     #attrs = ['variant', 'href', 'target'];
 
-    onAttributeChanged(name, _, value) {
+    onChanged(name, _, value) {
         this.shell && this.#render(name, value);
     }
 
