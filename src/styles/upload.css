@@ -1,9 +1,3 @@
-.field {
-    align-items: baseline;
-    height: auto;
-    min-height: 40px;
-}
-
 .upload-list {
     display: flex;
     flex-wrap: wrap;
