@@ -4,4 +4,6 @@
   - 支持多选?
 
 - quick-upload
-  - 增加 loading accept
+  - accept
+
+- svg.icon loading

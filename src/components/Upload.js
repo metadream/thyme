@@ -73,7 +73,9 @@ export class Upload extends Field {
                 file
             };
             if (this.#uploadCallback) {
+                this.icon.loading = true;
                 await this.#uploadCallback(entry);
+                this.icon.loading = false;
                 this.#render(entry);
             }
         }

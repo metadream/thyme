@@ -34,3 +34,35 @@ svg.icon path {
     top: 0;
     bottom: 0;
 }
+
+.loading {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: inherit;
+    border-radius: inherit;
+    pointer-events: none;
+}
+
+.loading:before {
+    content: '';
+    position: absolute;
+    width: 16px;
+    height: 16px;
+    border-radius: 50%;
+    border-left: 2px solid currentColor;
+    border-right: 2px solid var(--silverColor);
+    border-top: 2px solid var(--silverColor);
+    border-bottom: 2px solid var(--silverColor);
+    animation: spin .6s linear infinite;
+}
+
+@keyframes spin {
+    from {
+        transform: rotate(0);
+    }
+
+    to {
+        transform: rotate(360deg);
+    }
+}

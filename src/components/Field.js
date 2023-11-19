@@ -14,6 +14,8 @@ export class Field extends Component {
     static attrs = ['label', 'required', 'type', 'maxlength', 'placeholder', 'value', 'readonly', 'disabled'];
     static template = '<div class="field"><div class="field-body"><slot><input/></slot></div></div>';
 
+    #icon;
+
     onChanged(name, value) {
         switch (name) {
             case 'label': this.#renderLabel(value); break;
@@ -55,15 +57,32 @@ export class Field extends Component {
         $input && $input.attr(name, value);
     }
 
+    #createIcon(el) {
+        const icon = createElement('<div class="field-icon"></div>');
+        icon.innerHTML = icon._innerHTML = typeof el === 'string' ? el : el.outerHTML;
+        icon.tabIndex = -1;
+        this.shell.append(icon);
+
+        Object.defineProperty(icon, 'loading', {
+            set: value => {
+                if (value) {
+                    icon.innerHTML = '';
+                    icon.addClass('loading');
+                } else {
+                    icon.removeClass('loading');
+                    icon.innerHTML = icon._innerHTML;
+                }
+            }
+        });
+        return icon;
+    }
+
     set icon(el) {
-        const $icon = createElement('<div class="field-icon"></div>');
-        typeof el === 'string' ? $icon.innerHTML = el : $icon.append(el);
-        $icon.tabIndex = -1;
-        this.shell.append($icon);
+        if (!this.#icon) this.#icon = this.#createIcon(el);
     }
 
     get icon() {
-        return this.query('.field-icon');
+        return this.#icon;
     }
 
 }
