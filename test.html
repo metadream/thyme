@@ -48,7 +48,10 @@
         <option value="0">TCL</option>
     </quick-select>
 
-    <quick-upload label="合同附件" multiple="5" maxsize="20000240"></quick-upload>
+    <quick-upload label="合同附件" variant="tonal" multiple="5" maxsize="20000240"></quick-upload>
+    <quick-field label="备注" name="remark">
+        <div contenteditable=""></div>
+    </quick-field>
 
     <br>
     <quick-button variant="tonal warning" onclick="post(this)">提交数据</quick-button>
@@ -117,6 +120,11 @@
         previewUrl: 'http://baidu.com',
         downloadUrl: 'http://baidu.com',
         originalName: '卡拉萨擦丝的.xlsx'
+    }, {
+        _id: 'a-3',
+        previewUrl: 'http://baidu.com',
+        downloadUrl: 'http://baidu.com',
+        originalName: '精彩卡斯了多次精彩了.xlsx'
     }];
     uploader.onUpload = async function (entry) {
         console.log('onUpload---------', entry)
