@@ -41,8 +41,3 @@ a:hover {
 input[type="file"] {
     display: none;
 }
-
-svg.icon {
-    width: 16px;
-    height: 16px;
-}
