@@ -2,6 +2,7 @@
     display: flex;
     flex-wrap: wrap;
     flex: 1;
+    margin-top: 5px;
 }
 
 .upload-entry {
@@ -15,7 +16,6 @@
 .upload-entry>a {
     display: flex;
     align-items: center;
-    margin-left: 5px;
     color: var(--carbonColor);
     text-decoration: none;
     cursor: pointer;
@@ -27,6 +27,10 @@ a.download-icon svg.icon path {
 
 a.remove-icon svg.icon path {
     fill: var(--errorColor, var(--ec));
+}
+
+a[class$="-icon"] {
+    margin-left: 5px;
 }
 
 a:hover {
