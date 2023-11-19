@@ -62,7 +62,7 @@ export class Component extends HTMLElement {
     // 查找Slot插入元素快捷方法
     slots(name) {
         const selector = name ? `slot[name="${name}"]` : 'slot';
-        return this.query(selector).assignedElements();
+        return this.query(selector)?.assignedElements();
     }
 
     // 同步更新属性值（props/attrs）
