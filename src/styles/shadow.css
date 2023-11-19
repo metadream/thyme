@@ -52,13 +52,13 @@ svg.icon path {
 .loading:before {
     content: '';
     position: absolute;
-    width: 16px;
-    height: 16px;
+    width: 18px;
+    height: 18px;
     border-radius: 50%;
     border-left: 2px solid currentColor;
-    border-right: 2px solid var(--silverColor);
-    border-top: 2px solid var(--silverColor);
-    border-bottom: 2px solid var(--silverColor);
+    border-right: 2px solid var(--circleColor, var(--silverColor));
+    border-top: 2px solid var(--circleColor, var(--silverColor));
+    border-bottom: 2px solid var(--circleColor, var(--silverColor));
     animation: spin .6s linear infinite;
 }
 

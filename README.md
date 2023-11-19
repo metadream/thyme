@@ -5,5 +5,3 @@
 
 - quick-upload
   - accept
-
-- svg.icon loading

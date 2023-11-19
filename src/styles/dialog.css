@@ -69,30 +69,12 @@ button:disabled {
     background-color: #fff;
 }
 
-button .loading {
+.loading {
     position: absolute;
     left: 0;
     right: 0;
     top: 0;
     bottom: 0;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    border-radius: inherit;
-    background-color: inherit;
-}
-
-button .loading:before {
-    content: '';
-    position: absolute;
-    width: 18px;
-    height: 18px;
-    border-radius: 50%;
-    border-left: 2px solid currentColor;
-    border-right: 2px solid var(--silverColor);
-    border-top: 2px solid var(--silverColor);
-    border-bottom: 2px solid var(--silverColor);
-    animation: spin .6s linear infinite;
 }
 
 .fade-in {
@@ -109,16 +91,6 @@ button .loading:before {
 
 .scale-out {
     animation: scaleOut ease .3s forwards;
-}
-
-@keyframes spin {
-    from {
-        transform: rotate(0);
-    }
-
-    to {
-        transform: rotate(360deg);
-    }
 }
 
 @keyframes fadeIn {
