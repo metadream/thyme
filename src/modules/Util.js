@@ -127,7 +127,7 @@ export function enhanceElements() {
  * @returns
  */
 export function isBooleanAttribute(name) {
-    return ['required', 'readonly', 'checked', 'disabled'].includes(name);
+    return ['required', 'editable', 'readonly', 'checked', 'disabled'].includes(name);
 }
 
 /**

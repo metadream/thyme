@@ -5,7 +5,7 @@ import { Component } from './Component.js';
 /**
  * 对话框组件
  * @example <tag title="">content</tag>
- * @example element.buttons = [{ label: string, primary: true|false, onclick: function(self, btn) }]
+ * @example element.buttons = [{ label: string, primary: true|false, onclick: function(self).call(this) }]
  * @example element.open(true|false)
  * @example element.hide()
  */
@@ -51,8 +51,14 @@ export class Dialog extends Component {
             if (item.primary === true) {
                 button.addClass('primary');
             }
-            button.on('click', () => {
-                item.onclick ? item.onclick(this, button) : this.hide()
+            button.on('click', async () => {
+                if (item.onclick) {
+                    button.loading = true;
+                    await item.onclick.call(this, this);
+                    button.loading = false;
+                } else {
+                    this.hide();
+                }
             });
         }
     }

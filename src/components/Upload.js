@@ -9,7 +9,7 @@ import { Field } from './Field.js';
 
 /**
  * 上传组件
- * @example <quick-upload multiple="9" maxsize="1024000" accept="image/*" readonly></quick-upload>
+ * @example <quick-upload multiple="9" maxsize="1024000" accept="image/*" editable></quick-upload>
  * @example this.entries = [{_id, previewUrl, downloadUrl, originalName}]
  * @example this.onUpload = async function(entry) {}
  * @example this.onRemove = async function(entry) {}
@@ -17,42 +17,37 @@ import { Field } from './Field.js';
 export class Upload extends Field {
 
     #template = `<input type="file"/><div class="upload-list"></div>`;
+    #entries = [];
     #uploadCallback;
     #removeCallback;
-    #entries = [];
-    #readOnly;
+    #editable;
     #maxSize;
     #maxFiles;
 
     onConnected() {
+        // 创建内部元素
         super.onConnected();
-
-        // 创建外包装
         this.query('style').append(styles);
         this.query('.field-body').innerHTML = this.#template;
 
-        // 添加图标和事件
-        const $file = this.query('input[type="file"]');
-        $file.on('change', e => this.#upload(e.target.files));
-        this.icon = uploadIcon;
-        this.icon.on('click', () => $file.click());
-
-        this.#readOnly = this.attr('readonly');
+        // 获取属性
+        this.#editable = this.attr('editable');
         this.#maxSize = parseInteger(this.attr('maxsize')); // bytes
         this.#maxFiles = parseInteger(this.attr('multiple'));
 
-        // if (this.#readOnly) {
-        //     this.query('.upload-chooser').remove();
-        // } else {
-        //     const $file = this.query('input[type="file"]');
-        //     const $chooser = this.query('a.chooser');
-        //     $chooser.on('click', () => $file.click());
-        //     $file.on('change', e => this.#upload(e.target.files));
+        // 如果可编辑
+        if (this.#editable) {
+            // 添加图标和事件
+            const $file = this.query('input[type="file"]');
+            $file.on('change', e => this.#upload(e.target.files));
+            this.icon = uploadIcon;
+            this.icon.on('click', () => $file.click());
 
-        //     if (this.#maxFiles > 1) {
-        //         $file.attr('multiple', 'multiple');
-        //     }
-        // }
+            // 是否允许多选
+            if (this.#maxFiles > 1) {
+                $file.attr('multiple', true);
+            }
+        }
     }
 
     async #upload(files) {
@@ -90,15 +85,13 @@ export class Upload extends Field {
             <div class="upload-entry" id="_${entry._id}">
                 <a class="preview-link" target="_blank" href="${entry.previewUrl}">${entry.originalName}</a>
                 <a class="download-icon" href="${entry.downloadUrl}" download="${entry.originalName}">${downloadIcon}</a>
-                <a class="remove-icon">${removeIcon}</a>
             </div>
         `);
 
-        const $removeBtn = $entry.querySelector('.remove-icon');
-        if (this.#readOnly) {
-            $removeBtn.remove();
-        } else {
+        if (this.#editable) {
+            const $removeBtn = createElement(`<a class="remove-icon">${removeIcon}</a>`);
             $removeBtn.on('click', () => this.#remove(entry));
+            $entry.append($removeBtn);
         }
 
         const $uploadList = this.query('.upload-list');
@@ -107,17 +100,16 @@ export class Upload extends Field {
     }
 
     #remove(entry) {
-        Quick.confirm(Locale.get('DELETE_PROMPT'), async (_cfm, btn) => {
+        Quick.confirm(Locale.get('DELETE_PROMPT'), async () => {
             if (!entry.file && this.#removeCallback) {
-                btn.loadding = true;
                 await this.#removeCallback(entry);
-                btn.loadding = false;
                 Quick.success(Locale.get('DELETE_SUCCESS'));
             }
 
+            // 移除节点元素
             const $entry = this.query('#_' + entry._id);
             $entry.remove();
-
+            // 移除数组元素
             const index = this.#entries.findIndex(v => v._id == entry._id);
             this.#entries.splice(index, 1);
         });

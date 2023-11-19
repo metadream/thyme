@@ -50,8 +50,8 @@ class Quick {
 
         Object.assign(buttons[buttons.length - 1], {
             primary: true,
-            onclick: (self, btn) => {
-                callback && callback(self, btn);
+            onclick: async (self) => {
+                callback && await callback.call(self, self);
                 self.hide();
             }
         })

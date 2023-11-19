@@ -48,7 +48,7 @@
         <option value="0">TCL</option>
     </quick-select>
 
-    <quick-upload label="合同附件" variant="tonal" multiple="5" maxsize="20000240"></quick-upload>
+    <quick-upload label="合同附件" variant="tonal" multiple="5" maxsize="20000240" editable></quick-upload>
     <quick-field label="备注" name="remark">
         <div contenteditable=""></div>
     </quick-field>
@@ -127,29 +127,31 @@
         originalName: '精彩卡斯了多次精彩了.xlsx'
     }];
     uploader.onUpload = async function (entry) {
-        console.log('onUpload---------', entry)
+        await delay(1000);
+        console.log('Upload success---------', entry)
     }
     uploader.onRemove = async function (entry) {
-        console.log('onRemove---------', entry)
+        await delay(1000);
+        console.log('Remove success---------', entry)
     }
 
     const dialog = document.querySelector('quick-dialog');
     dialog.buttons = ['关闭', {
         label: '确定',
         primary: true,
-        onclick: (self, btn) => {
-            btn.loading = true;
-            setTimeout(() => {
-                btn.loading = false;
-                console.log('ok');
-            }, 1000);
-
+        onclick: async (self) => {
+            await delay(1000);
+            console.log('ok');
         }
     }];
 
     function confirm() {
-        Quick.confirm('确定删除吗？', (dlg, btn) => {
-            console.log(dlg, btn);
+        Quick.confirm('确定删除吗？', function (self) {
+            console.log(self, this);
         });
+    }
+
+    function delay(delayInms) {
+        return new Promise(resolve => setTimeout(resolve, delayInms));
     }
 </script>
