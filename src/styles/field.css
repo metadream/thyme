@@ -1,9 +1,7 @@
 .field {
     display: flex;
-    align-items: center;
-    border: 1px solid var(--silverColor);
     border-radius: var(--borderRadius, var(--br));
-    height: 40px;
+    border: 1px solid var(--silverColor);
 }
 
 .field:focus-within {
@@ -32,11 +30,10 @@
 .field>label {
     position: relative;
     display: flex;
-    align-items: center;
+    align-items: baseline;
     cursor: default;
     width: 30%;
-    height: 100%;
-    padding: 7px 20px 8px;
+    padding: 7px 20px;
     white-space: nowrap;
     overflow: hidden;
 }
@@ -57,7 +54,6 @@
     align-items: center;
     overflow: hidden;
     flex: 1;
-    height: 100%;
     margin: 0 10px;
 }
 
@@ -78,11 +74,11 @@
 .field-icon {
     display: flex;
     justify-content: center;
-    align-items: center;
+    align-items: baseline;
     cursor: pointer;
     outline: 0;
     width: 40px;
-    height: 100%;
+    padding: 10px;
     fill: var(--grayColor);
     border-top-right-radius: var(--borderRadius, var(--br));
     border-bottom-right-radius: var(--borderRadius, var(--br));
