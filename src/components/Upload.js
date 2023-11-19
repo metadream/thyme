@@ -21,7 +21,6 @@ export class Upload extends Field {
     #uploadCallback;
     #removeCallback;
     #editable;
-    #maxSize;
     #maxFiles;
 
     onConnected() {
@@ -30,12 +29,8 @@ export class Upload extends Field {
         this.query('style').append(styles);
         this.query('.field-body').innerHTML = this.#template;
 
-        // 获取属性
-        this.#editable = this.attr('editable');
-        this.#maxSize = parseInteger(this.attr('maxsize')); // bytes
-        this.#maxFiles = parseInteger(this.attr('multiple'));
-
         // 如果可编辑
+        this.#editable = this.attr('editable');
         if (this.#editable) {
             // 添加图标和事件
             const $file = this.query('input[type="file"]');
@@ -44,8 +39,15 @@ export class Upload extends Field {
             this.icon.on('click', () => $file.click());
 
             // 是否允许多选
+            this.#maxFiles = parseInteger(this.attr('multiple'));
             if (this.#maxFiles > 1) {
                 $file.attr('multiple', true);
+            }
+
+            // 允许的文件类型
+            const mimetype = this.attr('accept');
+            if (mimetype) {
+                $file.attr('accept', mimetype);
             }
         }
     }
@@ -58,11 +60,14 @@ export class Upload extends Field {
             Quick.warning(Locale.get('MAX_ALLOWED_FILES', { maxFiles: this.#maxFiles }));
             return;
         }
+
+        const maxSize = parseInteger(this.attr('maxsize')); // bytes
         for (const file of files) {
-            if (this.#maxSize > 0 && file.size > this.#maxSize) {
-                return Quick.warning(Locale.get('MAX_ALLOWED_SIZE', { maxSize: formatBytes(this.#maxSize) }));
+            if (maxSize > 0 && file.size > maxSize) {
+                return Quick.warning(Locale.get('MAX_ALLOWED_SIZE', { maxSize: formatBytes(maxSize) }));
             }
         }
+
         for (const file of files) {
             const tempUrl = URL.createObjectURL(file);
             const entry = {
