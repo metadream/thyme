@@ -57,7 +57,7 @@
     margin: 0 10px;
 }
 
-.field-body input, ::slotted([contenteditable]) {
+.field-body input {
     font: inherit;
     outline: 0;
     border: 0;
@@ -100,6 +100,8 @@
 }
 
 ::slotted([contenteditable]) {
+    outline: 0;
     padding: 5px 0;
+    width: 100%;
     min-height: 80px;
 }
