@@ -49,8 +49,8 @@
     </quick-select>
 
     <quick-upload label="合同附件" variant="tonal" accept="image/*" multiple="5" maxsize="20000240" editable></quick-upload>
-    <quick-field label="备注" name="remark">
-        <div contenteditable=""></div>
+    <quick-field label="备注">
+        <div contenteditable="plaintext-only" name="remark"></div>
     </quick-field>
 
     <br>
@@ -96,13 +96,13 @@
 </html>
 
 <script>
-    const ff = document.querySelector('quick-select');
-    console.log(ff.value)
+    const ff = document.querySelector('quick-upload');
 
     function post(btn) {
         const data = Quick.form.getJsonObject('body');
-        console.log(data)
         if (!data) return;
+        data.attachments = ff.entries;
+        console.log(data);
 
         btn.loading = true;
         setTimeout(() => {
