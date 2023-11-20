@@ -73,12 +73,12 @@ class Quick {
         document.body.append(this.#toast);
     }
 
-    static warning(text) {
-        this.info(text, 'warning');
-    }
-
     static error(text) {
         this.info(text, 'error', 5000);
+    }
+
+    static warning(text) {
+        this.info(text, 'warning', 4000);
     }
 
     static success(text) {
