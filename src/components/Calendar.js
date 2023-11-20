@@ -66,13 +66,13 @@ export class Calendar extends Field {
             }
 
             // 点击标题回到初始日期
-            const $currText = this.#calendar.querySelector('.calendar-title');
+            const $currText = this.#calendar.query('.calendar-title');
             if ($currText.contains($target)) {
                 return this.#render(this.#initialDate);
             }
 
             // 点击上下月/上下年按钮
-            const svgIcons = this.#calendar.querySelectorAll('svg.icon');
+            const svgIcons = this.#calendar.queryAll('svg.icon');
             const $prevYear = svgIcons[0];
             const $prevMonth = svgIcons[1];
             const $nextMonth = svgIcons[2];

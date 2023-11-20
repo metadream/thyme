@@ -11,7 +11,7 @@ export class Form {
      */
     static getJsonObject(scope) {
         scope = typeof scope === 'string' ? document.querySelector(scope) : scope;
-        const fields = scope.querySelectorAll('[name]:not([name=""])');
+        const fields = scope.queryAll('[name]:not([name=""])');
         const data = {};
 
         for (const field of fields) {

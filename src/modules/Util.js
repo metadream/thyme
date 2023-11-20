@@ -55,6 +55,14 @@ export function createStyle(content) {
  */
 export function enhanceElements() {
     Object.assign(Element.prototype, {
+        query(selector) {
+            return this.querySelector(selector);
+        },
+
+        queryAll(selector) {
+            return this.querySelectorAll(selector);
+        },
+
         on(events, fn) {
             if (typeof events === 'string') {
                 events = [events];

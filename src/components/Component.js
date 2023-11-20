@@ -13,7 +13,7 @@ export class Component extends HTMLElement {
     // 受监听的属性名列表
     static get observedAttributes() {
         return this.attrs || [];
-    };
+    }
 
     // 构造函数（执行顺序1）
     constructor() {

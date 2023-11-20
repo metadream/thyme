@@ -111,7 +111,7 @@ export class Dialog extends Component {
                     const loading = createElement('<div class="loading"></div>');
                     this.append(loading);
                 } else {
-                    const loading = button.querySelector('.loading');
+                    const loading = button.query('.loading');
                     loading && loading.remove();
                 }
             }
