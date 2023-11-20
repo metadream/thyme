@@ -81,7 +81,7 @@
     outline: 0;
     width: 40px;
     padding: 11px;
-    fill: var(--grayColor);
+    color: var(--grayColor);
     border-top-right-radius: var(--borderRadius, var(--br));
     border-bottom-right-radius: var(--borderRadius, var(--br));
     transition: .2s;

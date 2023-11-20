@@ -1,5 +1,5 @@
 import styles from '../styles/select.css';
-import arrowBottomIcon from "../icons/arrow-bottom.svg";
+import arrowDownIcon from "../icons/arrow-down.svg";
 import { createElement } from "../modules/Util.js";
 import { Locale } from "../modules/Locale.js";
 import { Field } from './Field.js';
@@ -21,7 +21,7 @@ export class Select extends Field {
         // 添加图标和用于显示标签的文本
         this.#input = createElement('<input readonly/>');
         this.query('.field-body').append(this.#input);
-        this.icon = arrowBottomIcon;
+        this.icon = arrowDownIcon;
     }
 
     onAssigned() {

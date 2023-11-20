@@ -1,5 +1,5 @@
 import styles from '../styles/toptray.css';
-import arrowTopIcon from "../icons/arrow-top.svg";
+import arrowUpIcon from "../icons/arrow-up.svg";
 import { getScrollTop } from '../modules/Util.js';
 import { Component } from './Component.js';
 
@@ -10,7 +10,7 @@ import { Component } from './Component.js';
 export class Toptray extends Component {
 
     static styles = styles;
-    static template = `<div class="toptray">${arrowTopIcon}</div>`;
+    static template = `<div class="toptray">${arrowUpIcon}</div>`;
 
     onConnected() {
         const { shell } = this;

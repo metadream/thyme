@@ -18,6 +18,7 @@
     height: 40px;
     padding: 7px;
     border-bottom: 1px solid var(--platColor);
+    color: var(--grayColor);
 }
 
 .calendar-title {
@@ -80,7 +81,7 @@ td>div.minor {
     color: var(--silverColor);
 }
 
-.calendar svg.icon {
+.calendar svg {
     width: auto;
     height: 100%;
     padding: 6px;
@@ -89,6 +90,6 @@ td>div.minor {
     transition: .3s all;
 }
 
-.calendar svg.icon:hover {
+.calendar svg:hover {
     background-color: var(--platColor);
 }

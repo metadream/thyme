@@ -8,11 +8,12 @@
     padding: 10px;
     background-color: #fff;
     cursor: pointer;
+    color: var(--grayColor);
     border-radius: var(--borderRadius, var(--br));
     box-shadow: 0 1px 10px 0 rgb(0 0 0 / 20%);
 }
 
-svg.icon {
+svg {
     width: auto;
     height: auto;
 }

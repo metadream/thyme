@@ -22,12 +22,12 @@
     cursor: pointer;
 }
 
-a.download-icon svg.icon path {
-    fill: var(--primaryColor, var(--pc));
+a.download-icon {
+    color: var(--primaryColor, var(--pc));
 }
 
-a.remove-icon svg.icon path {
-    fill: var(--errorColor, var(--ec));
+a.remove-icon {
+    color: var(--errorColor, var(--ec));
 }
 
 a[class$="-icon"] {

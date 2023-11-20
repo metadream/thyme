@@ -21,13 +21,9 @@
     line-height: 1.6;
 }
 
-svg.icon {
+svg {
     width: 16px;
     height: 16px;
-}
-
-svg.icon path {
-    fill: var(--grayColor);
 }
 
 .overlay {
