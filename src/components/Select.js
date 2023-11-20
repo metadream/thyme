@@ -43,7 +43,7 @@ export class Select extends Field {
         this.shadowRoot.append($wrapper);
 
         const $overlay = this.query('.overlay');
-        $overlay.on('click', () => $wrapper.remove());
+        $overlay.on('mousedown', () => $wrapper.remove());
 
         const $select = this.query('.select');
         $select.attach(this.#input, true);

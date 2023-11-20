@@ -36,7 +36,7 @@ export class Calendar extends Field {
 
         // 遮罩关闭事件
         const overlay = this.query('.overlay');
-        overlay.on('click', () => this.#wrapper.remove());
+        overlay.on('mousedown', () => this.#wrapper.remove());
 
         // 日历面板事件
         this.#calendar = this.query('.calendar');
