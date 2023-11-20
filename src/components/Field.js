@@ -34,12 +34,16 @@ export class Field extends Component {
     }
 
     #renderLabel(value) {
+        let $label = this.query('label');
         if (value) {
-            const $label = createElement(`<label>${value}</label>`);
-            const $body = this.query('.field-body');
-            $body.parentNode.insertBefore($label, $body);
+            if (!$label) {
+                $label = createElement('label');
+                const $body = this.query('.field-body');
+                $body.parentNode.insertBefore($label, $body);
+            }
+            $label.innerHTML = value;
         } else {
-            this.query('label').remove();
+            $label && $label.remove();
         }
     }
 
