@@ -33,18 +33,6 @@ export class Field extends Component {
         variant && this.shell.addClass(variant);
     }
 
-    focus() {
-        this.#input.focus();
-    }
-
-    set icon(el) {
-        if (!this.#icon) this.#icon = this.#createIcon(el);
-    }
-
-    get icon() {
-        return this.#icon;
-    }
-
     #renderLabel(value) {
         if (value) {
             const $label = createElement(`<label>${value}</label>`);
@@ -81,6 +69,18 @@ export class Field extends Component {
             }
         });
         return icon;
+    }
+
+    focus() {
+        this.#input.focus();
+    }
+
+    set icon(el) {
+        if (!this.#icon) this.#icon = this.#createIcon(el);
+    }
+
+    get icon() {
+        return this.#icon;
     }
 
 }
