@@ -13,7 +13,7 @@
     box-shadow: 0 1px 10px 0 rgb(0 0 0 / 20%);
 }
 
-svg {
+svg.icon {
     width: auto;
     height: auto;
 }
