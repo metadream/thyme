@@ -15,6 +15,7 @@ export class Field extends Component {
     static template = '<div class="field"><div class="field-body"><slot><input/></slot></div></div>';
 
     #icon;
+    #input = this.query('input');
 
     onChanged(name, value) {
         switch (name) {
@@ -25,17 +26,23 @@ export class Field extends Component {
     }
 
     onConnected() {
-        const $input = this.query('input');
-        if ($input) {
-            $input.on('change', e => this.value = e.target.value);
-            this.value = $input.value;
-            this.focus = () => $input.focus();
-        }
+        this.#input.on('change', e => this.value = e.target.value);
+        this.value = this.#input.value;
 
         const variant = this.attr('variant');
-        if (variant) {
-            this.shell.addClass(variant);
-        }
+        variant && this.shell.addClass(variant);
+    }
+
+    focus() {
+        this.#input.focus();
+    }
+
+    set icon(el) {
+        if (!this.#icon) this.#icon = this.#createIcon(el);
+    }
+
+    get icon() {
+        return this.#icon;
     }
 
     #renderLabel(value) {
@@ -53,8 +60,7 @@ export class Field extends Component {
     }
 
     #renderInput(name, value) {
-        const $input = this.query('input');
-        $input && $input.attr(name, value);
+        this.#input.attr(name, value);
     }
 
     #createIcon(el) {
@@ -75,14 +81,6 @@ export class Field extends Component {
             }
         });
         return icon;
-    }
-
-    set icon(el) {
-        if (!this.#icon) this.#icon = this.#createIcon(el);
-    }
-
-    get icon() {
-        return this.#icon;
     }
 
 }
