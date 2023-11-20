@@ -18,7 +18,7 @@ export class Select extends Field {
         super.onConnected();
         this.query('style').append(styles);
 
-        // 添加图标和用于显示文本的标签
+        // 添加图标和用于显示标签的文本
         this.#input = createElement('<input readonly/>');
         this.query('.field-body').append(this.#input);
         this.icon = arrowBottomIcon;
