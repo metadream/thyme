@@ -8,9 +8,23 @@
 </head>
 
 <body>
-    <quick-field label="备注">
+    <!-- <quick-field label="备注" value="aaa">
         <div contenteditable="plaintext-only" name="remark" tabindex="0"></div>
-    </quick-field>
+    </quick-field> -->
+
+    <quick-select label="备注">
+        <option value="1">aaaa</option>
+        <option value="2">bbbb</option>
+    </quick-select>
+
+    <button onclick="test()">test</button>
 </body>
 
 </html>
+<script>
+    function test() {
+        const ff = document.querySelector('quick-select');
+        ff.focus();
+        console.log(ff.value)
+    }
+</script>
