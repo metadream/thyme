@@ -1,5 +1,5 @@
 import globalStyles from './styles/global.css';
-import { createElement, createStyle, enhanceElements, registerComponent } from './modules/Util.js';
+import * as Util from './modules/Util.js';
 import { Locale } from './modules/Locale.js';
 import { Http } from './modules/Http.js';
 import { Form } from './modules/Form.js';
@@ -16,28 +16,29 @@ import { Upload } from './components/Upload.js';
 
 class Quick {
 
+    static util = Util;
     static http = Http;
     static form = Form;
     static #toast;
 
     static {
-        enhanceElements();
-        document.head.append(createStyle(globalStyles));
+        Util.enhanceElements();
+        document.head.append(Util.createStyle(globalStyles));
 
-        registerComponent('quick-button', Button);
-        registerComponent('quick-calendar', Calendar);
-        registerComponent('quick-checkbox', Checkbox);
-        registerComponent('quick-dialog', Dialog);
-        registerComponent('quick-field', Field);
-        registerComponent('quick-select', Select);
-        registerComponent('quick-switch', Switch);
-        registerComponent('quick-toast', Toast);
-        registerComponent('quick-toptray', Toptray);
-        registerComponent('quick-upload', Upload);
+        Util.registerComponent('quick-button', Button);
+        Util.registerComponent('quick-calendar', Calendar);
+        Util.registerComponent('quick-checkbox', Checkbox);
+        Util.registerComponent('quick-dialog', Dialog);
+        Util.registerComponent('quick-field', Field);
+        Util.registerComponent('quick-select', Select);
+        Util.registerComponent('quick-switch', Switch);
+        Util.registerComponent('quick-toast', Toast);
+        Util.registerComponent('quick-toptray', Toptray);
+        Util.registerComponent('quick-upload', Upload);
     }
 
     static alert(text, callback, isConfirm) {
-        const dialog = createElement(`<quick-dialog>${text}</quick-dialog>`);
+        const dialog = Util.createElement(`<quick-dialog>${text}</quick-dialog>`);
         document.body.append(dialog);
 
         const buttons = [];
@@ -68,7 +69,7 @@ class Quick {
             this.#toast.remove();
             this.#toast = null;
         }
-        this.#toast = createElement(`<quick-toast type="${type}" delay="${delay}">${text}</quick-toast>`);
+        this.#toast = Util.createElement(`<quick-toast type="${type}" delay="${delay}">${text}</quick-toast>`);
         document.body.append(this.#toast);
     }
 
