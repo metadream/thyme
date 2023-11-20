@@ -14,12 +14,12 @@ button, a.button {
     color: #fff;
     border: 0;
     outline: 0;
+    padding: 0 30px;
+    height: 40px;
     font-weight: 700;
     font-size: var(--fontSize, var(--fs));
     background-color: var(--primaryColor, var(--pc));
     border-radius: var(--borderRadius, var(--br));
-    padding: 0 30px;
-    height: 40px;
     transition: opacity .3s;
     overflow: hidden;
 }
