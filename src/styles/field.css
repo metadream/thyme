@@ -2,6 +2,7 @@
     display: flex;
     border-radius: var(--borderRadius, var(--br));
     border: 1px solid var(--silverColor);
+    transition: .3s;
 }
 
 .field:focus-within {
