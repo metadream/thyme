@@ -79,7 +79,7 @@
     cursor: pointer;
     outline: 0;
     width: 40px;
-    padding: 10px;
+    padding: 11px;
     fill: var(--grayColor);
     border-top-right-radius: var(--borderRadius, var(--br));
     border-bottom-right-radius: var(--borderRadius, var(--br));
