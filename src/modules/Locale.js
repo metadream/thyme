@@ -1,3 +1,7 @@
+/**
+ * 本地化
+ * @example Locale.get(key)
+ */
 export const Locale = {
 
     'zh-CN': {

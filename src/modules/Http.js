@@ -2,6 +2,7 @@ import { Locale } from './Locale.js';
 
 /**
  * HTTP请求方法集
+ * @example Quick.http.get/post/put/patch/delete
  */
 export class Http {
 

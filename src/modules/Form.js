@@ -1,5 +1,6 @@
 /**
  * 表单验证和获取
+ * @example Quick.form.getJsonObject/getJsonArray
  */
 export class Form {
 
