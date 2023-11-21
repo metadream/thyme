@@ -1,7 +1,6 @@
 import styles from '../styles/select.css';
 import arrowDownIcon from "../icons/arrow-down.svg";
 import { createElement } from "../modules/Util.js";
-import { Locale } from "../modules/Locale.js";
 import { Field } from './Field.js';
 
 /**
