@@ -43,11 +43,10 @@ export class Calendar extends Field {
         this.#bindEvents();
 
         // 依附到文本框
-        const $input = this.query('input');
-        this.#calendar.attach($input);
+        this.#calendar.attach(this._input);
 
         // 根据文本框日期初始化渲染
-        this.#initialDate = new Date($input.value);
+        this.#initialDate = new Date(this._input.value);
         this.#initialDate = isNaN(this.#initialDate.getTime()) ? new Date() : this.#initialDate;
         this.#render(this.#initialDate);
     }
