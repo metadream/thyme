@@ -8,20 +8,27 @@ import { Component } from './Component.js';
 export class Checkbox extends Component {
 
     static styles = styles;
-    static attrs = ['value', 'checked', 'disabled'];
+    static attrs = ['name', 'value', 'checked', 'disabled'];
     static template = `<label><input type="checkbox"/><div><slot></slot></div></label>`;
 
+    type = 'checkbox';
+    #input = this.query('input');
+
     onChanged(name, value) {
-        this.query('input').attr(name, value);
+        this.#input.attr(name, value);
         if (name === 'disabled') {
             this.shell.addClass('disabled');
         }
     }
 
     onConnected() {
-        this.query('input').on('change', e => {
+        this.#input.on('change', e => {
             this.checked = e.target.checked;
         });
+    }
+
+    reportValidity() {
+        return this.#input.reportValidity();
     }
 
 }
