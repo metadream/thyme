@@ -16,9 +16,14 @@ export class Form {
         const data = {};
 
         for (const field of fields) {
-            if (!field.reportValidity()) return;
-            const { type, tagName, name, value } = field;
+            let { type, tagName, name, value } = field;
+            if (typeof value === 'string') {
+                field.value = value = value.trim();
+            }
 
+            if (!field.reportValidity()) {
+                return;
+            }
             if (data[name]) {
                 data[name] += ',' + value;
             } else {
