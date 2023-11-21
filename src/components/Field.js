@@ -2,6 +2,11 @@ import styles from '../styles/field.css';
 import { createElement } from '../modules/Util.js';
 import { Component } from './Component.js';
 
+const PATTERN = {
+    email: '^\\w+([_\\-+\\.]\\w+)*@\\w+([\\-\\.]\\w+)*\\.([a-zA-Z]{2,})$',
+    url: '^https?:\\/\\/([\\w\\-]+\\.){1,}[a-zA-Z]{2,6}(\\/[\\S]*)?$'
+}
+
 /**
  * 文本框组件
  * @example <tag type="text|password|email|url|number" variant="tonal|plain">not required</tag>
@@ -49,6 +54,9 @@ export class Field extends Component {
             if (name === 'type') {
                 if (this.#types.includes(value)) {
                     this._input.attr(name, value);
+                    if (value === 'email' || value === 'url') {
+                        this._input.attr('pattern', PATTERN[value]);
+                    }
                 }
             } else {
                 this._input.attr(name, value);

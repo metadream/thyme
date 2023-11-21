@@ -22,9 +22,12 @@
 </head>
 
 <body>
-    <quick-field type="text" label="用户名" name="username" maxlength="10" required></quick-field>
+    <quick-field label="用户名" name="username" maxlength="10" required></quick-field>
     <quick-field type="password" label="密码" name="password"></quick-field>
-    <quick-field label="年龄" name="age" data-rule="integer(2)" data-message="请输入整数"></quick-field>
+    <quick-field type="number" label="年龄" name="age" min="10" required></quick-field>
+    <quick-field type="email" label="邮箱" name="email" required></quick-field>
+    <quick-field type="url" label="网址" name="website" required></quick-field>
+
     <quick-calendar label="生日" name="birthday" required></quick-calendar>
 
     <quick-field label="是否学生"><quick-switch name="isStudent"></quick-switch></quick-field>

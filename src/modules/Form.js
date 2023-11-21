@@ -4,9 +4,6 @@
  */
 export class Form {
 
-    static email = '^\w+([_\-+\.]\w+)*@\w+([\-\.]\w+)*\.([a-zA-Z]{2,})$';
-    static url = '^https?:\/\/([\w\-]+\.){1,}[a-zA-Z]{2,6}(\/[\S]*)?$';
-
     /**
      * 将带有name属性的元素数据解析为JSON对象
      * @param scope 获取范围
