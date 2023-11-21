@@ -17,10 +17,13 @@ export class Form {
 
         for (const field of fields) {
             let { type, tagName, name, value, checked } = field;
+            name = name || field.attr('name');
             if ((type === 'checkbox' || type === 'radio') && !checked) continue;
 
             if (tagName === 'INPUT' || tagName === 'TEXTAREA' || tagName.startsWith('QUICK-')) {
-                value = field.value = value.trim();
+                if (typeof value === 'string') {
+                    value = field.value = value.trim();
+                }
             }
             else if (tagName === 'SELECT') {
                 value = field.options[field.selectedIndex].value;
@@ -32,7 +35,9 @@ export class Form {
                 value = field.textContent = field.textContent.trim();
             }
 
-            if (!field.reportValidity()) return;
+            if (field.reportValidity && !field.reportValidity()) {
+                return;
+            }
             if (data[name]) {
                 data[name] += ',' + value;
             } else {
