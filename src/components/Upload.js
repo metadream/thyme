@@ -16,7 +16,7 @@ import { Field } from './Field.js';
  */
 export class Upload extends Field {
 
-    #template = `<input type="file"/><div class="upload-list"></div>`;
+    #template = `<input class="hook"/><input type="file"/><div class="upload-list" tabindex="-1"></div>`;
     #entries = [];
     #uploadCallback;
     #removeCallback;
@@ -37,6 +37,10 @@ export class Upload extends Field {
             $file.on('change', e => this.#upload(e.target.files));
             this.icon = uploadIcon;
             this.icon.on('click', () => $file.click());
+
+            // 用于数据检验
+            this._input = this.query('input.hook');
+            this._input.attr('required', this.attr('required'));
 
             // 是否允许多选
             this.#maxFiles = parseInteger(this.attr('multiple'));
@@ -104,6 +108,7 @@ export class Upload extends Field {
         const $uploadList = this.query('.upload-list');
         $uploadList.append($entry);
         this.#entries.push(entry);
+        this._input.value = this.entries.length || '';
     }
 
     #remove(entry) {
@@ -119,6 +124,7 @@ export class Upload extends Field {
             // 移除数组元素
             const index = this.#entries.findIndex(v => v._id == entry._id);
             this.#entries.splice(index, 1);
+            this._input.value = this.entries.length || '';
         });
     }
 
