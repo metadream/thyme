@@ -1,90 +1,96 @@
 import styles from '../styles/field.css';
-import { createElement, parseBoolean } from '../modules/Util.js';
+import { createElement } from '../modules/Util.js';
 import { Component } from './Component.js';
 
 /**
  * 文本框组件
- * @example <tag variant="tonal|plain">not required</tag>
+ * @example <tag type="text|password|email|url|number" variant="tonal|plain">not required</tag>
  * @example element.icon = Element|HTML
  *          element.icon.onclick = ...
  */
 export class Field extends Component {
 
     static styles = styles;
-    static attrs = ['label', 'required', 'type', 'maxlength', 'placeholder', 'value', 'readonly', 'disabled'];
-    static template = '<div class="field"><div class="field-body"><slot><input/></slot></div></div>';
+    static attrs = ['name', 'value', 'required', 'readonly', 'disabled'];
+    static template = '<div class="field"><label></label><div class="field-body"><input/></div><slot></slot></div>';
 
-    #icon;
-    #input = this.query('input');
+    #variants = ['tonal', 'plain'];
+    #attrs = ['label', 'type', 'step', 'min', 'max', 'minlength', 'maxlength', 'placeholder', 'pattern'];
+    #types = ['text', 'password', 'email', 'url', 'number'];
+    _input = this.query('input');
 
     onChanged(name, value) {
-        switch (name) {
-            case 'label': this.#renderLabel(value); break;
-            case 'required': this.#renderDivider(value); break;
-            default: this.#renderInput(name, value);
+        this._input.attr(name, value);
+        if (name === 'value') {
+            this._input.value = value;
         }
     }
 
     onConnected() {
-        this.#input.on('change', e => this.value = e.target.value);
-        this.value = this.#input.value;
+        this._input.on('change', e => this.value = e.target.value);
+        this.value = this._input.value;
 
+        // 初始化变形
         const variant = this.attr('variant');
-        variant && this.shell.addClass(variant);
-    }
+        if (this.#variants.includes(variant)) {
+            this.shell.addClass(variant);
+        }
 
-    #renderLabel(value) {
-        let $label = this.query('label');
-        if (value) {
-            if (!$label) {
-                $label = createElement('label');
-                const $body = this.query('.field-body');
-                $body.parentNode.insertBefore($label, $body);
+        // 初始化标签
+        const name = this.#attrs.shift();
+        const label = this.attr(name);
+        const $label = this.query(name);
+        label ? $label.innerHTML = label : $label.remove();
+
+        // 初始化其他属性
+        for (const name of this.#attrs) {
+            const value = this.attr(name);
+            if (!value) continue;
+
+            if (name === 'type') {
+                if (this.#types.includes(value)) {
+                    this._input.attr(name, value);
+                }
+            } else {
+                this._input.attr(name, value);
             }
-            $label.innerHTML = value;
-        } else {
-            $label && $label.remove();
         }
     }
 
-    #renderDivider(value) {
-        parseBoolean(value) ? this.shell.addClass('required') : this.shell.removeClass('required');
-    }
-
-    #renderInput(name, value) {
-        this.#input.attr(name, value);
-    }
-
-    #createIcon(el) {
-        const icon = createElement('<div class="field-icon"></div>');
-        icon.innerHTML = icon._innerHTML = typeof el === 'string' ? el : el.outerHTML;
-        icon.tabIndex = -1;
-        this.shell.append(icon);
-
-        Object.defineProperty(icon, 'loading', {
-            set: value => {
-                if (value) {
-                    icon.innerHTML = '';
-                    icon.addClass('loading');
-                } else {
-                    icon.removeClass('loading');
-                    icon.innerHTML = icon._innerHTML;
-                }
-            }
-        });
-        return icon;
+    reportValidity() {
+        return this._input.reportValidity();
     }
 
     focus() {
-        this.#input.focus();
+        this._input.focus();
     }
 
     set icon(el) {
-        if (!this.#icon) this.#icon = this.#createIcon(el);
+        let icon = this.query('.field-icon');
+        if (!icon) {
+            icon = createElement('<div class="field-icon"></div>');
+            icon.tabIndex = -1;
+            this.shell.append(icon);
+
+            Object.defineProperty(icon, 'loading', {
+                set: value => {
+                    if (value) {
+                        icon.innerHTML = '';
+                        icon.addClass('loading');
+                    } else {
+                        icon.removeClass('loading');
+                        icon.innerHTML = icon._innerHTML;
+                    }
+                }
+            });
+        }
+
+        const html = typeof el === 'string' ? el : el.outerHTML;
+        icon.innerHTML = icon._innerHTML = html;
     }
 
     get icon() {
-        return this.#icon;
+        return this.query('.field-icon');
     }
 
 }
