@@ -20,7 +20,10 @@ export class Form {
             name = name || field.attr('name');
             if ((type === 'checkbox' || type === 'radio') && !checked) continue;
 
-            if (tagName === 'INPUT' || tagName === 'TEXTAREA' || tagName.startsWith('QUICK-')) {
+            if (tagName === 'QUICK-UPLOAD') {
+                value = field.entries;
+            }
+            else if (tagName === 'INPUT' || tagName === 'TEXTAREA' || tagName.startsWith('QUICK-')) {
                 if (typeof value === 'string') {
                     value = field.value = value.trim();
                 }
