@@ -3,7 +3,6 @@ export const Locale = {
     'zh-CN': {
         OK: '确定', YES: '确定', NO: '取消',
         MON: '一', TUE: '二', WED: '三', THU: '四', FRI: '五', SAT: '六', SUN: '日',
-        EMPTY_OPTION: '<空>',
 
         UPLOAD: '上传附件',
         MAX_ALLOWED_FILES: '最多允许上传 {{maxFiles}} 个文件',
@@ -18,7 +17,6 @@ export const Locale = {
     'en': {
         OK: 'OK', YES: 'YES', NO: 'NO',
         MON: 'MON', TUE: 'TUE', WED: 'WED', THU: 'THU', FRI: 'FRI', SAT: 'SAT', SUN: 'SUN',
-        EMPTY_OPTION: '<Empty>',
 
         UPLOAD: 'UPLOAD',
         MAX_ALLOWED_FILES: 'Uploaded files is not allowed to exceed {{maxFiles}}',
