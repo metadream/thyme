@@ -12,7 +12,7 @@ export class Field extends Component {
 
     static styles = styles;
     static attrs = ['name', 'value', 'required', 'readonly', 'disabled'];
-    static template = '<div class="field"><label></label><div class="field-body"><input/></div><slot></slot></div>';
+    static template = '<div class="field"><label></label><div class="field-body"><slot><input/></slot></div></div>';
 
     #variants = ['tonal', 'plain'];
     #attrs = ['label', 'type', 'step', 'min', 'max', 'minlength', 'maxlength', 'placeholder', 'pattern'];
