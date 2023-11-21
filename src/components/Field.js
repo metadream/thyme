@@ -20,10 +20,9 @@ export class Field extends Component {
     _input = this.query('input');
 
     onChanged(name, value) {
+        if (name === 'name') return;
+        if (name === 'value') this._input.value = value;
         this._input.attr(name, value);
-        if (name === 'value') {
-            this._input.value = value;
-        }
     }
 
     onConnected() {
