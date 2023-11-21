@@ -16,9 +16,11 @@ export class Select extends Field {
         super.onConnected();
         this.query('style').append(styles);
 
+        this._input = createElement('<input readonly/>');
+        this.query('.field-body').append(this._input);
+
         this.icon = arrowDownIcon;
         this.icon.on('click', () => this.#pulldown());
-        this.readonly = true;
     }
 
     onAssigned() {
