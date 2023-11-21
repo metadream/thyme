@@ -50,10 +50,11 @@
         <option value="0">TCL</option>
     </quick-select>
 
-    <!-- <quick-upload label="合同附件" variant="tonal" accept="image/*" multiple="5" maxsize="20000240" editable></quick-upload> -->
-    <!-- <quick-field label="备注">
+    <quick-upload label="合同附件" name="contractFiles" variant="tonal" accept="image/*" multiple="5" maxsize="20000240"
+        editable></quick-upload>
+    <quick-field label="备注">
         <div contenteditable="plaintext-only" name="remark" tabindex="0"></div>
-    </quick-field> -->
+    </quick-field>
 
     <br>
     <quick-button variant="tonal warning" onclick="post(this)">提交数据</quick-button>
@@ -98,12 +99,11 @@
 </html>
 
 <script>
-    const ff = document.querySelector('quick-field');
+    const ff = document.querySelector('quick-upload');
 
     function post(btn) {
         const data = Quick.form.getJsonObject('body');
         if (!data) return;
-        // data.attachments = ff.entries;
         console.log(data);
 
         btn.loading = true;
@@ -113,30 +113,30 @@
     }
 
     const uploader = document.querySelector('quick-upload');
-    // uploader.entries = [{
-    //     _id: 'a-1',
-    //     previewUrl: 'http://baidu.com',
-    //     downloadUrl: 'http://baidu.com',
-    //     originalName: '经发卡笋了了的萨.jpg'
-    // }, {
-    //     _id: 'a-2',
-    //     previewUrl: 'http://baidu.com',
-    //     downloadUrl: 'http://baidu.com',
-    //     originalName: '卡拉萨擦丝的.xlsx'
-    // }, {
-    //     _id: 'a-3',
-    //     previewUrl: 'http://baidu.com',
-    //     downloadUrl: 'http://baidu.com',
-    //     originalName: '精彩卡斯了多次精彩了.xlsx'
-    // }];
-    // uploader.onUpload = async function (entry) {
-    //     await delay(500);
-    //     console.log('Upload success---------', entry)
-    // }
-    // uploader.onRemove = async function (entry) {
-    //     await delay(500);
-    //     console.log('Remove success---------', entry)
-    // }
+    uploader.entries = [{
+        _id: 'a-1',
+        previewUrl: 'http://baidu.com',
+        downloadUrl: 'http://baidu.com',
+        originalName: '经发卡笋了了的萨.jpg'
+    }, {
+        _id: 'a-2',
+        previewUrl: 'http://baidu.com',
+        downloadUrl: 'http://baidu.com',
+        originalName: '卡拉萨擦丝的.xlsx'
+    }, {
+        _id: 'a-3',
+        previewUrl: 'http://baidu.com',
+        downloadUrl: 'http://baidu.com',
+        originalName: '精彩卡斯了多次精彩了.xlsx'
+    }];
+    uploader.onUpload = async function (entry) {
+        await delay(500);
+        console.log('Upload success---------', entry)
+    }
+    uploader.onRemove = async function (entry) {
+        await delay(500);
+        console.log('Remove success---------', entry)
+    }
 
     const dialog = document.querySelector('quick-dialog');
     dialog.buttons = ['关闭', {
