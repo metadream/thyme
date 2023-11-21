@@ -11,17 +11,15 @@ import { Field } from './Field.js';
 export class Select extends Field {
 
     #template = `<div><div class="overlay"></div><div class="select"></div></div>`;
-    #input;
     #options;
 
     onConnected() {
         super.onConnected();
         this.query('style').append(styles);
 
-        // 添加图标和用于显示标签的文本
-        this.#input = createElement('<input readonly/>');
-        this.query('.field-body').append(this.#input);
         this.icon = arrowDownIcon;
+        this.icon.on('click', () => this.#pulldown());
+        this.readonly = true;
     }
 
     onAssigned() {
@@ -33,9 +31,6 @@ export class Select extends Field {
         // 初始化标签和值
         const selected = this.#options.find(v => v.selected);
         selected && this.#value(selected.value, selected.label);
-
-        // 图标点击事件
-        this.icon.on('click', () => this.#pulldown());
     }
 
     #pulldown() {
@@ -46,13 +41,12 @@ export class Select extends Field {
         $overlay.on('mousedown', () => $wrapper.remove());
 
         const $select = this.query('.select');
-        $select.attach(this.#input, true);
+        $select.attach(this._input, true);
 
         // 创建选项节点
         for (const option of this.#options) {
-            let { label, value, selected, disabled } = option;
-            label = label || Locale.get('EMPTY_OPTION');
-            const $option = createElement(`<a class="option">${label}</a>`);
+            const { label, value, selected, disabled } = option;
+            const $option = createElement(`<a class="option">${label || '&#160;'}</a>`);
             $select.append($option);
 
             if (selected) {
@@ -65,7 +59,6 @@ export class Select extends Field {
                     this.#value(value, label);
                     this.#options.forEach(v => v.selected = false);
                     option.selected = true;
-
                     $wrapper.remove();
                 });
             }
@@ -74,11 +67,7 @@ export class Select extends Field {
 
     #value(value, label) {
         this.value = value;
-        this.#input.value = label;
-    }
-
-    focus() {
-        this.#input.focus();
+        this._input.value = label;
     }
 
 }
