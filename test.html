@@ -22,10 +22,10 @@
 </head>
 
 <body>
-    <quick-field label="用户名" name="username" maxlength="10" required></quick-field>
+    <quick-field type="text" label="用户名" name="username" maxlength="10" required></quick-field>
     <quick-field type="password" label="密码" name="password"></quick-field>
     <quick-field label="年龄" name="age" data-rule="integer(2)" data-message="请输入整数"></quick-field>
-    <quick-calendar label="生日" name="birthday" value="2023-01-05"></quick-calendar>
+    <quick-calendar label="生日" name="birthday" required></quick-calendar>
 
     <quick-field label="是否学生"><quick-switch name="isStudent"></quick-switch></quick-field>
     <quick-field label="兴趣爱好" variant="tonal">
@@ -36,7 +36,7 @@
         <quick-checkbox name="hobby" value="vollyball">排球</quick-checkbox>
     </quick-field>
 
-    <quick-select label="手机品牌" name="brand" multiple="5">
+    <quick-select type="text" label="手机品牌" name="brand" required>
         <option></option>
         <option value="1">iPhone</option>
         <option value="2" disabled>Oppo</option>
@@ -50,10 +50,10 @@
         <option value="0">TCL</option>
     </quick-select>
 
-    <quick-upload label="合同附件" variant="tonal" accept="image/*" multiple="5" maxsize="20000240" editable></quick-upload>
-    <quick-field label="备注">
+    <!-- <quick-upload label="合同附件" variant="tonal" accept="image/*" multiple="5" maxsize="20000240" editable></quick-upload> -->
+    <!-- <quick-field label="备注">
         <div contenteditable="plaintext-only" name="remark" tabindex="0"></div>
-    </quick-field>
+    </quick-field> -->
 
     <br>
     <quick-button variant="tonal warning" onclick="post(this)">提交数据</quick-button>
@@ -98,45 +98,45 @@
 </html>
 
 <script>
-    const ff = document.querySelector('quick-upload');
+    const ff = document.querySelector('quick-field');
 
     function post(btn) {
         const data = Quick.form.getJsonObject('body');
         if (!data) return;
-        data.attachments = ff.entries;
+        // data.attachments = ff.entries;
         console.log(data);
 
         btn.loading = true;
         setTimeout(() => {
             btn.loading = false;
-        }, 2000);
+        }, 1000);
     }
 
     const uploader = document.querySelector('quick-upload');
-    uploader.entries = [{
-        _id: 'a-1',
-        previewUrl: 'http://baidu.com',
-        downloadUrl: 'http://baidu.com',
-        originalName: '经发卡笋了了的萨.jpg'
-    }, {
-        _id: 'a-2',
-        previewUrl: 'http://baidu.com',
-        downloadUrl: 'http://baidu.com',
-        originalName: '卡拉萨擦丝的.xlsx'
-    }, {
-        _id: 'a-3',
-        previewUrl: 'http://baidu.com',
-        downloadUrl: 'http://baidu.com',
-        originalName: '精彩卡斯了多次精彩了.xlsx'
-    }];
-    uploader.onUpload = async function (entry) {
-        await delay(500);
-        console.log('Upload success---------', entry)
-    }
-    uploader.onRemove = async function (entry) {
-        await delay(500);
-        console.log('Remove success---------', entry)
-    }
+    // uploader.entries = [{
+    //     _id: 'a-1',
+    //     previewUrl: 'http://baidu.com',
+    //     downloadUrl: 'http://baidu.com',
+    //     originalName: '经发卡笋了了的萨.jpg'
+    // }, {
+    //     _id: 'a-2',
+    //     previewUrl: 'http://baidu.com',
+    //     downloadUrl: 'http://baidu.com',
+    //     originalName: '卡拉萨擦丝的.xlsx'
+    // }, {
+    //     _id: 'a-3',
+    //     previewUrl: 'http://baidu.com',
+    //     downloadUrl: 'http://baidu.com',
+    //     originalName: '精彩卡斯了多次精彩了.xlsx'
+    // }];
+    // uploader.onUpload = async function (entry) {
+    //     await delay(500);
+    //     console.log('Upload success---------', entry)
+    // }
+    // uploader.onRemove = async function (entry) {
+    //     await delay(500);
+    //     console.log('Remove success---------', entry)
+    // }
 
     const dialog = document.querySelector('quick-dialog');
     dialog.buttons = ['关闭', {
