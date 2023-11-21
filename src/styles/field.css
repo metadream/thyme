@@ -71,6 +71,10 @@
     height: 100%;
 }
 
+.field-body input.readonly {
+    pointer-events: none;
+}
+
 .field-body input[disabled] {
     color: var(--grayColor);
     pointer-events: none;
@@ -88,14 +92,6 @@
     border-top-right-radius: var(--borderRadius, var(--br));
     border-bottom-right-radius: var(--borderRadius, var(--br));
     transition: .2s;
-}
-
-.field-icon:hover {
-    opacity: .6;
-}
-
-.field-icon:active {
-    opacity: .8;
 }
 
 .field-icon>*, .loading:before {
