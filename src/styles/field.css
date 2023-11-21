@@ -14,8 +14,12 @@
     background-color: var(--primaryColor, var(--pc));
 }
 
-.field.required>label:after {
-    background-color: var(--errorColor, var(--ec));
+.field:focus-within:has(:invalid) {
+    border-color: var(--warningColor, var(--wc));
+}
+
+.field:has(:required)>label:after {
+    background-color: var(--warningColor, var(--wc));
 }
 
 .field.plain {
