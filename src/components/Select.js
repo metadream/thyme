@@ -16,7 +16,10 @@ export class Select extends Field {
         super.onConnected();
         this.query('style').append(styles);
 
-        this._input = createElement('<input readonly/>');
+        // 添加用于显示的文本框
+        this._input = createElement('input');
+        this._input.attr('required', this.attr('required'));
+        this.readonly = true;
         this.query('.field-body').append(this._input);
 
         this.icon = arrowDownIcon;

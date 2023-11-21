@@ -73,6 +73,7 @@
 
 .field-body input.readonly {
     pointer-events: none;
+    caret-color: transparent;
 }
 
 .field-body input[disabled] {

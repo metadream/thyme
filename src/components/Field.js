@@ -30,8 +30,7 @@ export class Field extends Component {
             this._input.value = value;
         }
         else if (name === 'readonly') {
-            this._input.addClass('readonly');
-            this._input.onkeydown = () => false;
+            this.#setReadOnly();
         } else {
             this._input.attr(name, value);
         }
@@ -69,6 +68,12 @@ export class Field extends Component {
                 this._input.attr(name, value);
             }
         }
+    }
+
+    #setReadOnly() {
+        this._input.addClass('readonly');
+        this._input.onkeydown = () => false;
+        this._input.on('compositionend', () => this._input.value = '');
     }
 
     reportValidity() {
