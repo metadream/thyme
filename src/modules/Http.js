@@ -39,12 +39,12 @@ export class Http {
 
             if (!contentType || contentType.includes('text/plain')) {
                 result = await response.text();
-            } else
-                if (contentType.includes('application/json')) {
-                    result = await response.json();
-                } else {
-                    throw new Error(Locale.get('UNSUPPORTED_RESPONSE'));
-                }
+            }
+            else if (contentType.includes('application/json')) {
+                result = await response.json();
+            } else {
+                throw new Error(Locale.get('UNSUPPORTED_RESPONSE'));
+            }
             if (!response.ok) {
                 throw new Error(result.message);
             }
