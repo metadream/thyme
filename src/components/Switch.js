@@ -10,18 +10,24 @@ import { Component } from './Component.js';
 export class Switch extends Component {
 
     static styles = styles;
-    static attrs = ['checked'];
+    static attrs = ['name', 'checked'];
     static template = `<label class="switch"><input type="checkbox"/><i></i></label>`;
 
+    #input = this.query('input');
+
     onChanged(name, value) {
-        this.query('input').attr(name, value);
+        this.#input.attr(name, value);
     }
 
     onConnected() {
         this.value = this.value || 0;
-        this.query('input').on('change', e => {
+        this.#input.on('change', e => {
             this.checked = e.target.checked;
         });
+    }
+
+    reportValidity() {
+        return this.#input.reportValidity();
     }
 
     get value() {
