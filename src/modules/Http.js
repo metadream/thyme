@@ -45,7 +45,6 @@ export class Http {
                 } else {
                     throw new Error(Locale.get('UNSUPPORTED_RESPONSE'));
                 }
-
             if (!response.ok) {
                 throw new Error(result.message);
             }
