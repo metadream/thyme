@@ -11,7 +11,6 @@ export const Locale = {
         DELETE_PROMPT: '确定删除吗？',
         DELETE_SUCCESS: '删除成功',
 
-        INCORRECT_INPUT: '光标处数据有误',
         UNSUPPORTED_RESPONSE: '不支持的响应类型',
         NETWORK_ERROR: '网络连接异常'
     },
@@ -27,7 +26,6 @@ export const Locale = {
         DELETE_PROMPT: 'Sure you want to delete?',
         DELETE_SUCCESS: 'Delete succeeded',
 
-        INCORRECT_INPUT: 'The data at the cursor is incorrect',
         UNSUPPORTED_RESPONSE: 'Unsupported response type',
         NETWORK_ERROR: 'Network connection error'
     },
