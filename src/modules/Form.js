@@ -16,14 +16,23 @@ export class Form {
         const data = {};
 
         for (const field of fields) {
-            let { type, tagName, name, value } = field;
-            if (typeof value === 'string') {
-                field.value = value = value.trim();
+            let { type, tagName, name, value, checked } = field;
+            if ((type === 'checkbox' || type === 'radio') && !checked) continue;
+
+            if (tagName === 'INPUT' || tagName === 'TEXTAREA' || tagName.startsWith('QUICK-')) {
+                value = field.value = value.trim();
+            }
+            else if (tagName === 'SELECT') {
+                value = field.options[field.selectedIndex].value;
+            }
+            else if (field.isContentEditable) {
+                value = field.innerHTML = field.innerHTML.trim();
+            }
+            else {
+                value = field.textContent = field.textContent.trim();
             }
 
-            if (!field.reportValidity()) {
-                return;
-            }
+            if (!field.reportValidity()) return;
             if (data[name]) {
                 data[name] += ',' + value;
             } else {
