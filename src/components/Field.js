@@ -90,7 +90,6 @@ export class Field extends Component {
     }
 
     reportValidity() {
-        // return this._native.reportValidity();
         const validated = this._native.validity.valid;
         this.#reportMessage(validated, this._native.validationMessage);
         this.focus();
