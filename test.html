@@ -23,6 +23,8 @@
 
 <body>
 
+    <quick-textbox label="备注" name="remark" required></quick-textbox>
+
     <quick-checkgroup label="兴趣爱好" name="hobbies" required>
         <quick-checkbox value="football">足球</quick-checkbox>
         <quick-checkbox value="basketball" checked>篮球</quick-checkbox>
@@ -56,9 +58,6 @@
     </quick-select>
 
     <quick-calendar label="生日" name="birthday" required></quick-calendar>
-    <quick-field label="备注">
-        <div contenteditable="plaintext-only" name="remark" tabindex="0" required></div>
-    </quick-field>
 
     <br>
     <quick-button variant="tonal warning" onclick="post(this)">提交数据</quick-button>
