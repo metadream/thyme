@@ -33,6 +33,8 @@ export class Field extends Component {
     }
 
     onConnected() {
+        this.value = this._native.value;
+
         // 初始化变体
         const variant = this.attr('variant');
         if (this.#variants.includes(variant)) {
