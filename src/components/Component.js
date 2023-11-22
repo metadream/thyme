@@ -59,12 +59,6 @@ export class Component extends HTMLElement {
         return this.shadowRoot.querySelectorAll(selector);
     }
 
-    // 查找Slot插入元素快捷方法
-    slots(name) {
-        const selector = name ? `slot[name="${name}"]` : 'slot';
-        return this.query(selector)?.assignedElements();
-    }
-
     // 添加样式
     addStyle(styles) {
         let $style = this.query('style');

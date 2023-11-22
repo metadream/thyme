@@ -15,7 +15,7 @@ export class CheckGroup extends Field {
     }
 
     onAssigned() {
-        const options = this.slots();
+        const options = this.query('slot').assignedElements();
         this.#setFieldValue(options);
 
         for (const opt of options) {

@@ -4,7 +4,7 @@ import { Field } from './Field.js';
 
 /**
  * 多行文本框组件
- * @example <quick-textbox name="" required></quick-textbox>
+ * @example <quick-textbox name="" required>content</quick-textbox>
  */
 export class TextBox extends Field {
 
@@ -20,12 +20,22 @@ export class TextBox extends Field {
 
         this.#editor.on('input', e => {
             this.value = e.target.textContent;
-        })
+        });
+    }
+
+    onAssigned() {
+        let content = '';
+        const nodes = this.query('slot').assignedNodes();
+        nodes.forEach(v => content += v.textContent);
+
+        content = content.trim();
+        this.#editor.textContent = content;
+        this.value = content;
     }
 
     reportValidity() {
         const validated = super.reportValidity();
-        this.#editor.focus();
+        if (!validated) this.#editor.focus();
         return validated;
     }
 

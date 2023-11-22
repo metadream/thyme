@@ -54,6 +54,6 @@
     background: none;
 }
 
-::slotted(*) {
+slot {
     display: none;
 }

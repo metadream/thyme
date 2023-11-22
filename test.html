@@ -23,7 +23,9 @@
 
 <body>
 
-    <quick-textbox label="备注" name="remark" required></quick-textbox>
+    <quick-textbox label="备注" name="remark" required>
+        减肥可乐的萨的夫斯基阿克拉，附近的萨克拉
+    </quick-textbox>
 
     <quick-checkgroup label="兴趣爱好" name="hobbies" required>
         <quick-checkbox value="football">足球</quick-checkbox>
@@ -41,7 +43,7 @@
     <quick-field type="number" label="年龄" name="age" min="10" required></quick-field>
     <quick-field type="email" label="邮箱" name="email"></quick-field>
     <quick-field type="url" label="网址" name="website"></quick-field>
-    <quick-field label="是否学生"><quick-switch name="isStudent"></quick-switch></quick-field>
+    <quick-field label="是否学生"><quick-switch name="isStudent" checked></quick-switch></quick-field>
 
     <quick-select type="text" label="手机品牌" name="brand" required>
         <option></option>
@@ -49,7 +51,7 @@
         <option value="2" disabled>Oppo</option>
         <option value="3">Huawei</option>
         <option value="4">Xiaomi</option>
-        <option value="5">Windows</option>
+        <option value="5" selected>Windows</option>
         <option value="6">Google</option>
         <option value="7" disabled>Nokia</option>
         <option value="8">HTC</option>
