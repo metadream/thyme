@@ -17,6 +17,8 @@ export function nanoId(size = 21) {
 
 /**
  * 注册自定义组件
+ * @param {string} tagName
+ * @param {HTMLElement} component
  */
 export function registerComponent(tagName, component) {
     customElements.define(tagName, component);
@@ -111,7 +113,6 @@ export function enhanceElements() {
 
         attach(target, fitWidth) {
             const rect = target.getBoundingClientRect();
-            this.style.position = 'absolute';
             this.style.left = rect.x + 'px';
             this.style.top = rect.y + rect.height + getScrollTop() + 1 + 'px';
             fitWidth && (this.style.width = rect.width + 'px');
