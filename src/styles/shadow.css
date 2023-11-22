@@ -21,6 +21,10 @@
     line-height: 1.6;
 }
 
+::placeholder {
+    color: var(--grayColor);
+}
+
 svg.icon {
     width: 16px;
     height: 16px;
