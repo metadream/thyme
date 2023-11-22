@@ -10,7 +10,7 @@ import { Field } from './Field.js';
 
 /**
  * 日历组件
- * @example <tag></tag>
+ * @example <quick-calendar label="" name="" value="" required></quick-calendar>
  */
 export class Calendar extends Field {
 
@@ -22,7 +22,8 @@ export class Calendar extends Field {
 
     onConnected() {
         super.onConnected();
-        this.query('style').append(styles);
+        this.addStyle(styles);
+
         this.readonly = true;
         this.icon = calendarIcon;
         this.icon.on('click', () => this.#pulldown());

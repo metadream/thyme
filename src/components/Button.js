@@ -4,9 +4,9 @@ import { Component } from './Component.js';
 
 /**
  * 按钮组件
- * @example <tag href="/users" target="_blank">text</tag>
- * @example <tag variant="minor|warning|danger|success, tonal|outlined">text</tag>
- * @example element.loading = true|false
+ * @example <quick-button href="/users" target="_blank">text</quick-button>
+ * @example <quick-button variant="minor|warning|danger|success, tonal|outlined">text</quick-button>
+ * @example button.loading = true|false
  */
 export class Button extends Component {
 
@@ -15,12 +15,12 @@ export class Button extends Component {
     #attrs = ['variant', 'href', 'target'];
 
     onChanged(name, value) {
-        const button = this.shell;
-        if (button) { // 由于模板是后渲染的，所以初始时shell不存在
+        const { shell } = this;
+        if (shell) { // 由于模板是后渲染的，所以初始时shell不存在
             if (name === 'variant') {
-                value && button.addClass(...value.split(/\s+/));
+                value && shell.addClass(...value.split(/\s+/));
             } else {
-                button.attr(name, value);
+                shell.attr(name, value);
             }
         }
     }
@@ -54,12 +54,12 @@ export class Button extends Component {
     }
 
     #addRipples() {
-        const button = this.shell;
+        const { shell } = this;
         let _ripple;
 
-        button.on('mousedown', () => {
+        shell.on('mousedown', () => {
             const ripple = createElement('<div class="ripple"></div>');
-            button.append(ripple);
+            shell.append(ripple);
             _ripple = ripple;
 
             ripple.end = false;
@@ -69,7 +69,7 @@ export class Button extends Component {
                 ripple.on('animationend', ripple.remove);
             }
 
-            const rect = button.getBoundingClientRect();
+            const rect = shell.getBoundingClientRect();
             const size = Math.sqrt(rect.width ** 2 + rect.height ** 2) + 'px';
             ripple.style.width = size;
             ripple.style.height = size;
@@ -83,7 +83,7 @@ export class Button extends Component {
             });
         });
 
-        button.on(['mouseup', 'mouseleave'], () => {
+        shell.on(['mouseup', 'mouseleave'], () => {
             if (!_ripple) return;
             _ripple.up = true;
             if (_ripple.end) {

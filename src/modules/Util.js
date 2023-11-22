@@ -48,7 +48,7 @@ export function createElement(content) {
  */
 export function createStyle(content) {
     const style = createElement('style');
-    style.textContent = content;
+    style.textContent = content || '';
     return style;
 }
 

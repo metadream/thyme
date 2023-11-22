@@ -5,7 +5,10 @@ import { Field } from './Field.js';
 
 /**
  * 下拉选项组件
- * @example <tag><option value="" selected>text</option></tag>
+ * @example <quick-select>
+ *            <option value="1" disabled>text1</option>
+ *            <option value="2" selected>text2</option>
+ *          </quick-selectg>
  */
 export class Select extends Field {
 
@@ -14,7 +17,8 @@ export class Select extends Field {
 
     onConnected() {
         super.onConnected();
-        this.query('style').append(styles);
+        this.addStyle(styles);
+
         this.readonly = true;
         this.icon = arrowDownIcon;
         this.icon.on('click', () => this.#pulldown());
@@ -28,7 +32,7 @@ export class Select extends Field {
 
         // 初始化标签和值
         const selected = this.#options.find(v => v.selected);
-        selected && this.#value(selected.value, selected.label);
+        selected && this.#setFieldValue(selected.value, selected.label);
     }
 
     #pulldown() {
@@ -54,7 +58,7 @@ export class Select extends Field {
                 $option.addClass('disabled');
             } else {
                 $option.on('click', () => {
-                    this.#value(value, label);
+                    this.#setFieldValue(value, label);
                     this.#options.forEach(v => v.selected = false);
                     option.selected = true;
                     $wrapper.remove();
@@ -63,7 +67,7 @@ export class Select extends Field {
         }
     }
 
-    #value(value, label) {
+    #setFieldValue(value, label) {
         this.value = value;
         this._native.value = label;
     }

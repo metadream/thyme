@@ -3,7 +3,7 @@ import { Component } from './Component.js';
 
 /**
  * 开关组件
- * @example <tag checked></tag>
+ * @example <quick-switch checked></quick-switch>
  * @example element.checked = true|false
  * @example element.value = 1|0
  */

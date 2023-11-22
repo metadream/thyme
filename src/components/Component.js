@@ -23,7 +23,7 @@ export class Component extends HTMLElement {
         // 添加主机样式和组件样式
         const c = this.constructor;
         this.attachShadow({ mode: 'open' });
-        this.shadowRoot.append(createStyle(shadowStyles + c.styles));
+        this.addStyle(shadowStyles + c.styles);
 
         // 添加模板元素
         // 由于 attributeChangedCallback 方法可能需要查找元素，故在构造函数而非 connectedCallback 中添加
@@ -63,6 +63,16 @@ export class Component extends HTMLElement {
     slots(name) {
         const selector = name ? `slot[name="${name}"]` : 'slot';
         return this.query(selector)?.assignedElements();
+    }
+
+    // 添加样式
+    addStyle(styles) {
+        let $style = this.query('style');
+        if (!$style) {
+            $style = createStyle();
+            this.shadowRoot.append($style);
+        }
+        $style.append(styles);
     }
 
     // 同步更新属性值（props/attrs）

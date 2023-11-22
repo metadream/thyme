@@ -9,9 +9,9 @@ const PATTERN = {
 
 /**
  * 文本框组件
- * @example <tag type="text|password|email|url|number" variant="tonal|plain">not required</tag>
- * @example element.icon = Element|HTML
- *          element.icon.onclick = ...
+ * @example <quick-field type="text|password|email|url|number" variant="tonal|plain">not required</quick-field>
+ * @example field.icon = Element|HTML
+ *          field.icon.onclick = ...
  */
 export class Field extends Component {
 
@@ -22,7 +22,7 @@ export class Field extends Component {
     #variants = ['tonal', 'plain'];
     #attrs = ['label', 'type', 'step', 'min', 'max', 'minlength', 'maxlength', 'placeholder', 'pattern'];
     #types = ['text', 'password', 'email', 'url', 'number'];
-    _native = this.#getNativeInput();
+    _native = this.#getNativeElement();
 
     onChanged(name, value) {
         switch (name) {
@@ -72,7 +72,8 @@ export class Field extends Component {
         }
     }
 
-    #getNativeInput() {
+    // 获取原生文本框组件
+    #getNativeElement() {
         const input = this.query('input');
         input.on('change', e => this.value = e.target.value);
 
@@ -85,38 +86,41 @@ export class Field extends Component {
         input.mockReadOnly = () => {
             input.addClass('readonly');
             input.onkeydown = () => false;
-            input.on('compositionend', () => input.value = '');
+            input.on('compositionend', () => input.value = ''); // 输入法结束事件
         }
         return input;
     }
 
-    reportValidity() {
+    // 替换原生校验的提示框
+    #reportMessage() {
         const validated = this._native.validity.valid;
-        this.#reportMessage(validated, this._native.validationMessage);
-        this.focus();
+        const message = this._native.validationMessage;
+
+        let tooltip = this.query('.tooltip');
+        if (tooltip) {
+            clearTimeout(tooltip.timer);
+            tooltip.remove();
+        }
+
+        if (!validated) {
+            tooltip = createElement(`<div class="tooltip">${message}</div>`);
+            tooltip.attach(this._native);
+            this.shadowRoot.append(tooltip);
+            this.focus();
+
+            tooltip.timer = setTimeout(() => {
+                tooltip.remove();
+            }, 5000);
+        }
         return validated;
+    }
+
+    reportValidity() {
+        return this.#reportMessage();
     }
 
     focus() {
         this._native.focus();
-    }
-
-    #reportMessage(validated, message) {
-        let tooltip = this.query('.tooltip');
-        if (!tooltip) {
-            tooltip = createElement(`<div class="tooltip"></div>`);
-            this.shadowRoot.append(tooltip);
-            setTimeout(() => {
-                tooltip.remove();
-            }, 5000);
-        }
-
-        if (validated) {
-            tooltip.remove();
-        } else {
-            tooltip.innerHTML = message;
-            tooltip.attach(this._native);
-        }
     }
 
     set icon(el) {

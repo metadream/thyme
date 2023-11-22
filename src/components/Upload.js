@@ -24,11 +24,11 @@ export class Upload extends Field {
     #maxFiles;
 
     onConnected() {
-        // 创建内部元素
         super.onConnected();
-        this.query('style').append(styles);
-        this.query('.field-body').append(createElement(this.#template));
+        this.addStyle(styles);
+
         this._native.mockHide();
+        this.query('.field-body').append(createElement(this.#template));
 
         // 如果可编辑
         this.#editable = this.attr('editable');

@@ -4,7 +4,7 @@ import { Field } from './Field.js';
 
 /**
  * 多行文本框组件
- * @example <tag name="" required></tag>
+ * @example <quick-textbox name="" required></quick-textbox>
  */
 export class TextBox extends Field {
 
@@ -12,9 +12,9 @@ export class TextBox extends Field {
 
     onConnected() {
         super.onConnected();
-        this._native.mockHide();
+        this.addStyle(styles);
 
-        this.query('style').append(styles);
+        this._native.mockHide();
         this.#editor = createElement('<div contenteditable="plaintext-only"></div>');
         this.query('.field-body').append(this.#editor);
 
