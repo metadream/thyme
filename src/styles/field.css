@@ -120,23 +120,23 @@
     position: absolute;
     z-index: 5001;
     background: #fef6d5;
-    border: 1px solid #999;
+    border: 1px solid #666;
 }
 
 .tooltip {
     padding: 5px 10px;
     margin-top: 10px;
     font-size: 14px;
-    border-radius: var(--borderRadius, var(--br));
+    border-radius: 5px;
     box-shadow: 3px 3px 3px rgb(0 0 0 / 16%);
 }
 
 .tooltip:before {
     content: '';
     bottom: 100%;
-    left: 20%;
-    padding: 4px;
-    margin-bottom: -3px;
+    left: 15%;
+    padding: 5px;
+    margin-bottom: -5px;
     border-width: 0 1px 1px 0;
     transform: rotate(-135deg);
 }
