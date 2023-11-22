@@ -22,23 +22,33 @@
 </head>
 
 <body>
-    <quick-upload label="合同附件" name="contractFiles" variant="tonal" accept="image/*" multiple="5" maxsize="20000240"
-        editable required></quick-upload>
-
-    <quick-field label="用户名" name="username" maxlength="10" required></quick-field>
-    <quick-field type="password" label="密码" name="password"></quick-field>
-    <quick-field type="number" label="年龄" name="age" min="10" required></quick-field>
-    <quick-field type="email" label="邮箱" name="email"></quick-field>
-    <quick-field type="url" label="网址" name="website"></quick-field>
-    <quick-field label="是否学生"><quick-switch name="isStudent"></quick-switch></quick-field>
 
     <quick-field label="兴趣爱好" variant="tonal" required>
         <quick-checkbox name="hobby" value="football">足球</quick-checkbox>
         <quick-checkbox name="hobby" value="basketball" checked>篮球</quick-checkbox>
-        <quick-checkbox name="hobby" value="pingpong" id="pp">乒乓球</quick-checkbox>
+        <quick-checkbox name="hobby" value="pingpong">乒乓球</quick-checkbox>
         <quick-checkbox name="hobby" value="tennis">网球</quick-checkbox>
         <quick-checkbox name="hobby" value="vollyball">排球</quick-checkbox>
     </quick-field>
+
+    <quick-checkgroup label="兴趣爱好" name="hobbies" required>
+        <quick-checkbox value="football">足球</quick-checkbox>
+        <quick-checkbox value="basketball" checked>篮球</quick-checkbox>
+        <quick-checkbox value="pingpong">乒乓球</quick-checkbox>
+        <quick-checkbox value="tennis">网球</quick-checkbox>
+        <quick-checkbox value="vollyball">排球</quick-checkbox>
+    </quick-checkgroup>
+
+
+    <quick-upload label="合同附件" name="contractFiles" variant="tonal" accept="image/*" multiple="5" maxsize="20000240"
+        editable required></quick-upload>
+
+    <quick-field label="用户名" name="username" maxlength="10" required></quick-field>
+    <quick-field type="password" label="密码" value="123" name="password"></quick-field>
+    <quick-field type="number" label="年龄" name="age" min="10" required></quick-field>
+    <quick-field type="email" label="邮箱" name="email"></quick-field>
+    <quick-field type="url" label="网址" name="website"></quick-field>
+    <quick-field label="是否学生"><quick-switch name="isStudent"></quick-switch></quick-field>
 
     <quick-select type="text" label="手机品牌" name="brand" required>
         <option></option>

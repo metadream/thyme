@@ -15,13 +15,7 @@ export class Select extends Field {
     onConnected() {
         super.onConnected();
         this.query('style').append(styles);
-
-        // 添加用于显示的文本框
-        this._input = createElement('input');
-        this._input.attr('required', this.attr('required'));
         this.readonly = true;
-        this.query('.field-body').append(this._input);
-
         this.icon = arrowDownIcon;
         this.icon.on('click', () => this.#pulldown());
     }
@@ -45,7 +39,7 @@ export class Select extends Field {
         $overlay.on('mousedown', () => $wrapper.remove());
 
         const $select = this.query('.select');
-        $select.attach(this._input, true);
+        $select.attach(this._native, true);
 
         // 创建选项节点
         for (const option of this.#options) {
@@ -71,7 +65,7 @@ export class Select extends Field {
 
     #value(value, label) {
         this.value = value;
-        this._input.value = label;
+        this._native.value = label;
     }
 
 }

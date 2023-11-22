@@ -6,6 +6,7 @@ import { Form } from './modules/Form.js';
 import { Button } from './components/Button.js';
 import { Calendar } from './components/Calendar.js';
 import { Checkbox } from './components/Checkbox.js';
+import { CheckGroup } from './components/CheckGroup.js';
 import { Dialog } from './components/Dialog.js';
 import { Field } from './components/Field.js';
 import { Select } from './components/Select.js';
@@ -28,6 +29,7 @@ class Quick {
         Util.registerComponent('quick-button', Button);
         Util.registerComponent('quick-calendar', Calendar);
         Util.registerComponent('quick-checkbox', Checkbox);
+        Util.registerComponent('quick-checkgroup', CheckGroup);
         Util.registerComponent('quick-dialog', Dialog);
         Util.registerComponent('quick-field', Field);
         Util.registerComponent('quick-select', Select);

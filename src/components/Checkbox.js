@@ -2,7 +2,7 @@ import styles from '../styles/checkbox.css';
 import { Component } from './Component.js';
 
 /**
- * 多选框组件
+ * 复选框组件
  * @example <tag name="" value="" checked disabled>text</tag>
  */
 export class Checkbox extends Component {
@@ -22,8 +22,10 @@ export class Checkbox extends Component {
     }
 
     onConnected() {
+        const event = new Event('change');
         this.#input.on('change', e => {
             this.checked = e.target.checked;
+            this.dispatchEvent(event);
         });
     }
 

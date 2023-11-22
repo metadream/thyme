@@ -17,30 +17,23 @@ export class Field extends Component {
 
     static styles = styles;
     static attrs = ['name', 'value', 'required', 'readonly', 'disabled'];
-    static template = '<div class="field"><label></label><div class="field-body"><slot><input/></slot></div></div>';
+    static template = '<div class="field"><label></label><div class="field-body"><input/><slot></slot></div></div>';
 
     #variants = ['tonal', 'plain'];
     #attrs = ['label', 'type', 'step', 'min', 'max', 'minlength', 'maxlength', 'placeholder', 'pattern'];
     #types = ['text', 'password', 'email', 'url', 'number'];
-    _input = this.query('input');
+    _native = this.#getNativeInput();
 
     onChanged(name, value) {
-        if (name === 'name') return;
-        if (name === 'value') {
-            this._input.value = value;
-        }
-        else if (name === 'readonly') {
-            this.#setReadOnly();
-        } else {
-            this._input.attr(name, value);
+        switch (name) {
+            case 'readonly': this._native.mockReadOnly(); break;
+            case 'value': this._native.value = value; break;
+            default: this._native.attr(name, value);
         }
     }
 
     onConnected() {
-        this._input.on('change', e => this.value = e.target.value);
-        this.value = this._input.value;
-
-        // 初始化变形
+        // 初始化变体
         const variant = this.attr('variant');
         if (this.#variants.includes(variant)) {
             this.shell.addClass(variant);
@@ -54,34 +47,52 @@ export class Field extends Component {
 
         // 初始化其他属性
         for (const name of this.#attrs) {
-            const value = this.attr(name);
+            let value = this.attr(name);
             if (!value) continue;
 
             if (name === 'type') {
-                if (this.#types.includes(value)) {
-                    this._input.attr(name, value);
-                    if (value === 'email' || value === 'url') {
-                        this._input.attr('pattern', PATTERN[value]);
-                    }
+                value = this.#types.includes(value) ? value : 'text';
+
+                // 邮箱和网址额外增加正则表达式校验
+                if (value === 'email' || value === 'url') {
+                    this._native.attr('pattern', PATTERN[value]);
                 }
-            } else {
-                this._input.attr(name, value);
             }
+            this._native.attr(name, value);
         }
     }
 
-    #setReadOnly() {
-        this._input.addClass('readonly');
-        this._input.onkeydown = () => false;
-        this._input.on('compositionend', () => this._input.value = '');
+    // 如果插槽有元素则隐藏原生文本框
+    onAssigned() {
+        const slots = this.slots();
+        if (slots && slots.length) {
+            this._native.hide();
+        }
+    }
+
+    #getNativeInput() {
+        const input = this.query('input');
+        input.on('change', e => this.value = e.target.value);
+
+        // 隐藏以保证原生校验功能可用
+        input.hide = () => {
+            input.addClass('hidden');
+        }
+        // 模拟只读以保证原生校验功能可用
+        input.mockReadOnly = () => {
+            input.addClass('readonly');
+            input.onkeydown = () => false;
+            input.on('compositionend', () => input.value = '');
+        }
+        return input;
     }
 
     reportValidity() {
-        return this._input.reportValidity();
+        return this._native.reportValidity();
     }
 
     focus() {
-        this._input.focus();
+        this._native.focus();
     }
 
     set icon(el) {

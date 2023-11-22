@@ -1,3 +1,3 @@
 ## Web Components
 
-- checkbox required无效
+- contenteditable required test
