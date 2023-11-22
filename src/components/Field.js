@@ -108,7 +108,7 @@ export class Field extends Component {
             this.shadowRoot.append(tooltip);
             setTimeout(() => {
                 tooltip.remove();
-            }, 3000);
+            }, 5000);
         }
 
         if (validated) {
