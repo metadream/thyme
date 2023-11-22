@@ -68,7 +68,7 @@ export class Field extends Component {
     onAssigned() {
         const slots = this.slots();
         if (slots && slots.length) {
-            this._native.hide();
+            this._native.mockHide();
         }
     }
 
@@ -76,9 +76,10 @@ export class Field extends Component {
         const input = this.query('input');
         input.on('change', e => this.value = e.target.value);
 
-        // 隐藏以保证原生校验功能可用
-        input.hide = () => {
+        // 模拟隐藏以保证原生校验功能可用
+        input.mockHide = () => {
             input.addClass('hidden');
+            input.mockReadOnly();
         }
         // 模拟只读以保证原生校验功能可用
         input.mockReadOnly = () => {

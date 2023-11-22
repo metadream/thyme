@@ -10,7 +10,7 @@ export class CheckGroup extends Field {
 
     onConnected() {
         super.onConnected();
-        this._native.hide();
+        this._native.mockHide();
     }
 
     onAssigned() {

@@ -28,7 +28,7 @@ export class Upload extends Field {
         super.onConnected();
         this.query('style').append(styles);
         this.query('.field-body').append(createElement(this.#template));
-        this._native.hide();
+        this._native.mockHide();
 
         // 如果可编辑
         this.#editable = this.attr('editable');

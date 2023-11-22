@@ -12,7 +12,7 @@ export class TextBox extends Field {
 
     onConnected() {
         super.onConnected();
-        this._native.hide();
+        this._native.mockHide();
 
         this.query('style').append(styles);
         this.#editor = createElement('<div contenteditable="plaintext-only"></div>');
