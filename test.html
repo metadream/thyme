@@ -7,12 +7,25 @@
     <script src="dist/quick.js"></script>
     <style>
         body {
-            padding: 50px;
+            padding: 30px;
+        }
+
+        main {
+            width: 600px;
+            margin: auto;
+        }
+
+        main>* {
+            display: block;
+            margin: 5px;
+        }
+
+        table {
+            display: table;
         }
 
         quick-button {
             display: inline-block;
-            margin: 5px;
         }
 
         quick-checkbox {
@@ -22,90 +35,88 @@
 </head>
 
 <body>
+    <main>
+        <quick-field label="用户名" name="username" maxlength="10" required></quick-field>
+        <quick-field label="密码" type="password" name="password"></quick-field>
+        <quick-field label="年龄" type="number" name="age" min="10" required></quick-field>
+        <quick-field label="邮箱" type="email" name="email" placeholder="username@example.com"></quick-field>
+        <quick-field label="网址" type="url" name="website" placeholder="http://www.example.com"></quick-field>
+        <quick-field label="是否会员"><quick-switch name="isMember"></quick-switch></quick-field>
 
-    <quick-textbox label="备注" name="remark" required>
-        减肥可乐的萨的夫斯基阿克拉，附近的萨克拉
-    </quick-textbox>
+        <quick-checkgroup label="兴趣爱好" name="hobbies" required>
+            <quick-checkbox value="football">足球</quick-checkbox>
+            <quick-checkbox value="basketball" checked>篮球</quick-checkbox>
+            <quick-checkbox value="pingpong">乒乓球</quick-checkbox>
+            <quick-checkbox value="tennis">网球</quick-checkbox>
+            <quick-checkbox value="vollyball">排球</quick-checkbox>
+        </quick-checkgroup>
 
-    <quick-checkgroup label="兴趣爱好" name="hobbies" required>
-        <quick-checkbox value="football">足球</quick-checkbox>
-        <quick-checkbox value="basketball" checked>篮球</quick-checkbox>
-        <quick-checkbox value="pingpong">乒乓球</quick-checkbox>
-        <quick-checkbox value="tennis">网球</quick-checkbox>
-        <quick-checkbox value="vollyball">排球</quick-checkbox>
-    </quick-checkgroup>
+        <quick-select type="text" label="手机品牌" name="brand" required>
+            <option></option>
+            <option value="1">iPhone</option>
+            <option value="2" disabled>Oppo</option>
+            <option value="3">Huawei</option>
+            <option value="4">Xiaomi</option>
+            <option value="6" selected>Google</option>
+            <option value="7" disabled>Nokia</option>
+            <option value="8">HTC</option>
+            <option value="9">Samsang</option>
+            <option value="0">TCL</option>
+        </quick-select>
 
-    <quick-upload label="合同附件" name="contractFiles" variant="tonal" accept="image/*" multiple="5" maxsize="20000240"
-        editable required></quick-upload>
+        <quick-calendar label="生日" name="birthday" required></quick-calendar>
 
-    <quick-field label="用户名" name="username" maxlength="10" required></quick-field>
-    <quick-field type="password" label="密码" value="123" name="password"></quick-field>
-    <quick-field type="number" label="年龄" name="age" min="10" required></quick-field>
-    <quick-field type="email" label="邮箱" placeholder="example@domain.com" name="email"></quick-field>
-    <quick-field type="url" label="网址" placeholder="http://www.example.com/path" name="website"></quick-field>
-    <quick-field label="是否学生"><quick-switch name="isStudent" checked></quick-switch></quick-field>
+        <quick-upload label="附件" name="attachments" accept="image/*" multiple="5" maxsize="20000240" editable
+            required></quick-upload>
 
-    <quick-select type="text" label="手机品牌" name="brand" required>
-        <option></option>
-        <option value="1">iPhone</option>
-        <option value="2" disabled>Oppo</option>
-        <option value="3">Huawei</option>
-        <option value="4">Xiaomi</option>
-        <option value="5" selected>Windows</option>
-        <option value="6">Google</option>
-        <option value="7" disabled>Nokia</option>
-        <option value="8">HTC</option>
-        <option value="9">Samsang</option>
-        <option value="0">TCL</option>
-    </quick-select>
+        <quick-textbox label="备注" name="remark" required>
+            之所以首先确定北极星的位置，是因为我们在北半球所看见的所有的星图都是围绕北极星做逆时针旋转的。&#10;&#10;星图本身趋于固定，只要确定旋转的圆心，再以北斗或其他星座作为参照，就可以知道此时星空旋转到了什么程度，方便定位其他星座。
+        </quick-textbox>
 
-    <quick-calendar label="生日" name="birthday" required></quick-calendar>
+        <br>
+        <quick-button variant="tonal warning" onclick="post(this)">提交数据</quick-button>
+        <quick-button onclick="Quick.alert('你好，世界')">Alert</quick-button>
+        <quick-button onclick="confirm()" variant="danger outlined">Confirm</quick-button>
+        <quick-button onclick="dialog.open()">Dialog</quick-button>
+        <quick-button onclick="Quick.info('捷克的角色可弗拉斯的')" tooltip="间客房送拉将卡洛斯的">Info</quick-button>
+        <quick-button onclick="Quick.warning('捷克的角色可弗拉斯的')">Warning</quick-button>
+        <quick-button onclick="Quick.error('捷克的角色可弗拉斯的')">Error</quick-button>
+        <quick-button onclick="Quick.success('捷克的角色可弗拉斯的')">Success</quick-button>
+        <quick-button onclick="this.loading=true">Loading</quick-button>
 
-    <br>
-    <quick-button variant="tonal warning" onclick="post(this)">提交数据</quick-button>
-    <quick-button onclick="Quick.alert('你好，世界')">Alert</quick-button>
-    <quick-button onclick="confirm()" variant="danger outlined">Confirm</quick-button>
-    <quick-button onclick="dialog.open()">Dialog</quick-button>
-    <quick-button onclick="Quick.info('捷克的角色可弗拉斯的')" tooltip="间客房送拉将卡洛斯的">Info</quick-button>
-    <quick-button onclick="Quick.warning('捷克的角色可弗拉斯的')">Warning</quick-button>
-    <quick-button onclick="Quick.error('捷克的角色可弗拉斯的')">Error</quick-button>
-    <quick-button onclick="Quick.success('捷克的角色可弗拉斯的')">Success</quick-button>
-    <quick-button onclick="this.loading=true">Loading</quick-button>
+        <br><br>
+        <table class="list">
+            <tr>
+                <th>表头1</th>
+                <th>表头2</th>
+                <th>表头3</th>
+            </tr>
+            <tr>
+                <td>1</td>
+                <td>2</td>
+                <td>3</td>
+            </tr>
+            <tr>
+                <td>4</td>
+                <td>5</td>
+                <td>6</td>
+            </tr>
+        </table>
 
-    <br><br>
-    <table class="list">
-        <tr>
-            <th>表头1</th>
-            <th>表头2</th>
-            <th>表头3</th>
-        </tr>
-        <tr>
-            <td>1</td>
-            <td>2</td>
-            <td>3</td>
-        </tr>
-        <tr>
-            <td>4</td>
-            <td>5</td>
-            <td>6</td>
-        </tr>
-    </table>
+        <div style="height:1000px"></div>
 
-    <div style="height:1000px"></div>
+        <quick-dialog>
+            <h1 style="margin-top:0">注意啦</h1>
+            <div>其实没啥可注意的</div>
+        </quick-dialog>
 
-    <quick-dialog>
-        <h1 style="margin-top:0">的萨菲</h1>
-        <div>积分赛打开了几法</div>
-    </quick-dialog>
-
-    <quick-toptray></quick-toptray>
+        <quick-toptray></quick-toptray>
+    </main>
 </body>
 
 </html>
 
 <script>
-    const ff = document.querySelector('quick-upload');
-
     function post(btn) {
         const data = Quick.form.getJsonObject('body');
         if (!data) return;
@@ -122,18 +133,19 @@
         _id: 'a-1',
         previewUrl: 'http://baidu.com',
         downloadUrl: 'http://baidu.com',
-        originalName: '经发卡笋了了的萨.jpg'
+        originalName: '会场.jpg'
     }, {
         _id: 'a-2',
         previewUrl: 'http://baidu.com',
         downloadUrl: 'http://baidu.com',
-        originalName: '卡拉萨擦丝的.xlsx'
+        originalName: '项目启动会演讲稿.ppt'
     }, {
         _id: 'a-3',
         previewUrl: 'http://baidu.com',
         downloadUrl: 'http://baidu.com',
-        originalName: '精彩卡斯了多次精彩了.xlsx'
+        originalName: '与会人员列表.xlsx'
     }];
+
     uploader.onUpload = async function (entry) {
         await delay(500);
         console.log('Upload success---------', entry)
