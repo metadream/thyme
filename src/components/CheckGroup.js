@@ -23,8 +23,10 @@ export class CheckGroup extends Field {
     }
 
     #setFieldValue(options) {
-        const length = options.filter(v => v.checked).length;
-        this.value = length || '';
+        const values = [];
+        const opts = options.filter(v => v.checked);
+        opts.forEach(v => values.push(v.value));
+        this.value = values.join(',');
     }
 
 }
