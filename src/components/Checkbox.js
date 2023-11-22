@@ -29,8 +29,4 @@ export class Checkbox extends Component {
         });
     }
 
-    reportValidity() {
-        return this.#input.reportValidity();
-    }
-
 }
