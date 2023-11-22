@@ -11,6 +11,7 @@ import { Dialog } from './components/Dialog.js';
 import { Field } from './components/Field.js';
 import { Select } from './components/Select.js';
 import { Switch } from './components/Switch.js';
+import { TextBox } from './components/TextBox.js';
 import { Toast } from './components/Toast.js';
 import { Toptray } from './components/Toptray.js';
 import { Upload } from './components/Upload.js';
@@ -34,6 +35,7 @@ class Quick {
         Util.registerComponent('quick-field', Field);
         Util.registerComponent('quick-select', Select);
         Util.registerComponent('quick-switch', Switch);
+        Util.registerComponent('quick-textbox', TextBox);
         Util.registerComponent('quick-toast', Toast);
         Util.registerComponent('quick-toptray', Toptray);
         Util.registerComponent('quick-upload', Upload);
