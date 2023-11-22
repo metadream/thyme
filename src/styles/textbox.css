@@ -1,0 +1,6 @@
+div[contenteditable] {
+    outline: 0;
+    padding: 5px 0;
+    width: 100%;
+    min-height: 80px;
+}
