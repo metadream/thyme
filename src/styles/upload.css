@@ -17,9 +17,9 @@
 .upload-entry>a {
     display: flex;
     align-items: center;
-    color: var(--carbonColor);
     text-decoration: none;
     cursor: pointer;
+    color: var(--carbonColor);
 }
 
 a.download-icon svg.icon {

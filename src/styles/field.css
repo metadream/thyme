@@ -77,17 +77,17 @@
     caret-color: transparent;
 }
 
-.field-body input[disabled] {
-    color: var(--grayColor);
-    pointer-events: none;
-    background: transparent;
-}
-
 .field-body input.hidden {
     position: absolute;
     opacity: 0;
     width: 100%;
     height: 100%;
+}
+
+.field-body input[disabled] {
+    color: var(--grayColor);
+    pointer-events: none;
+    background: transparent;
 }
 
 .field-icon {
@@ -107,13 +107,6 @@
     display: block;
     width: 16px;
     height: 16px;
-}
-
-::slotted([contenteditable]) {
-    outline: 0;
-    padding: 5px 0;
-    width: 100%;
-    min-height: 80px;
 }
 
 .tooltip, .tooltip::before {
