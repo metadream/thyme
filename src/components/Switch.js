@@ -26,10 +26,6 @@ export class Switch extends Component {
         });
     }
 
-    reportValidity() {
-        return this.#input.reportValidity();
-    }
-
     get value() {
         return this.checked ? 1 : 0;
     }
