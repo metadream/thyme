@@ -90,11 +90,33 @@ export class Field extends Component {
     }
 
     reportValidity() {
-        return this._native.reportValidity();
+        // return this._native.reportValidity();
+        const validated = this._native.validity.valid;
+        this.#reportMessage(validated, this._native.validationMessage);
+        this.focus();
+        return validated;
     }
 
     focus() {
         this._native.focus();
+    }
+
+    #reportMessage(validated, message) {
+        let tooltip = this.query('.tooltip');
+        if (!tooltip) {
+            tooltip = createElement(`<div class="tooltip"></div>`);
+            this.shadowRoot.append(tooltip);
+            setTimeout(() => {
+                tooltip.remove();
+            }, 5000);
+        }
+
+        if (validated) {
+            tooltip.remove();
+        } else {
+            tooltip.innerHTML = message;
+            tooltip.attach(this._native);
+        }
     }
 
     set icon(el) {
