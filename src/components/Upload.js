@@ -2,14 +2,14 @@ import styles from '../styles/upload.css';
 import uploadIcon from '../icons/upload.svg';
 import downloadIcon from '../icons/round-download.svg';
 import removeIcon from '../icons/round-cross.svg';
-import Quick from '../Quick.js';
+import Thyme from '../Thyme.js';
 import { createElement, formatBytes, parseInteger, nanoId } from "../modules/Util.js";
 import { Locale } from '../modules/Locale.js';
 import { Field } from './Field.js';
 
 /**
  * 上传组件
- * @example <uc-upload multiple="9" maxsize="1024000" accept="image/*" editable></uc-upload>
+ * @example <th-upload multiple="9" maxsize="1024000" accept="image/*" editable></th-upload>
  * @example this.entries = [{_id, previewUrl, downloadUrl, originalName}]
  * @example this.onUpload = async function(entry) {}
  * @example this.onRemove = async function(entry) {}
@@ -58,14 +58,14 @@ export class Upload extends Field {
             return;
         }
         if (files.length + this.#entries.length > this.#maxFiles) {
-            Quick.warning(Locale.get('MAX_ALLOWED_FILES', { maxFiles: this.#maxFiles }));
+            Thyme.warning(Locale.get('MAX_ALLOWED_FILES', { maxFiles: this.#maxFiles }));
             return;
         }
 
         const maxSize = parseInteger(this.attr('maxsize')); // bytes
         for (const file of files) {
             if (maxSize > 0 && file.size > maxSize) {
-                return Quick.warning(Locale.get('MAX_ALLOWED_SIZE', { maxSize: formatBytes(maxSize) }));
+                return Thyme.warning(Locale.get('MAX_ALLOWED_SIZE', { maxSize: formatBytes(maxSize) }));
             }
         }
 
@@ -109,10 +109,10 @@ export class Upload extends Field {
     }
 
     #remove(entry) {
-        Quick.confirm(Locale.get('DELETE_PROMPT'), async () => {
+        Thyme.confirm(Locale.get('DELETE_PROMPT'), async () => {
             if (!entry.file && this.#removeCallback) {
                 await this.#removeCallback(entry);
-                Quick.success(Locale.get('DELETE_SUCCESS'));
+                Thyme.success(Locale.get('DELETE_SUCCESS'));
             }
 
             // 移除节点元素

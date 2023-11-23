@@ -9,7 +9,7 @@ const PATTERN = {
 
 /**
  * 文本框组件
- * @example <uc-field type="text|password|email|url|number" variant="tonal|plain">not required</uc-field>
+ * @example <th-field type="text|password|email|url|number" variant="tonal|plain">not required</th-field>
  * @example field.icon = Element|HTML
  *          field.icon.onclick = ...
  */

@@ -6,10 +6,10 @@ export default {
     mode: "production",
     plugins: [new Minifier()],
 
-    entry: "./src/Quick.js",
+    entry: "./src/Thyme.js",
     output: {
         path: path.resolve("./dist"),
-        filename: "quick.js"
+        filename: "thyme.js"
     },
 
     module: {

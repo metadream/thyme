@@ -3,7 +3,7 @@ import { Component } from './Component.js';
 
 /**
  * 开关组件
- * @example <uc-switch checked></uc-switch>
+ * @example <th-switch checked></th-switch>
  * @example element.checked = true|false
  * @example element.value = 1|0
  */

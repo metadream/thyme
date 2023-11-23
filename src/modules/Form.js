@@ -1,6 +1,6 @@
 /**
  * 表单验证和获取
- * @example Quick.form.getJsonObject/getJsonArray
+ * @example Thyme.form.getJsonObject/getJsonArray
  */
 export class Form {
 
@@ -18,10 +18,10 @@ export class Form {
             name = name || field.attr('name');
             if ((type === 'checkbox' || type === 'radio') && !checked) continue;
 
-            if (tagName === 'UC-UPLOAD') {
+            if (tagName === 'TH-UPLOAD') {
                 value = field.entries;
             }
-            else if (tagName === 'INPUT' || tagName === 'TEXTAREA' || tagName.startsWith('UC-')) {
+            else if (tagName === 'INPUT' || tagName === 'TEXTAREA' || tagName.startsWith('TH-')) {
                 if (typeof value === 'string') {
                     value = field.value = value.trim();
                 }

@@ -10,7 +10,7 @@ import { Field } from './Field.js';
 
 /**
  * 日历组件
- * @example <uc-calendar label="" name="" value="" required></uc-calendar>
+ * @example <th-calendar label="" name="" value="" required></th-calendar>
  */
 export class Calendar extends Field {
 

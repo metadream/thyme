@@ -2,7 +2,7 @@ import { Locale } from './Locale.js';
 
 /**
  * HTTP请求方法集
- * @example Quick.http.get/post/put/patch/delete
+ * @example Thyme.http.get/post/put/patch/delete
  */
 export class Http {
 
@@ -51,7 +51,7 @@ export class Http {
             }
             return result;
         } catch (e) {
-            Quick.error(e.message || Locale.get('NETWORK_ERROR'));
+            Thyme.error(e.message || Locale.get('NETWORK_ERROR'));
         }
     }
 

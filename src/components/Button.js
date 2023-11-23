@@ -4,8 +4,8 @@ import { Component } from './Component.js';
 
 /**
  * 按钮组件
- * @example <uc-button href="/users" target="_blank">text</uc-button>
- * @example <uc-button variant="minor|warning|danger|success, tonal|outlined">text</uc-button>
+ * @example <th-button href="/users" target="_blank">text</th-button>
+ * @example <th-button variant="minor|warning|danger|success, tonal|outlined">text</th-button>
  * @example button.loading = true|false
  */
 export class Button extends Component {

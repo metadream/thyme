@@ -16,7 +16,7 @@ import { Toast } from './components/Toast.js';
 import { Toptray } from './components/Toptray.js';
 import { Upload } from './components/Upload.js';
 
-class Quick {
+class Thyme {
 
     static util = Util;
     static http = Http;
@@ -27,22 +27,22 @@ class Quick {
         Util.enhanceElements();
         document.head.append(Util.createStyle(globalStyles));
 
-        Util.registerComponent('uc-button', Button);
-        Util.registerComponent('uc-calendar', Calendar);
-        Util.registerComponent('uc-checkbox', Checkbox);
-        Util.registerComponent('uc-checkgroup', CheckGroup);
-        Util.registerComponent('uc-dialog', Dialog);
-        Util.registerComponent('uc-field', Field);
-        Util.registerComponent('uc-select', Select);
-        Util.registerComponent('uc-switch', Switch);
-        Util.registerComponent('uc-textbox', TextBox);
-        Util.registerComponent('uc-toast', Toast);
-        Util.registerComponent('uc-toptray', Toptray);
-        Util.registerComponent('uc-upload', Upload);
+        Util.registerComponent('th-button', Button);
+        Util.registerComponent('th-calendar', Calendar);
+        Util.registerComponent('th-checkbox', Checkbox);
+        Util.registerComponent('th-checkgroup', CheckGroup);
+        Util.registerComponent('th-dialog', Dialog);
+        Util.registerComponent('th-field', Field);
+        Util.registerComponent('th-select', Select);
+        Util.registerComponent('th-switch', Switch);
+        Util.registerComponent('th-textbox', TextBox);
+        Util.registerComponent('th-toast', Toast);
+        Util.registerComponent('th-toptray', Toptray);
+        Util.registerComponent('th-upload', Upload);
     }
 
     static alert(text, callback, isConfirm) {
-        const dialog = Util.createElement(`<uc-dialog>${text}</uc-dialog>`);
+        const dialog = Util.createElement(`<th-dialog>${text}</th-dialog>`);
         document.body.append(dialog);
 
         const buttons = [];
@@ -73,7 +73,7 @@ class Quick {
             this.#toast.remove();
             this.#toast = null;
         }
-        this.#toast = Util.createElement(`<uc-toast>${text}</uc-toast>`);
+        this.#toast = Util.createElement(`<th-toast>${text}</th-toast>`);
         this.#toast.attr('type', type);
         this.#toast.attr('delay', delay);
         document.body.append(this.#toast);
@@ -93,5 +93,5 @@ class Quick {
 
 }
 
-window.Quick = Quick;
-export default Quick;
+window.Thyme = Thyme;
+export default Thyme;

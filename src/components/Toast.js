@@ -4,7 +4,7 @@ import { Component } from './Component.js';
 
 /**
  * 悬浮消息组件
- * @example <uc-toast type="warning|error|success">text</uc-toast>
+ * @example <th-toast type="warning|error|success">text</th-toast>
  */
 export class Toast extends Component {
 
