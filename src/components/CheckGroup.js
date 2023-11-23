@@ -14,8 +14,8 @@ export class CheckGroup extends Field {
         this._native.mockHide();
     }
 
-    onAssigned() {
-        const options = this.query('slot').assignedElements();
+    onAssigned(slot) {
+        const options = slot.assignedElements();
         this.#setFieldValue(options);
 
         for (const opt of options) {

@@ -65,8 +65,8 @@ export class Field extends Component {
     }
 
     // 如果插槽有元素则隐藏原生文本框
-    onAssigned() {
-        const elements = this.query('slot').assignedElements();
+    onAssigned(slot) {
+        const elements = slot.assignedElements();
         if (elements && elements.length) {
             this._native.mockHide();
         }

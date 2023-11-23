@@ -23,10 +23,9 @@ export class TextBox extends Field {
         });
     }
 
-    onAssigned() {
+    onAssigned(slot) {
         let content = '';
-        const nodes = this.query('slot').assignedNodes();
-        nodes.forEach(v => content += v.textContent);
+        slot.assignedNodes().forEach(v => content += v.textContent);
 
         content = content.trim();
         this.#editor.textContent = content;

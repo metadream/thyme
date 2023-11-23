@@ -39,8 +39,12 @@ export class Component extends HTMLElement {
     // DOM渲染回调函数（执行顺序3）
     connectedCallback() {
         this.onConnected && this.onConnected();
+
         // 获取Slot插入元素需延迟回调
-        this.onAssigned && setTimeout(() => this.onAssigned());
+        const slot = this.query('slot');
+        slot && slot.on('slotchange', () => {
+            this.onAssigned && this.onAssigned(slot);
+        });
     }
 
     // 渲染模板并添加元素

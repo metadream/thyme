@@ -24,9 +24,8 @@ export class Select extends Field {
         this.icon.on('click', () => this.#pulldown());
     }
 
-    onAssigned() {
+    onAssigned(slot) {
         // 获取选项列表
-        const slot = this.query('slot');
         this.#options = slot.assignedElements();
         slot.remove();
 
