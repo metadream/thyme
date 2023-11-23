@@ -13,7 +13,7 @@ export class Minifier {
                 assets => {
                     if (compilation.options.mode === 'production') {
                         Object.entries(assets).forEach(([pathname, source]) => {
-                            const rawSource = source._value.replace(/\\n\s*/g, '');
+                            const rawSource = source._value.replace(/\\n\s*/g, '').replace(/([:,]) /g, '$1');
                             compilation.updateAsset(
                                 pathname,
                                 new sources.RawSource(rawSource)
