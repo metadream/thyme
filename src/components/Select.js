@@ -25,11 +25,8 @@ export class Select extends Field {
     }
 
     onAssigned(slot) {
-        // 获取选项列表
+        // 获取选项列表并初始化标签和值
         this.#options = slot.assignedElements();
-        slot.remove();
-
-        // 初始化标签和值
         const selected = this.#options.find(v => v.selected);
         selected && this.#setFieldValue(selected.value, selected.label);
     }
