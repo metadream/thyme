@@ -73,7 +73,9 @@ class Quick {
             this.#toast.remove();
             this.#toast = null;
         }
-        this.#toast = Util.createElement(`<quick-toast type="${type}" delay="${delay}">${text}</quick-toast>`);
+        this.#toast = Util.createElement(`<quick-toast>${text}</quick-toast>`);
+        this.#toast.attr('type', type);
+        this.#toast.attr('delay', delay);
         document.body.append(this.#toast);
     }
 
