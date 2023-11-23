@@ -1,3 +1,3 @@
 ## Web Components
 
-Demo: https://metadream.github.io/web-components
+Demo: https://metadream.github.io/thyme
