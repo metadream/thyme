@@ -3,11 +3,12 @@
     justify-content: center;
     background-color: transparent;
     height: 0;
+    opacity: 0;
 }
 
 .toast>div {
-    margin-top: 80px;
-    margin-bottom: auto;
+    position: absolute;
+    bottom: 0;
     max-width: 80%;
     padding: 6px 15px;
     border-radius: 3px;
@@ -33,25 +34,29 @@
 }
 
 .bounce-out {
-    animation: bounceOut cubic-bezier(.17, .88, .48, 1.5) .3s forwards;
+    animation: bounceOut ease-out .3s;
 }
 
 @keyframes bounceIn {
     from {
-        transform: translateY(-150px);
+        opacity: 0;
+        transform: translateY(0);
     }
 
     to {
-        transform: translateY(0);
+        opacity: 1;
+        transform: translateY(120px);
     }
 }
 
 @keyframes bounceOut {
     from {
-        transform: translateY(0);
+        opacity: 1;
+        transform: translateY(120px);
     }
 
     to {
-        transform: translateY(-150px);
+        opacity: 0;
+        transform: translateY(0);
     }
 }
