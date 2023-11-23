@@ -113,8 +113,9 @@ export function enhanceElements() {
 
         attach(target, fitWidth) {
             const rect = target.getBoundingClientRect();
-            this.style.left = rect.x + 'px';
-            this.style.top = rect.y + rect.height + getScrollTop() + 1 + 'px';
+            const scroll = getScrollPosition();
+            this.style.left = rect.x + scroll.left + 'px';
+            this.style.top = rect.y + rect.height + scroll.top + 1 + 'px';
             fitWidth && (this.style.width = rect.width + 'px');
             return this;
         },
@@ -158,11 +159,15 @@ export function parseInteger(v) {
 }
 
 /**
- * 获取滚动高度
+ * 获取滚动距离
  * @returns
  */
-export function getScrollTop() {
-    return document.body.scrollTop || document.documentElement.scrollTop;
+export function getScrollPosition() {
+    const { body, documentElement } = document;
+    return {
+        top: body.scrollTop || documentElement.scrollTop,
+        left: body.scrollLeft || documentElement.scrollLeft,
+    }
 }
 
 /**

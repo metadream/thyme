@@ -1,6 +1,6 @@
 import styles from '../styles/toptray.css';
 import arrowUpIcon from "../icons/arrow-up.svg";
-import { getScrollTop } from '../modules/Util.js';
+import { getScrollPosition } from '../modules/Util.js';
 import { Component } from './Component.js';
 
 /**
@@ -24,7 +24,7 @@ export class Toptray extends Component {
             cancelAnimationFrame(scrollTimer);
 
             scrollTimer = requestAnimationFrame(function scroll() {
-                const y = getScrollTop();
+                const y = getScrollPosition().top;
                 document.body.scrollTop = document.documentElement.scrollTop = parseInt(y / 1.2);
 
                 if (y > 0) scrollTimer = requestAnimationFrame(scroll);
@@ -33,7 +33,7 @@ export class Toptray extends Component {
         }
 
         addEventListener('scroll', () => {
-            const y = getScrollTop();
+            const y = getScrollPosition().top;
             if (y > 450) shell.style.display = 'block';
             else shell.style.display = 'none';
         });
