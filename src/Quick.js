@@ -27,22 +27,22 @@ class Quick {
         Util.enhanceElements();
         document.head.append(Util.createStyle(globalStyles));
 
-        Util.registerComponent('quick-button', Button);
-        Util.registerComponent('quick-calendar', Calendar);
-        Util.registerComponent('quick-checkbox', Checkbox);
-        Util.registerComponent('quick-checkgroup', CheckGroup);
-        Util.registerComponent('quick-dialog', Dialog);
-        Util.registerComponent('quick-field', Field);
-        Util.registerComponent('quick-select', Select);
-        Util.registerComponent('quick-switch', Switch);
-        Util.registerComponent('quick-textbox', TextBox);
-        Util.registerComponent('quick-toast', Toast);
-        Util.registerComponent('quick-toptray', Toptray);
-        Util.registerComponent('quick-upload', Upload);
+        Util.registerComponent('uc-button', Button);
+        Util.registerComponent('uc-calendar', Calendar);
+        Util.registerComponent('uc-checkbox', Checkbox);
+        Util.registerComponent('uc-checkgroup', CheckGroup);
+        Util.registerComponent('uc-dialog', Dialog);
+        Util.registerComponent('uc-field', Field);
+        Util.registerComponent('uc-select', Select);
+        Util.registerComponent('uc-switch', Switch);
+        Util.registerComponent('uc-textbox', TextBox);
+        Util.registerComponent('uc-toast', Toast);
+        Util.registerComponent('uc-toptray', Toptray);
+        Util.registerComponent('uc-upload', Upload);
     }
 
     static alert(text, callback, isConfirm) {
-        const dialog = Util.createElement(`<quick-dialog>${text}</quick-dialog>`);
+        const dialog = Util.createElement(`<uc-dialog>${text}</uc-dialog>`);
         document.body.append(dialog);
 
         const buttons = [];
@@ -73,7 +73,7 @@ class Quick {
             this.#toast.remove();
             this.#toast = null;
         }
-        this.#toast = Util.createElement(`<quick-toast>${text}</quick-toast>`);
+        this.#toast = Util.createElement(`<uc-toast>${text}</uc-toast>`);
         this.#toast.attr('type', type);
         this.#toast.attr('delay', delay);
         document.body.append(this.#toast);

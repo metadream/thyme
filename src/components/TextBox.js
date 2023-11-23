@@ -4,7 +4,7 @@ import { Field } from './Field.js';
 
 /**
  * 多行文本框组件
- * @example <quick-textbox name="" required>content</quick-textbox>
+ * @example <uc-textbox name="" required>content</uc-textbox>
  */
 export class TextBox extends Field {
 

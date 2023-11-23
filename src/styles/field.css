@@ -61,7 +61,7 @@
     position: relative;
     overflow: hidden;
     flex: 1;
-    padding: 0 10px;
+    margin: 0 10px;
 }
 
 .field-body input {

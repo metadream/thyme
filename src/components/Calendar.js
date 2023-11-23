@@ -10,7 +10,7 @@ import { Field } from './Field.js';
 
 /**
  * 日历组件
- * @example <quick-calendar label="" name="" value="" required></quick-calendar>
+ * @example <uc-calendar label="" name="" value="" required></uc-calendar>
  */
 export class Calendar extends Field {
 

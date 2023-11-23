@@ -4,7 +4,7 @@ import { Component } from './Component.js';
 
 /**
  * 对话框组件
- * @example <quick-dialog title="">content</quick-dialog>
+ * @example <uc-dialog title="">content</uc-dialog>
  * @example element.buttons = [{ label: string, primary: true|false, onclick: function(self).call(this) }]
  * @example element.open(true|false)
  * @example element.hide()

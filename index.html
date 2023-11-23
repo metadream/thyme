@@ -26,11 +26,11 @@
             display: table;
         }
 
-        quick-button {
+        uc-button {
             display: inline-block;
         }
 
-        quick-checkbox {
+        uc-checkbox {
             margin-right: 10px;
         }
     </style>
@@ -38,22 +38,22 @@
 
 <body>
     <main>
-        <quick-field label="用户名" name="username" maxlength="10" required></quick-field>
-        <quick-field label="密码" type="password" name="password"></quick-field>
-        <quick-field label="年龄" type="number" name="age" min="10" required></quick-field>
-        <quick-field label="邮箱" type="email" name="email" placeholder="username@example.com"></quick-field>
-        <quick-field label="网址" type="url" name="website" placeholder="http://www.example.com"></quick-field>
-        <quick-field label="是否会员"><quick-switch name="isMember"></quick-switch></quick-field>
+        <uc-field label="用户名" name="username" maxlength="10" required></uc-field>
+        <uc-field label="密码" type="password" name="password"></uc-field>
+        <uc-field label="年龄" type="number" name="age" min="10" required></uc-field>
+        <uc-field label="邮箱" type="email" name="email" placeholder="username@example.com"></uc-field>
+        <uc-field label="网址" type="url" name="website" placeholder="http://www.example.com"></uc-field>
+        <uc-field label="是否会员"><uc-switch name="isMember"></uc-switch></uc-field>
 
-        <quick-checkgroup label="兴趣爱好" name="hobbies" required>
-            <quick-checkbox value="football">足球</quick-checkbox>
-            <quick-checkbox value="basketball" checked>篮球</quick-checkbox>
-            <quick-checkbox value="pingpong">乒乓球</quick-checkbox>
-            <quick-checkbox value="tennis">网球</quick-checkbox>
-            <quick-checkbox value="vollyball">排球</quick-checkbox>
-        </quick-checkgroup>
+        <uc-checkgroup label="兴趣爱好" name="hobbies" required>
+            <uc-checkbox value="football">足球</uc-checkbox>
+            <uc-checkbox value="basketball" checked>篮球</uc-checkbox>
+            <uc-checkbox value="pingpong">乒乓球</uc-checkbox>
+            <uc-checkbox value="tennis">网球</uc-checkbox>
+            <uc-checkbox value="vollyball">排球</uc-checkbox>
+        </uc-checkgroup>
 
-        <quick-select type="text" label="手机品牌" name="brand" required>
+        <uc-select type="text" label="手机品牌" name="brand" required>
             <option></option>
             <option value="1">iPhone</option>
             <option value="2" disabled>Oppo</option>
@@ -64,27 +64,27 @@
             <option value="8">HTC</option>
             <option value="9">Samsang</option>
             <option value="0">TCL</option>
-        </quick-select>
+        </uc-select>
 
-        <quick-calendar label="生日" name="birthday" required></quick-calendar>
+        <uc-calendar label="生日" name="birthday" required></uc-calendar>
 
-        <quick-upload label="附件" name="attachments" accept="image/*" multiple="5" maxsize="20000240" editable
-            required></quick-upload>
+        <uc-upload label="附件" name="attachments" accept="image/*" multiple="5" maxsize="20000240" editable
+            required></uc-upload>
 
-        <quick-textbox label="备注" name="remark" required>
+        <uc-textbox label="备注" name="remark" required>
             之所以首先确定北极星的位置，是因为我们在北半球所看见的所有的星图都是围绕北极星做逆时针旋转的。&#10;&#10;星图本身趋于固定，只要确定旋转的圆心，再以北斗或其他星座作为参照，就可以知道此时星空旋转到了什么程度，方便定位其他星座。
-        </quick-textbox>
+        </uc-textbox>
 
         <br>
-        <quick-button variant="tonal warning" onclick="post(this)">提交数据</quick-button>
-        <quick-button onclick="Quick.alert('你好，世界')">Alert</quick-button>
-        <quick-button onclick="confirm()" variant="danger outlined">Confirm</quick-button>
-        <quick-button onclick="dialog.open()">Dialog</quick-button>
-        <quick-button onclick="Quick.info('捷克的角色可弗拉斯的')" tooltip="间客房送拉将卡洛斯的">Info</quick-button>
-        <quick-button onclick="Quick.warning('捷克的角色可弗拉斯的')">Warning</quick-button>
-        <quick-button onclick="Quick.error('捷克的角色可弗拉斯的')">Error</quick-button>
-        <quick-button onclick="Quick.success('捷克的角色可弗拉斯的')">Success</quick-button>
-        <quick-button onclick="this.loading=true">Loading</quick-button>
+        <uc-button variant="tonal warning" onclick="post(this)">提交数据</uc-button>
+        <uc-button onclick="Quick.alert('你好，世界')">Alert</uc-button>
+        <uc-button onclick="confirm()" variant="danger outlined">Confirm</uc-button>
+        <uc-button onclick="dialog.open()">Dialog</uc-button>
+        <uc-button onclick="Quick.info('捷克的角色可弗拉斯的')" tooltip="间客房送拉将卡洛斯的">Info</uc-button>
+        <uc-button onclick="Quick.warning('捷克的角色可弗拉斯的')">Warning</uc-button>
+        <uc-button onclick="Quick.error('捷克的角色可弗拉斯的')">Error</uc-button>
+        <uc-button onclick="Quick.success('捷克的角色可弗拉斯的')">Success</uc-button>
+        <uc-button onclick="this.loading=true">Loading</uc-button>
 
         <br><br>
         <table class="list">
@@ -107,12 +107,12 @@
 
         <div style="height:1000px"></div>
 
-        <quick-dialog>
+        <uc-dialog>
             <h1 style="margin-top:0">注意啦</h1>
             <div>其实没啥可注意的</div>
-        </quick-dialog>
+        </uc-dialog>
 
-        <quick-toptray></quick-toptray>
+        <uc-toptray></uc-toptray>
     </main>
 </body>
 
@@ -130,7 +130,7 @@
         }, 1000);
     }
 
-    const uploader = document.querySelector('quick-upload');
+    const uploader = document.querySelector('uc-upload');
     uploader.entries = [{
         _id: 'a-1',
         previewUrl: 'http://baidu.com',
@@ -157,7 +157,7 @@
         console.log('Remove success---------', entry)
     }
 
-    const dialog = document.querySelector('quick-dialog');
+    const dialog = document.querySelector('uc-dialog');
     dialog.buttons = ['关闭', {
         label: '确定',
         primary: true,

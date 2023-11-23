@@ -5,7 +5,7 @@ import { Component } from './Component.js';
 
 /**
  * 滚动到顶部的托盘组件
- * @example <quick-toptray x="30" y="30"></quick-toptray>
+ * @example <uc-toptray x="30" y="30"></uc-toptray>
  */
 export class Toptray extends Component {
 

@@ -2,10 +2,10 @@ import { Field } from './Field.js';
 
 /**
  * 复选框组合组件
- * @example <quick-checkgroup name="" required>
- *             <quick-checkbox value="1">text1</quick-checkbox>
- *             <quick-checkbox value="2" checked>text2</quick-checkbox>
- *          </quick-checkgroup>
+ * @example <uc-checkgroup name="" required>
+ *             <uc-checkbox value="1">text1</uc-checkbox>
+ *             <uc-checkbox value="2" checked>text2</uc-checkbox>
+ *          </uc-checkgroup>
  */
 export class CheckGroup extends Field {
 

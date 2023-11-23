@@ -3,7 +3,7 @@ import { Component } from './Component.js';
 
 /**
  * 复选框组件
- * @example <quick-checkbox name="" value="" checked disabled>text</quick-checkbox>
+ * @example <uc-checkbox name="" value="" checked disabled>text</uc-checkbox>
  */
 export class Checkbox extends Component {
 

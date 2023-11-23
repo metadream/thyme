@@ -9,7 +9,7 @@ import { Field } from './Field.js';
 
 /**
  * 上传组件
- * @example <quick-upload multiple="9" maxsize="1024000" accept="image/*" editable></quick-upload>
+ * @example <uc-upload multiple="9" maxsize="1024000" accept="image/*" editable></uc-upload>
  * @example this.entries = [{_id, previewUrl, downloadUrl, originalName}]
  * @example this.onUpload = async function(entry) {}
  * @example this.onRemove = async function(entry) {}

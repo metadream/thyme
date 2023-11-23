@@ -5,10 +5,10 @@ import { Field } from './Field.js';
 
 /**
  * 下拉选项组件
- * @example <quick-select>
+ * @example <uc-select>
  *            <option value="1" disabled>text1</option>
  *            <option value="2" selected>text2</option>
- *          </quick-selectg>
+ *          </uc-selectg>
  */
 export class Select extends Field {
 

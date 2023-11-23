@@ -18,10 +18,10 @@ export class Form {
             name = name || field.attr('name');
             if ((type === 'checkbox' || type === 'radio') && !checked) continue;
 
-            if (tagName === 'QUICK-UPLOAD') {
+            if (tagName === 'UC-UPLOAD') {
                 value = field.entries;
             }
-            else if (tagName === 'INPUT' || tagName === 'TEXTAREA' || tagName.startsWith('QUICK-')) {
+            else if (tagName === 'INPUT' || tagName === 'TEXTAREA' || tagName.startsWith('UC-')) {
                 if (typeof value === 'string') {
                     value = field.value = value.trim();
                 }
