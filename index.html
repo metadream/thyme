@@ -33,6 +33,10 @@
         th-checkbox {
             margin-right: 10px;
         }
+
+        .gallery>div {
+            background: #eee;
+        }
     </style>
 </head>
 
@@ -87,6 +91,20 @@
         <th-button onclick="this.loading=true">Loading</th-button>
 
         <br><br>
+        <th-waterfall column="3" spacing="10" class="gallery">
+            <div><br>1</div>
+            <div><br><br>2</div>
+            <div><br><br><br><br>3</div>
+            <div><br>4</div>
+            <div><br><br><br>5</div>
+            <div><br>6</div>
+            <div><br><br>7</div>
+            <div><br><br><br><br><br><br>8</div>
+            <div><br><br><br><br>9</div>
+            <div><br><br><br><br><br>10</div>
+        </th-waterfall>
+
+        <br>
         <table class="list">
             <tr>
                 <th>表头1</th>

@@ -1,0 +1,7 @@
+div {
+    position: relative;
+}
+
+::slotted(*) {
+    position: absolute;
+}

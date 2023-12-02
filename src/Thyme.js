@@ -15,6 +15,7 @@ import { TextBox } from './components/TextBox.js';
 import { Toast } from './components/Toast.js';
 import { Toptray } from './components/Toptray.js';
 import { Upload } from './components/Upload.js';
+import { Waterfall } from './components/Waterfall.js';
 
 class Thyme {
 
@@ -39,6 +40,7 @@ class Thyme {
         Util.registerComponent('th-toast', Toast);
         Util.registerComponent('th-toptray', Toptray);
         Util.registerComponent('th-upload', Upload);
+        Util.registerComponent('th-waterfall', Waterfall);
     }
 
     static alert(text, callback, isConfirm) {
