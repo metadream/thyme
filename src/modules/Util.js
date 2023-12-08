@@ -225,3 +225,52 @@ export function formatBytes(bytes) {
 export function stringify(params) {
     return Object.keys(params).map(key => key + '=' + encodeURI(params[key])).join('&');
 }
+
+/**
+ * SVG转换成PNG
+ * @param {Element} svg
+ * @param {number} scale
+ * @param {Function} callback
+ * @example svg2png(svg, callback)
+ *          svg2png(svg, scale, callback)
+ */
+export function svg2png(svg, scale, callback) {
+    if (callback === undefined) {
+        callback = scale;
+        scale = 1;
+    }
+
+    const box = svg.getBBox();
+    const clone = svg.cloneNode(true);
+    clone.setAttribute('xmlns', 'http://www.w3.org/2000/svg');
+    clone.setAttribute('width', box.width * scale);
+    clone.setAttribute('height', box.height * scale);
+
+    const svgXml = new XMLSerializer().serializeToString(clone);
+    const base64 = 'data:image/svg+xml;base64,' + base64Encode(svgXml);
+
+    const image = new Image();
+    image.src = base64;
+    image.crossOrigin = 'anonymous';
+    image.onload = () => {
+        const canvas = document.createElement('canvas');
+        canvas.width = image.width;
+        canvas.height = image.height;
+
+        const ctx = canvas.getContext('2d');
+        ctx.drawImage(image, 0, 0);
+        callback(canvas.toDataURL('image/png'));
+    }
+}
+
+/**
+ * Base64编码
+ * @param {string} str 
+ * @returns 
+ */
+export function base64Encode(str) {
+    // first we use encodeURIComponent to get percent-encoded UTF-8,
+    // then we convert the percent encodings into raw bytes which
+    // can be fed into btoa.
+    return btoa(encodeURIComponent(str).replace(/%([0-9A-F]{2})/g, (_, m) => String.fromCharCode('0x' + m)));
+}
