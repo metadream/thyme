@@ -9,6 +9,7 @@ import { Checkbox } from './components/Checkbox.js';
 import { CheckGroup } from './components/CheckGroup.js';
 import { Dialog } from './components/Dialog.js';
 import { Field } from './components/Field.js';
+import { Formula } from './components/Formula.js';
 import { Select } from './components/Select.js';
 import { Switch } from './components/Switch.js';
 import { TextBox } from './components/TextBox.js';
@@ -34,6 +35,7 @@ class Thyme {
         Util.registerComponent('th-checkgroup', CheckGroup);
         Util.registerComponent('th-dialog', Dialog);
         Util.registerComponent('th-field', Field);
+        Util.registerComponent('th-formula', Formula);
         Util.registerComponent('th-select', Select);
         Util.registerComponent('th-switch', Switch);
         Util.registerComponent('th-textbox', TextBox);
