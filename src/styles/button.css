@@ -42,7 +42,7 @@ button.tonal, a.button.tonal {
 }
 
 button.minor, a.button.minor {
-    --primaryColor: var(--fc);
+    --primaryColor: var(--silverColor);
 }
 
 button.warning, a.button.warning {

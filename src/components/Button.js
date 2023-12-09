@@ -28,8 +28,8 @@ export class Button extends Component {
     onConnected() {
         // 由于属性无法在构造函数或静态变量中获取，故此处不能使用静态模板
         this.render(this.attr('href')
-            ? '<a class="button" draggable="false"><slot></slot></a>'
-            : '<button><slot></slot></button>');
+            ? '<a part="button" class="button" draggable="false"><slot></slot></a>'
+            : '<button part="button"><slot></slot></button>');
         this.#addRipples();
 
         // 初始化所有属性
