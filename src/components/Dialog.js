@@ -27,9 +27,11 @@ export class Dialog extends Component {
     #removable;
 
     onConnected() {
-        const title = this.attr('title');
         const header = this.query('.dialog-header');
-        title ? header.innerHTML = title : header.remove();
+        if (header) {
+            const title = this.attr('title');
+            title ? header.innerHTML = title : header.remove();
+        }
 
         document.addEventListener('keyup', e => {
             if (e.keyCode === 27) this.hide();
