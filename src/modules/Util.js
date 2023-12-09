@@ -53,6 +53,29 @@ export function createStyle(content) {
 }
 
 /**
+ * 引入脚本
+ * @param {Array|string} urls
+ * @returns
+ */
+export function importScripts(...urls) {
+    return new Promise((resolve, _) => {
+        const head = document.getElementsByTagName('head')[0];
+        const firstScript = head.querySelector('script');
+        const loadScript = i => {
+            const script = document.createElement('script');
+            script.setAttribute('src', urls[i]);
+            script.onload = script.onerror = () => {
+                i++;
+                if (i === urls.length) resolve();
+                else loadScript(i);
+            }
+            head.insertBefore(script, firstScript);
+        }
+        loadScript(0);
+    });
+}
+
+/**
  * DOM元素原型扩展
  */
 export function enhanceElements() {
@@ -265,8 +288,8 @@ export function svg2png(svg, scale, callback) {
 
 /**
  * Base64编码
- * @param {string} str 
- * @returns 
+ * @param {string} str
+ * @returns
  */
 export function base64Encode(str) {
     // first we use encodeURIComponent to get percent-encoded UTF-8,
