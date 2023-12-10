@@ -55,9 +55,12 @@ export class Dialog extends Component {
             }
             button.on('click', async () => {
                 if (item.onclick) {
-                    button.loading = true;
-                    await item.onclick.call(this, this);
-                    button.loading = false;
+                    try {
+                        button.loading = true;
+                        await item.onclick.call(this, this);
+                    } finally {
+                        button.loading = false;
+                    }
                 } else {
                     this.hide();
                 }

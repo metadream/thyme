@@ -1,62 +1,62 @@
 .toast {
-    display: flex;
-    justify-content: center;
-    background-color: transparent;
-    height: 0;
-    opacity: 0;
+  display: flex;
+  justify-content: center;
+  background-color: transparent;
+  height: 0;
+  opacity: 0;
 }
 
 .toast>div {
-    position: absolute;
-    bottom: 0;
-    max-width: 80%;
-    padding: 6px 15px;
-    border-radius: 3px;
-    font-weight: 700;
-    color: #fff;
-    background-color: color-mix(in srgb, var(--fontColor) 80%, transparent);
+  position: absolute;
+  bottom: 0;
+  max-width: 80%;
+  padding: 6px 15px;
+  border-radius: 3px;
+  font-weight: 700;
+  color: #fff;
+  background-color: color-mix(in srgb, var(--fontColor) 80%, transparent);
 }
 
 .toast>div.warning {
-    --fontColor: var(--wc);
+  --fontColor: var(--wc);
 }
 
 .toast>div.error {
-    --fontColor: var(--ec);
+  --fontColor: var(--ec);
 }
 
 .toast>div.success {
-    --fontColor: var(--sc);
+  --fontColor: var(--sc);
 }
 
 .bounce-in {
-    animation: bounceIn cubic-bezier(.17, .88, .48, 1.5) .3s forwards;
+  animation: bounceIn cubic-bezier(.17, .88, .48, 1.5) .3s forwards;
 }
 
 .bounce-out {
-    animation: bounceOut ease-out .3s;
+  animation: bounceOut ease-out .3s;
 }
 
 @keyframes bounceIn {
-    from {
-        opacity: 0;
-        transform: translateY(0);
-    }
+  from {
+    opacity: 0;
+    transform: translateY(0);
+  }
 
-    to {
-        opacity: 1;
-        transform: translateY(120px);
-    }
+  to {
+    opacity: 1;
+    transform: translateY(120px);
+  }
 }
 
 @keyframes bounceOut {
-    from {
-        opacity: 1;
-        transform: translateY(120px);
-    }
+  from {
+    opacity: 1;
+    transform: translateY(120px);
+  }
 
-    to {
-        opacity: 0;
-        transform: translateY(0);
-    }
+  to {
+    opacity: 0;
+    transform: translateY(0);
+  }
 }

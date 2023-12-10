@@ -1,110 +1,110 @@
 button, a.button {
-    display: inline-flex;
-    position: relative;
-    justify-content: center;
-    align-items: center;
-    -webkit-user-drag: none;
-    -webkit-touch-callout: none;
-    user-select: none;
-    text-decoration: none;
-    vertical-align: middle;
-    font: inherit;
-    white-space: nowrap;
-    cursor: pointer;
-    color: #fff;
-    border: 0;
-    outline: 0;
-    padding: 0 30px;
-    height: 40px;
-    font-weight: 700;
-    font-size: var(--fontSize, var(--fs));
-    background-color: var(--primaryColor, var(--pc));
-    border-radius: var(--borderRadius, var(--br));
-    transition: opacity .3s;
-    overflow: hidden;
+  display: inline-flex;
+  position: relative;
+  justify-content: center;
+  align-items: center;
+  -webkit-user-drag: none;
+  -webkit-touch-callout: none;
+  user-select: none;
+  text-decoration: none;
+  vertical-align: middle;
+  font: inherit;
+  white-space: nowrap;
+  cursor: pointer;
+  color: #fff;
+  border: 0;
+  outline: 0;
+  padding: 0 30px;
+  height: 40px;
+  font-weight: 700;
+  font-size: var(--fontSize, var(--fs));
+  background-color: var(--primaryColor, var(--pc));
+  border-radius: var(--borderRadius, var(--br));
+  transition: opacity .3s;
+  overflow: hidden;
 }
 
 button:disabled, a.button:disabled {
-    opacity: .5;
-    cursor: default;
+  opacity: .5;
+  cursor: default;
 }
 
 button.outlined, a.button.outlined {
-    padding: 0 28.5px;
-    color: var(--primaryColor, var(--pc));
-    border: 1.5px solid currentColor;
-    background-color: #fff;
+  padding: 0 28.5px;
+  color: var(--primaryColor, var(--pc));
+  border: 1.5px solid currentColor;
+  background-color: #fff;
 }
 
 button.tonal, a.button.tonal {
-    color: var(--primaryColor, var(--pc));
-    background-color: color-mix(in srgb, currentColor 20%, #fff);
+  color: var(--primaryColor, var(--pc));
+  background-color: color-mix(in srgb, currentColor 20%, #fff);
 }
 
 button.minor, a.button.minor {
-    --primaryColor: var(--silverColor);
+  --primaryColor: var(--silverColor);
 }
 
 button.warning, a.button.warning {
-    --primaryColor: var(--wc);
+  --primaryColor: var(--wc);
 }
 
 button.danger, a.button.danger {
-    --primaryColor: var(--ec);
+  --primaryColor: var(--ec);
 }
 
 button.success, a.button.success {
-    --primaryColor: var(--sc);
+  --primaryColor: var(--sc);
 }
 
 .ripple {
-    position: absolute;
-    border-radius: 50%;
-    background-color: currentColor;
-    transform: scale(0);
-    opacity: 0;
-    width: 0;
-    height: 0;
+  position: absolute;
+  border-radius: 50%;
+  background-color: currentColor;
+  transform: scale(0);
+  opacity: 0;
+  width: 0;
+  height: 0;
 }
 
 .ripple.spread {
-    animation: spread .3s ease-out forwards;
+  animation: spread .3s ease-out forwards;
 }
 
 .ripple.fade-out {
-    animation: fadeOut .3s linear forwards;
+  animation: fadeOut .3s linear forwards;
 }
 
 .loading {
-    position: absolute;
-    width: 100%;
-    height: 100%;
+  position: absolute;
+  width: 100%;
+  height: 100%;
 }
 
 .loading:before {
-    --circleColor: color-mix(in srgb, currentColor 20%, transparent);
+  --circleColor: color-mix(in srgb, currentColor 20%, transparent);
 }
 
 @keyframes spread {
-    from {
-        transform: scale(0);
-        opacity: 0.6;
-    }
+  from {
+    transform: scale(0);
+    opacity: 0.6;
+  }
 
-    to {
-        transform: scale(1);
-        opacity: 0.3;
-    }
+  to {
+    transform: scale(1);
+    opacity: 0.3;
+  }
 }
 
 @keyframes fadeOut {
-    from {
-        transform: scale(1);
-        opacity: 0.3;
-    }
+  from {
+    transform: scale(1);
+    opacity: 0.3;
+  }
 
-    to {
-        transform: scale(1);
-        opacity: 0;
-    }
+  to {
+    transform: scale(1);
+    opacity: 0;
+  }
 }

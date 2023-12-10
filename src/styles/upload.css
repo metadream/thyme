@@ -1,44 +1,44 @@
 .upload-list {
-    display: flex;
-    flex-wrap: wrap;
-    flex: 1;
-    margin-top: 5px;
+  display: flex;
+  flex-wrap: wrap;
+  flex: 1;
+  margin-top: 5px;
 }
 
 .upload-entry {
-    display: flex;
-    margin: 0 5px 5px 0;
-    padding: 6px 8px;
-    line-height: 16px;
-    font-size: 14px;
-    border-radius: var(--borderRadius, var(--br));
-    background-color: var(--platColor);
+  display: flex;
+  margin: 0 5px 5px 0;
+  padding: 6px 8px;
+  line-height: 16px;
+  font-size: 14px;
+  border-radius: var(--borderRadius, var(--br));
+  background-color: var(--platColor);
 }
 
 .upload-entry>a {
-    display: flex;
-    align-items: center;
-    text-decoration: none;
-    cursor: pointer;
-    color: var(--carbonColor);
+  display: flex;
+  align-items: center;
+  text-decoration: none;
+  cursor: pointer;
+  color: var(--carbonColor);
 }
 
 a.download-icon svg.icon {
-    fill: var(--primaryColor, var(--pc));
+  fill: var(--primaryColor, var(--pc));
 }
 
 a.remove-icon svg.icon {
-    fill: var(--errorColor, var(--ec));
+  fill: var(--errorColor, var(--ec));
 }
 
 a[class$="-icon"] {
-    margin-left: 5px;
+  margin-left: 5px;
 }
 
 a:hover {
-    text-decoration: underline;
+  text-decoration: underline;
 }
 
 input[type="file"] {
-    display: none;
+  display: none;
 }

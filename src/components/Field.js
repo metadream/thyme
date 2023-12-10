@@ -16,7 +16,7 @@ const PATTERN = {
 export class Field extends Component {
 
     static styles = styles;
-    static attrs = ['name', 'value', 'required', 'readonly', 'disabled'];
+    static attrs = ['name', 'value', 'required', 'readonly', 'disabled', 'autofocus'];
     static template = '<div class="field"><label></label><div class="field-body"><input/><slot></slot></div></div>';
 
     #variants = ['tonal', 'plain'];

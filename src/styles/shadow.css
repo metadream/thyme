@@ -1,74 +1,74 @@
 *, *:before, *:after {
-    box-sizing: border-box;
+  box-sizing: border-box;
 }
 
 :host {
-    --pc: #19c;
-    --ec: #e58;
-    --wc: #f80;
-    --sc: #3b6;
-    --fc: #333;
-    --carbonColor: #666;
-    --grayColor: #999;
-    --silverColor: #ccc;
-    --platColor: #eee;
-    --ff: system-ui, -apple-system, BlinkMacSystemFont, "Helvetica Neue", Helvetica, Arial, "PingFang SC", "Hiragino Sans GB", "Heiti SC", "Microsoft YaHei", "WenQuanYi Micro Hei", sans-serif;
-    --fs: 15px;
-    --br: 5px;
-    font-size: var(--fontSize, var(--fs));
-    font-family: var(--fontFamily, var(--ff));
-    color: var(--fontColor, var(--fc));
-    line-height: 1.6;
+  --pc: #19c;
+  --ec: #e58;
+  --wc: #f80;
+  --sc: #3b6;
+  --fc: #333;
+  --carbonColor: #666;
+  --grayColor: #999;
+  --silverColor: #ccc;
+  --platColor: #eee;
+  --ff: system-ui, -apple-system, BlinkMacSystemFont, "Helvetica Neue", Helvetica, Arial, "PingFang SC", "Hiragino Sans GB", "Heiti SC", "Microsoft YaHei", "WenQuanYi Micro Hei", sans-serif;
+  --fs: 15px;
+  --br: 5px;
+  font-size: var(--fontSize, var(--fs));
+  font-family: var(--fontFamily, var(--ff));
+  color: var(--fontColor, var(--fc));
+  line-height: 1.6;
 }
 
 ::placeholder {
-    color: var(--grayColor);
+  color: var(--grayColor);
 }
 
 svg.icon {
-    width: 16px;
-    height: 16px;
-    fill: var(--grayColor);
+  width: 16px;
+  height: 16px;
+  fill: var(--grayColor);
 }
 
 .overlay {
-    position: fixed;
-    z-index: 5000;
-    background-color: rgba(0, 0, 0, 0.5);
-    left: 0;
-    right: 0;
-    top: 0;
-    bottom: 0;
+  position: fixed;
+  z-index: 5000;
+  background-color: rgba(0, 0, 0, 0.5);
+  left: 0;
+  right: 0;
+  top: 0;
+  bottom: 0;
 }
 
 .loading {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    background-color: inherit;
-    border-radius: inherit;
-    pointer-events: none;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: inherit;
+  border-radius: inherit;
+  pointer-events: none;
 }
 
 .loading:before {
-    content: '';
-    position: absolute;
-    width: 18px;
-    height: 18px;
-    border-radius: 50%;
-    border-left: 2px solid currentColor;
-    border-right: 2px solid var(--circleColor, var(--silverColor));
-    border-top: 2px solid var(--circleColor, var(--silverColor));
-    border-bottom: 2px solid var(--circleColor, var(--silverColor));
-    animation: spin .6s linear infinite;
+  content: '';
+  position: absolute;
+  width: 18px;
+  height: 18px;
+  border-radius: 50%;
+  border-left: 2px solid currentColor;
+  border-right: 2px solid var(--circleColor, var(--silverColor));
+  border-top: 2px solid var(--circleColor, var(--silverColor));
+  border-bottom: 2px solid var(--circleColor, var(--silverColor));
+  animation: spin .6s linear infinite;
 }
 
 @keyframes spin {
-    from {
-        transform: rotate(0);
-    }
+  from {
+    transform: rotate(0);
+  }
 
-    to {
-        transform: rotate(360deg);
-    }
+  to {
+    transform: rotate(360deg);
+  }
 }

@@ -1,94 +1,94 @@
 .overlay {
-    background: none;
+  background: none;
 }
 
 .calendar {
-    position: absolute;
-    z-index: 5001;
-    font-size: 13px;
-    color: var(--carbonColor);
-    background-color: #fff;
-    box-shadow: 0 0 16px rgb(0 0 0 / 8%);
-    user-select: none;
+  position: absolute;
+  z-index: 5001;
+  font-size: 13px;
+  color: var(--carbonColor);
+  background-color: #fff;
+  box-shadow: 0 0 16px rgb(0 0 0 / 8%);
+  user-select: none;
 }
 
 .calendar-header {
-    display: flex;
-    align-items: center;
-    height: 40px;
-    padding: 7px;
-    border-bottom: 1px solid var(--platColor);
+  display: flex;
+  align-items: center;
+  height: 40px;
+  padding: 7px;
+  border-bottom: 1px solid var(--platColor);
 }
 
 .calendar-title {
-    flex: 1;
-    text-align: center;
-    color: var(--primaryColor, var(--pc));
-    font-size: 15px;
-    cursor: pointer;
+  flex: 1;
+  text-align: center;
+  color: var(--primaryColor, var(--pc));
+  font-size: 15px;
+  cursor: pointer;
 }
 
 .calendar-body {
-    padding: 10px;
+  padding: 10px;
 }
 
 table {
-    width: 100%;
-    border-collapse: collapse;
+  width: 100%;
+  border-collapse: collapse;
 }
 
 tr {
-    border: 0;
-    height: auto;
+  border: 0;
+  height: auto;
 }
 
 th, td {
-    width: 32px;
-    height: 32px;
-    text-align: center;
+  width: 32px;
+  height: 32px;
+  text-align: center;
 }
 
 td {
-    padding: 3px;
+  padding: 3px;
 }
 
 td>div {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    height: 100%;
-    border-radius: 3px;
-    cursor: pointer;
-    transition: .3s all;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100%;
+  border-radius: 3px;
+  cursor: pointer;
+  transition: .3s all;
 }
 
 td>div:hover {
-    background-color: var(--platColor);
+  background-color: var(--platColor);
 }
 
 td>div.today {
-    color: #fff;
-    background-color: var(--primaryColor, var(--pc));
+  color: #fff;
+  background-color: var(--primaryColor, var(--pc));
 }
 
 td>div.curr {
-    color: #fff;
-    background-color: var(--grayColor);
+  color: #fff;
+  background-color: var(--grayColor);
 }
 
 td>div.minor {
-    color: var(--silverColor);
+  color: var(--silverColor);
 }
 
 .calendar svg.icon {
-    width: auto;
-    height: 100%;
-    padding: 6px;
-    cursor: pointer;
-    border-radius: 3px;
-    transition: .3s all;
+  width: auto;
+  height: 100%;
+  padding: 6px;
+  cursor: pointer;
+  border-radius: 3px;
+  transition: .3s all;
 }
 
 .calendar svg.icon:hover {
-    background-color: var(--platColor);
+  background-color: var(--platColor);
 }

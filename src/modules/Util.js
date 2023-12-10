@@ -136,9 +136,8 @@ export function enhanceElements() {
 
         attach(target, fitWidth) {
             const rect = target.getBoundingClientRect();
-            const scroll = getScrollPosition();
-            this.style.left = rect.x + scroll.left + 'px';
-            this.style.top = rect.y + rect.height + scroll.top + 1 + 'px';
+            this.style.left = rect.x + 'px';
+            this.style.top = rect.y + rect.height + 1 + 'px';
             fitWidth && (this.style.width = rect.width + 'px');
             return this;
         },
@@ -160,7 +159,7 @@ export function enhanceElements() {
  * @returns
  */
 export function isBooleanAttribute(name) {
-    return ['required', 'editable', 'readonly', 'checked', 'disabled'].includes(name);
+    return ['required', 'editable', 'readonly', 'checked', 'disabled', 'autofocus'].includes(name);
 }
 
 /**

@@ -1,137 +1,136 @@
 .field {
-    display: flex;
-    border-radius: var(--borderRadius, var(--br));
-    border: 1px solid var(--silverColor);
-    transition: .3s;
+  display: flex;
+  border-radius: var(--borderRadius, var(--br));
+  border: 1px solid var(--silverColor);
+  transition: .3s;
 }
 
 .field:focus-within {
-    border-color: var(--primaryColor, var(--pc));
-    box-shadow: 0 0 5px 0 rgb(0 0 0 / 15%);
+  border-color: var(--primaryColor, var(--pc));
+  box-shadow: 0 0 5px 0 rgb(0 0 0 / 15%);
 }
 
 .field:focus-within>label:after {
-    background-color: var(--primaryColor, var(--pc));
+  background-color: var(--primaryColor, var(--pc));
 }
 
 .field:focus-within:has(:invalid) {
-    border-color: var(--warningColor, var(--wc));
+  border-color: var(--warningColor, var(--wc));
 }
 
 .field:has(:required)>label:after {
-    background-color: var(--warningColor, var(--wc));
+  background-color: var(--warningColor, var(--wc));
 }
 
 .field.plain {
-    border-color: transparent;
+  border-color: transparent;
 }
 
 .field.tonal>label {
-    border-top-left-radius: var(--borderRadius, var(--br));
-    border-bottom-left-radius: var(--borderRadius, var(--br));
-    background-color: var(--platColor);
+  border-top-left-radius: var(--borderRadius, var(--br));
+  border-bottom-left-radius: var(--borderRadius, var(--br));
+  background-color: var(--platColor);
 }
 
 .field>label {
-    position: relative;
-    display: flex;
-    align-items: baseline;
-    cursor: default;
-    width: 30%;
-    padding: 7px 20px;
-    white-space: nowrap;
-    overflow: hidden;
+  position: relative;
+  display: flex;
+  align-items: baseline;
+  cursor: default;
+  min-width: 105px;
+  padding: 7px 20px;
+  white-space: nowrap;
 }
 
 .field>label:after {
-    content: '';
-    position: absolute;
-    top: 9px;
-    bottom: 9px;
-    right: 0;
-    width: 1px;
-    background-color: var(--silverColor);
-    transition: .3s;
+  content: '';
+  position: absolute;
+  top: 9px;
+  bottom: 9px;
+  right: 0;
+  width: 1px;
+  background-color: var(--silverColor);
+  transition: .3s;
 }
 
 .field-body {
-    display: flex;
-    align-items: center;
-    flex-wrap: wrap;
-    position: relative;
-    overflow: hidden;
-    flex: 1;
-    margin: 0 10px;
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+  position: relative;
+  overflow: hidden;
+  flex: 1;
+  margin: 0 10px;
 }
 
 .field-body input {
-    font: inherit;
-    outline: 0;
-    border: 0;
-    margin: 0;
-    padding: 0;
-    width: 100%;
-    height: 100%;
+  font: inherit;
+  outline: 0;
+  border: 0;
+  margin: 0;
+  padding: 0;
+  width: 100%;
+  height: 100%;
 }
 
 .field-body input.readonly {
-    pointer-events: none;
-    caret-color: transparent;
+  pointer-events: none;
+  caret-color: transparent;
 }
 
 .field-body input.hidden {
-    position: absolute;
-    opacity: 0;
-    width: 100%;
-    height: 100%;
+  position: absolute;
+  opacity: 0;
+  width: 100%;
+  height: 100%;
 }
 
 .field-body input[disabled] {
-    color: var(--grayColor);
-    pointer-events: none;
-    background: transparent;
+  color: var(--grayColor);
+  pointer-events: none;
+  background: transparent;
 }
 
 .field-icon {
-    display: flex;
-    justify-content: center;
-    align-items: baseline;
-    cursor: pointer;
-    outline: 0;
-    width: 40px;
-    padding: 11px;
-    border-top-right-radius: var(--borderRadius, var(--br));
-    border-bottom-right-radius: var(--borderRadius, var(--br));
-    transition: .2s;
+  display: flex;
+  justify-content: center;
+  align-items: baseline;
+  cursor: pointer;
+  outline: 0;
+  width: 40px;
+  padding: 11px;
+  border-top-right-radius: var(--borderRadius, var(--br));
+  border-bottom-right-radius: var(--borderRadius, var(--br));
+  transition: .2s;
 }
 
 .field-icon>*, .loading:before {
-    display: block;
-    width: 16px;
-    height: 16px;
+  display: block;
+  width: 16px;
+  height: 16px;
 }
 
 .tooltip, .tooltip::before {
-    position: absolute;
-    z-index: 5001;
-    background: #fef6d5;
-    border: 1px solid #666;
+  position: absolute;
+  z-index: 5001;
+  background: #fef6d5;
+  border: 1px solid #666;
 }
 
 .tooltip {
-    padding: 5px 10px;
-    margin-top: 10px;
-    font-size: 14px;
-    border-radius: 5px;
-    box-shadow: 3px 3px 3px rgb(0 0 0 / 16%);
+  padding: 5px 10px;
+  margin-top: 10px;
+  font-size: 14px;
+  border-radius: 5px;
+  box-shadow: 3px 3px 3px rgb(0 0 0 / 16%);
 }
 
 .tooltip:before {
-    content: '';
-    bottom: 100%;
-    left: 15%;
-    padding: 5px;
-    margin-bottom: -5px;
-    border-width: 0 1px 1px 0;
-    transform: rotate(-135deg);
+  content: '';
+  bottom: 100%;
+  left: 15%;
+  padding: 5px;
+  margin-bottom: -5px;
+  border-width: 0 1px 1px 0;
+  transform: rotate(-135deg);
 }

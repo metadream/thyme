@@ -1,52 +1,52 @@
 label {
-    display: inline-flex;
-    align-items: center;
-    cursor: pointer;
-    user-select: none;
+  display: inline-flex;
+  align-items: center;
+  cursor: pointer;
+  user-select: none;
 }
 
 label.disabled {
-    color: var(--grayColor);
-    cursor: default;
+  color: var(--grayColor);
+  cursor: default;
 }
 
 label.disabled input {
-    background-color: var(--silverColor);
+  background-color: var(--silverColor);
 }
 
 input {
-    display: grid;
-    place-content: center;
-    -webkit-appearance: none;
-    appearance: none;
-    outline: 0;
-    margin: 0;
-    width: 16px;
-    height: 16px;
-    color: #fff;
-    background-color: #fff;
-    border: 1.5px solid var(--primaryColor, var(--pc));
-    border-radius: var(--borderRadius, var(--br));
+  display: grid;
+  place-content: center;
+  -webkit-appearance: none;
+  appearance: none;
+  outline: 0;
+  margin: 0;
+  width: 16px;
+  height: 16px;
+  color: #fff;
+  background-color: #fff;
+  border: 1.5px solid var(--primaryColor, var(--pc));
+  border-radius: var(--borderRadius, var(--br));
 }
 
 input::before {
-    content: "";
-    width: 10px;
-    height: 10px;
-    background-color: #fff;
-    clip-path: polygon(10% 46%, 0% 59%, 45% 95%, 100% 16%, 86% 7%, 43% 68%);
-    transform: scale(0);
-    transition: .2s transform;
+  content: "";
+  width: 10px;
+  height: 10px;
+  background-color: #fff;
+  clip-path: polygon(10% 46%, 0% 59%, 45% 95%, 100% 16%, 86% 7%, 43% 68%);
+  transform: scale(0);
+  transition: .2s transform;
 }
 
 input:checked {
-    background-color: var(--primaryColor, var(--pc));
+  background-color: var(--primaryColor, var(--pc));
 }
 
 input:checked::before {
-    transform: scale(1);
+  transform: scale(1);
 }
 
 input+div {
-    margin-left: 5px;
+  margin-left: 5px;
 }
