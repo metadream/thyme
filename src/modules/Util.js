@@ -240,6 +240,39 @@ export function formatBytes(bytes) {
 }
 
 /**
+ * Parse format string into milliseconds
+ * @param {string} s
+ * @returns {number}
+ */
+export function parseDuration(s) {
+    if (!s) return 0;
+    const m = s.trim().match(/^(\d{2}):(\d{2}):(\d{2})(\.\d{1,3})?$/);
+    if (!m) return 0;
+
+    const hours = parseInt(m[1], 10);
+    const minutes = parseInt(m[2], 10);
+    const seconds = parseInt(m[3], 10);
+    const ms = parseFloat(m[4]) || 0;
+
+    if (hours > 59 || minutes > 59 || seconds > 59) return 0;
+    return (hours * 60 + minutes) * 60 + seconds + ms;
+}
+
+/**
+ * Format seconds to d h m s
+ * @param seconds
+ * @returns
+ */
+export function formatSeconds(seconds) {
+    const d = Math.floor(seconds / 86400);
+    const h = Math.floor((seconds % 86400) / 3600);
+    const m = Math.floor((seconds % 3600) / 60);
+    const s = seconds % 60;
+    return ((d > 0 ? d + "d " : "") + (h > 0 ? h + "h " : "") + (m > 0 ? m + "m " : "")
+        + (s > 0 ? s + "s" : "")).trim();
+}
+
+/**
  * 将对象转换为查询字符串
  * @param {Object} params
  * @returns
