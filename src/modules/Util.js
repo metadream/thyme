@@ -233,8 +233,7 @@ export function formatDate(date, pattern, utc) {
  * @returns {string}
  */
 export function formatBytes(bytes) {
-    if (!bytes) return "";
-    if (bytes < 1) return "0";
+    if (!bytes || bytes < 1) return "0";
     const unit = ["B", "K", "M", "G", "T", "P", "E", "Z"];
     const base = Math.min(unit.length - 1, Math.floor(Math.log(bytes) / Math.log(1024)));
     const scale = Math.max(0, base - 2);
