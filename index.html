@@ -134,7 +134,8 @@
 
         <th-dialog>
             <h1 style="margin-top:0">注意啦</h1>
-            <th-select type="text" label="手机品牌" name="brands" required>
+            <th-field label="用户名" name="username2" maxlength="10" required></th-field>
+            <th-select type="text" label="手机品牌" name="brand2" required>
                 <option></option>
                 <option value="1">iPhone</option>
                 <option value="2" disabled>Oppo</option>
@@ -198,6 +199,8 @@
         label: '确定',
         primary: true,
         onclick: async (self) => {
+            const data = Thyme.form.getJsonObject(self);
+            if (!data) return;
             await delay(500);
             console.log('ok');
         }
