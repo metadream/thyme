@@ -1,10 +1,10 @@
 import styles from '../styles/dialog.css';
-import { createElement } from '../modules/Util.js';
+import { createElement, parseInteger } from '../modules/Util.js';
 import { Component } from './Component.js';
 
 /**
  * 对话框组件
- * @example <th-dialog title="">content</th-dialog>
+ * @example <th-dialog width="600" title="">content</th-dialog>
  * @example element.buttons = [{ label: string, primary: true|false, onclick: function(self).call(this) }]
  * @example element.open(true|false)
  * @example element.hide()
@@ -27,6 +27,12 @@ export class Dialog extends Component {
     #removable;
 
     onConnected() {
+        const width = parseInteger(this.attr('width'));
+        if (width) {
+            const panel = this.query('.dialog-panel');
+            panel.style.width = width + 'px';
+        }
+
         const header = this.query('.dialog-header');
         if (header) {
             const title = this.attr('title');

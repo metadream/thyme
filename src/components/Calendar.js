@@ -27,6 +27,7 @@ export class Calendar extends Field {
         this.readonly = true;
         this.icon = calendarIcon;
         this.icon.on('click', () => this.#pulldown());
+        this.query('.field-body').on('click', () => this.#pulldown());
     }
 
     #pulldown() {

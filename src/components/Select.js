@@ -1,6 +1,6 @@
 import styles from '../styles/select.css';
-import arrowDownIcon from "../icons/arrow-down.svg";
-import { createElement } from "../modules/Util.js";
+import arrowDownIcon from '../icons/arrow-down.svg';
+import { createElement } from '../modules/Util.js';
 import { Field } from './Field.js';
 
 /**
@@ -22,6 +22,7 @@ export class Select extends Field {
         this.readonly = true;
         this.icon = arrowDownIcon;
         this.icon.on('click', () => this.#pulldown());
+        this.query('.field-body').on('click', () => this.#pulldown());
     }
 
     onAssigned(slot) {
@@ -39,7 +40,9 @@ export class Select extends Field {
         $overlay.on('mousedown', () => $wrapper.remove());
 
         const $select = this.query('.select');
-        $select.attach(this._native, true);
+        const width = this._native.offsetWidth + this.icon.offsetWidth;
+        $select.style.width = width + 'px';
+        $select.attach(this._native);
 
         // 创建选项节点
         for (const option of this.#options) {
@@ -47,8 +50,9 @@ export class Select extends Field {
             const $option = createElement(`<a class="option">${label || '&#160;'}</a>`);
             $select.append($option);
 
-            if (selected) {
+            if (selected && value) {
                 $option.addClass('selected');
+                $option.scrollIntoView({ block: 'nearest' });
             }
             if (disabled) {
                 $option.addClass('disabled');

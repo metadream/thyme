@@ -9,14 +9,14 @@ const PATTERN = {
 
 /**
  * 文本框组件
- * @example <th-field type="text|password|email|url|number" variant="tonal|plain">not required</th-field>
+ * @example <th-field type="text|password|email|url|number" variant="tonal|plain" width="200">not required</th-field>
  * @example field.icon = Element|HTML
  *          field.icon.onclick = ...
  */
 export class Field extends Component {
 
     static styles = styles;
-    static attrs = ['name', 'value', 'required', 'readonly', 'disabled', 'autofocus'];
+    static attrs = ['width', 'name', 'value', 'required', 'readonly', 'disabled', 'autofocus'];
     static template = '<div class="field"><label></label><div class="field-body"><input/><slot></slot></div></div>';
 
     #variants = ['tonal', 'plain'];
@@ -26,6 +26,7 @@ export class Field extends Component {
 
     onChanged(name, value) {
         switch (name) {
+            case 'width': this.query(".field").style.width = value + "px"; break;
             case 'readonly': this._native.mockReadOnly(); break;
             case 'value': this._native.value = value; break;
             default: this._native.attr(name, value);

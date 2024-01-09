@@ -134,11 +134,11 @@ export function enhanceElements() {
             return this;
         },
 
-        attach(target, fitWidth) {
+        attach(target) {
             const rect = target.getBoundingClientRect();
+            const scroll = getScrollPosition();
             this.style.left = rect.x + 'px';
-            this.style.top = rect.y + rect.height + 1 + 'px';
-            fitWidth && (this.style.width = rect.width + 'px');
+            this.style.top = rect.y + rect.height + scroll.top + 1 + 'px';
             return this;
         },
 

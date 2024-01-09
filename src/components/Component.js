@@ -58,11 +58,6 @@ export class Component extends HTMLElement {
         return this.shadowRoot.querySelector(selector);
     }
 
-    // 查找影子内所有元素快捷方法
-    queryAll(selector) {
-        return this.shadowRoot.querySelectorAll(selector);
-    }
-
     // 添加样式
     addStyle(styles) {
         let $style = this.query('style');
