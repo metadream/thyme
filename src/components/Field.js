@@ -105,7 +105,7 @@ export class Field extends Component {
 
         if (!validated) {
             tooltip = createElement(`<div class="tooltip">${message}</div>`);
-            tooltip.attach(this._native);
+            tooltip.attachTo(this._native);
             this.shadowRoot.append(tooltip);
             this.focus();
 

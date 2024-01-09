@@ -42,7 +42,7 @@ export class Select extends Field {
         const $select = this.query('.select');
         const width = this._native.offsetWidth + this.icon.offsetWidth;
         $select.style.width = width + 'px';
-        $select.attach(this._native);
+        $select.attachTo(this._native);
 
         // 创建选项节点
         for (const option of this.#options) {

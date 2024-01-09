@@ -44,7 +44,7 @@ export class Calendar extends Field {
         this.#bindEvents();
 
         // 依附到文本框
-        this.#calendar.attach(this._native);
+        this.#calendar.attachTo(this._native);
 
         // 根据文本框日期初始化渲染
         this.#initialDate = new Date(this._native.value);
