@@ -22,6 +22,15 @@ html {
   font-size: var(--fontSize);
 }
 
+html.scroll-blocked {
+  position: fixed;
+  overflow-y: scroll;
+  top: var(--th-scroll-y);
+  left: 0;
+  width: 100%;
+  height: 100%;
+}
+
 body {
   margin: 0;
   line-height: 1.6;

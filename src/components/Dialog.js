@@ -1,5 +1,5 @@
 import styles from '../styles/dialog.css';
-import { createElement, parseInteger } from '../modules/Util.js';
+import { createElement, parseInteger, hasVerticalScrollbar, getScrollPosition } from '../modules/Util.js';
 import { Component } from './Component.js';
 
 /**
@@ -76,12 +76,26 @@ export class Dialog extends Component {
 
     open(removable = false) {
         if (this.#state != HIDDEN) return;
+
+        if (hasVerticalScrollbar()) {
+            const { top } = getScrollPosition();
+            const $html = document.querySelector('html');
+            $html.style.setProperty('--th-scroll-y', (0 - top) + 'px');
+            $html.addClass('scroll-blocked');
+        }
+
         this.#removable = removable;
         this.#animate('fade-in', 'scale-in', OPENED);
     }
 
     hide() {
         if (this.#state != OPENED) return;
+
+        const $html = document.querySelector('html');
+        $html.removeClass('scroll-blocked');
+        const top = $html.style.getPropertyValue('--th-scroll-y');
+        document.body.scrollTop = document.documentElement.scrollTop = 0 - parseInt(top);
+
         this.#animate('fade-out', 'scale-out', HIDDEN);
     }
 

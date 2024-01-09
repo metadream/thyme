@@ -193,6 +193,23 @@ export function getScrollPosition() {
 }
 
 /**
+ * 设置滚动距离
+ * @returns
+ */
+export function setScrollPosition(x, y) {
+    document.body.scrollLeft = document.documentElement.scrollLeft = x;
+    document.body.scrollTop = document.documentElement.scrollTop = y;
+}
+
+/**
+ * 判断是否存在滚动条
+ * @returns
+ */
+export function hasVerticalScrollbar() {
+    return document.body.scrollHeight > (window.innerHeight || document.documentElement.clientHeight);
+}
+
+/**
  * SVG转换为DataUri
  * @param {string} svg
  * @returns
