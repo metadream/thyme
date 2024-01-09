@@ -137,7 +137,7 @@ export function enhanceElements() {
         attachTo(target) {
             const rect = target.getBoundingClientRect();
             const scroll = getScrollPosition();
-            this.style.left = rect.x + 'px';
+            this.style.left = rect.x + scroll.left + 'px';
             this.style.top = rect.y + rect.height + scroll.top + 1 + 'px';
             return this;
         },
