@@ -1,3 +1,5 @@
+import { Scrollbar } from "./Scrollbar.js";
+
 /**
  * Nano Id without '-' and '_'
  * @see https://github.com/ai/nanoid/blob/main/index.browser.js
@@ -136,9 +138,8 @@ export function enhanceElements() {
 
         attachTo(target) {
             const rect = target.getBoundingClientRect();
-            const scroll = getScrollPosition();
-            this.style.left = rect.x + scroll.left + 'px';
-            this.style.top = rect.y + rect.height + scroll.top + 1 + 'px';
+            this.style.left = rect.x + Scrollbar.left + 'px';
+            this.style.top = rect.y + rect.height + Scrollbar.top + 1 + 'px';
             return this;
         },
 
@@ -178,35 +179,6 @@ export function parseBoolean(v) {
  */
 export function parseInteger(v) {
     return /^\d+$/.test(v) ? parseInt(v) : 0;
-}
-
-/**
- * 获取滚动距离
- * @returns
- */
-export function getScrollPosition() {
-    const { body, documentElement } = document;
-    return {
-        top: body.scrollTop || documentElement.scrollTop,
-        left: body.scrollLeft || documentElement.scrollLeft,
-    }
-}
-
-/**
- * 设置滚动距离
- * @returns
- */
-export function setScrollPosition(x, y) {
-    document.body.scrollLeft = document.documentElement.scrollLeft = x;
-    document.body.scrollTop = document.documentElement.scrollTop = y;
-}
-
-/**
- * 判断是否存在滚动条
- * @returns
- */
-export function hasVerticalScrollbar() {
-    return document.body.scrollHeight > (window.innerHeight || document.documentElement.clientHeight);
 }
 
 /**

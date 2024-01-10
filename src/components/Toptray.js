@@ -1,6 +1,6 @@
 import styles from '../styles/toptray.css';
 import arrowUpIcon from "../icons/arrow-up.svg";
-import { getScrollPosition } from '../modules/Util.js';
+import { Scrollbar } from '../modules/Scrollbar.js';
 import { Component } from './Component.js';
 
 /**
@@ -24,17 +24,14 @@ export class Toptray extends Component {
             cancelAnimationFrame(scrollTimer);
 
             scrollTimer = requestAnimationFrame(function scroll() {
-                const y = getScrollPosition().top;
-                document.body.scrollTop = document.documentElement.scrollTop = parseInt(y / 1.2);
-
-                if (y > 0) scrollTimer = requestAnimationFrame(scroll);
+                Scrollbar.top = parseInt(Scrollbar.top / 1.2);
+                if (Scrollbar.top > 0) scrollTimer = requestAnimationFrame(scroll);
                 else cancelAnimationFrame(scrollTimer);
             });
         }
 
         addEventListener('scroll', () => {
-            const y = getScrollPosition().top;
-            if (y > 450) shell.style.display = 'block';
+            if (Scrollbar.top > 450) shell.style.display = 'block';
             else shell.style.display = 'none';
         });
     }
