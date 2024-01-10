@@ -1,5 +1,6 @@
 .field {
   display: flex;
+  position: relative;
   border-radius: var(--borderRadius, var(--br));
   border: 1px solid var(--silverColor);
   transition: .3s;

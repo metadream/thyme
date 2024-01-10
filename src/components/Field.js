@@ -104,11 +104,15 @@ export class Field extends Component {
         }
 
         if (!validated) {
-            tooltip = createElement(`<div class="tooltip">${message}</div>`);
-            tooltip.attachTo(this._native);
-            this.shadowRoot.append(tooltip);
-            this.focus();
+            const $field = this.query(".field");
+            const $label = this.query("label");
 
+            tooltip = createElement(`<div class="tooltip">${message}</div>`);
+            tooltip.style.left = $label.offsetWidth + 10 + 'px';
+            tooltip.style.top = $field.offsetHeight + 'px';
+            $field.append(tooltip);
+
+            this.focus();
             tooltip.timer = setTimeout(() => {
                 tooltip.remove();
             }, 5000);
