@@ -3,6 +3,7 @@
   position: relative;
   border-radius: var(--borderRadius, var(--br));
   border: 1px solid var(--silverColor);
+  min-height: 40px;
   transition: .3s;
 }
 
@@ -38,7 +39,7 @@
   display: flex;
   align-items: baseline;
   cursor: default;
-  min-width: 105px;
+  min-width: 120px;
   padding: 7px 20px;
   white-space: nowrap;
 }
