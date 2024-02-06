@@ -4,6 +4,7 @@
   overflow: hidden;
   border-radius: var(--borderRadius, var(--br));
   border: 1px solid var(--silverColor);
+  background-color: #fff;
   min-height: 40px;
   transition: .3s;
 }
