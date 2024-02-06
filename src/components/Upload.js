@@ -58,14 +58,14 @@ export class Upload extends Field {
             return;
         }
         if (files.length + this.#entries.length > this.#maxFiles) {
-            Thyme.warning(Locale.get('MAX_ALLOWED_FILES', { maxFiles: this.#maxFiles }));
+            Thyme.warn(Locale.get('MAX_ALLOWED_FILES', { maxFiles: this.#maxFiles }));
             return;
         }
 
         const maxSize = parseInteger(this.attr('maxsize')); // bytes
         for (const file of files) {
             if (maxSize > 0 && file.size > maxSize) {
-                return Thyme.warning(Locale.get('MAX_ALLOWED_SIZE', { maxSize: formatBytes(maxSize) }));
+                return Thyme.warn(Locale.get('MAX_ALLOWED_SIZE', { maxSize: formatBytes(maxSize) }));
             }
         }
 

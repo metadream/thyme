@@ -87,7 +87,7 @@ class Thyme {
         this.info(text, 'error', 5000);
     }
 
-    static warning(text) {
+    static warn(text) {
         this.info(text, 'warning', 4000);
     }
 
