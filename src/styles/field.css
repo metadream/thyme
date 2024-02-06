@@ -1,11 +1,11 @@
 .field {
   display: flex;
   position: relative;
-  overflow: hidden;
   border-radius: var(--borderRadius, var(--br));
   border: 1px solid var(--silverColor);
   background-color: #fff;
   min-height: 40px;
+  min-width: 150px;
   transition: .3s;
 }
 
