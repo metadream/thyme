@@ -1,6 +1,7 @@
 .field {
   display: flex;
   position: relative;
+  overflow: hidden;
   border-radius: var(--borderRadius, var(--br));
   border: 1px solid var(--silverColor);
   min-height: 40px;
