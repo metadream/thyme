@@ -3,7 +3,7 @@ import { Component } from './Component.js';
 /**
  * 公式组件
  * Depends on http://asciimath.org
- * <script src="https://cdn.unpkg.net/assets/lib/asciimath.js"></script>
+ * <script src="https://cdn.unpkg.net/~metadream/assets/lib/asciimath.js"></script>
  * @example <th-formula>E=mc^2</th-formula>
             <th-formula>f(t)=(a_0)/2 + sum_(n=1)^ooa_ncos((npit)/L)+sum_(n=1)^oo b_nsin((npit)/L)</th-formula>
             <th-formula>\oint_C \vec{B}\circ \d\vec{l} = \mu_0 (I_{enc} + \varepsilon_0 \frac{\d}{\d t} \int_S \vec{E} \circ
