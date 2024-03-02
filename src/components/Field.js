@@ -17,7 +17,7 @@ export class Field extends Component {
 
     static styles = styles;
     static attrs = ['width', 'name', 'value', 'required', 'readonly', 'disabled', 'autofocus'];
-    static template = '<div class="field"><label></label><div class="field-body"><input/><slot></slot></div></div>';
+    static template = '<div class="field" part="field"><label></label><div class="field-body"><input/><slot></slot></div></div>';
 
     #variants = ['tonal', 'plain'];
     #attrs = ['label', 'type', 'step', 'min', 'max', 'minlength', 'maxlength', 'placeholder', 'pattern'];
