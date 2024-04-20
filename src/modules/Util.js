@@ -217,13 +217,23 @@ export function formatDate(date, pattern, utc) {
 }
 
 /**
+ * Format a number with a specified max length of decimal
+ * @param {*} number
+ * @param {*} digits
+ * @returns
+ */
+export function formatDecimal(number, digits) {
+    return parseFloat(number.toFixed(digits));
+}
+
+/**
  * Format the number of bytes to be easily recognizable by humans
  * @param {number} bytes
  * @returns {string}
  */
 export function formatBytes(bytes) {
     if (!bytes || bytes < 1) return "0";
-    const unit = ["B", "K", "M", "G", "T", "P", "E", "Z"];
+    const unit = ["B", "KiB", "MiB", "GiB", "TiB", "PiB", "EiB", "ZiB"];
     const base = Math.min(unit.length - 1, Math.floor(Math.log(bytes) / Math.log(1024)));
     const scale = Math.max(0, base - 2);
     return parseFloat((bytes / Math.pow(1024, base)).toFixed(scale)) + unit[base];
