@@ -21,6 +21,7 @@ export class Select extends Field {
             const option = this.#options.find(v => v.value == value);
             if (option) {
                 this.#setFieldValue(value, option.label);
+                this.#options.forEach(v => v.selected = false);
                 option.selected = true;
                 option.scrollIntoView({ block: 'nearest' });
             }
