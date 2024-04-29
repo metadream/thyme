@@ -15,6 +15,18 @@ export class Select extends Field {
     #template = `<div><div class="overlay"></div><div class="select"></div></div>`;
     #options;
 
+    onChanged(name, value) {
+        super.onChanged(name, value);
+        if (name === 'value' && this.#options) {
+            const option = this.#options.find(v => v.value == value);
+            if (option) {
+                this.#setFieldValue(value, option.label);
+                option.selected = true;
+                option.scrollIntoView({ block: 'nearest' });
+            }
+        }
+    }
+
     onConnected() {
         super.onConnected();
         this.addStyle(styles);

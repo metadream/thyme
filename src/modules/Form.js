@@ -5,6 +5,23 @@
 export class Form {
 
     /**
+     * 将data值设置到指定范围内带name的文本域
+     * @param scope 赋值范围
+     * @param data 数据对象
+     */
+    static setJsonObject(scope, data) {
+        const fields = scope.querySelectorAll('[name]:not([name=""])');
+        for (const field of fields) {
+            const { type, name } = field;
+            if (type === 'checkbox') {
+                field.checked = data[name];
+            } else {
+                field.value = data[name] || '';
+            }
+        }
+    }
+
+    /**
      * 将带有name属性的元素数据解析为JSON对象
      * @param scope 获取范围
      */
