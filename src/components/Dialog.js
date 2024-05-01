@@ -25,6 +25,7 @@ export class Dialog extends Component {
     `;
 
     #state = HIDDEN;
+    #buttons;
     #removable;
 
     onConnected() {
@@ -41,12 +42,15 @@ export class Dialog extends Component {
         }
 
         document.addEventListener('keyup', e => {
-            if (e.keyCode === 27) this.hide();
+            if (e.keyCode === 27 && this.#buttons && this.#buttons.length) {
+                this.hide();
+            }
         });
     }
 
     // 添加按钮
     set buttons(items = []) {
+        this.#buttons = items;
         const footer = this.query('.dialog-footer');
         for (let item of items) {
             if (typeof item === 'string') {
