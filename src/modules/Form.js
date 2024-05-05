@@ -16,7 +16,7 @@ export class Form {
             if (type === 'checkbox') {
                 field.checked = data[name];
             } else {
-                field.value = data[name] || '';
+                field.value = data[name] ?? '';
             }
         }
     }
