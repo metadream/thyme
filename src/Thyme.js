@@ -3,6 +3,7 @@ import * as Util from './modules/Util.js';
 import { Locale } from './modules/Locale.js';
 import { Http } from './modules/Http.js';
 import { Form } from './modules/Form.js';
+import { Channel } from './modules/Channel.js';
 import { Button } from './components/Button.js';
 import { Calendar } from './components/Calendar.js';
 import { Checkbox } from './components/Checkbox.js';
@@ -17,12 +18,15 @@ import { Toast } from './components/Toast.js';
 import { Toptray } from './components/Toptray.js';
 import { Upload } from './components/Upload.js';
 import { Waterfall } from './components/Waterfall.js';
+import { Progress } from './components/Progress.js';
 
 class Thyme {
 
     static util = Util;
     static http = Http;
     static form = Form;
+    static Progress = Progress;
+    static Channel = Channel;
     static #toast;
 
     static {
@@ -94,7 +98,6 @@ class Thyme {
     static success(text) {
         this.info(text, 'success');
     }
-
 }
 
 window.Thyme = Thyme;
