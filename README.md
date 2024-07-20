@@ -2,11 +2,16 @@
 
 Demo: https://metadream.github.io/thyme
 
-## Import
+## Usage
+
+```
+<script src="dist/thyme.js"></script>
+```
+
+If you want to use the formulas, you also need to import
 
 ```
 <script src="https://cdn.unpkg.net/~metadream/assets/lib/asciimath.js"></script>
-<script src="dist/thyme.js"></script>
 ```
 
 ## Components
