@@ -116,7 +116,7 @@
 
 .tooltip, .tooltip::before {
   position: absolute;
-  z-index: 5001;
+  z-index: 1000001;
   background: #fef6d5;
   border: 1px solid #666;
 }

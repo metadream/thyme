@@ -157,7 +157,7 @@ table.list tr:last-child td:last-child {
 
 [tooltip]:before {
   content: '';
-  z-index: 9001;
+  z-index: 1000011;
   background-color: transparent;
   border: 6px solid transparent;
   border-top-color: rgba(0, 0, 0, 0.7);
@@ -166,7 +166,7 @@ table.list tr:last-child td:last-child {
 
 [tooltip]:after {
   content: attr(tooltip);
-  z-index: 9000;
+  z-index: 1000010;
   margin-right: -300px;
   padding: 6px 10px;
   font-size: 14px;

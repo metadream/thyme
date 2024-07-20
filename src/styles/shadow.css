@@ -33,7 +33,7 @@ svg.icon {
 
 .overlay {
   position: fixed;
-  z-index: 5000;
+  z-index: 1000000;
   background-color: rgba(0, 0, 0, 0.5);
   left: 0;
   right: 0;

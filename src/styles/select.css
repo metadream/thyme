@@ -3,7 +3,7 @@
   flex-direction: column;
   position: absolute;
   user-select: none;
-  z-index: 5001;
+  z-index: 1000001;
   max-height: 300px;
   padding: 10px 0;
   overflow-x: hidden;

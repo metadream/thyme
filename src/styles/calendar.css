@@ -4,7 +4,7 @@
 
 .calendar {
   position: absolute;
-  z-index: 5001;
+  z-index: 1000001;
   font-size: 13px;
   color: var(--carbonColor);
   background-color: #fff;
