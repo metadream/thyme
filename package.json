@@ -1,12 +1,12 @@
 {
-    "name": "thyme-components",
+    "name": "thyme-ui-components",
     "version": "0.1.0",
     "type": "module",
     "scripts": {
         "build": "webpack"
     },
     "author": "",
-    "license": "ISC",
+    "license": "MIT",
     "devDependencies": {
         "css-loader": "^6.8.1",
         "style-loader": "^3.3.3",
