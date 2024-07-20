@@ -12,11 +12,16 @@ export class Form {
     static setJsonObject(scope, data) {
         const fields = scope.querySelectorAll('[name]:not([name=""])');
         for (const field of fields) {
-            const { type, name } = field;
-            if (type === 'checkbox') {
-                field.checked = data[name];
+            const { tagName, type } = field;
+            const name = field.getAttribute('name');
+            const value = data[name] ?? '';
+
+            if (type === 'checkbox' || type == 'radio') {
+                field.checked = value;
+            } else if (tagName === 'INPUT' || tagName === 'SELECT' || tagName === 'TEXTAREA' || tagName.startsWith('TH-')) {
+                field.value = value;
             } else {
-                field.value = data[name] ?? '';
+                field.innerHTML = value;
             }
         }
     }
