@@ -5,7 +5,7 @@ import { Scrollbar } from "./Scrollbar.js";
  * @see https://github.com/ai/nanoid/blob/main/index.browser.js
  * @param {number} size
  */
-export function nanoId(size = 21) {
+export function nanoId(size = 24) {
     return crypto.getRandomValues(new Uint8Array(size)).reduce((id, byte) => {
         byte &= 61;
         if (byte < 36) {
