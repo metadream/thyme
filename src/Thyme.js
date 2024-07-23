@@ -1,4 +1,5 @@
 import globalStyles from './styles/global.css';
+import checkboxStyles from './styles/checkbox.css';
 import * as Util from './modules/Util.js';
 import { Locale } from './modules/Locale.js';
 import { Http } from './modules/Http.js';
@@ -31,7 +32,7 @@ class Thyme {
 
     static {
         Util.enhanceElements();
-        document.head.append(Util.createStyle(globalStyles));
+        document.head.append(Util.createStyle(globalStyles + checkboxStyles));
 
         Util.registerComponent('th-button', Button);
         Util.registerComponent('th-calendar', Calendar);

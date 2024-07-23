@@ -1,52 +1,56 @@
 label {
-  display: inline-flex;
-  align-items: center;
-  cursor: pointer;
-  user-select: none;
+    display: inline-flex;
+    align-items: center;
+    cursor: pointer;
+    user-select: none;
 }
 
 label.disabled {
-  color: var(--grayColor);
-  cursor: default;
+    color: var(--grayColor);
+    cursor: default;
 }
 
 label.disabled input {
-  background-color: var(--silverColor);
+    background-color: var(--silverColor);
 }
 
-input {
-  display: grid;
-  place-content: center;
-  -webkit-appearance: none;
-  appearance: none;
-  outline: 0;
-  margin: 0;
-  width: 16px;
-  height: 16px;
-  color: #fff;
-  background-color: #fff;
-  border: 1.5px solid var(--primaryColor, var(--pc));
-  border-radius: var(--borderRadius, var(--br));
+label input {
+    display: grid;
+    place-content: center;
+    -webkit-appearance: none;
+    appearance: none;
+    outline: 0;
+    margin: 0;
+    width: 16px;
+    height: 16px;
+    color: #fff;
+    background-color: #fff;
+    border: 1.5px solid var(--primaryColor, var(--pc));
+    border-radius: var(--borderRadius, var(--br));
 }
 
-input::before {
-  content: "";
-  width: 10px;
-  height: 10px;
-  background-color: #fff;
-  clip-path: polygon(10% 46%, 0% 59%, 45% 95%, 100% 16%, 86% 7%, 43% 68%);
-  transform: scale(0);
-  transition: .2s transform;
+label input[type="radio"] {
+    border-radius: 50%;
 }
 
-input:checked {
-  background-color: var(--primaryColor, var(--pc));
+label input::before {
+    content: "";
+    width: 10px;
+    height: 10px;
+    background-color: #fff;
+    clip-path: polygon(10% 46%, 0% 59%, 45% 95%, 100% 16%, 86% 7%, 43% 68%);
+    transform: scale(0);
+    transition: .2s transform;
 }
 
-input:checked::before {
-  transform: scale(1);
+label input:checked {
+    background-color: var(--primaryColor, var(--pc));
 }
 
-input+div {
-  margin-left: 5px;
+label input:checked::before {
+    transform: scale(1);
+}
+
+label input + * {
+    margin-left: 5px;
 }

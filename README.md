@@ -89,6 +89,13 @@ Thyme.http.post('/path', data).then(res => {
 ### Utils
 
 ```
+Thyme.alert('Alert!');
+Thyme.confirm('Confirm?', () => console.log('callback'));
+Thyme.info('message');
+Thyme.success('message');
+Thyme.warn('message');
+Thyme.error('message');
+
 Thyme.util.nanoId(24);
 Thyme.util.createElement('<div class="test"></div>');
 Thyme.util.formatDate(new Date(), 'yyyy-MM-dd hh:mm');

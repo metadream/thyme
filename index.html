@@ -31,7 +31,7 @@
             display: inline-block;
         }
 
-        th-checkbox {
+        th-checkbox, label {
             margin-right: 10px;
         }
 
@@ -55,6 +55,11 @@
         <th-field label="邮箱" type="email" name="email" placeholder="username@example.com"></th-field>
         <th-field label="网址" type="url" name="website" placeholder="http://www.example.com"></th-field>
         <th-field label="是否会员"><th-switch name="isMember"></th-switch></th-field>
+
+         <th-field label="性别">
+            <label><input type="radio" name="gender" value="1"/><span>男</span></label>
+            <label><input type="radio" name="gender" value="2"/><span>女</span></label>
+        </th-field>
 
         <th-checkgroup label="兴趣爱好" name="hobbies" required>
             <th-checkbox value="football">足球</th-checkbox>
@@ -129,43 +134,43 @@
                 <td>6</td>
             </tr>
         </table>
-
-        <th-dialog>
-            <h1 style="margin-top:0">注意啦</h1>
-            <h1 style="margin-top:0">注意啦</h1>
-            <h1 style="margin-top:0">注意啦</h1>
-            <h1 style="margin-top:0">注意啦</h1>
-            <th-field label="用户名" name="username2" maxlength="10" required></th-field>
-            <th-calendar label="生日" name="birthday2" required></th-calendar>
-            <th-select type="text" label="手机品牌" name="brand2" required>
-                <option></option>
-                <option value="1">iPhone</option>
-                <option value="2" disabled>Oppo</option>
-                <option value="3">Huawei</option>
-                <option value="4">Xiaomi</option>
-                <option value="6" selected>Google</option>
-                <option value="7" disabled>Nokia</option>
-                <option value="8">HTC</option>
-                <option value="9">Samsang</option>
-                <option value="0">TCL</option>
-            </th-select>
-            <h1 style="margin-top:0">注意啦</h1>
-            <h1 style="margin-top:0">注意啦</h1>
-            <h1 style="margin-top:0">注意啦</h1>
-            <h1 style="margin-top:0">注意啦</h1>
-            <h1 style="margin-top:0">注意啦</h1>
-            <h1 style="margin-top:0">注意啦</h1>
-        </th-dialog>
-
-        <th-toptray></th-toptray>
     </main>
+
+    <th-dialog>
+        <h1 style="margin-top:0">注意啦</h1>
+        <h1 style="margin-top:0">注意啦</h1>
+        <h1 style="margin-top:0">注意啦</h1>
+        <h1 style="margin-top:0">注意啦</h1>
+        <th-field label="用户名" name="username2" maxlength="10" required></th-field>
+        <th-calendar label="生日" name="birthday2" required></th-calendar>
+        <th-select type="text" label="手机品牌" name="brand2" required>
+            <option></option>
+            <option value="1">iPhone</option>
+            <option value="2" disabled>Oppo</option>
+            <option value="3">Huawei</option>
+            <option value="4">Xiaomi</option>
+            <option value="6" selected>Google</option>
+            <option value="7" disabled>Nokia</option>
+            <option value="8">HTC</option>
+            <option value="9">Samsang</option>
+            <option value="0">TCL</option>
+        </th-select>
+        <h1 style="margin-top:0">注意啦</h1>
+        <h1 style="margin-top:0">注意啦</h1>
+        <h1 style="margin-top:0">注意啦</h1>
+        <h1 style="margin-top:0">注意啦</h1>
+        <h1 style="margin-top:0">注意啦</h1>
+        <h1 style="margin-top:0">注意啦</h1>
+    </th-dialog>
+
+    <th-toptray></th-toptray>
 </body>
 
 </html>
 
 <script>
     function post(btn) {
-        const data = Thyme.form.getJsonObject('body');
+        const data = Thyme.form.getJsonObject('main');
         if (!data) return;
         console.log(data);
 
