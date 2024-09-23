@@ -52,6 +52,8 @@ export class Dialog extends Component {
     set buttons(items = []) {
         this.#buttons = items;
         const footer = this.query('.dialog-footer');
+        footer.innerHTML = '';
+
         for (let item of items) {
             if (typeof item === 'string') {
                 item = { label: item };
