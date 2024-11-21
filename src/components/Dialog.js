@@ -97,12 +97,14 @@ export class Dialog extends Component {
         Scrollbar.block();
         this.#removable = removable;
         this.#animate('fade-in', 'scale-in', OPENED);
+        this.dispatchEvent(new Event('open'));
     }
 
     hide() {
         if (this.#state != OPENED) return;
         Scrollbar.unblock();
         this.#animate('fade-out', 'scale-out', HIDDEN);
+        this.dispatchEvent(new Event('hide'));
     }
 
     #animate(bodyClass, panelClass, state) {
