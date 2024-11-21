@@ -63,6 +63,12 @@ export class Dialog extends Component {
             this.#addLoading(button);
             footer.append(button);
 
+            if (item.disabled === true) {
+                button.disabled = true;
+            }
+            if (item.hidden === true) {
+                button.style.display = 'none';
+            }
             if (item.primary === true) {
                 button.addClass('primary');
             }
@@ -70,7 +76,7 @@ export class Dialog extends Component {
                 if (item.onclick) {
                     try {
                         button.loading = true;
-                        await item.onclick.call(this, this);
+                        await item.onclick.call(this, this, button);
                     } finally {
                         button.loading = false;
                     }
@@ -79,6 +85,11 @@ export class Dialog extends Component {
                 }
             });
         }
+    }
+
+    get buttons() {
+        const footer = this.query('.dialog-footer');
+        return footer.querySelectorAll('button');
     }
 
     open(removable = false) {

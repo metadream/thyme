@@ -37,6 +37,19 @@
   display: flex;
 }
 
+.dialog-body::-webkit-scrollbar {
+  width: 10px;
+}
+
+.dialog-body::-webkit-scrollbar-thumb {
+  background: var(--lineColor);
+  border-radius: var(--borderRadius);
+}
+
+.dialog-body::-webkit-scrollbar-track {
+  background: transparent;
+}
+
 button {
   position: relative;
   font: inherit;
