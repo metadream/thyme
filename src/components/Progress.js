@@ -10,8 +10,8 @@ export const Progress = {
         const rect = container.getBoundingClientRect();
         this.$instance = document.createElement('div');
         this.$instance.setAttribute('style', `
-            position: fixed; z-index: 999; background: #b3261e; transition: width .3s linear;
-            left: ${rect.x}px; top: ${rect.y - 1}px; max-width: ${rect.width}px; width: 0; height: 1px;
+            position: fixed; z-index: 999; background: var(--primaryColor, var(--pc)); transition: width .3s linear;
+            left: ${rect.x}px; top: ${rect.y}px; max-width: ${rect.width}px; width: 0; height: 1px;
         `);
         document.body.append(this.$instance);
 
