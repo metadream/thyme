@@ -11,7 +11,7 @@ Demo: https://metadream.github.io/thyme
 If you want to use the formulas, you also need to import
 
 ```
-<script src="https://cdn.jsdelivr.net/gh/metadream/assets/lib/asciimath.js"></script>
+<script src="https://cdn.unpkg.net/assets/mod/asciimath.js"></script>
 ```
 
 ## Components
