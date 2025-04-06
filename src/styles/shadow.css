@@ -12,12 +12,11 @@
   --grayColor: #999;
   --silverColor: #ccc;
   --platColor: #eee;
-  --ff: system-ui, -apple-system, BlinkMacSystemFont, "Helvetica Neue", Helvetica, Arial, "PingFang SC", "Hiragino Sans GB", "Heiti SC", "Microsoft YaHei", "WenQuanYi Micro Hei", sans-serif;
   --fs: 15px;
   --br: 5px;
-  font-size: var(--fontSize, var(--fs));
-  font-family: var(--fontFamily, var(--ff));
-  color: var(--fontColor, var(--fc));
+  font: inherit;
+  font-size: var(--font-size, var(--fs));
+  color: var(--font-color, var(--fc));
   line-height: 1.6;
 }
 

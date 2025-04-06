@@ -10,6 +10,13 @@ export class TextBox extends Field {
 
     #editor;
 
+    onChanged(name, value) {
+        super.onChanged(name, value);
+        if (this.#editor && name === 'value') {
+            this.#editor.textContent = value;
+        }
+    }
+
     onConnected() {
         super.onConnected();
         this.addStyle(styles);

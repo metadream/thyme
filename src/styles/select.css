@@ -48,7 +48,7 @@
   height: 14px;
   left: 18px;
   clip-path: polygon(7% 47%, 0% 57%, 45% 93%, 100% 13%, 90% 7%, 44% 73%);
-  background-color: var(--primaryColor, var(--pc));
+  background-color: var(--primary-color, var(--pc));
 }
 
 .overlay {

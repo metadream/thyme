@@ -14,19 +14,19 @@
   border-radius: 3px;
   font-weight: 700;
   color: #fff;
-  background-color: color-mix(in srgb, var(--fontColor) 80%, transparent);
+  background-color: color-mix(in srgb, var(--font-color) 80%, transparent);
 }
 
 .toast>div.warning {
-  --fontColor: var(--wc);
+  --font-color: var(--wc);
 }
 
 .toast>div.error {
-  --fontColor: var(--ec);
+  --font-color: var(--ec);
 }
 
 .toast>div.success {
-  --fontColor: var(--sc);
+  --font-color: var(--sc);
 }
 
 .bounce-in {

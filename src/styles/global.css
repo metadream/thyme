@@ -3,23 +3,23 @@
 }
 
 :root {
-  --primaryColor: #19c;
-  --minorColor: #999;
-  --lineColor: #ccc;
-  --headingColor: #333;
-  --fontColor: #333;
-  --fontFamily: system-ui, -apple-system, BlinkMacSystemFont, "Helvetica Neue", Helvetica, Arial, "PingFang SC", "Hiragino Sans GB", "Heiti SC", "Microsoft YaHei", "WenQuanYi Micro Hei", sans-serif;
-  --fontSize: 15px;
+  --primary-color: #18c;
+  --minor-color: #999;
+  --line-color: #ccc;
+  --heading-color: #333;
+  --font-color: #333;
+  --font-family: system-ui, -apple-system, BlinkMacSystemFont, "Helvetica Neue", Helvetica, Arial, "PingFang SC", "Hiragino Sans GB", "Heiti SC", "Microsoft YaHei", "WenQuanYi Micro Hei", sans-serif;
+  --font-size: 15px;
   --spacing: 15px;
-  --borderRadius: 5px;
+  --border-radius: 5px;
 }
 
 ::placeholder {
-  color: var(--minorColor);
+  color: var(--minor-color);
 }
 
 html {
-  font-size: var(--fontSize);
+  font-size: var(--font-size);
 }
 
 html.scroll-blocked {
@@ -34,19 +34,8 @@ html.scroll-blocked {
 body {
   margin: 0;
   line-height: 1.6;
-  font-family: var(--fontFamily);
-  color: var(--fontColor);
-}
-
-a {
-  cursor: pointer;
-  font: inherit;
-  color: var(--primaryColor);
-  text-decoration: none;
-}
-
-a:hover {
-  text-decoration: underline;
+  font-family: var(--font-family);
+  color: var(--font-color);
 }
 
 img {
@@ -63,7 +52,7 @@ h1, h2, h3, h4, h5 {
 }
 
 h1, h2, h3 {
-  color: var(--headingColor);
+  color: var(--heading-color);
 }
 
 h1 {
@@ -89,20 +78,20 @@ h5 {
   color: inherit;
 }
 
-table {
+table.thyme {
   --headBgColor: #ddd;
 }
 
-table.list {
+table.thyme.list {
   table-layout: fixed;
   border-collapse: collapse;
   border-style: hidden;
-  border-radius: var(--borderRadius);
-  box-shadow: 0 0 0 1px var(--lineColor);
+  border-radius: var(--border-radius);
+  box-shadow: 0 0 0 1px var(--line-color);
   width: 100%;
 }
 
-table.list th, table.list td {
+table.thyme.list th, table.thyme.list td {
   height: 40px;
   padding: 5px 10px;
   white-space: nowrap;
@@ -110,29 +99,29 @@ table.list th, table.list td {
   overflow: hidden;
 }
 
-table.list th {
+table.thyme.list th {
   background-color: var(--headBgColor);
 }
 
-table.list td {
+table.thyme.list td {
   border-left: 1px solid #f3f3f3;
-  border-top: 1px solid var(--lineColor);
+  border-top: 1px solid var(--line-color);
 }
 
-table.list th:first-child {
-  border-top-left-radius: var(--borderRadius);
+table.thyme.list th:first-child {
+  border-top-left-radius: var(--border-radius);
 }
 
-table.list th:last-child {
-  border-top-right-radius: var(--borderRadius);
+table.thyme.list th:last-child {
+  border-top-right-radius: var(--border-radius);
 }
 
-table.list tr:last-child td:first-child {
-  border-bottom-left-radius: var(--borderRadius);
+table.thyme.list tr:last-child td:first-child {
+  border-bottom-left-radius: var(--border-radius);
 }
 
-table.list tr:last-child td:last-child {
-  border-bottom-right-radius: var(--borderRadius);
+table.thyme.list tr:last-child td:last-child {
+  border-bottom-right-radius: var(--border-radius);
 }
 
 [tooltip] {
@@ -171,7 +160,7 @@ table.list tr:last-child td:last-child {
   padding: 6px 10px;
   font-size: 14px;
   line-height: 1.6;
-  border-radius: var(--borderRadius);
+  border-radius: var(--border-radius);
   background-color: rgba(0, 0, 0, 0.7);
   color: #fff;
 }

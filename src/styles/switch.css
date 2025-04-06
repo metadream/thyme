@@ -36,7 +36,7 @@
 }
 
 input:checked+i {
-  background-color: var(--primaryColor, var(--pc));
+  background-color: var(--primary-color, var(--pc));
 }
 
 input:checked+i:before {

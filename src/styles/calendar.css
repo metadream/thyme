@@ -23,7 +23,7 @@
 .calendar-title {
   flex: 1;
   text-align: center;
-  color: var(--primaryColor, var(--pc));
+  color: var(--primary-color, var(--pc));
   font-size: 15px;
   cursor: pointer;
 }
@@ -68,7 +68,7 @@ td>div:hover {
 
 td>div.today {
   color: #fff;
-  background-color: var(--primaryColor, var(--pc));
+  background-color: var(--primary-color, var(--pc));
 }
 
 td>div.curr {

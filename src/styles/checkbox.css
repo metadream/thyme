@@ -25,8 +25,8 @@ label input {
     height: 16px;
     color: #fff;
     background-color: #fff;
-    border: 1.5px solid var(--primaryColor, var(--pc));
-    border-radius: var(--borderRadius, var(--br));
+    border: 1.5px solid var(--primary-color, var(--pc));
+    border-radius: var(--border-radius, var(--br));
 }
 
 label input[type="radio"] {
@@ -44,7 +44,7 @@ label input::before {
 }
 
 label input:checked {
-    background-color: var(--primaryColor, var(--pc));
+    background-color: var(--primary-color, var(--pc));
 }
 
 label input:checked::before {

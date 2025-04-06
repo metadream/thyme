@@ -13,7 +13,7 @@
   max-width: 80%;
   max-height: 80%;
   min-width: 300px;
-  border-radius: var(--borderRadius, var(--br));
+  border-radius: var(--border-radius, var(--br));
   overflow: hidden;
 }
 
@@ -42,8 +42,8 @@
 }
 
 .dialog-body::-webkit-scrollbar-thumb {
-  background: var(--lineColor);
-  border-radius: var(--borderRadius);
+  background: var(--line-color);
+  border-radius: var(--border-radius);
 }
 
 .dialog-body::-webkit-scrollbar-track {
@@ -70,7 +70,7 @@ button:not(:first-child) {
 }
 
 button.primary {
-  color: var(--fontColor, var(--fc));
+  color: var(--font-color, var(--fc));
 }
 
 button:active {

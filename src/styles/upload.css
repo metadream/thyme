@@ -11,7 +11,7 @@
   padding: 6px 8px;
   line-height: 16px;
   font-size: 14px;
-  border-radius: var(--borderRadius, var(--br));
+  border-radius: var(--border-radius, var(--br));
   background-color: var(--platColor);
 }
 
@@ -24,7 +24,7 @@
 }
 
 a.download-icon svg.icon {
-  fill: var(--primaryColor, var(--pc));
+  fill: var(--primary-color, var(--pc));
 }
 
 a.remove-icon svg.icon {
