@@ -19,6 +19,10 @@ export class Checkbox extends Component {
         if (name === 'disabled') {
             this.shell.addClass('disabled');
         }
+        if (name === 'checked') {
+            this.#input.checked = !!value;
+        }
+
     }
 
     onConnected() {
