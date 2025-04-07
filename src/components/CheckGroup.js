@@ -10,31 +10,42 @@ import { delay } from '../modules/Util.js';
  */
 export class CheckGroup extends Field {
 
+    #options = [];
+
+    onChanged(name, value) {
+        super.onChanged(name, value);
+        if (name === 'value') {
+            const values = value.split(',');
+            this.#options.forEach(opt => {
+                opt.checked = values.includes(opt.value);
+            });
+        }
+    }
+
     onConnected() {
         super.onConnected();
         this._native.mockHide();
     }
 
     async onAssigned(slot) {
-        const options = [];
         for (const el of slot.assignedElements()) {
             if (el.tagName === 'TH-CHECKBOX') {
-                options.push(el);
+                this.#options.push(el);
             } else {
                 await delay(10);
-                options.push(...el.querySelectorAll('th-checkbox'))
+                this.#options.push(...el.querySelectorAll('th-checkbox'))
             }
         }
 
-        this.#setFieldValue(options);
-        for (const opt of options) {
-            opt.on('change', () => this.#setFieldValue(options));
+        this.#setFieldValue();
+        for (const opt of this.#options) {
+            opt.on('change', () => this.#setFieldValue());
         }
     }
 
-    #setFieldValue(options) {
+    #setFieldValue() {
         const values = [];
-        const opts = options.filter(v => v.checked);
+        const opts = this.#options.filter(v => v.checked);
         opts.forEach(v => values.push(v.value));
         this.value = values.join(',');
     }
