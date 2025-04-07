@@ -1,4 +1,5 @@
 import { Field } from './Field.js';
+import { delay } from '../modules/Util.js';
 
 /**
  * 复选框组合组件
@@ -14,10 +15,18 @@ export class CheckGroup extends Field {
         this._native.mockHide();
     }
 
-    onAssigned(slot) {
-        const options = slot.assignedElements();
-        this.#setFieldValue(options);
+    async onAssigned(slot) {
+        const options = [];
+        for (const el of slot.assignedElements()) {
+            if (el.tagName === 'TH-CHECKBOX') {
+                options.push(el);
+            } else {
+                await delay(10);
+                options.push(...el.querySelectorAll('th-checkbox'))
+            }
+        }
 
+        this.#setFieldValue(options);
         for (const opt of options) {
             opt.on('change', () => this.#setFieldValue(options));
         }

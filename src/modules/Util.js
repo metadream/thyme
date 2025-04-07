@@ -1,5 +1,11 @@
 import { Scrollbar } from "./Scrollbar.js";
 
+
+/** 延迟执行 */
+export function delay(delayInms) {
+    return new Promise(resolve => setTimeout(resolve, delayInms));
+}
+
 /**
  * Nano Id without '-' and '_'
  * @see https://github.com/ai/nanoid/blob/main/index.browser.js
