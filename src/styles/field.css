@@ -115,13 +115,13 @@
 }
 
 .tooltip, .tooltip::before {
-  position: absolute;
-  z-index: 1000001;
+  z-index: 99999;
   background: #fef6d5;
   border: 1px solid #666;
 }
 
 .tooltip {
+  position: fixed;
   padding: 5px 10px;
   margin-top: 10px;
   font-size: 14px;
@@ -130,6 +130,7 @@
 }
 
 .tooltip:before {
+  position: absolute;
   content: '';
   bottom: 100%;
   left: 15%;

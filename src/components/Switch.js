@@ -17,6 +17,9 @@ export class Switch extends Component {
 
     onChanged(name, value) {
         this.#input.attr(name, value);
+        if (name === 'checked') {
+            this.#input.checked = !!value;
+        }
     }
 
     onConnected() {

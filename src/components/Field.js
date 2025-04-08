@@ -106,10 +106,12 @@ export class Field extends Component {
         if (!validated) {
             const $field = this.query(".field");
             const $label = this.query("label");
+            const left = $label ? $label.getBoundingClientRect().right : 0;
+            const top = $field.getBoundingClientRect().bottom;
 
             tooltip = createElement(`<div class="tooltip">${message}</div>`);
-            tooltip.style.left = $label?.offsetWidth + 10 + 'px';
-            tooltip.style.top = $field.offsetHeight + 'px';
+            tooltip.style.top = top + 'px';
+            tooltip.style.left = left + 10 + 'px';
             $field.append(tooltip);
 
             this.focus();
