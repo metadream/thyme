@@ -53,8 +53,6 @@ export class Select extends Field {
         $overlay.on('mousedown', () => $wrapper.remove());
 
         const $select = this.query('.select');
-        const width = this._native.offsetWidth + this.icon.offsetWidth;
-        $select.style.width = width + 'px';
         $select.attachTo(this._native);
 
         // 创建选项节点

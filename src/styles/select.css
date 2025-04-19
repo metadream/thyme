@@ -28,7 +28,7 @@
   display: flex;
   align-items: center;
   cursor: pointer;
-  padding: 5px 20px 5px 40px;
+  padding: 5px 20px;
   transition: .3s;
 }
 
@@ -37,11 +37,16 @@
   cursor: default;
 }
 
-.option:not(.disabled):hover {
+.option.selected {
+  background-color: var(--primary-color, var(--pc));
+}
+
+.option:not(.disabled):not(.selected):hover {
   background-color: var(--platColor);
 }
 
-.option.selected::before {
+/* 纯CSS实现打勾图标 */
+/* .option.selected::before {
   content: "";
   position: absolute;
   width: 14px;
@@ -49,7 +54,7 @@
   left: 18px;
   clip-path: polygon(7% 47%, 0% 57%, 45% 93%, 100% 13%, 90% 7%, 44% 73%);
   background-color: var(--primary-color, var(--pc));
-}
+} */
 
 .overlay {
   background: none;
