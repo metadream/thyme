@@ -33,7 +33,8 @@ export const Locale = {
     },
 
     get(key, replacement) {
-        const lang = this[navigator.language] ? navigator.language : 'en';
+        let lang = globalThis.Thyme?.locale || navigator.language;
+        lang = this[lang] ? lang : 'en';
         let text = this[lang][key];
         if (replacement) {
             for (const [k, v] of Object.entries(replacement)) {
