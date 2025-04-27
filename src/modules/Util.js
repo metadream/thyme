@@ -233,6 +233,14 @@ export function formatDecimal(number, digits) {
 }
 
 /**
+ * Format a number as a thousand-separated currency
+ * @param {Number} number
+ */
+export function formatMoney(number) {
+    return number.toFixed(2).replace(/\d(?=(\d{3})+\.)/g, '$&,');
+}
+
+/**
  * Format the number of bytes to be easily recognizable by humans
  * @param {number} bytes
  * @returns {string}
