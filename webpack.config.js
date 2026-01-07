@@ -1,4 +1,5 @@
 import path from "path";
+import pkg from './package.json' with { type: 'json' };
 import { Minifier } from './webpack.plugin.js';
 
 export default {
@@ -9,7 +10,7 @@ export default {
     entry: "./src/Thyme.js",
     output: {
         path: path.resolve("./dist"),
-        filename: "thyme.js"
+        filename: "thyme@" + pkg.version + ".js"
     },
 
     module: {

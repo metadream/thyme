@@ -29,6 +29,9 @@ export class Http {
             }
             else if (contentType.includes('application/json')) {
                 result = await response.json();
+            }
+            else if (/^(image\/|audio\/|video\/)/.test(contentType)) {
+                result = await response.blob();
             } else {
                 throw new Error(Locale.get('UNSUPPORTED_RESPONSE'));
             }
