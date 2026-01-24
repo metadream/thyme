@@ -41,9 +41,7 @@ export class Button extends Component {
 
     set loading(v) {
         v = !!v;
-        if (this.disabled == v) return;
         this.disabled = v;
-
         if (v) {
             const loading = createElement('<div class="loading"></div>');
             this.shell.append(loading);
