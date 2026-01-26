@@ -42,11 +42,12 @@ export class Button extends Component {
     set loading(v) {
         v = !!v;
         this.disabled = v;
+        let loading = this.query('.loading');
+
         if (v) {
-            const loading = createElement('<div class="loading"></div>');
+            if (!loading) loading = createElement('<div class="loading"></div>');
             this.shell.append(loading);
         } else {
-            const loading = this.query('.loading');
             loading && loading.remove();
         }
     }
