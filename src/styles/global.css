@@ -8,7 +8,9 @@
   --line-color: #ccc;
   --heading-color: #333;
   --font-color: #333;
-  --font-family: system-ui, -apple-system, BlinkMacSystemFont, "Helvetica Neue", Helvetica, Arial, "PingFang SC", "Hiragino Sans GB", "Heiti SC", "Microsoft YaHei", "WenQuanYi Micro Hei", sans-serif;
+  --font-family: -apple-system, BlinkMacSystemFont, system-ui,
+  "PingFang SC", "Hiragino Sans GB", "Heiti SC", "Microsoft YaHei", "WenQuanYi Micro Hei", "SimHei",
+  Helvetica, Tahoma, Arial, sans-serif;
   --font-size: 15px;
   --spacing: 15px;
   --border-radius: 5px;
